@@ -1,5 +1,5 @@
 name: "Mywebsite"
-title: "My new website"
+title: "Ecological Modelling"
 type: inverse
 left:
   - text: "Syllabus"
@@ -10,11 +10,11 @@ left:
     menu:
       - text: "Learn more about me"
         href: ./aboutme.html
-  - text: "Project"
+  - text: "Projects"
     menu:
-       - text: "Project part 1"
+       - text: "Project 1"
          href: ./project1.html
-       - text: "Project part 2"
+       - text: "Project 2"
          href: ./project2.html
   - text: "Contact"
     href: ./contact.html

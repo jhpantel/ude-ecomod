@@ -1,0 +1,21 @@
+---
+title: "About Me"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## My research
+Learn more about my research interests on my [personal website](http://jhpantel.com).
+
+Publications can be found on my [Google Scholar page](https://scholar.google.com/citations?user=u1EOGhYAAAAJ).
+
+Coding and software projects can be found on my [Github page](https://github.com/jhpantel).
+
+## Additional projects
+Learn more about the [EEB POC project](https://twitter.com/EEB_POC).

@@ -1,4 +1,4 @@
-name: "My new website"
+name: "Ecological Modelling"
 output_dir: 'docs'
 output:
   html_document:
