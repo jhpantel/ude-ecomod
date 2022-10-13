@@ -20,7 +20,7 @@ __Please do all readings in advance of the scheduled course period. Each reading
 | --- | --- | --- | --- |
 | Module 1.1 – Introduction to Models in Ecology, Part 1 | 13-10-2022 | none | 1. [__Lecture 1.1__](./L1.1.pdf) |
 | Module 1.2 – Introduction to Models in Ecology, Part 2  | 20-10-2022 | 1. [__Jackson et al. 2000__](./r1_Jackson_2000.pdf), 2. [__Otto & Day Ch2__](./r2_OttoDay_Ch2.pdf), 3. [__Reading Guide 1__](./w2_readguide.html)| 1. [__Lecture 1.2__](./L1.2.pdf) |
-| Module 2.1 – Survey of ecological models, Part 1 | 27-10-2022 | 2. [__Otto & Day Ch3__](./r2_OttoDay_Ch3.pdf)  | XX |
+| Module 2.1 – Survey of ecological models, Part 1 | 27-10-2022 | 2. [__Otto & Day Ch3__](./r3_OttoDay_Ch3.pdf)  | XX |
 | Module 2.2 – Survey of ecological models, Part 2  | 03-11-2022 | reading AA | XX |
 | Module 3.1 – Models and data in ecology case studies, Part 1 | 10-11-2022 | Reading BB  | XX |
 | Module 3.2 – Models and data in ecology case studies, Part 2 | 17-11-2022 | Reading CC  | XX |
