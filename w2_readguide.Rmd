@@ -11,13 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Notes
-__Note 1. These reading guidelines are incomplete and will be completed Friday 14-10-2022.__
+Note 1. I *strongly* recommend to read Jackson et al. 2000 first. The Otto & Day Chapter is from a textbook where you learn to construct models. We will not be creating our own new models, as this course is more of a survey course. Don't let Otto & Day Chapter 2 stop your progress, get through it and we'll discuss in class! If you are struggling with Otto & Day, read only Section 2.1, 2.2, 2.3, 2.4.
 
-Note 2. I *strongly* recommend to read Jackson et al. 2000 first. The Otto & Day Chapter is from a textbook where you learn to construct models. We will not be creating our own new models, as this course is more of a survey course. Don't let Otto & Day Chapter 2 stop your progress, get through it and we'll discuss in class!
-
-Note 3. Ha, ugh, the image quality of Figure 1 isn't great! I will create a new version of that so it is more legible (looks like a computer from 1980!).
-
-Note 4. The equations on page 697 should be:
+Note 2. The equations on page 697 (Jackson et al) should be:
 
 \begin{align}
     C = aP
@@ -31,7 +27,26 @@ Note 4. The equations on page 697 should be:
     C = dPe^{-fP}
 \end{align}
 
-## Things to look for while reading
+## Overall reading advice
+
+Tip 1. Consider a "three-pass" approach - read the paper in up to three passes, instead of starting at the beginning and plow- ing your way to the end. Each pass accomplishes specific goals and builds upon the previous pass: The first pass gives you a general idea about the paper. The second pass lets you grasp the paper’s content, but not its details. The third pass helps you understand the paper in depth.
 
 ## Some questions to answer before class
 
+# Jackson et al. 2000
+
+- What is an age-structured population model? (hint, see Figure 2C)
+
+- What is the overall goal (the main research question or underlying ecological motivation) for the model in Figure 2C?
+
+- What is the distinction between difference and differential equations?
+
+- What is a *parsimonious* model?
+
+- Describe the tradeoff pictured in Figure 3
+
+# Otto & Day Chapter 2
+
+- Consider Box 2.1 - make a drawing and put all of the steps fromBox 2.1. Then, go to the 'toy models' explored in the chapter (number of tree branches, number of mice, number of people with the flu)- choose one, and fill in each step given in Box 2.1 for that model.
+
+- Let's try a new research question - we want to predice the effects of increasing temperature on diatom growth rate - Will temperature have a negative, or positive impact? Is the relationship linear, or not linear? Create a flow diagram (following Box 2.3) for the factors you can list.
