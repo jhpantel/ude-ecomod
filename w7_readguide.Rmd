@@ -1,0 +1,22 @@
+---
+title: "Week 7 Reading Guidelines"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Notes
+Note 1. This will be the reading guide for Grainger et al. 2022. It is currently incomplete, and will be completed Friday November 18.
+
+## Overall reading advice
+
+Tip 1. Consider a "three-pass" approach - read the paper in up to three passes, instead of starting at the beginning and plow- ing your way to the end. Each pass accomplishes specific goals and builds upon the previous pass: The first pass gives you a general idea about the paper. The second pass lets you grasp the paper’s content, but not its details. The third pass helps you understand the paper in depth.
+
+## Some questions to answer before class
+
+# xxx
