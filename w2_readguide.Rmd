@@ -53,4 +53,4 @@ Tip 1. Consider a "three-pass" approach - read the paper in up to three passes, 
 
 (Note that I only expect to see this up to step 4, as the remaining steps are the topics of entire chapters in this book)
 
-- Let's try a new research question - we want to predice the effects of increasing temperature on diatom growth rate - Will temperature have a negative, or positive impact? Is the relationship linear, or not linear? Create a flow diagram (following Box 2.3) for the factors you can list.
+- Let's try a new research question - we want to predict the effects of increasing temperature on diatom growth rate - Will temperature have a negative, or positive impact? Is the relationship linear, or not linear? Create a flow diagram (following Box 2.3) for the factors you can list.
