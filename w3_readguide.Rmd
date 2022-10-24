@@ -11,7 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Notes
-Note 1. This will be the reading guide for Otto & Day Chapter 3. It is currently incomplete, and will be completed Friday October 21.
+Note 1. This is the reading guide for Otto & Day Chapter 3, Sections 3.1 and 3.2.
+
+Note 2. Don't worry if you can't "derive the differential equation for exponential growth from the discrete-time recursion." (equation 3.4a).
 
 ## Overall reading advice
 
@@ -19,4 +21,12 @@ Tip 1. Consider a "three-pass" approach - read the paper in up to three passes, 
 
 ## Some questions to answer before class
 
-# xxx
+1. Explain the following statement- *R*, the number of surviving individuals per parent, is constant regardless of population size, and invariable for all individuals in the population. Contrast this with *age-structured* models (like we discussed last week).
+
+2. Explain the difference between *R* in the recursion equation for exponential growth and *r* in the difference equation. What does *per capita* mean? What value of *R* indicates the population size is not changing and what value of *r* indicates the population size is not changing?
+
+3. How did the authors come up with the equation above Figure 3.3 directly from that figure? (Recall the formula for a line)
+
+4. Be prepared to repeat what's written in the Box under equation 3.5b when I ask "what does the *logistic growth model assume about how population growth rate changes with increasing population size?"
+
+5. Explain the difference between a linear and non-linear model of population growth (exponential and logistic), basically using what is written in the box under Figure 3.4, and using equations 3.5b and 3.2 to illustrate this difference.
