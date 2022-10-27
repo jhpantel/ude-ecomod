@@ -1,0 +1,163 @@
+---
+title: "Week 3, Lecture 2.1 Notes"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(deSolve)
+```
+
+## Beginning R review
+### Exercise 1. variable assignment
+```{r}
+5+5
+a <- 5
+a
+a+5
+```
+
+### Exercise 2. Working with vectors
+```{r}
+a <- c(5,13,2)
+a
+a[3]
+a[3] <- 16
+a
+```
+
+### Exercise 3. Working with functions
+```{r}
+sqrt(16)
+?sqrt
+# Square root of 97?
+a[4] <- NA
+a
+mean(a)
+mean(a,na.rm=T)
+```
+
+### Exercise 4. Writing functions!
+```{r}
+my_fun <- function(x,y){
+  z <- x+y
+  return(z)
+}
+my_fun(17,3)
+```
+
+### Exercise 5. Loops!
+```{r}
+for(i in 1:5){
+  z <- i + 6
+  print(z)
+}
+
+for(i in 1:5){
+  a[i] <- i
+}
+a
+```
+
+### Exercise 6. Simulation model of mice in the yard
+```{r}
+## Step 1. Write values for the parameters in the model (and initial values of state variables)
+# d - the *fraction* of mice in yard eaten by cat / day --> 0-1
+d <- .7
+# b - the *number* of mice born per mouse / day --> N (0-infinity)
+b <- 3
+# m - the *number* of mice arriving in the yard per day --> N (0-infinity)
+m <- 4
+# N0 - the initial number of mice in the yard when we begin the survey
+N0 <- 42
+
+## Step 2. Write a function that will calculate values of number of mice from one time step to the next.
+mice <- function(N0,d,b,m){
+  Nt1 <- (1+b)*(1-d)*N0 - m
+  return(Nt1)
+}
+
+## Step 3. Call the function
+mice(N0,d,b,m)
+
+## Step 4. Follow the mice population size over some time intervals
+# N - a variable where we record the population size over time
+N <- N0
+
+for(i in 1:100){
+  Nt1 <- mice(N0,d,b,m)
+  N <- c(N,Nt1)
+  N0 <- Nt1
+}
+
+N
+plot(N)
+plot(N,xlab="time",ylab="N_mice",pch=19,col="black")
+dat <- as.data.frame(N)
+dat$time <- as.numeric(rownames(dat))
+library(ggplot2)
+ggplot2::ggplot(dat,aes(time,N)) + geom_point()
+```
+
+## Some questions to answer before class
+
+**1. Explain the following statement- *R*, the number of surviving individuals per parent, is constant regardless of population size, and invariable for all individuals in the population. Contrast this with *age-structured* models (like we discussed last week).**
+
+We recall from Jackson et al. 2000 that in an age-structured model, not all individuals participate equally in the processes. In that example, they didn’t all have identical birth, predation, mortality rates.
+
+**2. Explain the difference between *R* in the recursion equation for exponential growth and *r* in the difference equation. What does *per capita* mean? What value of *R* indicates the population size is not changing and what value of *r* indicates the population size is not changing?**
+
+*R* in the recursion equation (discrete-time) is – the number of individuals that each parent / *N* is replaced by in the next time unit. A population would be considered to be constant (not changing) if each parent / *N* replaces itself… and thus *R* = 1.
+
+We can see this in R: see R code, Exercise 7
+
+```{r}
+## Exercise 7. Simulation model of discrete-time exponential growth
+R <- 1
+N0 <- 4
+disc_exp <- function(R,N0){
+  Nt1 <- R*N0
+  return(Nt1)
+}
+N <- N0
+
+for(i in 1:100){
+  Nt1 <- disc_exp(R,N0)
+  N <- c(N,Nt1)
+  N0 <- Nt1
+}
+plot(N)
+```
+
+In the continuous time model (if births and deaths can occur at any time point, rather than in specific seasons), the population growth rate term is instead *r*, which is *r*=*b*-*d*, or the per capita rate of change in the number of individuals. This tells us the rate at which the population changes per individual in the population. So you can obtain the change in the number of individuals. For example, if *r* = 0, then births are equal to deaths, and so the population is not changing. We refer to *r* as the per capita change in the number of individuals.
+
+We can see this in R: R code, Exercise 8
+
+```{r}
+## Exercise 8. Continuous time model of exponential growth
+library(deSolve)
+cont_exp <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    dN <-  r * N
+    return(list(dN))
+  })
+}
+
+parameters <- c(r = 0)
+state      <- c(N = 42)
+times      <- seq(0, 100, by = 0.01)
+
+out <- deSolve::ode(y = state, times = times, func = cont_exp, parms = parameters)
+
+plot(out)
+```
+
+**3. How did the authors come up with the equation above Figure 3.3 directly from that figure? (Recall the formula for a line)**
+
+**4. Be prepared to repeat what's written in the Box under equation 3.5b when I ask "what does the *logistic growth model assume about how population growth rate changes with increasing population size?"**
+
+**5. Explain the difference between a linear and non-linear model of population growth (exponential and logistic), basically using what is written in the box under Figure 3.4, and using equations 3.5b and 3.2 to illustrate this difference.**
