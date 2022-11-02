@@ -1,0 +1,34 @@
+---
+title: "Week 4 Reading Guidelines"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Notes
+Note 1. This is the reading guide for Otto & Day Chapter 3, Sections 3.4 and 3.6.
+
+Note 2. We haven't gone over Sections 3.1 and 3.2 yet. Do read this entire part, and try to work through the questions below. We will cover all sections in class.
+
+## Some questions to answer before class
+
+1. Section 3.4.1 - what does *i* denote and what does *j* denote? Write equation 3.14a using *i* and *j* instead of 1 and 2.
+
+2. Define *facilitation*. Explain why negative values of $\alpha_{ij}$ indicate facilitation and positive values indicate competition. Also, give a good definition for $\alpha_{ij}$.
+
+3. What is a biological example of commensalism?
+
+4. Choose one of the functional forms listed in table 3.3 for *f*, *g*, and *h*. Write out the equations 3.16 using those specific functional forms.
+
+5. Problem 3.3a. According to the recursion equation (3.5a) for the logistic model:
+
+$$ n(t+1) = n(t) + rn(t) \left(1-\frac{n(t)}{K} \right) $$
+it is possible for *n*(*t*+1)to be negative even if *n*(t), *r*, and *K* are all positive. Solve for *n*(1) by hand using *r*=1 and *K*=100 starting from the population sizes *n*(0) = 50, 100, 200, and 500.
+
+6. Problem 3.5a. In the equations for logistic growth, (3.5), if a population has a high intrinsic growth rate *r* and grows rapidly when the population is very small, then it must also decline rapidly when the population is very large and above the carrying capacity. Use equation (3.5) to prove this assertion for specific choices of *r*, *K*, and *n*.
+
