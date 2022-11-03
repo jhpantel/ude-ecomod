@@ -484,7 +484,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Week 3, Lecture 2.1 Notes</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-10-27 18:45:39</h4>
+<h4 class="date">2022-11-03 15:43:07</h4>
 
 </div>
 
@@ -526,6 +526,33 @@ div.tocify {
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(a,<span class="at">na.rm=</span>T)</span></code></pre></div>
 <pre><code>## [1] 11.33333</code></pre>
 </div>
+<div id="deriving-the-recursion-equations-otto-day-ch-2-equation-2.4"
+class="section level3">
+<h3>Deriving the recursion equations (Otto &amp; Day Ch 2, equation
+2.4)</h3>
+<p>Using the life cycle diagram (Figure 2.2b), we begin from:</p>
+<p><span class="math display">\[\begin{eqnarray} n&#39;(t) = n(t) -
+dn(t) \\ n&#39;&#39;(t) = n&#39;(t) + bn&#39;(t) \\ n&#39;&#39;&#39;(t)
+= n&#39;&#39;(t) + m  \end{eqnarray}\]</span> 1. Substitute <span
+class="math inline">\(n&#39;(t)\)</span> equation into <span
+class="math inline">\(n&#39;&#39;(t)\)</span> equation:</p>
+<p><span class="math display">\[ n&#39;&#39;(t) = n(t) - dn(t) + b(n(t)
+- dn(t)) \]</span></p>
+<p>Using the logic of <span class="math inline">\(1(x) + 2(x) =
+(1+2)x\)</span>, we re-arrange the right side to:</p>
+<p><span class="math display">\[ 1(n(t) - dn(t)) + b(n(t)-dn(t)) =
+(1+b)(n(t) - dn(t)) \]</span> The <span
+class="math inline">\(n(t)-dn(t)\)</span> part can be re-written as
+<span class="math inline">\((1-d)n(t)\)</span>, leaving:</p>
+<p><span class="math display">\[(1+b)(1+d)n(t)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Substitute <span class="math inline">\(n&#39;&#39;i(t)\)</span>
+equation into <span class="math inline">\(n&#39;&#39;&#39;(t)\)</span>
+equation:</li>
+</ol>
+<p><span class="math display">\[ n&#39;&#39;&#39;(t) = n(t+1) =
+(1+b)(1-d)n(t)-m \]</span></p>
+</div>
 <div id="exercise-4.-writing-functions" class="section level3">
 <h3>Exercise 4. Writing functions!</h3>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y){</span>
@@ -534,6 +561,15 @@ div.tocify {
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">17</span>,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
+<p>Your turn.</p>
+<ol style="list-style-type: decimal">
+<li><p>Write a function called <em>times_seven()</em> - it should take a
+single <em>argument</em>, multiply that value by 7, and return the new
+value</p></li>
+<li><p>Write a function called <em>n1_subtract_n2()</em> - it should
+take two arguments, and should subtract the second number from the first
+number, and return that value</p></li>
+</ol>
 </div>
 <div id="exercise-5.-loops" class="section level3">
 <h3>Exercise 5. Loops!</h3>
@@ -551,40 +587,54 @@ div.tocify {
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;I&quot;</span>,<span class="st">&quot;love&quot;</span>,<span class="st">&quot;R&quot;</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(b)){</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(b[i])</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;I&quot;
+## [1] &quot;love&quot;
+## [1] &quot;R&quot;</code></pre>
+<p>Your turn.</p>
+<ol style="list-style-type: decimal">
+<li>For each of three values of volume, <em>v &lt;- c(1.6,3,8)</em>,
+calculate the mass, where <em>m &lt;- 2.65 x volume ^ 0.9</em>. Please
+calculate this in a loop. You can <em>print</em> the values within the
+loop.</li>
+</ol>
 </div>
 <div id="exercise-6.-simulation-model-of-mice-in-the-yard"
 class="section level3">
 <h3>Exercise 6. Simulation model of mice in the yard</h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 1. Write values for the parameters in the model (and initial values of state variables)</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># d - the *fraction* of mice in yard eaten by cat / day --&gt; 0-1</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> .<span class="dv">7</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># b - the *number* of mice born per mouse / day --&gt; N (0-infinity)</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># m - the *number* of mice arriving in the yard per day --&gt; N (0-infinity)</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># N0 - the initial number of mice in the yard when we begin the survey</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>N0 <span class="ot">&lt;-</span> <span class="dv">42</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 2. Write a function that will calculate values of number of mice from one time step to the next.</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>mice <span class="ot">&lt;-</span> <span class="cf">function</span>(N0,d,b,m){</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">+</span>b)<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>d)<span class="sc">*</span>N0 <span class="sc">-</span> m</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 3. Call the function</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mice</span>(N0,d,b,m)</span></code></pre></div>
-<pre><code>## [1] 46.4</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 4. Follow the mice population size over some time intervals</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># N - a variable where we record the population size over time</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> N0</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> <span class="fu">mice</span>(N0,d,b,m)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">c</span>(N,Nt1)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  N0 <span class="ot">&lt;-</span> Nt1</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 1. Write values for the parameters in the model (and initial values of state variables)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># d - the *fraction* of mice in yard eaten by cat / day --&gt; 0-1</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> .<span class="dv">7</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># b - the *number* of mice born per mouse / day --&gt; N (0-infinity)</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># m - the *number* of mice arriving in the yard per day --&gt; N (0-infinity)</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># N0 - the initial number of mice in the yard when we begin the survey</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>N0 <span class="ot">&lt;-</span> <span class="dv">42</span></span>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>N</span></code></pre></div>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 2. Write a function that will calculate values of number of mice from one time step to the next.</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>mice <span class="ot">&lt;-</span> <span class="cf">function</span>(N0,d,b,m){</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">+</span>b)<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>d)<span class="sc">*</span>N0 <span class="sc">-</span> m</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 3. Call the function</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mice</span>(N0,d,b,m)</span></code></pre></div>
+<pre><code>## [1] 46.4</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 4. Follow the mice population size over some time intervals</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># N - a variable where we record the population size over time</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> N0</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> <span class="fu">mice</span>(N0,d,b,m)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">c</span>(N,Nt1)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  N0 <span class="ot">&lt;-</span> Nt1</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>N</span></code></pre></div>
 <pre><code>##   [1] 4.200000e+01 4.640000e+01 5.168000e+01 5.801600e+01 6.561920e+01
 ##   [6] 7.474304e+01 8.569165e+01 9.882998e+01 1.145960e+02 1.335152e+02
 ##  [11] 1.562182e+02 1.834618e+02 2.161542e+02 2.553851e+02 3.024621e+02
@@ -606,14 +656,14 @@ class="section level3">
 ##  [91] 2.942625e+08 3.531149e+08 4.237379e+08 5.084855e+08 6.101826e+08
 ##  [96] 7.322191e+08 8.786629e+08 1.054396e+09 1.265275e+09 1.518330e+09
 ## [101] 1.821995e+09</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(N)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(N)</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(N,<span class="at">xlab=</span><span class="st">&quot;time&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;N_mice&quot;</span>,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(N,<span class="at">xlab=</span><span class="st">&quot;time&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;N_mice&quot;</span>,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(N)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(dat))</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(dat,<span class="fu">aes</span>(time,N)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(N)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(dat))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(dat,<span class="fu">aes</span>(time,N)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
 </div>
 </div>
@@ -639,21 +689,21 @@ time unit. A population would be considered to be constant (not
 changing) if each parent / <em>N</em> replaces itself… and thus
 <em>R</em> = 1.</p>
 <p>We can see this in R: see R code, Exercise 7</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 7. Simulation model of discrete-time exponential growth</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>N0 <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>disc_exp <span class="ot">&lt;-</span> <span class="cf">function</span>(R,N0){</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> R<span class="sc">*</span>N0</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> N0</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> <span class="fu">disc_exp</span>(R,N0)</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">c</span>(N,Nt1)</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  N0 <span class="ot">&lt;-</span> Nt1</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(N)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 7. Simulation model of discrete-time exponential growth</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>N0 <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>disc_exp <span class="ot">&lt;-</span> <span class="cf">function</span>(R,N0){</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> R<span class="sc">*</span>N0</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> N0</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> <span class="fu">disc_exp</span>(R,N0)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">c</span>(N,Nt1)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  N0 <span class="ot">&lt;-</span> Nt1</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(N)</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>In the continuous time model (if births and deaths can occur at any
 time point, rather than in specific seasons), the population growth rate
@@ -665,34 +715,98 @@ For example, if <em>r</em> = 0, then births are equal to deaths, and so
 the population is not changing. We refer to <em>r</em> as the per capita
 change in the number of individuals.</p>
 <p>We can see this in R: R code, Exercise 8</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 8. Continuous time model of exponential growth</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>cont_exp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    dN <span class="ot">&lt;-</span>  r <span class="sc">*</span> N</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">r =</span> <span class="dv">0</span>)</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">N =</span> <span class="dv">42</span>)</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> cont_exp, <span class="at">parms =</span> parameters)</span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 8. Continuous time model of exponential growth</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>cont_exp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    dN <span class="ot">&lt;-</span>  r <span class="sc">*</span> N</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">r =</span> <span class="dv">0</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">N =</span> <span class="dv">42</span>)</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> cont_exp, <span class="at">parms =</span> parameters)</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><strong>3. How did the authors come up with the equation above Figure
-3.3 directly from that figure? (Recall the formula for a
-line)</strong></p>
-<p>y=mx+b</p>
+3.3 directly from that figure? (Recall the formula for a line)</strong>
+<span class="math inline">\(y=mx+b\)</span></p>
+<p>The logistic growth model arises when we consider that the population
+growth rate <em>r</em> is not fixed, but instead is density-dependent.
+It decreases as the population size approaches carrying capacity
+<em>K</em>. So we see a graph where <em>r</em> is a linear function of
+<em>N</em>. Since the relationship between <em>K</em> and <em>N</em> is
+linear, we can use the formula of a line to determine this function.
+Recall <span class="math inline">\(y = mx + b\)</span>, where <em>m</em>
+is the slope and <em>b</em> is the y-intercept.</p>
+<p>We see from the plot two values of <em>R</em>: <em>R</em> = 1 when
+<em>N</em> = <em>K</em> (why? because population size doesn’t change
+anymore when $ N = K $), and $ R = 1+r_d $ when <em>N</em> = 0 (because
+the population is at its maximal growth rate when there is no
+intra-specific competition). This gives us the y-intercept. To get the
+slope, we look at the change in <em>y</em> over the change in
+<em>x</em>. We take 2 points, <span
+class="math inline">\((x_1,y_1)\)</span> and <span
+class="math inline">\((x_2,y_2)\)</span>, which can be <span
+class="math inline">\((0,1+r_d)\)</span> and <span
+class="math inline">\((K,1)\)</span>. To get the slope, its <span
+class="math inline">\(\frac {y_2-y_1} {x_2-x_1}\)</span>, and that is:
+<span class="math inline">\(\frac {1 – (1 + rd)} {K – 0} = \frac {-r_d}
+{K}\)</span>. We put that together to get: <span
+class="math inline">\(R(n) = (1 + r_d) + \frac
+{-r_d}{K}n(t)\)</span>.</p>
+<p>By the way, if you want to go on to derive the discrete-time logistic
+growth equation:</p>
+<p>Begin from the logistic growth equation:</p>
+<p><span class="math display">\[ n(t+1) = Rn(t) \]</span></p>
+<p>And substitute the <em>new</em> value of R we derived above:</p>
+<p><span class="math display">\[ n(t+1) = [(1+r_d) +
+\frac{-r_d}{K}n(t)]n(t) = n(t) + r_dn(t) + r_dn(t)(\frac{-n(t)}{K}) =
+n(t) + r_dn(t)(1-\frac{n(t)}{K})\]</span></p>
 <p>**4. Be prepared to repeat what’s written in the Box under equation
 3.5b when I ask “what does the *logistic growth model assume about how
 population growth rate changes with increasing population size?“**</p>
+<p>The logistic model assumes that the rate of change of a variable
+decreases linearly as the variable increases in value, with no change
+occurring if the variable is at the carrying capacity <em>K</em>.</p>
 <p><strong>5. Explain the difference between a linear and non-linear
 model of population growth (exponential and logistic), basically using
 what is written in the box under Figure 3.4, and using equations 3.5b
 and 3.2 to illustrate this difference.</strong></p>
+<p>In a linear model, the change per unit time is a <em>linear</em>
+function of the variables; models that involve more complicated
+functions of the variables are called non-linear models.</p>
+<p>We used <span class="math inline">\((R-1) = r_d\)</span>, so this is
+the per capita change in the number of individuals from one generation
+to the next. It shows us that changes in <em>n</em> are a linear
+function of <span class="math inline">\(r_d\)</span> and <span
+class="math inline">\(n(t)\)</span>. In the second equation, change in
+<em>n</em> depends on <span class="math inline">\(n(t)\)</span> in a
+non-linear way.</p>
+<p>Begin from: $ R = 1 + r_d $ equation 3.2) $ n = (R-1)n(t)$ –&gt;
+linear equation 3.5b) $ n = r_dn(t)(1 - )$ –&gt; non-linear Where <span
+class="math inline">\(\Delta n\)</span> –&gt; a difference equation,
+<span class="math inline">\(\Delta n = n(t+1) - n(t)\)</span></p>
+<p>We can see this in R: R code, Exercise 9</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 9. Linear and non-linear models</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="cf">function</span>(rd,nt,K){</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  dN<span class="fl">.1</span> <span class="ot">&lt;-</span> rd <span class="sc">*</span> nt</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  dN<span class="fl">.2</span> <span class="ot">&lt;-</span> rd <span class="sc">*</span> nt <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> nt<span class="sc">/</span>K)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(dN<span class="fl">.1</span>,dN<span class="fl">.2</span>))</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>rd <span class="ot">&lt;-</span> <span class="fl">1.7</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>nt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">100</span>,<span class="dv">700000</span>,<span class="at">by=</span><span class="dv">1000</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">75000</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">models</span>(rd,nt,K)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nt,res[[<span class="dv">1</span>]],<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10000000</span>,<span class="dv">10000000</span>),<span class="at">xlab=</span><span class="st">&quot;n(t)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;delta-N&quot;</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(nt,res[[<span class="dv">2</span>]])</span></code></pre></div>
+<p><img src="L2.1_notes_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 
 

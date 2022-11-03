@@ -41,6 +41,25 @@ mean(a)
 mean(a,na.rm=T)
 ```
 
+### Deriving the recursion equations (Otto & Day Ch 2, equation 2.4)
+Using the life cycle diagram (Figure 2.2b), we begin from:
+
+$$\begin{eqnarray} n'(t) = n(t) - dn(t) \\ n''(t) = n'(t) + bn'(t) \\ n'''(t) = n''(t) + m  \end{eqnarray}$$
+1. Substitute $n'(t)$ equation into $n''(t)$ equation:
+
+$$ n''(t) = n(t) - dn(t) + b(n(t) - dn(t)) $$
+
+Using the logic of $1(x) + 2(x) = (1+2)x$, we re-arrange the right side to:
+
+$$ 1(n(t) - dn(t)) + b(n(t)-dn(t)) = (1+b)(n(t) - dn(t)) $$
+The $n(t)-dn(t)$ part can be re-written as $(1-d)n(t)$, leaving:
+
+$$(1+b)(1+d)n(t)$$
+
+2. Substitute $n''i(t)$ equation into $n'''(t)$ equation:
+
+$$ n'''(t) = n(t+1) = (1+b)(1-d)n(t)-m $$
+
 ### Exercise 4. Writing functions!
 ```{r}
 my_fun <- function(x,y){
@@ -49,6 +68,12 @@ my_fun <- function(x,y){
 }
 my_fun(17,3)
 ```
+
+Your turn.
+
+1. Write a function called *times_seven()* - it should take a single *argument*, multiply that value by 7, and return the new value
+
+2. Write a function called *n1_subtract_n2()* - it should take two arguments, and should subtract the second number from the first number, and return that value
 
 ### Exercise 5. Loops!
 ```{r}
@@ -61,7 +86,17 @@ for(i in 1:5){
   a[i] <- i
 }
 a
+
+b <- c("I","love","R")
+for(i in 1:length(b)){
+  print(b[i])
+}
+
 ```
+
+Your turn.
+
+1. For each of three values of volume, *v <- c(1.6,3,8)*, calculate the mass, where *m <- 2.65 x volume ^ 0.9*. Please calculate this in a loop. You can *print* the values within the loop.
 
 ### Exercise 6. Simulation model of mice in the yard
 ```{r}
@@ -156,10 +191,55 @@ out <- deSolve::ode(y = state, times = times, func = cont_exp, parms = parameter
 plot(out)
 ```
 
-**3. How did the authors come up with the equation above Figure 3.3 directly from that figure? (Recall the formula for a line)**
+**3. How did the authors come up with the equation above Figure 3.3 directly from that figure? (Recall the formula for a line)** $y=mx+b$
 
-y=mx+b
+The logistic growth model arises when we consider that the population growth rate *r* is not fixed, but instead is density-dependent. It decreases as the population size approaches carrying capacity *K*. So we see a graph where *r* is a linear function of *N*. Since the relationship between *K* and *N* is linear, we can use the formula of a line to determine this function. Recall $y = mx + b$, where *m* is the slope and *b* is the y-intercept.
+
+We see from the plot two values of *R*: *R* = 1 when *N* = *K* (why? because population size doesn’t change anymore when $ N = K $), and $ R = 1+r_d $ when *N* = 0 (because the population is at its maximal growth rate when there is no intra-specific competition). This gives us the y-intercept. To get the slope, we look at the change in *y* over the change in *x*. We take 2 points, $(x_1,y_1)$  and $(x_2,y_2)$, which can be $(0,1+r_d)$ and $(K,1)$. To get the slope, its $\frac {y_2-y_1} {x_2-x_1}$, and that is: $\frac {1 – (1 + rd)} {K – 0} = \frac {-r_d} {K}$. We put that together to get: $R(n) = (1 + r_d) + \frac {-r_d}{K}n(t)$.
+
+By the way, if you want to go on to derive the discrete-time logistic growth equation:
+
+Begin from the logistic growth equation:
+
+$$ n(t+1) = Rn(t) $$
+
+And substitute the *new* value of R we derived above:
+
+$$ n(t+1) = [(1+r_d) + \frac{-r_d}{K}n(t)]n(t) = n(t) + r_dn(t) + r_dn(t)(\frac{-n(t)}{K}) = n(t) + r_dn(t)(1-\frac{n(t)}{K})$$
 
 **4. Be prepared to repeat what's written in the Box under equation 3.5b when I ask "what does the *logistic growth model assume about how population growth rate changes with increasing population size?"**
 
+The logistic model assumes that the rate of change of a variable decreases linearly as the variable increases in value, with no change occurring if the variable is at the carrying capacity *K*.
+
 **5. Explain the difference between a linear and non-linear model of population growth (exponential and logistic), basically using what is written in the box under Figure 3.4, and using equations 3.5b and 3.2 to illustrate this difference.**
+
+In a linear model, the change per unit time is a *linear* function of the variables; models that involve more complicated functions of the variables are called non-linear models.
+
+We used $(R-1) = r_d$, so this is the per capita change in the number of individuals from one generation to the next. It shows us that changes in *n* are a linear function of $r_d$ and $n(t)$. In the second equation, change in *n* depends on $n(t)$ in a non-linear way.
+
+Begin from: $ R = 1 + r_d $
+equation 3.2) $ \Delta n = (R-1)n(t)$ --> linear
+equation 3.5b) $ \Delta n = r_dn(t)(1 - \frac{n(t)}{K})$ --> non-linear
+Where $\Delta n$ --> a difference equation, $\Delta n = n(t+1) - n(t)$
+
+We can see this in R: R code, Exercise 9
+
+```{r}
+## Exercise 9. Linear and non-linear models
+models <- function(rd,nt,K){
+  dN.1 <- rd * nt
+  dN.2 <- rd * nt * (1 - nt/K)
+  return(list(dN.1,dN.2))
+}
+
+rd <- 1.7
+nt <- seq(100,700000,by=1000)
+K <- 75000
+
+res <- models(rd,nt,K)
+plot(nt,res[[1]],ylim=c(-10000000,10000000),xlab="n(t)",ylab="delta-N")
+points(nt,res[[2]])
+```
+
+
+

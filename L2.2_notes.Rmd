@@ -1,0 +1,59 @@
+---
+title: "Week 4, Lecture 2.2 Notes"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(deSolve)
+```
+
+
+**1. Section 3.4.1 - what does *i* denote and what does *j* denote? Write equation 3.14a using *i* and *j* instead of 1 and 2.**
+
+*i* refers to species 1 and *j* refers to species 2, and the term $\alpha_{ij}$ refers to the impact of competition of species 2 on species 1.
+
+$$ n_1(t+1) = n_i(t) + r_in_i(t) \left (1 - \frac{n_i(t) + \alpha_{ij}(t)n_j(t)}{K_i}\right) $$
+
+**2. Define *facilitation*. Explain why negative values of $\alpha_{ij}$ indicate facilitation and positive values indicate competition. Also, give a good definition for $\alpha_{ij}$.**
+
+Facilitation is an interaction between species where at least one species benefits, and the other is not harmed (the effect for the other species is either zero (commensalism) or positive (mutualism)). $\alpha_{ij}$ is refered to as the *species interaction coefficient*, and it quantifies the per capita effect of species *j* on the growth rate of species *i*.
+
+**3. What is a biological example of commensalism?**
+My favorite example is a clownfish and a sea anemone - the stinging tentacles of the sea anemone protect the clownfish (
++who is not harmed by them) from predators, and the sea anemone is not impacted by the interaction.
+
+**4. Choose one of the functional forms listed in table 3.3 for *f*, *g*, and *h*. Write out the equations 3.16 using those specific functional forms.**
+
+One example is:
+$$\begin{eqnarray} \frac{dn_1}{dt} = f(n_1(t)) - g(n_1(t),n_2(t)) \\ \frac{dn_2}{dt} = \epsilon g(n_1(t),n_2(t)) -h(n_2(t)) \end{eqnarray}$$
+
+$$\begin{eqnarray} \frac{dn_1}{dt} = rn_1(t) - \frac{acn_1(t)}{b + n_1(t)}n_2(t) \\ \frac{dn_2}{dt} = \epsilon \frac{acn_1(t)}{b + n_1(t)}n_2(t) - \delta n_2(t) \end{eqnarray}$$
+
+**5. Problem 3.3a. According to the recursion equation (3.5a) for the logistic model:**
+
+$$ n(t+1) = n(t) + rn(t) \left(1-\frac{n(t)}{K} \right) $$
+
+**it is possible for *n*(*t*+1)to be negative even if *n*(t), *r*, and *K* are all positive. Solve for *n*(1) by hand using *r*=1 and *K*=100 starting from the population sizes *n*(0) = 50, 100, 200, and 500.**
+
+```{r}
+rd <- 1
+K <- 100
+Nt <- c(50,100,200,500)
+disc_log <- function(rd,Nt,K){
+  Nt1 <- Nt + rd*Nt*(1-Nt/K)
+  return(Nt1)
+}
+disc_log(rd,Nt,K)
+```
+
+**6. Problem 3.5a. In the equations for logistic growth, (3.5), if a population has a high intrinsic growth rate *r* and grows rapidly when the population is very small, then it must also decline rapidly when the population is very large and above the carrying capacity. Use equation (3.5a) to prove this assertion for specific choices of *r*, *K*, and *n*.**
+
+```{r}
+disc_log(1.7,c(2,99,200),100)
+disc_log(3.2,c(2,99,200),100)
+```

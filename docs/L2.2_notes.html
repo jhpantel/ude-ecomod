@@ -12,7 +12,7 @@
 <meta name="author" content="Jelena H. Pantel" />
 
 
-<title>Ecological Modelling - Winter 2022-2023 - Schedule</title>
+<title>Week 4, Lecture 2.2 Notes</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -48,6 +48,107 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -381,158 +482,76 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Ecological Modelling - Winter 2022-2023 -
-Schedule</h1>
+<h1 class="title toc-ignore">Week 4, Lecture 2.2 Notes</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-11-03 13:50:24</h4>
+<h4 class="date">2022-11-03 15:39:06</h4>
 
 </div>
 
 
-<div id="course-calendar" class="section level2">
-<h2>Course calendar</h2>
-<p>This is the current course schedule for the class. Things will
-change, so check regularly for updates.</p>
-<p><strong>Please do all readings in advance of the scheduled course
-period. Each reading is accompanied by a document giving some guidelines
-to prepare yourself to discuss the reading in class.</strong></p>
-<table>
-<colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Module Topic</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Readings</strong></th>
-<th><strong>Class documents</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Module 1.1 – Introduction to Models in Ecology, Part 1</td>
-<td>13-10-2022</td>
-<td>none</td>
-<td>1. <a href="./L1.1.pdf"><strong>Lecture 1.1</strong></a></td>
-</tr>
-<tr class="even">
-<td>Module 1.2 – Introduction to Models in Ecology, Part 2</td>
-<td>20-10-2022</td>
-<td>1. <a href="./r1_Jackson_2000.pdf"><strong>Jackson et
-al. 2000</strong></a>, 2. <a href="./r2_OttoDay_Ch2.pdf"><strong>Otto
-&amp; Day Ch2</strong></a>, 3. <a
-href="./w2_readguide.html"><strong>Reading Guide 1</strong></a></td>
-<td>1. <strong>Lecture 1.1</strong></td>
-</tr>
-<tr class="odd">
-<td>Module 2.1 – Survey of ecological models, Part 1</td>
-<td>27-10-2022</td>
-<td>1. <a href="./r3_OttoDay_Ch3.pdf"><strong>Otto &amp; Day
-Ch3</strong></a> (3.1,3.2), 2. <a
-href="./w3_readguide.html"><strong>Reading Guide 2</strong></a></td>
-<td>1. <a href="./L2.1_notes.html"><strong>Lecture Notes
-2.1</strong></a></td>
-</tr>
-<tr class="even">
-<td>Module 2.2 – Survey of ecological models, Part 2</td>
-<td>03-11-2022</td>
-<td>1. <strong>Otto &amp; Day Ch3</strong> (3.4,3.6), 2. <a
-href="./w4_readguide.html"><strong>Reading Guide 3</strong></a></td>
-<td>1. <a href="./L2.2_notes.html"><strong>Lecture Notes
-2.2</strong></a></td>
-</tr>
-<tr class="odd">
-<td>Module 3.1 – Models and data in ecology case studies, Part 1</td>
-<td>10-11-2022</td>
-<td>1. <a href="./r4_Lahaye_1994.pdf"><strong>Lahaye et
-al. 1994</strong></a>, 2. <a href="./w5_readguide.html"><strong>Reading
-Guide 4</strong></a></td>
-<td>XX</td>
-</tr>
-<tr class="even">
-<td>Module 3.2 – Models and data in ecology case studies, Part 2</td>
-<td>17-11-2022</td>
-<td>Reading CC</td>
-<td>XX</td>
-</tr>
-<tr class="odd">
-<td>Module 4.1 – Empiricists and working with theoretical models</td>
-<td>24-11-2022</td>
-<td>1. <a href="./r6_Grainger_2022.pdf"><strong>Grainger et
-al. 2022</strong></a>, 2. <a href="./w7_readguide.html"><strong>Reading
-Guide 5</strong></a></td>
-<td>XX</td>
-</tr>
-<tr class="even">
-<td>Module 4.2 – Fitting data to models: methods survey, Part 1</td>
-<td>01-12-2022</td>
-<td>Reading EE</td>
-<td>XX</td>
-</tr>
-<tr class="odd">
-<td>Module 4.3 – Fitting data to models: methods survey, Part 2</td>
-<td>08-12-2022</td>
-<td>Reading FF</td>
-<td>XX</td>
-</tr>
-<tr class="even">
-<td>Module 4.4 – Fitting data to models: population growth, species
-interactions, and Gause’s Paramecium</td>
-<td>15-12-2022</td>
-<td>Reading GG</td>
-<td>XX</td>
-</tr>
-<tr class="odd">
-<td>Project 1 – Work on during class time</td>
-<td>22-12-2022</td>
-<td>Reading HH</td>
-<td>XX</td>
-</tr>
-<tr class="even">
-<td>Winter holiday break</td>
-<td>December 24 - January 6</td>
-<td>Enjoy!</td>
-<td>XX</td>
-</tr>
-<tr class="odd">
-<td>No class</td>
-<td>12-01-2022</td>
-<td>We will <strong>not</strong> have class this day</td>
-<td>XX</td>
-</tr>
-<tr class="even">
-<td>Module 5.1 – Course project, Part 1</td>
-<td>19-01-2022</td>
-<td>Reading II</td>
-<td>XX</td>
-</tr>
-<tr class="odd">
-<td>Module 5.2 – Course project, Part 2</td>
-<td>26-01-2022</td>
-<td>Reading JJ</td>
-<td>XX</td>
-</tr>
-<tr class="even">
-<td>Module 5.3 – Course project (DUE), Part 3</td>
-<td>02-02-2022</td>
-<td>Reading KK</td>
-<td>XX</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="zoom-meetings" class="section level2">
-<h2>Zoom meetings</h2>
-<p>I will be available Wednesdays from 2-3pm, if you need to reach me to
-discuss course material. You <strong>do</strong> need to schedule in
-advance that you want to meet (I won’t just keep the Zoom room open),
-but if you let me know in advance over email, I will be in this Zoom
-room: [<a href="https://uni-due.zoom.us/j/8344369796"
-class="uri">https://uni-due.zoom.us/j/8344369796</a>]</p>
-</div>
+<p><strong>1. Section 3.4.1 - what does <em>i</em> denote and what does
+<em>j</em> denote? Write equation 3.14a using <em>i</em> and <em>j</em>
+instead of 1 and 2.</strong></p>
+<p><em>i</em> refers to species 1 and <em>j</em> refers to species 2,
+and the term <span class="math inline">\(\alpha_{ij}\)</span> refers to
+the impact of competition of species 2 on species 1.</p>
+<p><span class="math display">\[ n_1(t+1) = n_i(t) + r_in_i(t) \left (1
+- \frac{n_i(t) + \alpha_{ij}(t)n_j(t)}{K_i}\right) \]</span></p>
+<p><strong>2. Define <em>facilitation</em>. Explain why negative values
+of <span class="math inline">\(\alpha_{ij}\)</span> indicate
+facilitation and positive values indicate competition. Also, give a good
+definition for <span
+class="math inline">\(\alpha_{ij}\)</span>.</strong></p>
+<p>Facilitation is an interaction between species where at least one
+species benefits, and the other is not harmed (the effect for the other
+species is either zero (commensalism) or positive (mutualism)). <span
+class="math inline">\(\alpha_{ij}\)</span> is refered to as the
+<em>species interaction coefficient</em>, and it quantifies the per
+capita effect of species <em>j</em> on the growth rate of species
+<em>i</em>.</p>
+<p><strong>3. What is a biological example of commensalism?</strong> My
+favorite example is a clownfish and a sea anemone - the stinging
+tentacles of the sea anemone protect the clownfish ( +who is not harmed
+by them) from predators, and the sea anemone is not impacted by the
+interaction.</p>
+<p><strong>4. Choose one of the functional forms listed in table 3.3 for
+<em>f</em>, <em>g</em>, and <em>h</em>. Write out the equations 3.16
+using those specific functional forms.</strong></p>
+<p>One example is: <span class="math display">\[\begin{eqnarray}
+\frac{dn_1}{dt} = f(n_1(t)) - g(n_1(t),n_2(t)) \\ \frac{dn_2}{dt} =
+\epsilon g(n_1(t),n_2(t)) -h(n_2(t)) \end{eqnarray}\]</span></p>
+<p><span class="math display">\[\begin{eqnarray} \frac{dn_1}{dt} =
+rn_1(t) - \frac{acn_1(t)}{b + n_1(t)}n_2(t) \\ \frac{dn_2}{dt} =
+\epsilon \frac{acn_1(t)}{b + n_1(t)}n_2(t) - \delta n_2(t)
+\end{eqnarray}\]</span></p>
+<p><strong>5. Problem 3.3a. According to the recursion equation (3.5a)
+for the logistic model:</strong></p>
+<p><span class="math display">\[ n(t+1) = n(t) + rn(t)
+\left(1-\frac{n(t)}{K} \right) \]</span></p>
+<p><strong>it is possible for <em>n</em>(<em>t</em>+1)to be negative
+even if <em>n</em>(t), <em>r</em>, and <em>K</em> are all positive.
+Solve for <em>n</em>(1) by hand using <em>r</em>=1 and <em>K</em>=100
+starting from the population sizes <em>n</em>(0) = 50, 100, 200, and
+500.</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rd <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>disc_log <span class="ot">&lt;-</span> <span class="cf">function</span>(rd,Nt,K){</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> Nt <span class="sc">+</span> rd<span class="sc">*</span>Nt<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Nt<span class="sc">/</span>K)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">disc_log</span>(rd,Nt,K)</span></code></pre></div>
+<pre><code>## [1]    75   100     0 -1500</code></pre>
+<p><strong>6. Problem 3.5a. In the equations for logistic growth, (3.5),
+if a population has a high intrinsic growth rate <em>r</em> and grows
+rapidly when the population is very small, then it must also decline
+rapidly when the population is very large and above the carrying
+capacity. Use equation (3.5a) to prove this assertion for specific
+choices of <em>r</em>, <em>K</em>, and <em>n</em>.</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">disc_log</span>(<span class="fl">1.7</span>,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">99</span>,<span class="dv">200</span>),<span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1]    5.332  100.683 -140.000</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">disc_log</span>(<span class="fl">3.2</span>,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">99</span>,<span class="dv">200</span>),<span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1]    8.272  102.168 -440.000</code></pre>
 
 
 
