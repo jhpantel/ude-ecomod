@@ -12,7 +12,7 @@ This website contains the content of the *Ecological Modelling* course taught by
 
 # Course Information
 
-This is a seminar course, held from 16-18h on Thursdays, in room S05 R03 H8. I am available to meet Wednesdays 2-3pm over Zoom, but you must e-mail in advance of that time to let me know if you want to meet. The grade in the course will stem from 2 projects. Project 1 will be creating a "cheat sheet", or a 1-2 page document that provides an overview of a theoretical model in Ecology or Limnology. Project 2 will be a hands-on application, where you will take actual data and test predictions from theoretical models.
+This is a seminar course, held from 16-18h on Thursdays, in room S05 R03 H8. I am available to meet Wednesdays 5-6pm over Zoom, but you must e-mail in advance of that time to let me know if you want to meet. The grade in the course will stem from 2 projects. Project 1 will be creating a "cheat sheet", or a 1-2 page document that provides an overview of a theoretical model in Ecology or Limnology. Project 2 will be a hands-on application, where you will take actual data and test predictions from theoretical models.
 
 # Course Description
 

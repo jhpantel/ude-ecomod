@@ -99,7 +99,7 @@ Your turn.
 1. For each of three values of volume, *v <- c(1.6,3,8)*, calculate the mass, where *m <- 2.65 x volume ^ 0.9*. Please calculate this in a loop. You can *print* the values within the loop.
 
 ### Exercise 6. Simulation model of mice in the yard
-```{r}
+```{r eval=FALSE,echo=FALSE}
 ## Step 1. Write values for the parameters in the model (and initial values of state variables)
 # d - the *fraction* of mice in yard eaten by cat / day --> 0-1
 d <- .7
@@ -112,7 +112,7 @@ N0 <- 42
 
 ## Step 2. Write a function that will calculate values of number of mice from one time step to the next.
 mice <- function(N0,d,b,m){
-  Nt1 <- (1+b)*(1-d)*N0 - m
+  Nt1 <- (1+b)*(1-d)*N0 + m
   return(Nt1)
 }
 
