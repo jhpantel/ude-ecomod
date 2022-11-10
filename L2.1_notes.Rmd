@@ -144,7 +144,7 @@ ggplot2::ggplot(dat,aes(time,N)) + geom_point()
 
 We recall from Jackson et al. 2000 that in an age-structured model, not all individuals participate equally in the processes. In that example, they didn’t all have identical birth, predation, mortality rates.
 
-**2. Explain the difference between *R* in the recursion equation for exponential growth and *r* in the difference equation. What does *per capita* mean? What value of *R* indicates the population size is not changing and what value of *r* indicates the population size is not changing?**
+**2. Explain the difference between *R* in the recursion equation for exponential growth and *r* in the differential equation. What does *per capita* mean? What value of *R* indicates the population size is not changing and what value of *r* indicates the population size is not changing?**
 
 *R* in the recursion equation (discrete-time) is – the number of individuals that each parent / *N* is replaced by in the next time unit. A population would be considered to be constant (not changing) if each parent / *N* replaces itself… and thus *R* = 1.
 
@@ -165,7 +165,7 @@ for(i in 1:100){
   N <- c(N,Nt1)
   N0 <- Nt1
 }
-plot(N)
+plot(N,ylab="time")
 ```
 
 In the differential / continuous time model (if births and deaths can occur at any time point, rather than in specific seasons), the population growth rate term is instead *r*, which is *r*=*b*-*d*, or the per capita rate of change in the number of individuals. This tells us the rate at which the population changes per individual in the population - the *r* value can be multiplied by each individual in the population to determine their total contribution to population growth. For example, if *r* = 0, then births are equal to deaths, and so the population is not changing. We refer to *r* as the per capita change in the number of individuals because the value is associated with each individual in the population.
