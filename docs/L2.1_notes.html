@@ -484,7 +484,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Week 3, Lecture 2.1 Notes</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-11-08 08:40:45</h4>
+<h4 class="date">2022-11-10 15:00:18</h4>
 
 </div>
 
@@ -645,15 +645,18 @@ changing) if each parent / <em>N</em> replaces itself… and thus
 <span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(N)</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>In the continuous time model (if births and deaths can occur at any
-time point, rather than in specific seasons), the population growth rate
-term is instead <em>r</em>, which is <em>r</em>=<em>b</em>-<em>d</em>,
-or the per capita rate of change in the number of individuals. This
-tells us the rate at which the population changes per individual in the
-population. So you can obtain the change in the number of individuals.
-For example, if <em>r</em> = 0, then births are equal to deaths, and so
-the population is not changing. We refer to <em>r</em> as the per capita
-change in the number of individuals.</p>
+<p>In the differential / continuous time model (if births and deaths can
+occur at any time point, rather than in specific seasons), the
+population growth rate term is instead <em>r</em>, which is
+<em>r</em>=<em>b</em>-<em>d</em>, or the per capita rate of change in
+the number of individuals. This tells us the rate at which the
+population changes per individual in the population - the <em>r</em>
+value can be multiplied by each individual in the population to
+determine their total contribution to population growth. For example, if
+<em>r</em> = 0, then births are equal to deaths, and so the population
+is not changing. We refer to <em>r</em> as the per capita change in the
+number of individuals because the value is associated with each
+individual in the population.</p>
 <p>We can see this in R: R code, Exercise 8</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 8. Continuous time model of exponential growth</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
@@ -679,13 +682,14 @@ change in the number of individuals.</p>
 growth rate <em>r</em> is not fixed, but instead is density-dependent.
 It decreases as the population size approaches carrying capacity
 <em>K</em>. So we see a graph where <em>r</em> is a linear function of
-<em>N</em>. Since the relationship between <em>K</em> and <em>N</em> is
+<em>N</em>. Since the relationship between <em>r</em> and <em>N</em> is
 linear, we can use the formula of a line to determine this function.
 Recall <span class="math inline">\(y = mx + b\)</span>, where <em>m</em>
 is the slope and <em>b</em> is the y-intercept.</p>
 <p>We see from the plot two values of <em>R</em>: <em>R</em> = 1 when
 <em>N</em> = <em>K</em> (why? because population size doesn’t change
-anymore when $ N = K $), and $ R = 1+r_d $ when <em>N</em> = 0 (because
+anymore when <span class="math inline">\(N = K\)</span>), and <span
+class="math inline">\(R = 1+r_d\)</span> when <em>N</em> = 0 (because
 the population is at its maximal growth rate when there is no
 intra-specific competition). This gives us the y-intercept. To get the
 slope, we look at the change in <em>y</em> over the change in
@@ -722,13 +726,16 @@ function of the variables; models that involve more complicated
 functions of the variables are called non-linear models.</p>
 <p>We used <span class="math inline">\((R-1) = r_d\)</span>, so this is
 the per capita change in the number of individuals from one generation
-to the next. It shows us that changes in <em>n</em> are a linear
-function of <span class="math inline">\(r_d\)</span> and <span
-class="math inline">\(n(t)\)</span>. In the second equation, change in
+to the next. Equation 3.2 shows us that changes in <em>n</em> are a
+linear function of <span class="math inline">\(r_d\)</span> and <span
+class="math inline">\(n(t)\)</span>. In equation 3.5b, change in
 <em>n</em> depends on <span class="math inline">\(n(t)\)</span> in a
 non-linear way.</p>
-<p>Begin from: $ R = 1 + r_d $ equation 3.2) $ n = (R-1)n(t)$ –&gt;
-linear equation 3.5b) $ n = r_dn(t)(1 - )$ –&gt; non-linear Where <span
+<p>Begin from: <span class="math inline">\(R = 1 + r_d\)</span></p>
+<p>equation 3.2) <span class="math inline">\(\Delta n =
+(R-1)n(t)\)</span> –&gt; linear</p>
+<p>equation 3.5b) <span class="math inline">\(\Delta n = r_dn(t)(1 -
+\frac{n(t)}{K})\)</span> –&gt; non-linear Where <span
 class="math inline">\(\Delta n\)</span> –&gt; a difference equation,
 <span class="math inline">\(\Delta n = n(t+1) - n(t)\)</span></p>
 <p>We can see this in R: R code, Exercise 9</p>

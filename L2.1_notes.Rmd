@@ -168,7 +168,7 @@ for(i in 1:100){
 plot(N)
 ```
 
-In the continuous time model (if births and deaths can occur at any time point, rather than in specific seasons), the population growth rate term is instead *r*, which is *r*=*b*-*d*, or the per capita rate of change in the number of individuals. This tells us the rate at which the population changes per individual in the population. So you can obtain the change in the number of individuals. For example, if *r* = 0, then births are equal to deaths, and so the population is not changing. We refer to *r* as the per capita change in the number of individuals.
+In the differential / continuous time model (if births and deaths can occur at any time point, rather than in specific seasons), the population growth rate term is instead *r*, which is *r*=*b*-*d*, or the per capita rate of change in the number of individuals. This tells us the rate at which the population changes per individual in the population - the *r* value can be multiplied by each individual in the population to determine their total contribution to population growth. For example, if *r* = 0, then births are equal to deaths, and so the population is not changing. We refer to *r* as the per capita change in the number of individuals because the value is associated with each individual in the population.
 
 We can see this in R: R code, Exercise 8
 
@@ -193,9 +193,9 @@ plot(out)
 
 **3. How did the authors come up with the equation above Figure 3.3 directly from that figure? (Recall the formula for a line)** $y=mx+b$
 
-The logistic growth model arises when we consider that the population growth rate *r* is not fixed, but instead is density-dependent. It decreases as the population size approaches carrying capacity *K*. So we see a graph where *r* is a linear function of *N*. Since the relationship between *K* and *N* is linear, we can use the formula of a line to determine this function. Recall $y = mx + b$, where *m* is the slope and *b* is the y-intercept.
+The logistic growth model arises when we consider that the population growth rate *r* is not fixed, but instead is density-dependent. It decreases as the population size approaches carrying capacity *K*. So we see a graph where *r* is a linear function of *N*. Since the relationship between *r* and *N* is linear, we can use the formula of a line to determine this function. Recall $y = mx + b$, where *m* is the slope and *b* is the y-intercept.
 
-We see from the plot two values of *R*: *R* = 1 when *N* = *K* (why? because population size doesn’t change anymore when $ N = K $), and $ R = 1+r_d $ when *N* = 0 (because the population is at its maximal growth rate when there is no intra-specific competition). This gives us the y-intercept. To get the slope, we look at the change in *y* over the change in *x*. We take 2 points, $(x_1,y_1)$  and $(x_2,y_2)$, which can be $(0,1+r_d)$ and $(K,1)$. To get the slope, its $\frac {y_2-y_1} {x_2-x_1}$, and that is: $\frac {1 – (1 + rd)} {K – 0} = \frac {-r_d} {K}$. We put that together to get: $R(n) = (1 + r_d) + \frac {-r_d}{K}n(t)$.
+We see from the plot two values of *R*: *R* = 1 when *N* = *K* (why? because population size doesn’t change anymore when $N = K$), and $R = 1+r_d$ when *N* = 0 (because the population is at its maximal growth rate when there is no intra-specific competition). This gives us the y-intercept. To get the slope, we look at the change in *y* over the change in *x*. We take 2 points, $(x_1,y_1)$  and $(x_2,y_2)$, which can be $(0,1+r_d)$ and $(K,1)$. To get the slope, its $\frac {y_2-y_1} {x_2-x_1}$, and that is: $\frac {1 – (1 + rd)} {K – 0} = \frac {-r_d} {K}$. We put that together to get: $R(n) = (1 + r_d) + \frac {-r_d}{K}n(t)$.
 
 By the way, if you want to go on to derive the discrete-time logistic growth equation:
 
@@ -215,11 +215,15 @@ The logistic model assumes that the rate of change of a variable decreases linea
 
 In a linear model, the change per unit time is a *linear* function of the variables; models that involve more complicated functions of the variables are called non-linear models.
 
-We used $(R-1) = r_d$, so this is the per capita change in the number of individuals from one generation to the next. It shows us that changes in *n* are a linear function of $r_d$ and $n(t)$. In the second equation, change in *n* depends on $n(t)$ in a non-linear way.
+We used $(R-1) = r_d$, so this is the per capita change in the number of individuals from one generation to the next. Equation 3.2 shows us that changes in *n* are a linear function of $r_d$ and $n(t)$. In equation 3.5b, change in *n* depends on $n(t)$ in a non-linear way.
 
-Begin from: $ R = 1 + r_d $
-equation 3.2) $ \Delta n = (R-1)n(t)$ --> linear
-equation 3.5b) $ \Delta n = r_dn(t)(1 - \frac{n(t)}{K})$ --> non-linear
+Begin from: $R = 1 + r_d$
+
+equation 3.2) $\Delta n = (R-1)n(t)$ --> linear
+
+
+equation 3.5b) $\Delta n = r_dn(t)(1 - \frac{n(t)}{K})$ --> non-linear
+
 Where $\Delta n$ --> a difference equation, $\Delta n = n(t+1) - n(t)$
 
 We can see this in R: R code, Exercise 9
