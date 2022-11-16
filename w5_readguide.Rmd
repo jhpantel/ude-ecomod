@@ -11,9 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Notes
-Note 1. This will be the reading guide for Lehaye et al. 1994. It is currently incomplete, and will be completed Tuesday November 15.
-
-Note 2. 2 things I asked you to do before class 11-11-2022: (i) Create a working simulation model for the Lotka-Volterra equations 3.14a and 3.15b. Determine values of r, N, and K where both species can co-exist (note I don't mind you Googling potential values for this). (ii) Create an account on github.com.
+Note 1. This will be the reading guide for Lehaye et al. 1994.
 
 ## Some questions to answer before class
 
@@ -185,4 +183,16 @@ lines(N[,3],col="skyblue")
 points(N[,3],xlab="time",ylab="N",pch=19,col="skyblue")
 legend("topright",col=c("black","orange","skyblue"),lwd=c(2,2,2),legend=c("Stage 1","Stage 2","Stage 3"))
 ```
-6. To be continued (will finish by end of Tuesday 15-11-2022)
+6. Can you explain why increased correlation in sensitivity to environmental variation among spotted owl populations can place the entire metapopulation at increased risk of extinction (1st paragraph on page 778)?
+
+7. Can you explain why the formula on page 778:
+
+$$ N_i(t+1) = N_i(t)R_i(t) - \sum_{j=1}^{n} m_{ij}N_i + \sum_{i=1}^{n} m_{ji}N_j$$
+
+represents a metapopulation model? Please include a definition for metapopulation, with a citation (using [Google Scholar](https://scholar.google.com) (perhaps [Hanski & Gilpin 1991](./media/Hanski_Gilpin_1991.pdf)).
+
+8. The authors believe there is evidence that (i) population locations are correlated in the amount of total annual rainfall and (ii) that this environmental property impacts fecundity. Please explain their analysis to justify this.
+
+9. Please look carefully at Figure 9 - what is on the x- and y-axis? How do they support this statement: a correlation in response of populations to rainfall makes spotted owls *more likely* to become extinct.
+
+10. Compare Figure 9 to Figure 8 - is metapopulation structure important to understand Spotted owl extinction risk?
