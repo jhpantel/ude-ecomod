@@ -9,9 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Jelena H. Pantel" />
 
 
-<title>Ecological Modelling</title>
+<title>Course Project 1 Guidelines</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +30,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -216,6 +220,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -223,6 +296,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -298,73 +381,90 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Ecological Modelling</h1>
+<h1 class="title toc-ignore">Course Project 1 Guidelines</h1>
+<h4 class="author">Jelena H. Pantel</h4>
+<h4 class="date">2022-11-29 15:43:27</h4>
 
 </div>
 
 
-<p>Welcome to the <strong>Ecological Modelling</strong> course
-website</p>
-<p>This website contains the content of the <em>Ecological
-Modelling</em> course taught by Prof. Dr. <a
-href="http://jhpantel.com">Jelena H. Pantel</a> in the MS Aquatic
-Biology program at the University of Duisburg-Essen.</p>
-<div id="quick-note-r.e.-cyber-attack" class="section level1">
-<h1>QUICK NOTE R.E. CYBER ATTACK !!</h1>
-<p>I am aware that class is quite disrupted, between my illness + class
-cancellation last week and this week’s CYBER ATTACK !!. Key
-information:</p>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>We will make a “cheat sheet”, or a 1-2 page colorful, informative
+info-graphic style PDF document that walks through a mathematical model
+of interest. The “cheat sheet” should contain information about:</p>
 <ul>
-<li><p>We <strong>will</strong> have class in-person on Thursday
-01-12-2022.</p></li>
-<li><p>To prepare for class, go through <a
-href="./w7_readguide.html"><strong>Reading Guide 5</strong></a></p></li>
-<li><p>We will focus 01-12-2022 class on getting caught up. Go through
-<strong>Reading Guide 5</strong>, get as far as you can, and we will
-work together to get caught up during class.</p></li>
-<li><p>Our guest lecture on ecotoxicology models is rescheduled for
-08-12-2022.</p></li>
-<li><p>The course schedule is updated, and we will also have our first
-look at some more details for our 1st of 2 class assignments.</p></li>
+<li>A summary, verbal, of what the model consists of</li>
+<li>A basic conceptual diagram that shows the <em>state variables</em>,
+with arrows showing relationships between state variables and <em>model
+parameters</em> that connect state variables.</li>
+<li>A table with each variable or parameter in the model, a short verbal
+name for the variable or parameter, an indication of the range of values
+the parameter or variable can take, and the units of the parameter or
+variable.</li>
+<li>The equation (choose 1, discrete-time or continuous-time)</li>
+<li>A graphical inspection of the dynamics and general behavior of the
+model</li>
+<li>A description of the <em>equilibrium behavior</em> of the model -
+under what conditions does the state variable reach <em>equilibrium</em>
+and no longer change?</li>
+</ul>
+<p>You will submit the cheat sheet, and use R code to create some of the
+graphs (and you will submit this R code along with the cheat sheet
+itself). For writing formulas, you can use Microsoft Word / Powerpoint,
+but you can also use R Markdown.</p>
+</div>
+<div id="when-will-we-have-time-to-discuss-and-work-on-this"
+class="section level2">
+<h2>When will we have time to discuss and work on this?</h2>
+<ul>
+<li><p>We will first look over the assignment in class Thursday
+01-12-2022. For class Thursday 08-12-2022, I will have a list of
+instructions to complete by class that day, and I will have a general
+template you can follow for what a cheat sheet might look like. For
+class Thursday 15-12-2022, I will have completed a template you can
+follow, and will include some more instructions for what you should have
+finished that day.</p></li>
+<li><p>The entire class period 22-12-2022 will be remote / online, and
+will be devoted to working on your course project. We will sign into a
+Zoom session, and we will work on our cheat sheet during the remote
+course session.</p></li>
+<li><p>The assignment will be due by the final day of class,
+02-02-2023.</p></li>
 </ul>
 </div>
-<div id="course-information" class="section level1">
-<h1>Course Information</h1>
-<p>This is a seminar course, held from 16-18h on Thursdays, in room S05
-R03 H8. I am available to meet Wednesdays 5-6pm over Zoom, but you must
-e-mail in advance of that time to let me know if you want to meet. The
-grade in the course will stem from 2 projects. Project 1 will be
-creating a “cheat sheet”, or a 1-2 page document that provides an
-overview of a theoretical model in Ecology or Limnology. Project 2 will
-be a hands-on application, where you will take actual data and test
-predictions from theoretical models.</p>
+<div
+id="is-there-a-template-i-can-look-at-so-i-can-get-started-on-the-assignment"
+class="section level2">
+<h2>Is there a template I can look at so I can get started on the
+assignment?</h2>
+<ul>
+<li><p>I will create a Draft Template by Thursday 08-12-2022. I will
+create a Final Template by 15-12-2022. I will update with a more
+detailed list of instructions by 08-12-2022. For now, here is a
+<em>very</em> insufficient example. <img src="media/screen-5.jpg"
+style="width:100.0%"
+alt="Very insufficient first look at a Draft CModel Cheat Sheet" /></p></li>
+<li><p>It will be in the style of R Cheat Sheets, such as the one seen
+<a href="./media/bayesplot.pdf"><strong>here</strong></a>.</p></li>
+</ul>
 </div>
-<div id="course-description" class="section level1">
-<h1>Course Description</h1>
-<p>In this course, we will cover two broad topics: (1) we will get an
-overview of models that are used in Ecology, Evolution, and Aquatic
-Biology and (2) we will learn how to fit actual, observed data to
-theoretical models. We will gain proficiency in computational ecology,
-as we will use the statistical programming language R to work with
-models and data. The classroom is equipped with computer
-workstations.</p>
-</div>
-<div id="website-content" class="section level1">
-<h1>Website content</h1>
-<p>Click the links in the menu above to look around. We can also message
-each other using the course Moodle page: (<a
-href="https://moodle.uni-due.de/"
-class="uri">https://moodle.uni-due.de/</a>)</p>
-</div>
-<div id="notes" class="section level1">
-<h1>Notes</h1>
-<p>This website is a collection of regular (R)Markdown documents.</p>
-<p>If you are new to R Markdown, you can learn more about it <a
-href="https://rmarkdown.rstudio.com/">on the R Markdown website</a>.</p>
+<div id="what-if-i-want-to-get-started-now" class="section level2">
+<h2>What if I want to get started now?</h2>
+<ul>
+<li><p>I would advise to begin by creating a simulation in R of your
+model of choice. Contact me if you would like to choose a model and
+begin.</p></li>
+<li><p>Candidate models so far are: <img src="media/screen-6.jpg"
+style="width:100.0%"
+alt="Candidate models we have discussed so far" /></p></li>
+</ul>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -397,6 +497,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

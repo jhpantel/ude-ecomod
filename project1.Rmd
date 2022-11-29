@@ -1,0 +1,44 @@
+---
+title: "Course Project 1 Guidelines"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+We will make a "cheat sheet", or a 1-2 page colorful, informative info-graphic style PDF document that walks through a mathematical model of interest. The "cheat sheet" should contain information about:
+
++ A summary, verbal, of what the model consists of
++ A basic conceptual diagram that shows the *state variables*, with arrows showing relationships between state variables and *model parameters* that connect state variables.
++ A table with each variable or parameter in the model, a short verbal name for the variable or parameter, an indication of the range of values the parameter or variable can take, and the units of the parameter or variable.
++ The equation (choose 1, discrete-time or continuous-time)
++ A graphical inspection of the dynamics and general behavior of the model
++ A description of the *equilibrium behavior* of the model - under what conditions does the state variable reach *equilibrium* and no longer change?
+
+You will submit the cheat sheet, and use R code to create some of the graphs (and you will submit this R code along with the cheat sheet itself). For writing formulas, you can use Microsoft Word / Powerpoint, but you can also use R Markdown.
+
+## When will we have time to discuss and work on this?
+
++ We will first look over the assignment in class Thursday 01-12-2022. For class Thursday 08-12-2022, I will have a list of instructions to complete by class that day, and I will have a general template you can follow for what a cheat sheet might look like. For class Thursday 15-12-2022, I will have completed a template you can follow, and will include some more instructions for what you should have finished that day.
+
++ The entire class period 22-12-2022 will be remote / online, and will be devoted to working on your course project. We will sign into a Zoom session, and we will work on our cheat sheet during the remote course session.
+
++ The assignment will be due by the final day of class, 02-02-2023.
+
+## Is there a template I can look at so I can get started on the assignment?
+
++ I will create a Draft Template by Thursday 08-12-2022. I will create a Final Template by 15-12-2022. I will update with a more detailed list of instructions by 08-12-2022. For now, here is a *very* insufficient example. ![Very insufficient first look at a Draft CModel Cheat Sheet](./media/screen-5.jpg){width="100%"}
+
++ It will be in the style of R Cheat Sheets, such as the one seen [__here__](./media/bayesplot.pdf).
+
+## What if I want to get started now?
+
++ I would advise to begin by creating a simulation in R of your model of choice. Contact me if you would like to choose a model and begin.
+
++ Candidate models so far are: ![Candidate models we have discussed so far](./media/screen-6.jpg){width="100%"}
+

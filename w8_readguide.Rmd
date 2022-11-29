@@ -1,5 +1,5 @@
 ---
-title: "Week 6 Reading Guidelines"
+title: "Week 8 Reading Guidelines"
 author: "Jelena H. Pantel"
 institute: "University of Duisburg-Essen"
 date: "`r file.mtime(knitr::current_input())`"

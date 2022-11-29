@@ -10,6 +10,19 @@ Welcome to the **Ecological Modelling** course website
 
 This website contains the content of the *Ecological Modelling* course taught by Prof. Dr. [Jelena H. Pantel](http://jhpantel.com) in the MS Aquatic Biology program at the University of Duisburg-Essen.
 
+# QUICK NOTE R.E. CYBER ATTACK !!
+I am aware that class is quite disrupted, between my illness + class cancellation last week and this week's CYBER ATTACK !!. Key information:
+
++ We **will** have class in-person on Thursday 01-12-2022.
+
++ To prepare for class, go through [__Reading Guide 5__](./w7_readguide.html)
+
++ We will focus 01-12-2022 class on getting caught up. Go through **Reading Guide 5**, get as far as you can, and we will work together to get caught up during class.
+
++ Our guest lecture on ecotoxicology models is rescheduled for 08-12-2022.
+
++ The course schedule is updated, and we will also have our first look at some more details for our 1st of 2 class assignments.
+
 # Course Information
 
 This is a seminar course, held from 16-18h on Thursdays, in room S05 R03 H8. I am available to meet Wednesdays 5-6pm over Zoom, but you must e-mail in advance of that time to let me know if you want to meet. The grade in the course will stem from 2 projects. Project 1 will be creating a "cheat sheet", or a 1-2 page document that provides an overview of a theoretical model in Ecology or Limnology. Project 2 will be a hands-on application, where you will take actual data and test predictions from theoretical models.
