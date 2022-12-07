@@ -10,18 +10,14 @@ Welcome to the **Ecological Modelling** course website
 
 This website contains the content of the *Ecological Modelling* course taught by Prof. Dr. [Jelena H. Pantel](http://jhpantel.com) in the MS Aquatic Biology program at the University of Duisburg-Essen.
 
-# QUICK NOTE R.E. CYBER ATTACK !!
-I am aware that class is quite disrupted, between my illness + class cancellation last week and this week's CYBER ATTACK !!. Key information:
+# Note for class 8-12-2022
++ We will meet in class as usual, for our guest lecture on Ecotoxicology models. See course schedule for readings and [__Reading Guide 6__](./w8_readguide.html)
 
-+ We **will** have class in-person on Thursday 01-12-2022.
++ Last week, I had asked that y'all complete 3 coding exercises. I gave instructions for what I wanted in [__Reading Guide 5__](./w7_readguide.html). At the time, I gave some instructions for "pushing" your completed assignments to your GitHub repository that didn't work out. I have updated those instructions in the Reading Guide 5, please see Steps 7 and 8. If for any reason those instructions don't work, you can (i) email me your 3 .R scripts, to jhpantel[@]utexas.edu or (ii) you can actually upload the files directly on github.com, by selecting Add file, Upload files:
 
-+ To prepare for class, go through [__Reading Guide 5__](./w7_readguide.html)
+![Upload homework files directly to GitHub repository... easier but less of a flex!](./media/screen-7.jpg){width="100%"}
 
-+ We will focus 01-12-2022 class on getting caught up. Go through **Reading Guide 5**, get as far as you can, and we will work together to get caught up during class.
-
-+ Our guest lecture on ecotoxicology models is rescheduled for 08-12-2022.
-
-+ The course schedule is updated, and we will also have our first look at some more details for our 1st of 2 class assignments.
++ We will look further at our first assignment instructions during class.
 
 # Course Information
 
