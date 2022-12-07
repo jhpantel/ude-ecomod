@@ -88,9 +88,45 @@ m <- 4
 Nt <- 42
 ```
 
-7. The final step is to get this modified code uploaded to your GitHub repository (so I can see it on github.com).
+7. We would like to *push* our changed documents to our Github repository.To do this, we need to establish an *SSH key pair*, that allows Github to confirm we are really the ones requesting to make changes.
 
-* In Terminal or Git Bash (the command line interface you were at previously), make sure you are still in the *ude-ecomod-hw* directory. You can check if this is the case by typing `pwd`.
+* Using Terminal or Bash (the command line interface you were at previously), create an *SSH key pair* (this is a way of authenticating you are the correct user trying to push changes to the Github repository). Type the following command in the command line (using the email address you registered with Github): 
+
+```{r eval=FALSE}
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+* If for any reason that command fails, try:
+
+```{r eval=FALSE}
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+* Accept the prompt to save the key in the default location. Just press Enter when you see below (note that might look a little different for a Windows user):
+
+```{r eval=FALSE}
+Enter file in which to save the key (/Users/user_name/.ssh/id_ed25519):
+```
+
+* You have the option to protect the key with a passphrase. Its optional, and you can never retrieve it from Github. Its 'better practice' to use this (and save to a password manager), but I would recommend to leave this empty for now. If you prefer to use a passphrase, read [this page](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases) from Github help.
+
+* The process should be complete, and now you need to associate this new key with your GitHub. To copy the key from the file to your clipboard, use Terminal / Bash  to type the following ni the command line:
+
+```{r eval=FALSE}
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+* Note: if you recieve any errors, perhaps you are not in the correct file directory. You can get where this command will work by type `cd ~`, and then trying the command above again.
+
+* In the online Github page, go to the top right, click your profile image, and select 'Settings'. In the "Access" section of the sidebar, click "SSH and GPG keys". Click New SSH key or Add SSH key.
+
+* In the "Title" field, add a descriptive label for the new key. For example, if you're using a personal laptop, you might call this key "Personal laptop". This is the key for *this* computer to push changes to your GitHub account. For Type of Key, select "Authentication Key".
+
+* Now "paste" (using File, Paste or ctrl-V or command-V) the key in the 'Key' field. Click the "Add SSH" green button.
+
+8. The final step is to get your modified code uploaded to your GitHub repository (so I can see it on github.com).
+
+* In Terminal or Git Bash (the command line interface you were at previously), make sure you are still in the *ude-ecomod-hw* directory. You can check if this is the case by typing `pwd`. If you are not in the right directory, you can type `cd ~/Documents/GitHub/ude-ecomod-hw`]
 
 * Use the following git command to establish that the file directory is a Git repository:
 
@@ -131,3 +167,11 @@ git push -u origin main
 10. We will arrange our schedule for the rest of December. Note that our guest lecture on ecotoxicology models is rescheduled for 08-12-2022. We will also take our first look at our class project.
 
 11. If you have anything you would like to discuss, you may email me at jhpantel[@]utexas.edu
+
+## What we will do DURING class 08-12-2022
+
+12. We will have a guest lecture on Ecotoxicology models. Please be prepared by completing the readings and [__Reading Guide 6__](./w8_readguide.html).
+
+13. We can discuss any issues you had with your R code / with Github.
+
+14. For class the week of 15-12-2022, I will ask you to please bring your laptops. I will either (i) have a wireless hotspot available for class or (ii) I will tell you what files to have on your laptop before you come to class.
