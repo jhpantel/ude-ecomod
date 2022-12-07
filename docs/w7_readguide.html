@@ -484,7 +484,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Week 7 Reading Guidelines</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-11-29 15:53:37</h4>
+<h4 class="date">2022-12-07 21:48:37</h4>
 
 </div>
 
@@ -633,27 +633,82 @@ line #41 in the script, then save the file (using the same name).</li>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Nt - the initial number of mice in the yard when we begin the survey</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> <span class="dv">42</span></span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
-<li>The final step is to get this modified code uploaded to your GitHub
+<li>We would like to <em>push</em> our changed documents to our Github
+repository.To do this, we need to establish an <em>SSH key pair</em>,
+that allows Github to confirm we are really the ones requesting to make
+changes.</li>
+</ol>
+<ul>
+<li>Using Terminal or Bash (the command line interface you were at
+previously), create an <em>SSH key pair</em> (this is a way of
+authenticating you are the correct user trying to push changes to the
+Github repository). Type the following command in the command line
+(using the email address you registered with Github):</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ssh<span class="sc">-</span>keygen <span class="sc">-</span>t ed25519 <span class="sc">-</span>C <span class="st">&quot;your_email@example.com&quot;</span></span></code></pre></div>
+<ul>
+<li>If for any reason that command fails, try:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ssh<span class="sc">-</span>keygen <span class="sc">-</span>t rsa <span class="sc">-</span>b <span class="dv">4096</span> <span class="sc">-</span>C <span class="st">&quot;your_email@example.com&quot;</span></span></code></pre></div>
+<ul>
+<li>Accept the prompt to save the key in the default location. Just
+press Enter when you see below (note that might look a little different
+for a Windows user):</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Enter file <span class="cf">in</span> which to save the <span class="fu">key</span> (<span class="sc">/</span>Users<span class="sc">/</span>user_name<span class="sc">/</span>.ssh<span class="sc">/</span>id_ed25519)<span class="sc">:</span></span></code></pre></div>
+<ul>
+<li><p>You have the option to protect the key with a passphrase. Its
+optional, and you can never retrieve it from Github. Its ‘better
+practice’ to use this (and save to a password manager), but I would
+recommend to leave this empty for now. If you prefer to use a
+passphrase, read <a
+href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases">this
+page</a> from Github help.</p></li>
+<li><p>The process should be complete, and now you need to associate
+this new key with your GitHub. To copy the key from the file to your
+clipboard, use Terminal / Bash to type the following ni the command
+line:</p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pbcopy <span class="sc">&lt;</span> <span class="er">~/</span>.ssh<span class="sc">/</span>id_ed25519.pub</span></code></pre></div>
+<ul>
+<li><p>Note: if you recieve any errors, perhaps you are not in the
+correct file directory. You can get where this command will work by type
+<code>cd ~</code>, and then trying the command above again.</p></li>
+<li><p>In the online Github page, go to the top right, click your
+profile image, and select ‘Settings’. In the “Access” section of the
+sidebar, click “SSH and GPG keys”. Click New SSH key or Add SSH
+key.</p></li>
+<li><p>In the “Title” field, add a descriptive label for the new key.
+For example, if you’re using a personal laptop, you might call this key
+“Personal laptop”. This is the key for <em>this</em> computer to push
+changes to your GitHub account. For Type of Key, select “Authentication
+Key”.</p></li>
+<li><p>Now “paste” (using File, Paste or ctrl-V or command-V) the key in
+the ‘Key’ field. Click the “Add SSH” green button.</p></li>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li>The final step is to get your modified code uploaded to your GitHub
 repository (so I can see it on github.com).</li>
 </ol>
 <ul>
 <li><p>In Terminal or Git Bash (the command line interface you were at
 previously), make sure you are still in the <em>ude-ecomod-hw</em>
-directory. You can check if this is the case by typing
-<code>pwd</code>.</p></li>
+directory. You can check if this is the case by typing <code>pwd</code>.
+If you are not in the right directory, you can type
+<code>cd ~/Documents/GitHub/ude-ecomod-hw</code></p></li>
 <li><p>Use the following git command to establish that the file
 directory is a Git repository:</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>git init <span class="sc">-</span>b main</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>git init <span class="sc">-</span>b main</span></code></pre></div>
 <ul>
 <li>Add the files in your new local repository. This stages them for the
 first commit.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>git add .</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>git add .</span></code></pre></div>
 <ul>
 <li>Commit the files that you’ve staged in your local repository.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m <span class="st">&quot;First commit&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m <span class="st">&quot;First commit&quot;</span></span></code></pre></div>
 <ul>
 <li>At the top of your repository on GitHub.com, click to copy the
 remote repository URL, then add that <REMOTE_URL> to the command
@@ -661,12 +716,12 @@ remote repository URL, then add that <REMOTE_URL> to the command
 this, but yours will look slightly different because you have a
 different github user name.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>git remote add origin https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>student<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>hw.git</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>git remote add origin https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>student<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>hw.git</span></code></pre></div>
 <ul>
 <li>Finally, you can <em>push</em> your local changes to your Github
 repository, which will be visible online!</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>git push <span class="sc">-</span>u origin main</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>git push <span class="sc">-</span>u origin main</span></code></pre></div>
 </div>
 <div id="what-we-will-do-during-class-01-12-2022"
 class="section level2">
@@ -683,6 +738,22 @@ our guest lecture on ecotoxicology models is rescheduled for 08-12-2022.
 We will also take our first look at our class project.</p></li>
 <li><p>If you have anything you would like to discuss, you may email me
 at jhpantel[@]utexas.edu</p></li>
+</ol>
+</div>
+<div id="what-we-will-do-during-class-08-12-2022"
+class="section level2">
+<h2>What we will do DURING class 08-12-2022</h2>
+<ol start="12" style="list-style-type: decimal">
+<li><p>We will have a guest lecture on Ecotoxicology models. Please be
+prepared by completing the readings and <a
+href="./w8_readguide.html"><strong>Reading Guide
+6</strong></a>.</p></li>
+<li><p>We can discuss any issues you had with your R code / with
+Github.</p></li>
+<li><p>For class the week of 15-12-2022, I will ask you to please bring
+your laptops. I will either (i) have a wireless hotspot available for
+class or (ii) I will tell you what files to have on your laptop before
+you come to class.</p></li>
 </ol>
 </div>
 

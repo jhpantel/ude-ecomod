@@ -126,7 +126,7 @@ pbcopy < ~/.ssh/id_ed25519.pub
 
 8. The final step is to get your modified code uploaded to your GitHub repository (so I can see it on github.com).
 
-* In Terminal or Git Bash (the command line interface you were at previously), make sure you are still in the *ude-ecomod-hw* directory. You can check if this is the case by typing `pwd`. If you are not in the right directory, you can type `cd ~/Documents/GitHub/ude-ecomod-hw`]
+* In Terminal or Git Bash (the command line interface you were at previously), make sure you are still in the *ude-ecomod-hw* directory. You can check if this is the case by typing `pwd`. If you are not in the right directory, you can type `cd ~/Documents/GitHub/ude-ecomod-hw`
 
 * Use the following git command to establish that the file directory is a Git repository:
 
