@@ -26,7 +26,7 @@ __Please do all readings in advance of the scheduled course period. Each reading
 | Module 3.1 – Models and data in ecology case studies, Part 1 | 17-11-2022 | 1. [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf), 2. [__Reading Guide 4__](./w5_readguide.html)  | 1. [__Lecture Notes 3.1__](./L3.1_notes.html), 2. [__Lecture 3.1__](./L3.1.pdf), 3. [__Otto & Day Ch5__](./media/OttoDay_Ch5.pdf) |
 | Class cancelled | 24-11-2022 | none  | XX |
 | Catching Up | 01-12-2022 | 1. [__Reading Guide 5__](./w7_readguide.html)  | 1. [__Lecture Notes 3.2__](./L3.2_notes.html) |
-| Module 3.2 – Models and data in ecology case studies, Part 2 | 08-12-2022 | 1. [__Jager et al. 2011__](./r5.1_Jager_2011.pdf), 2. [__Le et al. 2011__](./r5.2_Le_2011.pdf), 3. [__Reading Guide 6__](./w8_readguide.html)  | XX |
+| Module 3.2 – Models and data in ecology case studies, Part 2 | 08-12-2022 | 1. [__Jager et al. 2011__](./r5.1_Jager_2011.pdf), 2. [__Le et al. 2011__](./r5.2_Le_2011.pdf), 3. [__Reading Guide 6__](./w8_readguide.html)  | 1. [__Lecture 3.3__](./L3.3.pdf) |
 | Module 4.1 – Empiricists and working with theoretical models | 15-12-2022 | 1. [__Grainger et al. 2022__](./r6_Grainger_2022.pdf), 2. [__Reading Guide 7__](./w9_readguide.html)  | 1. [__Project 1 Guidelines__](./project1.html) |
 | Project 1 – Work on during class time | 22-12-2022 | Reading HH  | XX |
 | Winter holiday break | December 24 - January 6 | Enjoy!  | XX |

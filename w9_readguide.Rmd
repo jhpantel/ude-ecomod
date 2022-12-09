@@ -1,0 +1,18 @@
+---
+title: "Week 9 Reading Guidelines"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Notes
+This is the reading guide for [__Grainger et al. 2022__](./r6_Grainger_2022.pdf).
+
+## Some questions to answer before class
+
+1. To be completed by Monday 12-12-2022
