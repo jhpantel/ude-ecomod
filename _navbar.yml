@@ -13,7 +13,15 @@ left:
   - text: "Projects"
     menu:
        - text: "Project 1"
-         href: ./project1.html
+         menu:
+         - text: "Guidelines"
+           href: ./project1.html
+         - text: "Example cheat sheet"
+           href: ./Pantel_cheat_LV.html
+         - text: "Resources"
+           menu:
+           - text: "Stage structured models"
+             href: ./stage.html
        - text: "Project 2"
          href: ./project2.html
   - text: "Contact"

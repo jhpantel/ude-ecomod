@@ -10,12 +10,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Notes
-Note 1. We are a bit behind in our course schedule. Please go through this document for information for class 01-12-2022.
+## What should be completed by 08-12-2022?
 
-## Please complete steps 1-2 before class 01-12-2022. If you do not finish, we will do this during class on 01-12-2022
-
-1. I would like you to officially complete two coding exercises.
+1. Officially complete two coding exercises.
 
 * Coding exercise 1. In the class notes from 10-11-2022 [__Lecture Notes 2.3__](./L2.3_notes.html), I asked you to create a simulation of the model for mouse population size (N) as a function of reproduction, mortality from cats, and immigration into the yard. I would like you to produce a complete R script with code following all of the 6 steps indicated. Save this as an R script titled "ude-ecomod-hw1.R". I post some very general guidelines to follow at https://github.com/jhpantel/ude-ecomod-hw/blob/main/ude-ecomod-hw1.R
 
@@ -24,8 +21,6 @@ Note 1. We are a bit behind in our course schedule. Please go through this docum
     I would like you to modify the code to show logistic growth dynamics for values of r = 2.7 and K = 2500. Save this as an R script titled "ude-ecomod-hw2.R"
     
 2. Please finish reading [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf), and complete the questions in [__Reading Guide 4__](./w5_readguide.html). Note that in question 4c, I ask you to create a simulation model of population dynamics for SBM spotted owls and in question 5, I ask you to change the code I had for a matrix population model. Please write this as R code and save it as an R script called "ude-ecomod-hw3.R".
-
-## If you want to get ahead, steps 3-7 below are optional, but recommended
 
 3. I would like you to install the free, open source program called *git* on your computer. Please look at the installation instructions here. Before installing, do check to see if you already have that installed. The instructions to check to see if its already installed are [here](https://github.com/git-guides/install-git#checking-for-git). The instructions to install on a Mac are [here](https://github.com/git-guides/install-git#install-git-on-mac). The instructions to install on Windows are [here](https://github.com/git-guides/install-git#install-git-on-windows).
 
@@ -158,19 +153,23 @@ git remote add origin https://github.com/ude-ecomod-student/ude-ecomod-hw.git
 git push -u origin main
 ```
 
-## What we will do DURING class 01-12-2022
+9. If you simply cannot get steps 7 & 8 to work, you can you can actually upload the files directly on github.com, by selecting Add file, Upload files:
 
-8. We will get everyone to finish their code for #1 and #2 above, and we will look at creating GitHub accounts and uploading files to Github.
+![Upload homework files directly to GitHub repository... easier but less of a flex!](./media/screen-7.jpg){width="100%"}
 
-9. We will go through [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf) and the [__Reading Guide 4__](./w5_readguide.html)
+## What we did DURING class 01-12-2022
 
-10. We will arrange our schedule for the rest of December. Note that our guest lecture on ecotoxicology models is rescheduled for 08-12-2022. We will also take our first look at our class project.
+10. We will get everyone to finish their code for #1 and #2 above, and we will look at creating GitHub accounts and uploading files to Github.
 
-11. If you have anything you would like to discuss, you may email me at jhpantel[@]utexas.edu
+11. We will go through [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf) and the [__Reading Guide 4__](./w5_readguide.html)
 
-## What we will do DURING class 08-12-2022
+12. We will arrange our schedule for the rest of December. Note that our guest lecture on ecotoxicology models is rescheduled for 08-12-2022. We will also take our first look at our class project.
 
-12. We will have a guest lecture on Ecotoxicology models. Please be prepared by completing the readings and [__Reading Guide 6__](./w8_readguide.html).
+13. If you have anything you would like to discuss, you may email me at jhpantel[@]utexas.edu
+
+## What we did DURING class 08-12-2022
+
+12. We had a guest lecture on Ecotoxicology models. Please be prepared by completing the readings and [__Reading Guide 6__](./w8_readguide.html).
 
 13. We can discuss any issues you had with your R code / with Github.
 

@@ -10,14 +10,12 @@ Welcome to the **Ecological Modelling** course website
 
 This website contains the content of the *Ecological Modelling* course taught by Prof. Dr. [Jelena H. Pantel](http://jhpantel.com) in the MS Aquatic Biology program at the University of Duisburg-Essen.
 
-# Note for class 8-12-2022
-+ We will meet in class as usual, for our guest lecture on Ecotoxicology models. See course schedule for readings and [__Reading Guide 6__](./w8_readguide.html)
+# Announcement 1
++ You need to have completed 3 exercises, as R scripts called "ude-ecomod-hw1.R", "ude-ecomod-hw2.R", and "ude-ecomod-hw2.R". The instructions to complete this are in Steps 1-9 here in [__Reading Guide 5__](./w7_readguide.html). I will check your Github and see that I can access all of the files. I will also check my email to look at the files some of you have sent me.
 
-+ Last week, I had asked that y'all complete 3 coding exercises. I gave instructions for what I wanted in [__Reading Guide 5__](./w7_readguide.html). At the time, I gave some instructions for "pushing" your completed assignments to your GitHub repository that didn't work out. I have updated those instructions in the Reading Guide 5, please see Steps 7 and 8. If for any reason those instructions don't work, you can (i) email me your 3 .R scripts, to jhpantel[@]utexas.edu or (ii) you can actually upload the files directly on github.com, by selecting Add file, Upload files:
++ You should get started on your Course Project 1. You can find information about that on the course homepage, in the menu under Projects --> Project 1. Let me know if you need more resources, I will be happy to share textbook chapters (with R code!) for the various models that have been discussed.
 
-![Upload homework files directly to GitHub repository... easier but less of a flex!](./media/screen-7.jpg){width="100%"}
-
-+ We will look further at our first assignment instructions during class.
++ For class 15-12-2022, as indicated in the course schedule, please read [__Grainger et al. 2022__](./r6_Grainger_2022.pdf) and complete [__Reading Guide 7__](./w9_readguide.html).
 
 # Course Information
 

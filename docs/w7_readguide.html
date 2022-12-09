@@ -454,8 +454,24 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="./project1.html">Project 1</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Project 1</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="./project1.html">Guidelines</a>
+        </li>
+        <li>
+          <a href="./Pantel_cheat_LV.html">Example cheat sheet</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="./stage.html">Stage structured models</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
       <a href="./project2.html">Project 2</a>
@@ -484,23 +500,15 @@ div.tocify {
 
 <h1 class="title toc-ignore">Week 7 Reading Guidelines</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-12-07 21:48:37</h4>
+<h4 class="date">2022-12-08 18:44:04</h4>
 
 </div>
 
 
-<div id="notes" class="section level2">
-<h2>Notes</h2>
-<p>Note 1. We are a bit behind in our course schedule. Please go through
-this document for information for class 01-12-2022.</p>
-</div>
-<div
-id="please-complete-steps-1-2-before-class-01-12-2022.-if-you-do-not-finish-we-will-do-this-during-class-on-01-12-2022"
-class="section level2">
-<h2>Please complete steps 1-2 before class 01-12-2022. If you do not
-finish, we will do this during class on 01-12-2022</h2>
+<div id="what-should-be-completed-by-08-12-2022" class="section level2">
+<h2>What should be completed by 08-12-2022?</h2>
 <ol style="list-style-type: decimal">
-<li>I would like you to officially complete two coding exercises.</li>
+<li>Officially complete two coding exercises.</li>
 </ol>
 <ul>
 <li><p>Coding exercise 1. In the class notes from 10-11-2022 <a
@@ -524,21 +532,14 @@ for values of r = 2.7 and K = 2500. Save this as an R script titled
 “ude-ecomod-hw2.R”</p></li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
-<li>Please finish reading <a href="./r4_Lahaye_1994.pdf"><strong>Lahaye
-et al. 1994</strong></a>, and complete the questions in <a
-href="./w5_readguide.html"><strong>Reading Guide 4</strong></a>. Note
-that in question 4c, I ask you to create a simulation model of
-population dynamics for SBM spotted owls and in question 5, I ask you to
-change the code I had for a matrix population model. Please write this
-as R code and save it as an R script called “ude-ecomod-hw3.R”.</li>
-</ol>
-</div>
-<div
-id="if-you-want-to-get-ahead-steps-3-7-below-are-optional-but-recommended"
-class="section level2">
-<h2>If you want to get ahead, steps 3-7 below are optional, but
-recommended</h2>
-<ol start="3" style="list-style-type: decimal">
+<li><p>Please finish reading <a
+href="./r4_Lahaye_1994.pdf"><strong>Lahaye et al. 1994</strong></a>, and
+complete the questions in <a href="./w5_readguide.html"><strong>Reading
+Guide 4</strong></a>. Note that in question 4c, I ask you to create a
+simulation model of population dynamics for SBM spotted owls and in
+question 5, I ask you to change the code I had for a matrix population
+model. Please write this as R code and save it as an R script called
+“ude-ecomod-hw3.R”.</p></li>
 <li><p>I would like you to install the free, open source program called
 <em>git</em> on your computer. Please look at the installation
 instructions here. Before installing, do check to see if you already
@@ -722,11 +723,20 @@ different github user name.</li>
 repository, which will be visible online!</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>git push <span class="sc">-</span>u origin main</span></code></pre></div>
+<ol start="9" style="list-style-type: decimal">
+<li>If you simply cannot get steps 7 &amp; 8 to work, you can you can
+actually upload the files directly on github.com, by selecting Add file,
+Upload files:</li>
+</ol>
+<div class="figure">
+<img src="media/screen-7.jpg" style="width:100.0%" alt="" />
+<p class="caption">Upload homework files directly to GitHub repository…
+easier but less of a flex!</p>
 </div>
-<div id="what-we-will-do-during-class-01-12-2022"
-class="section level2">
-<h2>What we will do DURING class 01-12-2022</h2>
-<ol start="8" style="list-style-type: decimal">
+</div>
+<div id="what-we-did-during-class-01-12-2022" class="section level2">
+<h2>What we did DURING class 01-12-2022</h2>
+<ol start="10" style="list-style-type: decimal">
 <li><p>We will get everyone to finish their code for #1 and #2 above,
 and we will look at creating GitHub accounts and uploading files to
 Github.</p></li>
@@ -740,11 +750,10 @@ We will also take our first look at our class project.</p></li>
 at jhpantel[@]utexas.edu</p></li>
 </ol>
 </div>
-<div id="what-we-will-do-during-class-08-12-2022"
-class="section level2">
-<h2>What we will do DURING class 08-12-2022</h2>
+<div id="what-we-did-during-class-08-12-2022" class="section level2">
+<h2>What we did DURING class 08-12-2022</h2>
 <ol start="12" style="list-style-type: decimal">
-<li><p>We will have a guest lecture on Ecotoxicology models. Please be
+<li><p>We had a guest lecture on Ecotoxicology models. Please be
 prepared by completing the readings and <a
 href="./w8_readguide.html"><strong>Reading Guide
 6</strong></a>.</p></li>
