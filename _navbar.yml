@@ -22,6 +22,8 @@ left:
            menu:
            - text: "Stage structured models"
              href: ./stage.html
+           - text: "Metapopulation model"
+             href: ./metapop.html
        - text: "Project 2"
          href: ./project2.html
   - text: "Contact"

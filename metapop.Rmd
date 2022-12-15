@@ -1,0 +1,23 @@
+---
+title: "Metapopulation model resources"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Note 1: There are more than 1 type of metapopulation model, so I reccommend strongly that you stick with what they refer to as a Levins metapopulation model. This should make more sense after you look through the resources.
+
+1. Resource 1: PDF chapter from book *Encyclopedia of Global Environmental Change* (Pablo A Marquet, 2002), [__Marquet Ch3__](./media/Marquet_Ch3.pdf)
+
+2. Resource 2: An excellent but a bit old fashioned (uses Excel) computational lab exercise for metapopulation analysis of butterflies. Use if useful, but its not enough on its own, [__Stratton Ch6__](./media/Stratton_Ch6.pdf)
+
+3. Resource 3: An excellent but Excel-based computational exercise for metapopulation analysis. Much better written than the one above, better level of detail, but not useful for R, [__Donov Ch16__](./media/Donov_Ch16.pdf)
+
+4. Resource 4: An excellent resource for conceptual and mathematical basis of Levins metapopulation model, from an online textbook for a university course [__Georgia Ch6__](./media/Georgia_Ch6.pdf)
+
+5. Awesome R resource!! Chapter 6.2 from the textbook *Primer of Ecology With R* - if you're ever wondering why I am trying SO HARD to make the course website 100% open-source and in R (all the code for the course website is online on my GitHub repository [here](https://github.com/jhpantel/ude-ecomod)), its because I want my material to be as available as awesome textbooks like this one. So this is the goal, but in the meantime I link to their great book chapter with worked through example of how to implement model in R [here](https://hankstevens.github.io/Primer-of-Ecology/meta.html#metapopulations)
