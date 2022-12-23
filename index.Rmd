@@ -17,7 +17,7 @@ https://docs.google.com/spreadsheets/d/11Rkqy6OsO-YtqsNrJx1EXwnqjfp0UOviydy2IS4D
 
 The Zoom information is given on that website, but you can also follow this link (I will post the meeting ID and pass code on Moodle).
 
-https://uni-due.zoom.us/j/5959553974?pwd=UzM1UHBNYUlFSFJkWFh2b0Y2V3Rodz09
+https://us05web.zoom.us/j/4098623635?pwd=YjhkWDhYeW0rMStnKzk0TWx6NWpCdz09
 
 # Announcement 2
 + You need to have completed 3 exercises, as R scripts called "ude-ecomod-hw1.R", "ude-ecomod-hw2.R", and "ude-ecomod-hw2.R". The instructions to complete this are in Steps 1-9 here in [__Reading Guide 5__](./w7_readguide.html). I will check your Github and see that I can access all of the files. I will also check my email to look at the files some of you have sent me.
