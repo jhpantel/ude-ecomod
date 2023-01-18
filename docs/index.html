@@ -13,7 +13,7 @@
 
 <title>Ecological Modelling</title>
 
-<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
@@ -168,8 +168,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -177,16 +177,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -328,42 +321,24 @@ website</p>
 Modelling</em> course taught by Prof. Dr. <a
 href="http://jhpantel.com">Jelena H. Pantel</a> in the MS Aquatic
 Biology program at the University of Duisburg-Essen.</p>
-<div id="announcement-1" class="section level1">
-<h1>Announcement 1</h1>
-<p>We will not have class in-person on Thursday 22-12-2022. Instead, I
-will schedule a 1-on-1 Zoom meeting with each of you, next week and the
-week of January 9 2023 (you can choose). You can sign up for a meeting
-time using this Google calendar:</p>
-<p><a
-href="https://docs.google.com/spreadsheets/d/11Rkqy6OsO-YtqsNrJx1EXwnqjfp0UOviydy2IS4D-VA/edit?usp=sharing"
-class="uri">https://docs.google.com/spreadsheets/d/11Rkqy6OsO-YtqsNrJx1EXwnqjfp0UOviydy2IS4D-VA/edit?usp=sharing</a></p>
-<p>The Zoom information is given on that website, but you can also
-follow this link (I will post the meeting ID and pass code on
-Moodle).</p>
-<p><a
-href="https://us05web.zoom.us/j/4098623635?pwd=YjhkWDhYeW0rMStnKzk0TWx6NWpCdz09"
-class="uri">https://us05web.zoom.us/j/4098623635?pwd=YjhkWDhYeW0rMStnKzk0TWx6NWpCdz09</a></p>
-</div>
-<div id="announcement-2" class="section level1">
-<h1>Announcement 2</h1>
+<div id="announcement-january-18-2023" class="section level1">
+<h1>Announcement January 18 2023</h1>
+<p>To be ready for class Thursday 19-01-2023:</p>
 <ul>
-<li><p>You need to have completed 3 exercises, as R scripts called
-“ude-ecomod-hw1.R”, “ude-ecomod-hw2.R”, and “ude-ecomod-hw2.R”. The
-instructions to complete this are in Steps 1-9 here in <a
-href="./w7_readguide.html"><strong>Reading Guide 5</strong></a>. I will
-check your Github and see that I can access all of the files. I will
-also check my email to look at the files some of you have sent
-me.</p></li>
-<li><p>You should get started on your Course Project 1. You can find
-information about that on the course homepage, in the menu under
-Projects –&gt; Project 1. Let me know if you need more resources, I will
-be happy to share textbook chapters (with R code!) for the various
-models that have been discussed.</p></li>
-<li><p>For class 15-12-2022, as indicated in the course schedule, please
-read <a href="./r6_Grainger_2022.pdf"><strong>Grainger et
-al. 2022</strong></a> and complete <a
-href="./w9_readguide.html"><strong>Reading Guide
-7</strong></a>.</p></li>
+<li><p>Please bring your laptop to class and be ready to code in
+R!</p></li>
+<li><p>Please read the following manuscript:</p></li>
+</ul>
+<p>Mühlbauer, L. K., Schulze, M., Harpole, W. S., &amp; Clark, A. T.
+2020. gauseR: <a href="./r7_Muhlbauer_2020.pdf"><strong>Simple methods
+for fitting Lotka‐Volterra models describing Gause’s “Struggle for
+Existence”.</strong></a> Ecology and evolution, 10(23), 13275-13283.</p>
+<ul>
+<li><p>Please run this command in R <em>before</em> coming to class:
+install.packages(“gauseR”)</p></li>
+<li><p>Please check here by 6pm today (Wednesday 18-01-2023) for
+additional updates. I might have some files I ask you to download in
+advance of class (so we can do an internet-free class).</p></li>
 </ul>
 </div>
 <div id="course-information" class="section level1">

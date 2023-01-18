@@ -10,21 +10,20 @@ Welcome to the **Ecological Modelling** course website
 
 This website contains the content of the *Ecological Modelling* course taught by Prof. Dr. [Jelena H. Pantel](http://jhpantel.com) in the MS Aquatic Biology program at the University of Duisburg-Essen.
 
-# Announcement 1
-We will not have class in-person on Thursday 22-12-2022. Instead, I will schedule a 1-on-1 Zoom meeting with each of you, next week and the week of January 9 2023 (you can choose). You can sign up for a meeting time using this Google calendar:
+# Announcement January 18 2023
+To be ready for class Thursday 19-01-2023:
 
-https://docs.google.com/spreadsheets/d/11Rkqy6OsO-YtqsNrJx1EXwnqjfp0UOviydy2IS4D-VA/edit?usp=sharing
++ Please bring your laptop to class and be ready to code in R!
 
-The Zoom information is given on that website, but you can also follow this link (I will post the meeting ID and pass code on Moodle).
++ Please read the following manuscript:
 
-https://us05web.zoom.us/j/4098623635?pwd=YjhkWDhYeW0rMStnKzk0TWx6NWpCdz09
+Mühlbauer, L. K., Schulze, M., Harpole, W. S., & Clark, A. T. 2020. gauseR: [__Simple methods for fitting Lotka‐Volterra models describing Gause’s “Struggle for Existence”.__](./r7_Muhlbauer_2020.pdf) Ecology and evolution, 10(23), 13275-13283.
 
-# Announcement 2
-+ You need to have completed 3 exercises, as R scripts called "ude-ecomod-hw1.R", "ude-ecomod-hw2.R", and "ude-ecomod-hw2.R". The instructions to complete this are in Steps 1-9 here in [__Reading Guide 5__](./w7_readguide.html). I will check your Github and see that I can access all of the files. I will also check my email to look at the files some of you have sent me.
++ Please run this command in R *before* coming to class:
+install.packages("gauseR")
 
-+ You should get started on your Course Project 1. You can find information about that on the course homepage, in the menu under Projects --> Project 1. Let me know if you need more resources, I will be happy to share textbook chapters (with R code!) for the various models that have been discussed.
++ Please check here by 6pm today (Wednesday 18-01-2023) for additional updates. I might have some files I ask you to download in advance of class (so we can do an internet-free class).
 
-+ For class 15-12-2022, as indicated in the course schedule, please read [__Grainger et al. 2022__](./r6_Grainger_2022.pdf) and complete [__Reading Guide 7__](./w9_readguide.html).
 
 # Course Information
 
