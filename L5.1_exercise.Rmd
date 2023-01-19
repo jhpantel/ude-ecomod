@@ -141,25 +141,21 @@ lines(newX$X, pred, lwd = 3, col = "blue")
 
 ##### Step 3: Use nls to analyze data for 2 competing *Daphnia* over 9 weeks in a mesocosm
 
-I set up an experiment in 2020, where I placed *Daphnia pulex* and *Daphnia magna* in a 300-liter container, added water, nutrients, and phytoplankton. I let the *Daphnia* grow for 9 weeks, then fit the data to a Lotka-Volterra competition model, to estimate growth rates and interaction coefficients. I used nls for this, so let's take a look at the data and the fit of that curve.
+I set up an experiment in 2020, where I placed *Daphnia pulex* and *Daphnia magna* in a 300-liter container, added water, nutrients, and phytoplankton. I let the *Daphnia* grow for 8 weeks, then fit the data to a Lotka-Volterra competition model, to estimate growth rates and interaction coefficients. I used nls for this, so let's take a look at the data and the fit of that curve.
 
 ```{r echo=FALSE,eval=FALSE}
-dp <- 
-
-baby2 <- matrix(data=cbind(c(30,32,34,36,38,40),c(1.4,2.4,2.4,4.7,3.8,3.2)),nrow=6,ncol=2,dimnames=list(NULL,c("gestation","weight")))
-baby2 <- as.data.frame(baby2)
-model2 = lm(weight ~ gestation,data=baby2)
+dp <- matrix(data=cbind(1:8,c(44,1082,5681,6036,3310,2900,1504,340),c(44,401,6684,10652,6308,5198,3872,2417)),nrow=8,ncol=3,dimnames=list(NULL,c("week","dp","dm")))
+dp <- as.data.frame(dp)
+knitr::kable(dp,format="markdown",padding=-1L,align="c")
+plot(dp$week,dp$dm,pch=19,col="orange", main = "Daphnia population size", xlab = "cell length (micrometers)", ylab = "P (micrograms / liter)")
+points(dp$week,dp$dp,pch=19,col="black")
+legend("topright",legend=c("D. magna","D. pulex"),pch=19,col=c("orange","black"))
 ```
-```{r echo=FALSE}
-knitr::kable(baby2,format="markdown",padding=-1L,align="c")
-plot(baby2, main = "Estimated baby weights during pregnancy", xlab = "Gestation period (weeks)", ylab = "Weight (kg)")
-abline(model2)
+```{r echo=FALSE,eval=FALSE}
+sub <- read.csv('https://github.com/jhpantel/ude-ecomod/data/sub.csv')
+
+dp_mod <- nls(dp_Nt1 ~ dp_Nt + dp_Nt*((L*exp(-A*dp_Nt - B*dm_Nt))^days),data=sub,start=c(L=1.5,A=.0001,B=.0001),na.action = na.omit)
 ```
-
-
-
-
-
 
 
 
