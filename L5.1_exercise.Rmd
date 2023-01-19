@@ -1,0 +1,174 @@
+---
+title: "Week 11, Lecture 5.1 Exercise"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+## Exercise 1. Fitting data to a model: linear regression
+
+##### A. Overview
+I indicated that even a linear regression is actually proposing a model - that a response variable *y* is driven by a driving variable *x*, and that this relationship is linear. For example, I might hypothesize that newborn baby weight (kg) is driven by the length of gestation (weeks). As a researcher, I collect data to test this hypothesize and see how well a linear model does describe the relationship, and I estimate the *parameters* in the linear model.
+
+The data looks like this:
+
+```{r echo=FALSE}
+baby <- matrix(data=cbind(c(30,32,34,36,38,40),c(1.6,1.7,2.5,2.8,3.2,3.5)),nrow=6,ncol=2,dimnames=list(NULL,c("gestation","weight")))
+baby <- as.data.frame(baby)
+knitr::kable(baby,format="markdown",padding=-1L,align="l")
+```
+
+The linear model looks like this:
+
+$$y = m(x) + b$$
+$$ weight = m(gestation period) + b $$
+This model has variables *y* and *x*, and parameters *m* (the slope) and *b* (the *y*-intercept). Our goal is to **fit the data to the model**, and estimate the model parameters *m* and *b* that are most consistent with the data. You will learn how to do this in an Introduction to Statistics with R class - here I am using it to show you how to fit data to a model in the most basic case. This knowledge will come in handy later when we have more complex data and models. Please open a new R script and complete the following exercises (in some instances I provide the full code and you just need to type it into your R script. In other instances you will generate the code during class). Save your code periodically!
+
+##### Step 1: Enter the data into R 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), out.width="50%"}
+baby <- matrix(data=cbind(c(30,32,34,36,38,40),c(1.6,1.7,2.5,2.8,3.2,3.5)),nrow=6,ncol=2,dimnames=list(NULL,c("gestation","weight")))
+baby <- as.data.frame(baby)
+```
+
+##### Step 2: Create a plot with gestation period on the x-axis and weight on the y-axis
+
+```{r echo=FALSE}
+plot(baby, main = "Estimated baby weights during pregnancy", xlab = "Gestation period (weeks)", ylab = "Weight (kg)")
+```
+
+##### Step 3: Use least-squares regression to fit data to linear model, estimate the most likely parameter values given the data
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+# Fit linear model
+model = lm(weight ~ gestation,data=baby)
+# Examine model
+summary(model)
+```
+
+Based on this, what are the most likely estimates for the slope and y-intercept?
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+model
+```
+
+And what is the value of the residual sum of squares (RSS, sum of squared deviations from observed to model-predicted data)?
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+deviance(model)
+```
+
+We can place the model-estimated line onto the scatterplot of the observed data to see the model-predicted values of weight for each gestation age *according to our model*. We use the command `abline(model)`:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+plot(baby, main = "Estimated baby weights during pregnancy", xlab = "Gestation period (weeks)", ylab = "Weight (kg)")
+abline(model)
+```
+
+##### Step 4: Repeat: use least-squares regression to fit data to linear model, estimate the most likely parameter values given the data
+
+To make sure this is clear, let's look at the sum of squared residuals for some data that is poor fit to a linear model. Enter the following data into R, and run a linear regression using the `lm` command, then calculate the *residual sum of squares (RSS)*:
+
+```{r echo=FALSE}
+baby2 <- matrix(data=cbind(c(30,32,34,36,38,40),c(1.4,2.4,2.4,4.7,3.8,3.2)),nrow=6,ncol=2,dimnames=list(NULL,c("gestation","weight")))
+baby2 <- as.data.frame(baby2)
+model2 = lm(weight ~ gestation,data=baby2)
+```
+```{r echo=FALSE}
+knitr::kable(baby2,format="markdown",padding=-1L,align="c")
+plot(baby2, main = "Estimated baby weights during pregnancy", xlab = "Gestation period (weeks)", ylab = "Weight (kg)")
+abline(model2)
+```
+
+I got a value of sum of squared residuals equal to `r deviance(model2)`, indicating that the best-fit line (obtained by minimizing the RSS) is not as good a fit to this data as the dataset above.
+
+I hope it makes sense now how we fit data to our hypothesized model and estimate the parameters of the model most likely to have produced our observed data.
+
+## Exercise 2. Fitting data to a model: nonlinear least squares (nls)
+
+##### A. Overview
+We can use the same perspective - fitting data to a model by minimizing the RSS - to study non-linear models. This presentation is very straight-forward, but I will be transparent that non-linear least squares isn't always easy (I chose data that was relatively easy to fit). You would take more coursework to really be ready to apply this to more nonlinear models (thought it certainly is done, usually for single-species growth or feeding curves).
+
+Here, we will look at how organisms absorb and utilize nutrients - a nutrient-response curve (perhaps useful for studying phtyoplankton nutrient uptake). In this instance, we still have a response variable *y* and a causal variable *x*, but the relationship between *x* and *y* is nonlinear. It has been observed that many nutrient-response curves reach an asymptote, where organisms become saturated, and no longer increase their absorption no matter how many more nutrients are available. The shape of one kind of useful saturation curve is described by a *Michaelis-Menten* model.
+
+The general form of this is:
+
+$$ Y = \frac{aX}{b + X} $$
+
+In our phytoplankon example, let's say that *Y* is the cell length (in $\mu m$) and *X* is the phosphorus concentration (in $\mu g / l$). The model parameters are *a*, the upper asymptote (for $ X \to \infty $), and *b*, the the *X* value giving a response equal to *a*/2.
+
+The data looks like this:
+
+```{r echo=FALSE}
+set.seed(1234)
+X <- c(3, 5, 7, 22, 28, 39, 46, 200)
+a <- 15; b <- 0.5
+Ye <- as.numeric( SSmicmen(X, a, b) )
+res <- rnorm(8, 0, 0.1)
+Y <- Ye + res
+knitr::kable(as.data.frame(cbind(Y,X)),format="markdown",padding=-2L)
+plot(X,Y, main = "Michaelis-Menten nutrient uptake", xlab = "cell length (micrometers)", ylab = "P (micrograms / liter)")
+```
+
+##### Step 2: Use nonlinear least-squares to fit data to model, estimate the most likely parameter values given the data
+
+Non-linear least squares is included in base R and can be fit to data using the `nls` command. Use `?nls` to check the syntax needed to get this command to work: You'll need to specify the model formula, the data, and often starting values - these are beginning options for estimates for the nls estimator. nls has a difficult job, which is guessing the combination of parameters that are the best fit for the data - give it a hand by making reasonable suggestions for beginning values of model parameters that need to ne estimated.
+
+Note that r is also pre-supplied with *some* model formulas, including a Michaelis-Menten curve, that pre-chooses starting values for you. If you're lucky eough to be fitting a model already included in R's formulas, the job will be easier. You can find the self-starting models included with R by checking `?selfStart`, these include: `SSasymp, SSasympOff, SSasympOrig, SSbiexp, SSfol, SSfpl, SSgompertz, SSlogis, SSmicmen, SSweibull`.
+
+To fit the data to the Michaelis-Menten model using the self-start formula `SSmicmen`:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+model.nls <- nls(Y ~ SSmicmen(X, a, b))
+summary(model.nls)
+```
+
+Let's plot the data and fitted curve: full disclosure, this is the function `plot_nls` from the R package `nlshelper` - copy and 
+
+```{r}
+newX <- as.data.frame(seq(0,200,by=.1))
+colnames(newX) <- "X"
+pred <- predict(model.nls, newX)
+plot(X,Y, main = "Michaelis-Menten nutrient uptake", xlab = "cell length (micrometers)", ylab = "P (micrograms / liter)")
+lines(newX$X, pred, lwd = 3, col = "blue")
+```
+
+##### Step 3: Use nls to analyze data for 2 competing *Daphnia* over 9 weeks in a mesocosm
+
+I set up an experiment in 2020, where I placed *Daphnia pulex* and *Daphnia magna* in a 300-liter container, added water, nutrients, and phytoplankton. I let the *Daphnia* grow for 9 weeks, then fit the data to a Lotka-Volterra competition model, to estimate growth rates and interaction coefficients. I used nls for this, so let's take a look at the data and the fit of that curve.
+
+```{r echo=FALSE,eval=FALSE}
+dp <- 
+
+baby2 <- matrix(data=cbind(c(30,32,34,36,38,40),c(1.4,2.4,2.4,4.7,3.8,3.2)),nrow=6,ncol=2,dimnames=list(NULL,c("gestation","weight")))
+baby2 <- as.data.frame(baby2)
+model2 = lm(weight ~ gestation,data=baby2)
+```
+```{r echo=FALSE}
+knitr::kable(baby2,format="markdown",padding=-1L,align="c")
+plot(baby2, main = "Estimated baby weights during pregnancy", xlab = "Gestation period (weeks)", ylab = "Weight (kg)")
+abline(model2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
