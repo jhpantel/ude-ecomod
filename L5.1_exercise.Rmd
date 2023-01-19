@@ -1,14 +1,17 @@
 ---
 title: "Week 11, Lecture 5.1 Exercise"
 author: "Jelena H. Pantel"
-institute: "University of Duisburg-Essen"
 date: "`r file.mtime(knitr::current_input())`"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+institute: "University of Duisburg-Essen"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
+library(gauseR)
 ```
 
 ## Exercise 1. Fitting data to a model: linear regression
@@ -101,7 +104,7 @@ The general form of this is:
 
 $$ Y = \frac{aX}{b + X} $$
 
-In our phytoplankon example, let's say that *Y* is the cell length (in $\mu m$) and *X* is the phosphorus concentration (in $\mu g / l$). The model parameters are *a*, the upper asymptote (for $ X \to \infty $), and *b*, the the *X* value giving a response equal to *a*/2.
+In our phytoplankon example, let's say that *Y* is the cell length (in $\mu m$) and *X* is the phosphorus concentration (in $\mu g / l$). The model parameters are *a*, the upper asymptote (for $$ X \to \infty $$), and *b*, the the *X* value giving a response equal to *a*/2.
 
 The data looks like this:
 
@@ -131,7 +134,7 @@ summary(model.nls)
 
 Let's plot the data and fitted curve: full disclosure, this is the function `plot_nls` from the R package `nlshelper` - copy and 
 
-```{r}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
 newX <- as.data.frame(seq(0,200,by=.1))
 colnames(newX) <- "X"
 pred <- predict(model.nls, newX)
@@ -143,19 +146,57 @@ lines(newX$X, pred, lwd = 3, col = "blue")
 
 I set up an experiment in 2020, where I placed *Daphnia pulex* and *Daphnia magna* in a 300-liter container, added water, nutrients, and phytoplankton. I let the *Daphnia* grow for 8 weeks, then fit the data to a Lotka-Volterra competition model, to estimate growth rates and interaction coefficients. I used nls for this, so let's take a look at the data and the fit of that curve.
 
-```{r echo=FALSE,eval=FALSE}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
 dp <- matrix(data=cbind(1:8,c(44,1082,5681,6036,3310,2900,1504,340),c(44,401,6684,10652,6308,5198,3872,2417)),nrow=8,ncol=3,dimnames=list(NULL,c("week","dp","dm")))
 dp <- as.data.frame(dp)
 knitr::kable(dp,format="markdown",padding=-1L,align="c")
-plot(dp$week,dp$dm,pch=19,col="orange", main = "Daphnia population size", xlab = "cell length (micrometers)", ylab = "P (micrograms / liter)")
+plot(dp$week,dp$dm,pch=19,col="orange", main = "Daphnia population size", xlab = "week", ylab = "N")
 points(dp$week,dp$dp,pch=19,col="black")
 legend("topright",legend=c("D. magna","D. pulex"),pch=19,col=c("orange","black"))
 ```
-```{r echo=FALSE,eval=FALSE}
-sub <- read.csv('https://github.com/jhpantel/ude-ecomod/data/sub.csv')
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+sub <- read.csv("https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/sub.csv",header=T)
 
 dp_mod <- nls(dp_Nt1 ~ dp_Nt + dp_Nt*((L*exp(-A*dp_Nt - B*dm_Nt))^days),data=sub,start=c(L=1.5,A=.0001,B=.0001),na.action = na.omit)
 ```
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+sub$yhat <- predict(dp_mod)
+plot(sub$week[sub$meso==30],sub$dp_Nt1[sub$meso==30],main="mesocosm 30 D. pulex",xlab = "week", ylab = "N",pch=19,col="orange")
+lines(sub$week[sub$meso==30],sub$yhat[sub$meso==30],col="blue")
+```
+
+## Exercise 3. Fitting data to Lotka-Volterra competition model using gauseR
+
+##### A. Overview
+We will use data from Gause’s experiments with Paramecium, tracking competitive interactions between *P. aurelia* and *P. caudatum*.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+#load competition data
+data("gause_1934_science_f02_03")
+
+#subset out data from species grown in mixture
+mixturedat <- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment=="Mixture",]
+
+#extract time and species data
+time <- mixturedat$Day
+species <- data.frame(mixturedat$Volume_Species1, mixturedat$Volume_Species2)
+colnames(species) <- c("P_caudatum", "P_aurelia")
+
+#run wrapper
+gause_out <- gauseR::gause_wrapper(time=time, species=species)
+```
+
+What were the parameter estimates?
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+gause_out$parameter_intervals
+```
+
+
+
+
+
+
 
 
 

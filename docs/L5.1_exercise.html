@@ -17,7 +17,7 @@
 <script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -30,10 +30,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -46,109 +45,18 @@
   ul.task-list{list-style: none;}
     </style>
 
-
-
-<style type="text/css">
-  code {
-    white-space: pre;
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
-  .sourceCode {
-    overflow: visible;
-  }
-</style>
-<style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  { color: #cccccc; background-color: #303030; }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ffcfaf; } /* Alert */
-code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
-code span.at { } /* Attribute */
-code span.bn { color: #dca3a3; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #f0dfaf; } /* ControlFlow */
-code span.ch { color: #dca3a3; } /* Char */
-code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
-code span.co { color: #7f9f7f; } /* Comment */
-code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
-code span.do { color: #7f9f7f; } /* Documentation */
-code span.dt { color: #dfdfbf; } /* DataType */
-code span.dv { color: #dcdccc; } /* DecVal */
-code span.er { color: #c3bf9f; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #c0bed1; } /* Float */
-code span.fu { color: #efef8f; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
-code span.kw { color: #f0dfaf; } /* Keyword */
-code span.op { color: #f0efd0; } /* Operator */
-code span.ot { color: #efef8f; } /* Other */
-code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
-code span.sc { color: #dca3a3; } /* SpecialChar */
-code span.ss { color: #cc9393; } /* SpecialString */
-code span.st { color: #cc9393; } /* String */
-code span.va { } /* Variable */
-code span.vs { color: #cc9393; } /* VerbatimString */
-code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    var j = 0;
-    while (j < rules.length) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
-        j++;
-        continue;
-      }
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') {
-        j++;
-        continue;
-      }
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
 </script>
+
+
 
 
 
@@ -314,75 +222,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -390,16 +229,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -496,7 +325,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Week 11, Lecture 5.1 Exercise</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-01-19 08:38:46</h4>
+<h4 class="date">2023-01-19 15:37:09</h4>
 
 </div>
 
@@ -567,10 +396,10 @@ periodically!</p>
 </div>
 <div id="step-1-enter-the-data-into-r" class="section level5">
 <h5>Step 1: Enter the data into R</h5>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>baby <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">cbind</span>(<span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">34</span>, <span class="dv">36</span>, <span class="dv">38</span>, <span class="dv">40</span>), <span class="fu">c</span>(<span class="fl">1.6</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.7</span>, <span class="fl">2.5</span>, <span class="fl">2.8</span>, <span class="fl">3.2</span>, <span class="fl">3.5</span>)), <span class="at">nrow =</span> <span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">&quot;gestation&quot;</span>, <span class="st">&quot;weight&quot;</span>)))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>baby <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(baby)</span></code></pre></div>
+<pre class="r"><code>baby &lt;- matrix(data = cbind(c(30, 32, 34, 36, 38, 40), c(1.6,
+    1.7, 2.5, 2.8, 3.2, 3.5)), nrow = 6, ncol = 2, dimnames = list(NULL,
+    c(&quot;gestation&quot;, &quot;weight&quot;)))
+baby &lt;- as.data.frame(baby)</code></pre>
 </div>
 <div
 id="step-2-create-a-plot-with-gestation-period-on-the-x-axis-and-weight-on-the-y-axis"
@@ -584,10 +413,10 @@ id="step-3-use-least-squares-regression-to-fit-data-to-linear-model-estimate-the
 class="section level5">
 <h5>Step 3: Use least-squares regression to fit data to linear model,
 estimate the most likely parameter values given the data</h5>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear model</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">lm</span>(weight <span class="sc">~</span> gestation, <span class="at">data =</span> baby)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine model</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre class="r"><code># Fit linear model
+model = lm(weight ~ gestation, data = baby)
+# Examine model
+summary(model)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ gestation, data = baby)
@@ -608,7 +437,7 @@ estimate the most likely parameter values given the data</h5>
 ## F-statistic: 124.7 on 1 and 4 DF,  p-value: 0.0003661</code></pre>
 <p>Based on this, what are the most likely estimates for the slope and
 y-intercept?</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre class="r"><code>model</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ gestation, data = baby)
@@ -618,15 +447,15 @@ y-intercept?</p>
 ##     -4.6000       0.2043</code></pre>
 <p>And what is the value of the residual sum of squares (RSS, sum of
 squared deviations from observed to model-predicted data)?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">deviance</span>(model)</span></code></pre></div>
+<pre class="r"><code>deviance(model)</code></pre>
 <pre><code>## [1] 0.09371429</code></pre>
 <p>We can place the model-estimated line onto the scatterplot of the
 observed data to see the model-predicted values of weight for each
 gestation age <em>according to our model</em>. We use the command
 <code>abline(model)</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(baby, <span class="at">main =</span> <span class="st">&quot;Estimated baby weights during pregnancy&quot;</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Gestation period (weeks)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Weight (kg)&quot;</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model)</span></code></pre></div>
+<pre class="r"><code>plot(baby, main = &quot;Estimated baby weights during pregnancy&quot;,
+    xlab = &quot;Gestation period (weeks)&quot;, ylab = &quot;Weight (kg)&quot;)
+abline(model)</code></pre>
 <p><img src="L5.1_exercise_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div
@@ -711,8 +540,9 @@ saturation curve is described by a <em>Michaelis-Menten</em> model.</p>
 length (in <span class="math inline">\(\mu m\)</span>) and <em>X</em> is
 the phosphorus concentration (in <span class="math inline">\(\mu g /
 l\)</span>). The model parameters are <em>a</em>, the upper asymptote
-(for $ X $), and <em>b</em>, the the <em>X</em> value giving a response
-equal to <em>a</em>/2.</p>
+(for <span class="math display">\[ X \to \infty \]</span>), and
+<em>b</em>, the the <em>X</em> value giving a response equal to
+<em>a</em>/2.</p>
 <p>The data looks like this:</p>
 <table>
 <thead>
@@ -779,8 +609,8 @@ included with R by checking <code>?selfStart</code>, these include:
 <code>SSasymp, SSasympOff, SSasympOrig, SSbiexp, SSfol, SSfpl, SSgompertz, SSlogis, SSmicmen, SSweibull</code>.</p>
 <p>To fit the data to the Michaelis-Menten model using the self-start
 formula <code>SSmicmen</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model.nls <span class="ot">&lt;-</span> <span class="fu">nls</span>(Y <span class="sc">~</span> <span class="fu">SSmicmen</span>(X, a, b))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.nls)</span></code></pre></div>
+<pre class="r"><code>model.nls &lt;- nls(Y ~ SSmicmen(X, a, b))
+summary(model.nls)</code></pre>
 <pre><code>## 
 ## Formula: Y ~ SSmicmen(X, a, b)
 ## 
@@ -798,11 +628,12 @@ formula <code>SSmicmen</code>:</p>
 <p>Let’s plot the data and fitted curve: full disclosure, this is the
 function <code>plot_nls</code> from the R package <code>nlshelper</code>
 - copy and</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>newX <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">200</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(newX) <span class="ot">&lt;-</span> <span class="st">&quot;X&quot;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model.nls, newX)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y, <span class="at">main =</span> <span class="st">&quot;Michaelis-Menten nutrient uptake&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;cell length (micrometers)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;P (micrograms / liter)&quot;</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(newX<span class="sc">$</span>X, pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<pre class="r"><code>newX &lt;- as.data.frame(seq(0, 200, by = 0.1))
+colnames(newX) &lt;- &quot;X&quot;
+pred &lt;- predict(model.nls, newX)
+plot(X, Y, main = &quot;Michaelis-Menten nutrient uptake&quot;, xlab = &quot;cell length (micrometers)&quot;,
+    ylab = &quot;P (micrograms / liter)&quot;)
+lines(newX$X, pred, lwd = 3, col = &quot;blue&quot;)</code></pre>
 <p><img src="L5.1_exercise_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 <div
@@ -812,52 +643,127 @@ class="section level5">
 over 9 weeks in a mesocosm</h5>
 <p>I set up an experiment in 2020, where I placed <em>Daphnia pulex</em>
 and <em>Daphnia magna</em> in a 300-liter container, added water,
-nutrients, and phytoplankton. I let the <em>Daphnia</em> grow for 9
+nutrients, and phytoplankton. I let the <em>Daphnia</em> grow for 8
 weeks, then fit the data to a Lotka-Volterra competition model, to
 estimate growth rates and interaction coefficients. I used nls for this,
 so let’s take a look at the data and the fit of that curve.</p>
+<pre class="r"><code>dp &lt;- matrix(data = cbind(1:8, c(44, 1082, 5681, 6036, 3310,
+    2900, 1504, 340), c(44, 401, 6684, 10652, 6308, 5198, 3872,
+    2417)), nrow = 8, ncol = 3, dimnames = list(NULL, c(&quot;week&quot;,
+    &quot;dp&quot;, &quot;dm&quot;)))
+dp &lt;- as.data.frame(dp)
+knitr::kable(dp, format = &quot;markdown&quot;, padding = -1L, align = &quot;c&quot;)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="center">gestation</th>
-<th align="center">weight</th>
+<th align="center">week</th>
+<th align="center">dp</th>
+<th align="center">dm</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">30</td>
-<td align="center">1.4</td>
+<td align="center">1</td>
+<td align="center">44</td>
+<td align="center">44</td>
 </tr>
 <tr class="even">
-<td align="center">32</td>
-<td align="center">2.4</td>
+<td align="center">2</td>
+<td align="center">1082</td>
+<td align="center">401</td>
 </tr>
 <tr class="odd">
-<td align="center">34</td>
-<td align="center">2.4</td>
+<td align="center">3</td>
+<td align="center">5681</td>
+<td align="center">6684</td>
 </tr>
 <tr class="even">
-<td align="center">36</td>
-<td align="center">4.7</td>
+<td align="center">4</td>
+<td align="center">6036</td>
+<td align="center">10652</td>
 </tr>
 <tr class="odd">
-<td align="center">38</td>
-<td align="center">3.8</td>
+<td align="center">5</td>
+<td align="center">3310</td>
+<td align="center">6308</td>
 </tr>
 <tr class="even">
-<td align="center">40</td>
-<td align="center">3.2</td>
+<td align="center">6</td>
+<td align="center">2900</td>
+<td align="center">5198</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">1504</td>
+<td align="center">3872</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">340</td>
+<td align="center">2417</td>
 </tr>
 </tbody>
 </table>
-<p><img src="L5.1_exercise_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>plot(dp$week, dp$dm, pch = 19, col = &quot;orange&quot;, main = &quot;Daphnia population size&quot;,
+    xlab = &quot;week&quot;, ylab = &quot;N&quot;)
+points(dp$week, dp$dp, pch = 19, col = &quot;black&quot;)
+legend(&quot;topright&quot;, legend = c(&quot;D. magna&quot;, &quot;D. pulex&quot;), pch = 19,
+    col = c(&quot;orange&quot;, &quot;black&quot;))</code></pre>
+<p><img src="L5.1_exercise_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>sub &lt;- read.csv(&quot;https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/sub.csv&quot;,
+    header = T)
+
+dp_mod &lt;- nls(dp_Nt1 ~ dp_Nt + dp_Nt * ((L * exp(-A * dp_Nt -
+    B * dm_Nt))^days), data = sub, start = c(L = 1.5, A = 1e-04,
+    B = 1e-04), na.action = na.omit)</code></pre>
+<pre class="r"><code>sub$yhat &lt;- predict(dp_mod)
+plot(sub$week[sub$meso == 30], sub$dp_Nt1[sub$meso == 30], main = &quot;mesocosm 30 D. pulex&quot;,
+    xlab = &quot;week&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;orange&quot;)
+lines(sub$week[sub$meso == 30], sub$yhat[sub$meso == 30], col = &quot;blue&quot;)</code></pre>
+<p><img src="L5.1_exercise_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+</div>
+<div
+id="exercise-3.-fitting-data-to-lotka-volterra-competition-model-using-gauser"
+class="section level2">
+<h2>Exercise 3. Fitting data to Lotka-Volterra competition model using
+gauseR</h2>
+<div id="a.-overview-2" class="section level5">
+<h5>A. Overview</h5>
+<p>We will use data from Gause’s experiments with Paramecium, tracking
+competitive interactions between <em>P. aurelia</em> and <em>P.
+caudatum</em>.</p>
+<pre class="r"><code># load competition data
+data(&quot;gause_1934_science_f02_03&quot;)
+
+# subset out data from species grown in mixture
+mixturedat &lt;- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment ==
+    &quot;Mixture&quot;, ]
+
+# extract time and species data
+time &lt;- mixturedat$Day
+species &lt;- data.frame(mixturedat$Volume_Species1, mixturedat$Volume_Species2)
+colnames(species) &lt;- c(&quot;P_caudatum&quot;, &quot;P_aurelia&quot;)
+
+# run wrapper
+gause_out &lt;- gauseR::gause_wrapper(time = time, species = species)</code></pre>
+<p><img src="L5.1_exercise_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>What were the parameter estimates?</p>
+<pre class="r"><code>gause_out$parameter_intervals</code></pre>
+<pre><code>##                lower_sd           mu      upper_sd
+## P_caudatum0  0.01033120  1.595268713  2.463299e+02
+## P_aurelia0   0.08812049  1.631618399  3.021067e+01
+## r1           0.34795149  1.259232133  4.557145e+00
+## r2           0.47571114  1.026156214  2.213521e+00
+## a11         -0.02061162 -0.005157869 -1.290709e-03
+## a12         -0.02361279 -0.008000167 -2.710508e-03
+## a21         -0.01100428 -0.001974871 -3.544183e-04
+## a22         -0.01459709 -0.006851130 -3.215572e-03</code></pre>
 </div>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -890,35 +796,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
