@@ -31,7 +31,7 @@ __Please do all readings in advance of the scheduled course period. Each reading
 | Project 1 – Work on during class time | 22-12-2022 |   |  |
 | Winter holiday break | December 24 - January 6 | Enjoy!  | XX |
 | No class | 12-01-2022 | We will **not** have class this day | XX |
-| Module 5.1 – Fitting empirical data to models | 19-01-2022 | [__Muhlbauer et al. 2020__](./r7_Muhlbauer_2020.pdf) | 1. Lecture 5.1 2. [__Exercise 5.1__](./L5.1_exercise.html) |
+| Module 5.1 – Fitting empirical data to models | 19-01-2022 | [__Muhlbauer et al. 2020__](./r7_Muhlbauer_2020.pdf) | 1. [__Lecture 5.1__](./L5.1.pdf) 2. [__Exercise 5.1__](./L5.1_exercise.html) |
 | Module 5.2 – Course project, Part 1 | 26-01-2022 |  | XX |
 | Module 5.3 – Course project (DUE), Part 2 | 02-02-2022 |  | XX |
 
