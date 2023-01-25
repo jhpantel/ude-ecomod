@@ -10,17 +10,12 @@ Welcome to the **Ecological Modelling** course website
 
 This website contains the content of the *Ecological Modelling* course taught by Prof. Dr. [Jelena H. Pantel](http://jhpantel.com) in the MS Aquatic Biology program at the University of Duisburg-Essen.
 
-# Announcement January 18 2023
-To be ready for class Thursday 19-01-2023:
+# Announcement January 25 2023
+To be ready for class Thursday 26-01-2023:
 
 + Please bring your laptop to class and be ready to code in R!
 
-+ Please read the following manuscript:
-
-Mühlbauer, L. K., Schulze, M., Harpole, W. S., & Clark, A. T. 2020. gauseR: [__Simple methods for fitting Lotka‐Volterra models describing Gause’s “Struggle for Existence”.__](./r7_Muhlbauer_2020.pdf) Ecology and evolution, 10(23), 13275-13283.
-
-+ Please run this command in R *before* coming to class:
-install.packages("gauseR")
++ There are no readings. See you tomorrow in class.
 
 # Course Information
 
