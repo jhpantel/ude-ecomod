@@ -25,7 +25,7 @@ left:
            - text: "Metapopulation model"
              href: ./metapop.html
        - text: "Project 2"
-         href: ./project2.html
+         href: ./project2.pdf
   - text: "Contact"
     href: ./contact.html
 right:

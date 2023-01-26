@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Jelena H. Pantel" />
+
+
+<title>Course Project 2 Guidelines</title>
+
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Ecological Modelling</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Syllabus
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./schedule.html">Course schedule</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    About me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./aboutme.html">Learn more about me</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Project 1</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="./project1.html">Guidelines</a>
+        </li>
+        <li>
+          <a href="./Pantel_cheat_LV.html">Example cheat sheet</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="./stage.html">Stage structured models</a>
+            </li>
+            <li>
+              <a href="./metapop.html">Metapopulation model</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="./project2.pdf">Project 2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="./contact.html">Contact</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/githubusername/mywebsite">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Course Project 2 Guidelines</h1>
+<h4 class="author">Jelena H. Pantel</h4>
+<h4 class="date">2023-01-26 20:43:16</h4>
+
+</div>
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>You will give solutions to two problems on the topic of fitting
+observed data to models. You can submit your solutions by (1) uploading
+them to your GitHub repository <em>ude-ecomod-hw</em> or (2) emailing me
+the solutions at <a href="mailto:jelena.pantel@uni-due.de"
+class="email">jelena.pantel@uni-due.de</a>. The solutions can either be
+(1) a fully executable RMarkdown file (.Rmd) or (2) an R script
+(.R).</p>
+<p>Please note that the following R packages should be installed to get
+everything I do here to work:</p>
+<pre class="r"><code>library(ggplot2)
+library(palmerpenguins)
+library(gauseR)
+library(vegan)
+library(mapsFinland)</code></pre>
+</div>
+<div
+id="problem-1.-fitting-interpreting-and-predicting-from-a-linear-model"
+class="section level2">
+<h2>Problem 1. Fitting, interpreting, and predicting from a linear
+model</h2>
+<p><strong>Description</strong>: We recall that in our ‘normal’
+statistical lives, we may use a <em>linear regression</em> to model the
+relationship between two continuous variables. I made the point that a
+regression is a mathematical model! Let’s work with a linear regression
+in R, and how to interpret the output (you will have more of this later
+in a proper statistics class, but let’s review for now).</p>
+<p><strong>Data / Problem</strong>: Imagine we are researchers studying
+penguins in Antarctica, more specifically penguins observed at the
+Palmer Station inhabiting Biscoe, Dream, and Torgersen islands.</p>
+<div class="figure">
+<img src="media/penguins.png" style="width:25.0%" alt="" />
+<p class="caption">Meet the Palmer penguins! (Artwork by <span
+class="citation">@allison_horst</span>)</p>
+</div>
+<p>We have access to camera data that allows us to measure penguin
+flipper length (mm), and we would like to use that to predict penguin
+body mass (g). This would save a lot of effort by not having to weigh
+new penguins! We use an existing dataset with observed values for
+penguin flipper length and body mass, fit a linear model to predict mass
+from flipper length, and then use the fitted model to make predictions
+for new cases.</p>
+<p><img src="project2_files/figure-html/figures-1-1.png" width="50%" /></p>
+<p>The data can be found here:</p>
+<pre class="r"><code>data(package = &quot;palmerpenguins&quot;)</code></pre>
+<ul>
+<li>Please use the <code>lm</code> command to fit a linear model to
+estimate <em>y</em> <code>body_mass_g</code> as a function of <em>x</em>
+<code>flipper_length_mm</code>: <span class="math inline">\(y = mx +
+b\)</span>. Tell me the model estimates for the parameters <span
+class="math inline">\(b\)</span> (<em>y-intercept</em>) and <span
+class="math inline">\(m\)</span> (<em>slope</em>). Then, use the
+<code>predict</code> command to tell me the model-predicted values for
+penguin body mass when the flipper lengths are 190, 215, and 230
+mm.</li>
+</ul>
+</div>
+<div
+id="problem-2.-fitting-interpreting-and-predicting-from-a-logistic-growth-model-using-nls"
+class="section level2">
+<h2>Problem 2. Fitting, interpreting, and predicting from a logistic
+growth model using nls</h2>
+<p><strong>Description</strong>: We considered a model for logistic
+growth:</p>
+<p><span class="math display">\[ \frac{dN}{dt} = rN(1- \frac{N}{K})
+\]</span> where <em>r</em> is the population growth rate, <em>K</em> is
+the population carrying capacity, and <em>N</em> is the population size.
+We would like to evaluate some population data, fit it to a logistic
+growth model, and estimate parameters in that logistic growth model.</p>
+<p><strong>Data / Problem</strong>: We will use data for a Paramecium
+from Gause’s experiments.</p>
+<div class="figure">
+<img src="media/Ciliophora.png" style="width:5.0%" alt="" />
+<p class="caption">Paramecium aurelium (Artwork from PhyloPic, by Emily
+Jane McTavish, from <a
+href="http://chestofbooks.com/animals/Manual-Of-Zoology/images/I-Order-Ciliata-41.jpg"
+class="uri">http://chestofbooks.com/animals/Manual-Of-Zoology/images/I-Order-Ciliata-41.jpg</a>)</p>
+</div>
+<pre class="r"><code># load data
+data(gause_1934_book_f22)
+dat &lt;- gause_1934_book_f22[gause_1934_book_f22$Treatment == &quot;Pa&quot;,
+    ]</code></pre>
+<ul>
+<li><p>Create a plot of the population size over time
+(<code>dat$Days</code>) for species 2 only
+(<code>dat$Volume_Species2</code>). Then I would like you to use the
+<code>nls</code> command to fit this observed data to a logitic growth
+model (<code>Volume_Species2 ~ Day</code>).</p></li>
+<li><p>Recall that <code>nls</code> has some built-in models, and one of
+the was for logistic growth. You can find that via the function
+<code>SSlogis</code>. This will work similarly to the Michaelis-Menten
+(<code>SSmicmen</code>) example we did in class January 19.</p></li>
+<li><p>There is one very important consideration!! R’s <code>nls</code>
+command does not use the exact same logistic model I show you above.
+Instead it fits the model as:</p></li>
+</ul>
+<p><span class="math display">\[ \frac{dN}{dt} = \frac{r}{1+
+e^{(-K(N-N_m))}} \]</span></p>
+<ul>
+<li><p>This form is a bit different than what you are used to, but it
+still considers exponential growth at a rate <em>r</em>, then population
+size limitation by the carrying capacity <em>K</em>. There is a new
+parameter, <span class="math inline">\(N_m\)</span> - this is the value
+of <em>N</em> at the inflection point of the logistic curve. So in this
+logistic model, there are <strong>three</strong> parameters you need to
+estimate. Please use the <code>nls</code> command to estimate the
+parameters <em>r</em>, <em>K</em>, and <span
+class="math inline">\(N_m\)</span>.</p></li>
+<li><p>Report the parameter values given by the model fit.</p></li>
+<li><p>Please make a plot of the original data, and the curve fit by the
+logistic model produced by the <code>nls</code> command. Mine looks like
+this:</p></li>
+</ul>
+<p><img src="project2_files/figure-html/figures-2-1.png" width="50%" /></p>
+</div>
+<div
+id="problem-3.-fitting-interpreting-and-predicting-from-a-logistic-growth-model-using-gauser"
+class="section level2">
+<h2>Problem 3. Fitting, interpreting, and predicting from a logistic
+growth model using gauseR</h2>
+<p><strong>Data / Problem</strong>: For the same Paramecium dataset, use
+the function <code>gause_wrapper</code> in the R package
+<code>gauseR</code> to fit the data for Species 2 (the same data as
+above). This is yet another version of the logistic growth model.
+Instead of using carrying capacity <em>K</em>, it uses an
+<em>intraspecific competition coefficient</em> <span
+class="math inline">\(\alpha_{ii}\)</span>:</p>
+<p><span class="math display">\[ \frac{dN_i}{dt} = \frac{r} {1 +
+\alpha_{ii}N_{i}} \]</span></p>
+<ul>
+<li><p>So please estimate the values of <em>r</em> and <span
+class="math inline">\(\alpha_{ii}\)</span>, and show the plot with the
+raw data and curve fit. You will use the command
+<code>gause_wrapper</code>- note from the example last week that you
+don’t need to do much to get this to work!</p></li>
+<li><p>Please give me the model estimates for <em>r</em> (given in the
+output variable as <code>r1</code>) and for <span
+class="math inline">\(\alpha_{ii}\)</span> (given in the output variable
+as <code>a11</code>). Note that you can access this using the name of
+the output variable, then addending <code>$parameter_intervals</code>.
+So for example, if I assign the results of the
+<code>gause_wrapper</code> command to a variable called
+<code>gause_out</code>, then I can get the parameter values by typing
+<code>gause_out$parameter_intervals</code>. The values are given in the
+<code>mu</code> column.</p></li>
+</ul>
+</div>
+<div
+id="problem-4.-fitting-interpreting-and-predicting-from-a-species-area-curve-using-vegan-and-nls"
+class="section level2">
+<h2>Problem 4. Fitting, interpreting, and predicting from a species-area
+curve using vegan and nls</h2>
+<p><strong>Description</strong>: A reliable pattern we can observe in
+nature is the relationship between area (of habitat) and number of
+species observed. You can read more about that in this paper, <a
+href="./media/Lomolino_2000.pdf"><strong>Lomolino 2000</strong></a>. The
+exact shape of this curve can take a few different forms. For example,
+here is a plot showing the number of terrestrial isopods on the central
+Aegean islands:</p>
+<div class="figure">
+<img src="media/sp_area.png" style="width:50.0%" alt="" />
+<p class="caption">Species-area curve, terrestrial isopods, central
+Aegean islands. From Lomolino 2000.</p>
+</div>
+<p><img src="media/Woodlouse_poster.jpg" style="width:25.0%"
+alt="A very common terrestrial isopod" /> One curve that can often
+describe the species-area relationship is an <em>Arrhenius curve</em>.
+The function for this is:</p>
+<p><span class="math display">\[ Species = k*area^z \]</span></p>
+<p>Where parameter <em>z</em> is the steepness of the species-area
+curve, and <em>k</em> is the expected number of species in a unit
+area.</p>
+<p><strong>Data / Problem</strong>: We have some data for bird species
+on the Sipoo island archipelago (a district of Finland) (the data is
+using ‘hectares’ as units, a hectare is equal to 10,000 square
+meters).</p>
+<pre class="r"><code>data(&quot;seutukunnat2019&quot;)
+ggplot(seutukunnat2019) + geom_sf() + ggtitle(&quot;Finland: Maps in R!&quot;)</code></pre>
+<p><img src="project2_files/figure-html/figures-3-1.png" width="50%" /></p>
+<pre class="r"><code>## Get species area data: sipoo.map gives the areas of
+## islands
+data(sipoo, sipoo.map)
+S &lt;- specnumber(sipoo)
+plot(S ~ area, sipoo.map, xlab = &quot;Island Area (ha)&quot;, ylab = &quot;Number of Bird Species&quot;,
+    ylim = c(1, max(S)))</code></pre>
+<p><img src="project2_files/figure-html/figures-4-1.png" width="50%" /></p>
+<ul>
+<li>An R package, <code>vegan</code> has some nls models included that
+are commonly used in ecology! After loading <code>library(vegan)</code>,
+please use the <code>nls</code> command and the <code>SSarrhenius</code>
+model to fit the model <code>S ~ area</code> and estimate the parameters
+<code>k</code> and <code>z</code>. Add the curve to the plot. Mine looks
+like this:</li>
+</ul>
+<p><img src="project2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<ul>
+<li>Please give me the values for the estimated model parameters (you
+can use <code>summary</code> or <code>coef</code> on the fit nls model
+object to get these).</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
