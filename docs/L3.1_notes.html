@@ -544,7 +544,8 @@ div.tocify {
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> <span class="fu">factor</span>(r)))</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> p2 <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">200</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">0</span>,<span class="dv">4</span>)</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
-<pre><code>## Warning: Removed 145992 rows containing missing values (`geom_line()`).</code></pre>
+<pre><code>## Warning: Removed 145992 rows containing missing values
+## (`geom_line()`).</code></pre>
 <p><img src="L3.1_notes_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Logistic growth</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cont_log <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
