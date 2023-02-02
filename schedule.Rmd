@@ -33,7 +33,7 @@ __Please do all readings in advance of the scheduled course period. Each reading
 | No class | 12-01-2022 | We will **not** have class this day | XX |
 | Module 5.1 – Fitting empirical data to models, Part 1 | 19-01-2022 | [__Muhlbauer et al. 2020__](./r7_Muhlbauer_2020.pdf) | 1. [__Lecture 5.1__](./L5.1.pdf) 2. [__Exercise 5.1__](./L5.1_exercise.html) |
 | Module 5.2 – Fitting empirical data to models, Part 2 | 26-01-2022 | none | 1. [__Lecture 5.2__](./L5.2.pdf) 2. [__Course Project 2__](./project2.pdf)|
-| Module 5.3 – Fitting empirical data to models, Part 3. **Course project 1 & 2 (DUE)** | 02-02-2022 | 1. [__Siren et al. 2018__](./r8_Siren_2018.pdf) | 1. [__Exercise 5.3__](./L5.3_exercise.html) |
+| Module 5.3 – Fitting empirical data to models, Part 3. **Course project 1 & 2 (DUE)** | 02-02-2022 | 1. [__Siren et al. 2018__](./r8_Siren_2018.pdf) | 1. [__Exercise 5.3__](./L5.3_exercise.pdf) |
 
 ## Zoom meetings
 I will be available Wednesdays from 5-6pm, if you need to reach me to discuss course material. You __do__ need to schedule in advance that you want to meet (I won't just keep the Zoom room open), but if you let me know in advance over email, I will be in this Zoom room: [https://uni-due.zoom.us/j/8344369796]
