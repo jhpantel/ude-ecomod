@@ -5,19 +5,24 @@ output:
     toc: FALSE
 ---
 
-
 Welcome to the **Ecological Modelling** course website
 
 This website contains the content of the *Ecological Modelling* course taught by Prof. Dr. [Jelena H. Pantel](http://jhpantel.com) in the MS Aquatic Biology program at the University of Duisburg-Essen.
 
-# Announcement January 26 2023
-To be ready for class Thursday 02-02-2023:
+# Announcement February 3 2023
+Here is a table with a 1 indicating I have received your Course Project. I checked Github, so if you have an NA entry, please check that your submission was completed.
 
-+ Please bring your laptop to class and be ready to code in R!
-
-+ There is a reading, [__Siren et al. 2018__](./r8_Siren_2018.pdf)
-
-+ **Your Course Project 1 and Course Project 2 are both due today (February 2, 2023).** Note that I can be flexible if you need the weekend to finish this, but note also I can't let this go later then Monday 06-02-2023 (you need time to prepare for exams in other courses). Contact me if you need a few extra days beyond Thursday 02-02-2023 to finish up.
+  Student                    Proj1     Proj2     
+-----------------------     ------ ----------   
+    Becker.Alina	             1	         1
+    Jasinski.Christina	       1           1
+    Hartges.Annika	           1	         1
+    Stratmann.Lars	           1           1
+    Hahnel.Gina	               1	         1
+    Kays.Maya	                 1	         1
+    Lausch.Lara	               1	         1
+    Rissel.Tim	               1	         1
+    Dani.Mimoza	              NA	        NA
 
 # Course Information
 
