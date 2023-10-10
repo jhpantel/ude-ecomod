@@ -14,7 +14,7 @@
 
 <title>Week 7 Reading Guidelines</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
@@ -34,8 +34,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -496,7 +496,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Week 7 Reading Guidelines</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-12-08 18:44:04</h4>
+<h4 class="date">2023-10-10 13:42:24.713775</h4>
 
 </div>
 
@@ -586,11 +586,11 @@ to do this?</li>
 Windows, search for <em>Git Bash</em> and use that. Once you have one of
 these <em>bash</em> sessions open, at the command prompt, type:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cd <span class="sc">~</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ls</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cd Documents</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mkdir GitHub</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cd <span class="sc">~</span><span class="er">/</span>Documents<span class="sc">/</span>GitHub</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>cd <span class="sc">~</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>ls</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>cd Documents</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>mkdir GitHub</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>cd <span class="sc">~</span><span class="er">/</span>Documents<span class="sc">/</span>GitHub</span></code></pre></div>
 <ul>
 <li><p>After you have executed these commands, you should have a new
 directory at /Users/your_name/Documents/GitHub.</p></li>
@@ -604,13 +604,13 @@ by pasting in the URL you just copied. Mine looks like this, but yours
 may look slightly different because you have a different github user
 name:</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>student<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>hw.git</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>student<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>hw.git</span></code></pre></div>
 <ul>
 <li>There will be output showing that you are copying the files in the
 GitHub repository to your local machine. You can see the files have been
 copied successfully by typing:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ls</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>ls</span></code></pre></div>
 <ul>
 <li>Congratulations. You have now copied the files from the Github
 repository to your local repository (on your hard drive).</li>
@@ -621,14 +621,14 @@ file <em>ude-ecomod-hw1.R</em>m using RStudio. You can see that you are
 able to edit the R script. Please paste the following line of code BELOW
 line #41 in the script, then save the file (using the same name).</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d - the *fraction* of mice in yard eaten by cat / day --&gt; 0-1</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> .<span class="dv">7</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># b - the *number* of mice born per mouse / day --&gt; N (0-infinity)</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># m - the *number* of mice arriving in the yard per day --&gt; N (0-infinity)</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Nt - the initial number of mice in the yard when we begin the survey</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> <span class="dv">42</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># d - the *fraction* of mice in yard eaten by cat / day --&gt; 0-1</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>d <span class="ot">&lt;-</span> .<span class="dv">7</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># b - the *number* of mice born per mouse / day --&gt; N (0-infinity)</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co"># m - the *number* of mice arriving in the yard per day --&gt; N (0-infinity)</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># Nt - the initial number of mice in the yard when we begin the survey</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> <span class="dv">42</span></span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>We would like to <em>push</em> our changed documents to our Github
 repository.To do this, we need to establish an <em>SSH key pair</em>,
@@ -642,17 +642,17 @@ authenticating you are the correct user trying to push changes to the
 Github repository). Type the following command in the command line
 (using the email address you registered with Github):</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ssh<span class="sc">-</span>keygen <span class="sc">-</span>t ed25519 <span class="sc">-</span>C <span class="st">&quot;your_email@example.com&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ssh<span class="sc">-</span>keygen <span class="sc">-</span>t ed25519 <span class="sc">-</span>C <span class="st">&quot;your_email@example.com&quot;</span></span></code></pre></div>
 <ul>
 <li>If for any reason that command fails, try:</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ssh<span class="sc">-</span>keygen <span class="sc">-</span>t rsa <span class="sc">-</span>b <span class="dv">4096</span> <span class="sc">-</span>C <span class="st">&quot;your_email@example.com&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>ssh<span class="sc">-</span>keygen <span class="sc">-</span>t rsa <span class="sc">-</span>b <span class="dv">4096</span> <span class="sc">-</span>C <span class="st">&quot;your_email@example.com&quot;</span></span></code></pre></div>
 <ul>
 <li>Accept the prompt to save the key in the default location. Just
 press Enter when you see below (note that might look a little different
 for a Windows user):</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Enter file <span class="cf">in</span> which to save the <span class="fu">key</span> (<span class="sc">/</span>Users<span class="sc">/</span>user_name<span class="sc">/</span>.ssh<span class="sc">/</span>id_ed25519)<span class="sc">:</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>Enter file <span class="cf">in</span> which to save the <span class="fu">key</span> (<span class="sc">/</span>Users<span class="sc">/</span>user_name<span class="sc">/</span>.ssh<span class="sc">/</span>id_ed25519)<span class="sc">:</span></span></code></pre></div>
 <ul>
 <li><p>You have the option to protect the key with a passphrase. Its
 optional, and you can never retrieve it from Github. Its ‘better
@@ -666,7 +666,7 @@ this new key with your GitHub. To copy the key from the file to your
 clipboard, use Terminal / Bash to type the following ni the command
 line:</p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pbcopy <span class="sc">&lt;</span> <span class="er">~/</span>.ssh<span class="sc">/</span>id_ed25519.pub</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>pbcopy <span class="sc">&lt;</span> <span class="er">~/</span>.ssh<span class="sc">/</span>id_ed25519.pub</span></code></pre></div>
 <ul>
 <li><p>Note: if you recieve any errors, perhaps you are not in the
 correct file directory. You can get where this command will work by type
@@ -696,16 +696,16 @@ If you are not in the right directory, you can type
 <li><p>Use the following git command to establish that the file
 directory is a Git repository:</p></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>git init <span class="sc">-</span>b main</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>git init <span class="sc">-</span>b main</span></code></pre></div>
 <ul>
 <li>Add the files in your new local repository. This stages them for the
 first commit.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>git add .</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>git add .</span></code></pre></div>
 <ul>
 <li>Commit the files that you’ve staged in your local repository.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m <span class="st">&quot;First commit&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>git commit <span class="sc">-</span>m <span class="st">&quot;First commit&quot;</span></span></code></pre></div>
 <ul>
 <li>At the top of your repository on GitHub.com, click to copy the
 remote repository URL, then add that <REMOTE_URL> to the command
@@ -713,21 +713,22 @@ remote repository URL, then add that <REMOTE_URL> to the command
 this, but yours will look slightly different because you have a
 different github user name.</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>git remote add origin https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>student<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>hw.git</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>git remote add origin https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>student<span class="sc">/</span>ude<span class="sc">-</span>ecomod<span class="sc">-</span>hw.git</span></code></pre></div>
 <ul>
 <li>Finally, you can <em>push</em> your local changes to your Github
 repository, which will be visible online!</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>git push <span class="sc">-</span>u origin main</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>git push <span class="sc">-</span>u origin main</span></code></pre></div>
 <ol start="9" style="list-style-type: decimal">
 <li>If you simply cannot get steps 7 &amp; 8 to work, you can you can
 actually upload the files directly on github.com, by selecting Add file,
 Upload files:</li>
 </ol>
-<div class="figure">
-<img src="media/screen-7.jpg" style="width:100.0%" alt="" />
-<p class="caption">Upload homework files directly to GitHub repository…
-easier but less of a flex!</p>
+<div class="float">
+<img src="media/screen-7.jpg" style="width:100.0%"
+alt="Upload homework files directly to GitHub repository… easier but less of a flex!" />
+<div class="figcaption">Upload homework files directly to GitHub
+repository… easier but less of a flex!</div>
 </div>
 </div>
 <div id="what-we-did-during-class-01-12-2022" class="section level2">

@@ -11,11 +11,12 @@ This website contains the content of the *Ecological Modelling* course taught by
 
 # Course Information
 
-This is a seminar course, held from 16-18h on Thursdays, in room S05 R03 H8. I am available to meet Wednesdays 5-6pm over Zoom, but you must e-mail in advance of that time to let me know if you want to meet. The grade in the course will stem from 2 projects. Project 1 will be creating a "cheat sheet", or a 1-2 page document that provides an overview of a theoretical model in Ecology or Limnology. Project 2 will be a hands-on application, where you will take actual data and test predictions from theoretical models.
+This is a seminar course, held from 16-17h on Wednesdays and 16-18h on Thursdays, in room S05 R03 H8. The grade in the course will stem from 2 projects. Project 1 will be creating a "cheat sheet", or a 1-2 page document that provides an overview of a theoretical model in Ecology or Limnology. Project 2 will be a hands-on application, where you will take actual data and test predictions from theoretical models.
 
 # Course Description
 
-In this course, we will cover two broad topics: (1) we will get an overview of models that are used in Ecology, Evolution, and Aquatic Biology and (2) we will learn how to fit actual, observed data to theoretical models. We will gain proficiency in computational ecology, as we will use the statistical programming language R to work with models and data. The classroom is equipped with computer workstations.
+In this course, we have three main goals: (1) we will learn the basics of how to construct, read, intuit, and deconstruct models, (
+(2) we will get an overview of models that are often used in Ecology, Evolution, and Aquatic Biology, and (3) we will learn statistical tools to fit actual, observed data to theoretical models. We will gain proficiency in computational ecology, as we will use the statistical programming language R to work with models and data. The classroom is equipped with computer workstations.
 
 # Website content
 

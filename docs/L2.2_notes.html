@@ -14,7 +14,7 @@
 
 <title>Week 4, Lecture 2.2 Notes</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
@@ -34,8 +34,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -496,7 +496,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Week 4, Lecture 2.2 Notes</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-11-03 15:39:06</h4>
+<h4 class="date">2023-10-10 13:42:24.365135</h4>
 
 </div>
 
@@ -545,14 +545,14 @@ even if <em>n</em>(t), <em>r</em>, and <em>K</em> are all positive.
 Solve for <em>n</em>(1) by hand using <em>r</em>=1 and <em>K</em>=100
 starting from the population sizes <em>n</em>(0) = 50, 100, 200, and
 500.</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rd <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>disc_log <span class="ot">&lt;-</span> <span class="cf">function</span>(rd,Nt,K){</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> Nt <span class="sc">+</span> rd<span class="sc">*</span>Nt<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Nt<span class="sc">/</span>K)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">disc_log</span>(rd,Nt,K)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>rd <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>disc_log <span class="ot">&lt;-</span> <span class="cf">function</span>(rd,Nt,K){</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> Nt <span class="sc">+</span> rd<span class="sc">*</span>Nt<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Nt<span class="sc">/</span>K)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">disc_log</span>(rd,Nt,K)</span></code></pre></div>
 <pre><code>## [1]    75   100     0 -1500</code></pre>
 <p><strong>6. Problem 3.5a. In the equations for logistic growth, (3.5),
 if a population has a high intrinsic growth rate <em>r</em> and grows
@@ -560,9 +560,9 @@ rapidly when the population is very small, then it must also decline
 rapidly when the population is very large and above the carrying
 capacity. Use equation (3.5a) to prove this assertion for specific
 choices of <em>r</em>, <em>K</em>, and <em>n</em>.</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">disc_log</span>(<span class="fl">1.7</span>,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">99</span>,<span class="dv">200</span>),<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">disc_log</span>(<span class="fl">1.7</span>,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">99</span>,<span class="dv">200</span>),<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1]    5.332  100.683 -140.000</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">disc_log</span>(<span class="fl">3.2</span>,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">99</span>,<span class="dv">200</span>),<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">disc_log</span>(<span class="fl">3.2</span>,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">99</span>,<span class="dv">200</span>),<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1]    8.272  102.168 -440.000</code></pre>
 
 

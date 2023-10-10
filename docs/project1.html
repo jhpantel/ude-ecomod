@@ -14,7 +14,7 @@
 
 <title>Course Project 1 Guidelines</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
@@ -34,8 +34,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -496,7 +496,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Course Project 1 Guidelines</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-12-08 15:16:27</h4>
+<h4 class="date">2023-10-10 13:42:24.679642</h4>
 
 </div>
 
@@ -542,9 +542,10 @@ you are using Microsoft Word or Powerpoint, use the formula editor. If
 you would like to make some things here in RMarkdown, here is how I make
 formulas:</li>
 </ol>
-<div class="figure">
-<img src="media/screen-8.jpg" style="width:100.0%" alt="" />
-<p class="caption">LaTEX for formulas</p>
+<div class="float">
+<img src="media/screen-8.jpg" style="width:100.0%"
+alt="LaTEX for formulas" />
+<div class="figcaption">LaTEX for formulas</div>
 </div>
 <p><span class="math display">\[\begin{eqnarray} \frac{dx}{dt} = \alpha
 x- \beta xy \\ \frac{dy}{dt} = \delta xy - \gamma
@@ -571,23 +572,23 @@ of the model, choose some parameter values, and make a plot of dynamics
 over time. In the caption for the plot, tell me what parameter values
 you chose to make the plots.</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Lotka Volterra predator-prey equations</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>LV_pred_prey <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    dx <span class="ot">&lt;-</span> a<span class="sc">*</span>x <span class="sc">-</span> b<span class="sc">*</span>x<span class="sc">*</span>y</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    dy <span class="ot">&lt;-</span> d<span class="sc">*</span>x<span class="sc">*</span>y <span class="sc">-</span> g<span class="sc">*</span>y</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="fu">c</span>(dx,dy)))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> .<span class="dv">4</span>, <span class="at">b =</span> .<span class="dv">05</span>, <span class="at">d =</span> .<span class="dv">2</span>, <span class="at">g =</span> .<span class="dv">7</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">x =</span> <span class="dv">13</span>, <span class="at">y =</span> <span class="dv">20</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> LV_pred_prey, <span class="at">parms =</span> parameters)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>out.g <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(out.g,<span class="fu">aes</span>(time,x, <span class="at">colour =</span> <span class="st">&quot;prey&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time,y, <span class="at">colour =</span> <span class="st">&quot;predator&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="do">## Lotka Volterra predator-prey equations</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>LV_pred_prey <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    dx <span class="ot">&lt;-</span> a<span class="sc">*</span>x <span class="sc">-</span> b<span class="sc">*</span>x<span class="sc">*</span>y</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    dy <span class="ot">&lt;-</span> d<span class="sc">*</span>x<span class="sc">*</span>y <span class="sc">-</span> g<span class="sc">*</span>y</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="fu">c</span>(dx,dy)))</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  })</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> .<span class="dv">4</span>, <span class="at">b =</span> .<span class="dv">05</span>, <span class="at">d =</span> .<span class="dv">2</span>, <span class="at">g =</span> .<span class="dv">7</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">x =</span> <span class="dv">13</span>, <span class="at">y =</span> <span class="dv">20</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> LV_pred_prey, <span class="at">parms =</span> parameters)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>out.g <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(out.g,<span class="fu">aes</span>(time,x, <span class="at">colour =</span> <span class="st">&quot;prey&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time,y, <span class="at">colour =</span> <span class="st">&quot;predator&quot;</span>))</span></code></pre></div>
 <p><img src="project1_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Explore the equilibrium behavior of the system - under what

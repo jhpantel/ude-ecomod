@@ -14,7 +14,7 @@
 
 <title>Week 3, Lecture 2.1 Notes</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
@@ -34,8 +34,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -496,7 +496,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Week 3, Lecture 2.1 Notes</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2022-11-10 15:21:02</h4>
+<h4 class="date">2023-10-10 13:42:24.365056</h4>
 
 </div>
 
@@ -505,37 +505,37 @@ div.tocify {
 <h2>Beginning R review</h2>
 <div id="exercise-1.-variable-assignment" class="section level3">
 <h3>Exercise 1. variable assignment</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">+</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="dv">5</span><span class="sc">+</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a<span class="sc">+</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>a<span class="sc">+</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 </div>
 <div id="exercise-2.-working-with-vectors" class="section level3">
 <h3>Exercise 2. Working with vectors</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">13</span>,<span class="dv">2</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">13</span>,<span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1]  5 13  2</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>a[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">16</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>a[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1]  5 13 16</code></pre>
 </div>
 <div id="exercise-3.-working-with-functions" class="section level3">
 <h3>Exercise 3. Working with functions</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>?sqrt</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Square root of 97?</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>?sqrt</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co"># Square root of 97?</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>a[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1]  5 13 16 NA</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">mean</span>(a)</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(a,<span class="at">na.rm=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">mean</span>(a,<span class="at">na.rm=</span>T)</span></code></pre></div>
 <pre><code>## [1] 11.33333</code></pre>
 </div>
 <div id="deriving-the-recursion-equations-otto-day-ch-2-equation-2.4"
@@ -567,11 +567,11 @@ equation:</li>
 </div>
 <div id="exercise-4.-writing-functions" class="section level3">
 <h3>Exercise 4. Writing functions!</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y){</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> x<span class="sc">+</span>y</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">17</span>,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y){</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>  z <span class="ot">&lt;-</span> x<span class="sc">+</span>y</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>}</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">17</span>,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 <p>Your turn.</p>
 <ol style="list-style-type: decimal">
@@ -585,24 +585,24 @@ number, and return that value</p></li>
 </div>
 <div id="exercise-5.-loops" class="section level3">
 <h3>Exercise 5. Loops!</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">6</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(z)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>  z <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">6</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="fu">print</span>(z)</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] 7
 ## [1] 8
 ## [1] 9
 ## [1] 10
 ## [1] 11</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  a[i] <span class="ot">&lt;-</span> i</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>  a[i] <span class="ot">&lt;-</span> i</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>}</span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;I&quot;</span>,<span class="st">&quot;love&quot;</span>,<span class="st">&quot;R&quot;</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(b)){</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(b[i])</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;I&quot;</span>,<span class="st">&quot;love&quot;</span>,<span class="st">&quot;R&quot;</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(b)){</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>  <span class="fu">print</span>(b[i])</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;I&quot;
 ## [1] &quot;love&quot;
 ## [1] &quot;R&quot;</code></pre>
@@ -641,21 +641,21 @@ time unit. A population would be considered to be constant (not
 changing) if each parent / <em>N</em> replaces itself… and thus
 <em>R</em> = 1.</p>
 <p>We can see this in R: see R code, Exercise 7</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 7. Simulation model of discrete-time exponential growth</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>N0 <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>disc_exp <span class="ot">&lt;-</span> <span class="cf">function</span>(R,N0){</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> R<span class="sc">*</span>N0</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> N0</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> <span class="fu">disc_exp</span>(R,N0)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">c</span>(N,Nt1)</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  N0 <span class="ot">&lt;-</span> Nt1</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(N,<span class="at">ylab=</span><span class="st">&quot;time&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="do">## Exercise 7. Simulation model of discrete-time exponential growth</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>N0 <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>disc_exp <span class="ot">&lt;-</span> <span class="cf">function</span>(R,N0){</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> R<span class="sc">*</span>N0</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>  <span class="fu">return</span>(Nt1)</span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>}</span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>N <span class="ot">&lt;-</span> N0</span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>  Nt1 <span class="ot">&lt;-</span> <span class="fu">disc_exp</span>(R,N0)</span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">c</span>(N,Nt1)</span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a>  N0 <span class="ot">&lt;-</span> Nt1</span>
+<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a>}</span>
+<span id="cb29-15"><a href="#cb29-15" tabindex="-1"></a><span class="fu">plot</span>(N,<span class="at">ylab=</span><span class="st">&quot;time&quot;</span>)</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>In the differential / continuous time model (if births and deaths can
 occur at any time point, rather than in specific seasons), the
@@ -670,22 +670,22 @@ is not changing. We refer to <em>r</em> as the per capita change in the
 number of individuals because the value is associated with each
 individual in the population.</p>
 <p>We can see this in R: R code, Exercise 8</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 8. Continuous time model of exponential growth</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>cont_exp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    dN <span class="ot">&lt;-</span>  r <span class="sc">*</span> N</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">r =</span> <span class="dv">0</span>)</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">N =</span> <span class="dv">42</span>)</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> cont_exp, <span class="at">parms =</span> parameters)</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="do">## Exercise 8. Continuous time model of exponential growth</span></span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>cont_exp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>    dN <span class="ot">&lt;-</span>  r <span class="sc">*</span> N</span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a>  })</span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a>}</span>
+<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">r =</span> <span class="dv">0</span>)</span>
+<span id="cb30-11"><a href="#cb30-11" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">N =</span> <span class="dv">42</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> cont_exp, <span class="at">parms =</span> parameters)</span>
+<span id="cb30-15"><a href="#cb30-15" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="#cb30-16" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><strong>3. How did the authors come up with the equation above Figure
 3.3 directly from that figure? (Recall the formula for a line)</strong>
@@ -752,20 +752,20 @@ non-linear way.</p>
 difference equation, <span class="math inline">\(\Delta n = n(t+1) -
 n(t)\)</span></p>
 <p>We can see this in R: R code, Exercise 9</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exercise 9. Linear and non-linear models</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="cf">function</span>(rd,nt,K){</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  dN<span class="fl">.1</span> <span class="ot">&lt;-</span> rd <span class="sc">*</span> nt</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  dN<span class="fl">.2</span> <span class="ot">&lt;-</span> rd <span class="sc">*</span> nt <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> nt<span class="sc">/</span>K)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(dN<span class="fl">.1</span>,dN<span class="fl">.2</span>))</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>rd <span class="ot">&lt;-</span> <span class="fl">1.7</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>nt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">100</span>,<span class="dv">700000</span>,<span class="at">by=</span><span class="dv">1000</span>)</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">75000</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">models</span>(rd,nt,K)</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nt,res[[<span class="dv">1</span>]],<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10000000</span>,<span class="dv">10000000</span>),<span class="at">xlab=</span><span class="st">&quot;n(t)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;delta-N&quot;</span>)</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(nt,res[[<span class="dv">2</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="do">## Exercise 9. Linear and non-linear models</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="cf">function</span>(rd,nt,K){</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>  dN<span class="fl">.1</span> <span class="ot">&lt;-</span> rd <span class="sc">*</span> nt</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>  dN<span class="fl">.2</span> <span class="ot">&lt;-</span> rd <span class="sc">*</span> nt <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> nt<span class="sc">/</span>K)</span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(dN<span class="fl">.1</span>,dN<span class="fl">.2</span>))</span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>}</span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>rd <span class="ot">&lt;-</span> <span class="fl">1.7</span></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>nt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">100</span>,<span class="dv">700000</span>,<span class="at">by=</span><span class="dv">1000</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">75000</span></span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">models</span>(rd,nt,K)</span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a><span class="fu">plot</span>(nt,res[[<span class="dv">1</span>]],<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10000000</span>,<span class="dv">10000000</span>),<span class="at">xlab=</span><span class="st">&quot;n(t)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;delta-N&quot;</span>)</span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a><span class="fu">points</span>(nt,res[[<span class="dv">2</span>]])</span></code></pre></div>
 <p><img src="L2.1_notes_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 

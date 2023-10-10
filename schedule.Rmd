@@ -1,5 +1,5 @@
 ---
-title: "Ecological Modelling - Winter 2022-2023 - Schedule"
+title: "Ecological Modelling - Winter 2023-2024 - Schedule"
 author: "Jelena H. Pantel"
 institute: "University of Duisburg-Essen"
 date: "`r file.mtime(knitr::current_input())`"
