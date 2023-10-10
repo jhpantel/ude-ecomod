@@ -1,0 +1,43 @@
+---
+title: "Exercise 1.1 - Introduction to R in Ecology, Part 1"
+author: "Jelena H. Pantel"
+date: "`r file.mtime(knitr::current_input())`"
+output:
+  html_document: default
+  pdf_document: default
+institute: "University of Duisburg-Essen"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(abc)
+library(fitdistrplus)
+```
+
+## Exercise 1. Simple calculation and variable assignment
+
+1. Open RStudio. The console window gives you some information about the version of R you are running, and it gives the prompt `<`. This prompt is waiting for you to input a command. Let's use R as a simple calculator: type `r 2+3` and hit *enter*. What you should see is the following:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+# Some simple addition
+2+3
+```
+
+2. Please create a new variable called *a* and assign the value 5 to that variable using the `<-` assignment operator. Then add `a+5`. Make sure the displayed answer is 10.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), echo=FALSE, eval=FALSE}
+a <- 5
+a+5
+```
+
+3. Let's work with a *vector* in R. First, create a new variable called *b* and assign it 3 values: 5, 13, and 2. Then index the 3rd value using  `b[3]`. Finally, use `b[3] <- 16` to change the 3rd value of *b* to 16.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), echo=FALSE, eval=TRUE}
+b <- c(5,13,2)
+b
+b[3]
+b[3] <- 16
+b
+```
+
+4. Let's use some built in functions in base R. Please use the `sqrt` command to calculate $\sqrt 16$ and $\sqrt 67$.

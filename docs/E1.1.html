@@ -12,12 +12,12 @@
 <meta name="author" content="Jelena H. Pantel" />
 
 
-<title>Ecological Modelling - Winter 2023-2024 - Schedule</title>
+<title>Exercise 1.1 - Introduction to R in Ecology, Part 1</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -30,10 +30,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -46,6 +45,16 @@
   ul.task-list{list-style: none;}
     </style>
 
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
 
 
 
@@ -213,75 +222,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -289,16 +229,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -393,188 +323,50 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Ecological Modelling - Winter 2023-2024 -
-Schedule</h1>
+<h1 class="title toc-ignore">Exercise 1.1 - Introduction to R in
+Ecology, Part 1</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-10 17:16:53.168982</h4>
+<h4 class="date">2023-10-10 18:13:13.038832</h4>
 
 </div>
 
 
-<div id="course-calendar" class="section level2">
-<h2>Course calendar</h2>
-<p>This is the current course schedule for the class. Things will
-change, so check regularly for updates.</p>
-<p><strong>Please do all readings in advance of the scheduled course
-period. Each reading is accompanied by a document giving some guidelines
-to prepare yourself to discuss the reading in class.</strong></p>
-<table>
-<colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Module Topic</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Readings</strong></th>
-<th><strong>Class documents</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Module 1.1 – Introduction to Models in Ecology, Part 1</td>
-<td>11-10-2023</td>
-<td>none</td>
-<td>1. <a href="./L1.1.pdf"><strong>Lecture 1.1</strong></a></td>
-</tr>
-<tr class="even">
-<td>Module 1.1 – Introduction to Models in Ecology, Part 1</td>
-<td>12-10-2023</td>
-<td>none</td>
-<td>1. <a href="./E1.1.pdf"><strong>Exercise 1.1</strong></a>, 2.
-<strong>Solutions 1.1</strong></td>
-</tr>
-<tr class="odd">
-<td>Module 1.2 – Introduction to Models in Ecology, Part 2</td>
-<td>20-10-2022</td>
-<td>1. <a href="./r1_Jackson_2000.pdf"><strong>Jackson et
-al. 2000</strong></a>, 2. <a href="./r2_OttoDay_Ch2.pdf"><strong>Otto
-&amp; Day Ch2</strong></a>, 3. <a
-href="./w2_readguide.html"><strong>Reading Guide 1</strong></a></td>
-<td>1. <strong>Lecture 1.1</strong></td>
-</tr>
-<tr class="even">
-<td>Module 2.1 – Survey of ecological models, Part 1</td>
-<td>27-10-2022</td>
-<td>1. <a href="./r3_OttoDay_Ch3.pdf"><strong>Otto &amp; Day
-Ch3</strong></a> (3.1,3.2), 2. <a
-href="./w3_readguide.html"><strong>Reading Guide 2</strong></a></td>
-<td>1. <a href="./L2.1_notes.html"><strong>Lecture Notes
-2.1</strong></a></td>
-</tr>
-<tr class="odd">
-<td>Module 2.2 – Survey of ecological models, Part 2</td>
-<td>03-11-2022</td>
-<td>1. <strong>Otto &amp; Day Ch3</strong> (3.4,3.6), 2. <a
-href="./w4_readguide.html"><strong>Reading Guide 3</strong></a></td>
-<td>1. <a href="./L2.2_notes.html"><strong>Lecture Notes
-2.2</strong></a></td>
-</tr>
-<tr class="even">
-<td>Module 2.3 - Survey of ecological models, Part 3</td>
-<td>10-11-2022</td>
-<td>1. No additional readings (we will discuss Otto &amp; Day Ch3,
-sections 3.1,3.2,3.4,3.6)</td>
-<td>1. <a href="./L2.3_notes.html"><strong>Lecture Notes
-2.3</strong></a>, 2. <a href="./handout_2.3.pdf"><strong>Handout
-2.3</strong></a></td>
-</tr>
-<tr class="odd">
-<td>Module 3.1 – Models and data in ecology case studies, Part 1</td>
-<td>17-11-2022</td>
-<td>1. <a href="./r4_Lahaye_1994.pdf"><strong>Lahaye et
-al. 1994</strong></a>, 2. <a href="./w5_readguide.html"><strong>Reading
-Guide 4</strong></a></td>
-<td>1. <a href="./L3.1_notes.html"><strong>Lecture Notes
-3.1</strong></a>, 2. <a href="./L3.1.pdf"><strong>Lecture
-3.1</strong></a>, 3. <a href="./media/OttoDay_Ch5.pdf"><strong>Otto
-&amp; Day Ch5</strong></a></td>
-</tr>
-<tr class="even">
-<td>Class cancelled</td>
-<td>24-11-2022</td>
-<td>none</td>
-<td>XX</td>
-</tr>
-<tr class="odd">
-<td>Catching Up</td>
-<td>01-12-2022</td>
-<td>1. <a href="./w7_readguide.html"><strong>Reading Guide
-5</strong></a></td>
-<td>1. <a href="./L3.2_notes.html"><strong>Lecture Notes
-3.2</strong></a></td>
-</tr>
-<tr class="even">
-<td>Module 3.2 – Models and data in ecology case studies, Part 2</td>
-<td>08-12-2022</td>
-<td>1. <a href="./r5.1_Jager_2011.pdf"><strong>Jager et
-al. 2011</strong></a>, 2. <a href="./r5.2_Le_2011.pdf"><strong>Le et
-al. 2011</strong></a>, 3. <a href="./w8_readguide.html"><strong>Reading
-Guide 6</strong></a></td>
-<td>1. <a href="./L3.3.pdf"><strong>Lecture 3.3</strong></a></td>
-</tr>
-<tr class="odd">
-<td>Module 4.1 – Empiricists and working with theoretical models</td>
-<td>15-12-2022</td>
-<td>1. <a href="./r6_Grainger_2022.pdf"><strong>Grainger et
-al. 2022</strong></a>, 2. <a href="./w9_readguide.html"><strong>Reading
-Guide 7</strong></a></td>
-<td>1. <a href="./project1.html"><strong>Project 1
-Guidelines</strong></a> 2. <a href="./L4.1.pdf"><strong>Lecture
-4.1</strong></a></td>
-</tr>
-<tr class="even">
-<td>Project 1 – Work on during class time</td>
-<td>22-12-2022</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Winter holiday break</td>
-<td>December 24 - January 6</td>
-<td>Enjoy!</td>
-<td>XX</td>
-</tr>
-<tr class="even">
-<td>No class</td>
-<td>12-01-2022</td>
-<td>We will <strong>not</strong> have class this day</td>
-<td>XX</td>
-</tr>
-<tr class="odd">
-<td>Module 5.1 – Fitting empirical data to models, Part 1</td>
-<td>19-01-2022</td>
-<td><a href="./r7_Muhlbauer_2020.pdf"><strong>Muhlbauer et
-al. 2020</strong></a></td>
-<td>1. <a href="./L5.1.pdf"><strong>Lecture 5.1</strong></a> 2. <a
-href="./L5.1_exercise.html"><strong>Exercise 5.1</strong></a></td>
-</tr>
-<tr class="even">
-<td>Module 5.2 – Fitting empirical data to models, Part 2</td>
-<td>26-01-2022</td>
-<td>none</td>
-<td>1. <a href="./L5.2.pdf"><strong>Lecture 5.2</strong></a> 2. <a
-href="./project2.pdf"><strong>Course Project 2</strong></a></td>
-</tr>
-<tr class="odd">
-<td>Module 5.3 – Fitting empirical data to models, Part 3.
-<strong>Course project 1 &amp; 2 (DUE)</strong></td>
-<td>02-02-2022</td>
-<td>1. <a href="./r8_Siren_2018.pdf"><strong>Siren et
-al. 2018</strong></a></td>
-<td>1. <a href="./L5.3_exercise.pdf"><strong>Exercise
-5.3</strong></a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="zoom-meetings" class="section level2">
-<h2>Zoom meetings</h2>
-<p>I will be available Wednesdays from 5-6pm, if you need to reach me to
-discuss course material. You <strong>do</strong> need to schedule in
-advance that you want to meet (I won’t just keep the Zoom room open),
-but if you let me know in advance over email, I will be in this Zoom
-room: [<a href="https://uni-due.zoom.us/j/8344369796"
-class="uri">https://uni-due.zoom.us/j/8344369796</a>]</p>
+<div id="exercise-1.-simple-calculation-and-variable-assignment"
+class="section level2">
+<h2>Exercise 1. Simple calculation and variable assignment</h2>
+<ol style="list-style-type: decimal">
+<li>Open RStudio. The console window gives you some information about
+the version of R you are running, and it gives the prompt
+<code>&lt;</code>. This prompt is waiting for you to input a command.
+Let’s use R as a simple calculator: type 5 and hit <em>enter</em>. What
+you should see is the following:</li>
+</ol>
+<pre class="r"><code># Some simple addition
+2 + 3</code></pre>
+<pre><code>## [1] 5</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Please create a new variable called <em>a</em> and assign the
+value 5 to that variable using the <code>&lt;-</code> assignment
+operator. Then add <code>a+5</code>. Make sure the displayed answer is
+10.</p></li>
+<li><p>Let’s work with a <em>vector</em> in R. First, create a new
+variable called <em>b</em> and assign it 3 values: 5, 13, and 2. Then
+index the 3rd value using <code>b[3]</code>. Finally, use
+<code>b[3] &lt;- 16</code> to change the 3rd value of <em>b</em> to
+16.</p></li>
+</ol>
+<pre><code>## [1]  5 13  2</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre><code>## [1]  5 13 16</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Let’s use some built in functions in base R. Please use the
+<code>sqrt</code> command to calculate <span class="math inline">\(\sqrt
+16\)</span> and <span class="math inline">\(\sqrt 67\)</span>.</li>
+</ol>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -607,35 +399,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
