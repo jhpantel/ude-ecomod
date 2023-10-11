@@ -17,6 +17,9 @@ library(vegan)
 library(mapsFinland)
 ```
 
+## WARNING!
+This material is for the 2022 class, and has not been updated yet. This is not a final version!
+
 ## Overview
 You will give solutions to four problems on the topic of fitting observed data to models. You can submit your solutions by (1) uploading them to your GitHub repository *ude-ecomod-hw* or (2) emailing me the solutions at jelena.pantel@uni-due.de. The solutions can either be (1) a fully executable RMarkdown file (.Rmd) or (2) an R script (.R).
 

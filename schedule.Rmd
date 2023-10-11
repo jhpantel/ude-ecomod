@@ -30,18 +30,11 @@ __Please do all readings in advance of the scheduled course period. Each reading
 | Module 2.2 – Survey of ecological models, Part 2  | 09-11-2023 | none | 1. [__Lecture Notes 2.2__](./L2.2_notes.html) | 1. __Exercise 2.2__, 2. __Solutions 2.2__ |
 | --- | --- | --- | --- |
 | --- | --- | --- | --- |
-| This part | of the course | is not updated | disregard below |
-| --- | --- | --- | --- |
-| --- | --- | --- | --- |
-| Module 2.3 - Survey of ecological models, Part 3 | 10-11-2022 | 1. No additional readings (we will discuss Otto & Day Ch3, sections 3.1,3.2,3.4,3.6) | 1. [__Lecture Notes 2.3__](./L2.3_notes.html), 2. [__Handout 2.3__](./handout_2.3.pdf) |
-| Module 3.1 – Models and data in ecology case studies, Part 1 | 17-11-2022 | 1. [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf), 2. [__Reading Guide 4__](./w5_readguide.html)  | 1. [__Lecture Notes 3.1__](./L3.1_notes.html), 2. [__Lecture 3.1__](./L3.1.pdf), 3. [__Otto & Day Ch5__](./media/OttoDay_Ch5.pdf) |
-| Class cancelled | 24-11-2022 | none  | XX |
-| Catching Up | 01-12-2022 | 1. [__Reading Guide 5__](./w7_readguide.html)  | 1. [__Lecture Notes 3.2__](./L3.2_notes.html) |
-| Module 3.2 – Models and data in ecology case studies, Part 2 | 08-12-2022 | 1. [__Jager et al. 2011__](./r5.1_Jager_2011.pdf), 2. [__Le et al. 2011__](./r5.2_Le_2011.pdf), 3. [__Reading Guide 6__](./w8_readguide.html)  | 1. [__Lecture 3.3__](./L3.3.pdf) |
-| Module 4.1 – Empiricists and working with theoretical models | 15-12-2022 | 1. [__Grainger et al. 2022__](./r6_Grainger_2022.pdf), 2. [__Reading Guide 7__](./w9_readguide.html)  | 1. [__Project 1 Guidelines__](./project1.html) 2. [__Lecture 4.1__](./L4.1.pdf) |
-| Project 1 – Work on during class time | 22-12-2022 |   |  |
-| Winter holiday break | December 24 - January 6 | Enjoy!  | XX |
-| No class | 12-01-2022 | We will **not** have class this day | XX |
-| Module 5.1 – Fitting empirical data to models, Part 1 | 19-01-2022 | [__Muhlbauer et al. 2020__](./r7_Muhlbauer_2020.pdf) | 1. [__Lecture 5.1__](./L5.1.pdf) 2. [__Exercise 5.1__](./L5.1_exercise.html) |
-| Module 5.2 – Fitting empirical data to models, Part 2 | 26-01-2022 | none | 1. [__Lecture 5.2__](./L5.2.pdf) 2. [__Course Project 2__](./project2.pdf)|
-| Module 5.3 – Fitting empirical data to models, Part 3. **Course project 1 & 2 (DUE)** | 02-02-2022 | 1. [__Siren et al. 2018__](./r8_Siren_2018.pdf) | 1. [__Exercise 5.3__](./L5.3_exercise.pdf) |
+| Module 3.1 – Models and data in ecology case studies, Part 1 | 15-11-2023 | 1. [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf), 2. [__Reading Guide 3.1__](./RG3.1.html)  | 1. [__Lecture Notes 3.1__](./L3.1_notes.html), 2. [__Lecture 3.1__](./L3.1.pdf), 3. [__Otto & Day Ch5__](./media/OttoDay_Ch5.pdf) |
+| Module 3.2 – Models and data in ecology case studies, Part 2 | 16-11-2023 | 1. [__Jager et al. 2011__](./r5.1_Jager_2011.pdf), 2. [__Le et al. 2011__](./r5.2_Le_2011.pdf), 3. [__Reading Guide 3.2__](./RG3.2.html)  | 1. [__Lecture 3.3__](./L3.3.pdf) |
+| Module 4.1 – Fitting empirical data to models, Part 1 | 22-11-2023 | [__Muhlbauer et al. 2020__](./r7_Muhlbauer_2020.pdf) | [__Lecture 4.1__](./L4.1.pdf) |
+| Module 4.1 – Fitting empirical data to models, Part 1 | 23-11-2023 | none | 1. [__Exercise 4.1__](./E4.1_exercise.html), 2. __Solutions 4.1__  |
+| Module 4.2 – Fitting empirical data to models, Part 2 | 29-11-2023 | none | [__Lecture 4.2__](./L4.2.pdf) |
+| Module 4.2 – Fitting empirical data to models, Part 2 | 30-11-2023 | none | 1. __Exercise 4.2__, 2. __Solutions 4.2__ |
+| Module 4.3 – Fitting empirical data to models, Part 3. | 06-12-2023 | 1. [__Siren et al. 2018__](./r8_Siren_2018.pdf) | 1. [__Exercise 4.3__](./E4.3.pdf), 2. __Solutions 4.3__ |
+| Module 4.3 – Fitting empirical data to models, Part 3. **Course project 1 & 2 (DUE)** | 07-12-2023 | to be determined | to be determined |

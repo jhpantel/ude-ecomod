@@ -10,6 +10,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## WARNING!
+This material is for the 2022 class, and has not been updated yet. This is not a final version!
+
 ## Overview
 We will make a "cheat sheet", or a 1-2 page colorful, informative info-graphic style PDF document that walks through a mathematical model of interest. The "cheat sheet" should contain information about:
 

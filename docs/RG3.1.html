@@ -12,7 +12,7 @@
 <meta name="author" content="Jelena H. Pantel" />
 
 
-<title>Course Project 1 Guidelines</title>
+<title>Module 3.1 Reading Guidelines</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -494,9 +494,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Course Project 1 Guidelines</h1>
+<h1 class="title toc-ignore">Module 3.1 Reading Guidelines</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-11 19:57:32.442244</h4>
+<h4 class="date">2023-10-11 17:57:23.034738</h4>
 
 </div>
 
@@ -506,149 +506,161 @@ div.tocify {
 <p>This material is for the 2022 class, and has not been updated yet.
 This is not a final version!</p>
 </div>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<p>We will make a “cheat sheet”, or a 1-2 page colorful, informative
-info-graphic style PDF document that walks through a mathematical model
-of interest. The “cheat sheet” should contain information about:</p>
-<ul>
-<li>A summary, verbal, of what the model consists of</li>
-<li>A basic conceptual diagram that shows the <em>state variables</em>,
-with arrows showing relationships between state variables and <em>model
-parameters</em> that connect state variables.</li>
-<li>A table with each variable or parameter in the model, a short verbal
-name for the variable or parameter, an indication of the range of values
-the parameter or variable can take, and the units of the parameter or
-variable.</li>
-<li>The equation (choose 1, discrete-time or continuous-time)</li>
-<li>A graphical inspection of the dynamics and general behavior of the
-model</li>
-<li>A description of the <em>equilibrium behavior</em> of the model -
-under what conditions does the state variable reach <em>equilibrium</em>
-and no longer change?</li>
-</ul>
-<p>You will submit the cheat sheet, and use R code to create some of the
-graphs (and you will submit this R code along with the cheat sheet
-itself). For writing formulas, you can use Microsoft Word / Powerpoint,
-but you can also use R Markdown.</p>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<p>Note 1. This will be the reading guide for Lehaye et al. 1994.</p>
 </div>
-<div
-id="what-steps-should-i-follow-to-successfully-complete-this-assignment"
-class="section level2">
-<h2>What steps should I follow to successfully complete this
-assignment?</h2>
+<div id="some-questions-to-answer-before-class" class="section level2">
+<h2>Some questions to answer before class</h2>
 <ol style="list-style-type: decimal">
-<li>Choose a model of interest (send me an email to
-jhpantel[@]utexas.edu to let me know which one). I will join y’all in
-making a cheat sheet, and I am choosing the predator-prey equations (I
-showed those in a presentation the first week of class). This means
-<strong>the cheat sheet’s 1st panel should have the model</strong>. If
-you are using Microsoft Word or Powerpoint, use the formula editor. If
-you would like to make some things here in RMarkdown, here is how I make
-formulas:</li>
+<li><p>What is the overall goal of this analysis and study - what
+critical question are the researchers addressing that makes the study,
+data, and models useful?</p></li>
+<li><p>Owls can fly, which in theory means in a landscape you can find
+them anywhere. <img src="media/landscape1.jpg" style="width:25.0%"
+alt="Landscape is continuous" /> Yet, the researchers apply
+<em>metapopulation</em> theory, which assumes the species occupies a
+patchy landscape. <img src="media/landscape2.jpg" style="width:25.0%"
+alt="Landscape is patchy" /> Why is owl habitat patchy and not
+continuous?</p></li>
+<li><p>What is the estimated carrying capacity of the San Bernadino
+(SBM) and San Jacinto (SJM) mountain spotted owl population? (hint: see
+Figure 1)</p></li>
 </ol>
-<div class="float">
-<img src="media/screen-8.jpg" style="width:100.0%"
-alt="LaTEX for formulas" />
-<div class="figcaption">LaTEX for formulas</div>
-</div>
-<p><span class="math display">\[\begin{eqnarray} \frac{dx}{dt} = \alpha
-x- \beta xy \\ \frac{dy}{dt} = \delta xy - \gamma
-y  \end{eqnarray}\]</span></p>
-<p>Write a verbal description of the model, what is can study and what
-processes it includes. Give me a short paragraph.</p>
-<p>Example: “<em>The Lotka-Volterra predator-prey equations are a set of
-differential equations that describe the change in population size over
-time <span class="math inline">\(t\)</span>, for a prey species (<span
-class="math inline">\(x\)</span>) and a predator species (<span
-class="math inline">\(y\)</span>). Prey species decline according to an
-interaction rate <span class="math inline">\(\beta\)</span> and increase
-according to their growth rate <span
-class="math inline">\(\alpha\)</span>. Predator species benefit from
-growth due to consumption of prey according to a rate <span
-class="math inline">\(\delta\)</span> and decline due to an intrinsic
-mortality rate <span class="math inline">\(\gamma\)</span>.</em>”</p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Create a table that lists all of the model parameters, what the
-parameters are, and the range and units of values the parameters can
-take (this will take some work to find, but get started).</p></li>
-<li><p>Show plots of what system dynamics look like. Create a simulation
-of the model, choose some parameter values, and make a plot of dynamics
-over time. In the caption for the plot, tell me what parameter values
-you chose to make the plots.</p></li>
+<p>4a. The researchers estimated a population growth rate <em>r</em> =
+0.86 for the SBM population- please find where in the text this result
+is given.</p>
+<p>4b. The researchers used an initial abundance for their simulations
+of 70% of carrying capacity - given this, what is the <span
+class="math inline">\(N_0\)</span> (this is one common way to write
+“initial population size”, pronounced “N nought”, which is British
+English for “zero” and has the same pronunciation as “N not”) of the SBM
+population?</p>
+<p>4c. Use this <em>r</em> value and the <em>K</em> values given in
+Figure 2 to develop a simulation of population dynamics for SBM spotted
+owls. Use your <span class="math inline">\(N_0\)</span> value above as
+the first <span class="math inline">\(N_t\)</span> value. Plot the
+results of population size (<em>N</em>) over time.
+<strong>Hint</strong>: Use the example code in Lecture 2.3 notes.**
+<strong>Hint</strong>: Here is what my plot looks like
+<strong>Hint</strong>: Use formula 3.5a from <a
+href="./r3_OttoDay_Ch3.pdf"><strong>Otto &amp; Day Chapter
+3</strong></a>. (You can run the simulation for 20 time steps)</p>
+<p><img src="RG3.1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>The researchers estimated population growth rate <em>R</em> using
+data collected from the SBM population, fit to a <em>two-stage Leslie
+projection matrix</em> model. This is a model for
+<em>stage-structured</em> populations, as is the case for the spotted
+owl. We begin from the discrete-time model for exponential population
+growth:</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="do">## Lotka Volterra predator-prey equations</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>LV_pred_prey <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    dx <span class="ot">&lt;-</span> a<span class="sc">*</span>x <span class="sc">-</span> b<span class="sc">*</span>x<span class="sc">*</span>y</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    dy <span class="ot">&lt;-</span> d<span class="sc">*</span>x<span class="sc">*</span>y <span class="sc">-</span> g<span class="sc">*</span>y</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="fu">c</span>(dx,dy)))</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  })</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>}</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> .<span class="dv">4</span>, <span class="at">b =</span> .<span class="dv">05</span>, <span class="at">d =</span> .<span class="dv">2</span>, <span class="at">g =</span> .<span class="dv">7</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">x =</span> <span class="dv">13</span>, <span class="at">y =</span> <span class="dv">20</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> LV_pred_prey, <span class="at">parms =</span> parameters)</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>out.g <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out)</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(out.g,<span class="fu">aes</span>(time,x, <span class="at">colour =</span> <span class="st">&quot;prey&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time,y, <span class="at">colour =</span> <span class="st">&quot;predator&quot;</span>))</span></code></pre></div>
-<p><img src="project1_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<ol start="4" style="list-style-type: decimal">
-<li>Explore the equilibrium behavior of the system - under what
-conditions does the system reach equilibrium (no longer changing)? Under
-what parameter values is the system at 0 (for example, when is
-population size 0). In my model, I will look at when the predator can
-coexist with the prey.</li>
+<p><span class="math display">\[N_{t+1} = RN_t\]</span></p>
+<p>Where <em>N</em> is abundance and <em>R</em> is the population growth
+rate. The matrix population growth equation looks similar:</p>
+<p><span class="math display">\[\boldsymbol{N_{t+1}} =
+\boldsymbol{A}\boldsymbol{N_t}\]</span> Where <strong>N</strong> is a
+<strong>vector</strong> of abundances (the abundances for all stages),
+and <strong>A</strong> is the <strong>transition matrix</strong>:</p>
+<p><span class="math display">\[\begin{bmatrix} N_1\\
+N_2 \\
+\end{bmatrix}_{t+1} = \begin{bmatrix}F_1 &amp; F_2\\
+P_{1 \to 2} &amp; P_{2 \to 2}\\
+\end{bmatrix} \cdot \begin{bmatrix}N_1\\
+N_2\\
+\end{bmatrix}_t\]</span></p>
+<p>Where, <span class="math inline">\(F_1\)</span> and <span
+class="math inline">\(F_2\)</span> are the <em>fecundities</em> of stage
+1 and stage 2 (per-capita production of offspring by stage 1 and 2
+individuals) and <span class="math inline">\(P_{1 \to 2}\)</span> and
+<span class="math inline">\(P_{2 \to 2}\)</span> are the
+<em>survivorship</em> - Stage 1 can survice by transitioning to Stage 2,
+and <span class="math inline">\(P_{1 \to 2}\)</span> is the probability
+of this transition. Stage 2 can survive by staying in the same stage,
+and <span class="math inline">\(P_{2 \to 2}\)</span> is the probability
+of this happening.</p>
+<p>Let’s use R to simulate the population growth of the SBM
+population.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Step 1. Build the transition matrix A</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>P<span class="fl">.12</span> <span class="ot">&lt;-</span> <span class="fl">0.344</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>P<span class="fl">.22</span> <span class="ot">&lt;-</span> <span class="fl">0.767</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>F1 <span class="ot">&lt;-</span> <span class="fl">0.304</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>F2 <span class="ot">&lt;-</span> <span class="fl">0.304</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> .<span class="dv">7</span><span class="sc">*</span>K</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    F1, F2,</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    P<span class="fl">.12</span>, P<span class="fl">.22</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  ,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>,<span class="at">byrow=</span>T)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>##       [,1]  [,2]
+## [1,] 0.304 0.304
+## [2,] 0.344 0.767</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Step 2. Build the matrix Nt (initial abundance matrix)</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> <span class="fu">c</span>((Nt<span class="sc">/</span><span class="dv">2</span>),(Nt<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Step 3. Matrix multiplication for Nt+1</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>Year1 <span class="ot">&lt;-</span> A <span class="sc">%*%</span> Nt  <span class="co"># matrix multiplication!</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>Year1</span></code></pre></div>
+<pre><code>##          [,1]
+## [1,]  56.6048
+## [2,] 103.4341</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Step 4. Create a new variable to hold future values of N</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NA</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">2</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Step 5. Create a for loop to iteratively calculate N</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>N[<span class="dv">1</span>,] <span class="ot">&lt;-</span> Nt</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">20</span>){</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  N[i,] <span class="ot">&lt;-</span> A <span class="sc">%*%</span> N[i<span class="dv">-1</span>,]</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="RG3.1_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Your turn: Add a hypothetical 3rd stage to the model, with:</p>
+<p><span class="math display">\[\begin{bmatrix} N_1\\
+N_2 \\
+N_3 \\
+\end{bmatrix}_{t+1} = \begin{bmatrix}F_1 &amp; F_2 &amp; F_3\\
+P_{1 \to 2} &amp; P_{2 \to 2} &amp; P_{3 \to 2}\\
+P_{1 \to 3} &amp; P_{2 \to 3} &amp; P_{3 \to 3}\\
+\end{bmatrix} \cdot \begin{bmatrix}N_1\\
+N_2\\
+N_3\\
+\end{bmatrix}_t\]</span> In this model, continue to use the same values
+as above for <span class="math inline">\(F_1\)</span>, <span
+class="math inline">\(F_2\)</span>, <span class="math inline">\(P_{1 \to
+2}\)</span>, and <span class="math inline">\(P_{2 \to 2}\)</span>. Set
+<span class="math inline">\(P_{3 \to 2}\)</span> = 0 (because the owls
+can’t go back a stage) and <span class="math inline">\(P_{1 \to
+3}\)</span> = 0 (because the owls can’t skip a stage). Set <span
+class="math inline">\(P_{2 \to 3}\)</span> = 0.1, <span
+class="math inline">\(P_{3 \to 3}\)</span> = 0.1, and <span
+class="math inline">\(F_3\)</span> = 0.304.</p>
+<p><img src="RG3.1_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+6. Can you explain why increased correlation in sensitivity to
+environmental variation among spotted owl populations can place the
+entire metapopulation at increased risk of extinction (1st paragraph on
+page 778)?</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Can you explain why the formula on page 778:</li>
 </ol>
-</div>
-<div id="when-will-we-have-time-to-discuss-and-work-on-this"
-class="section level2">
-<h2>When will we have time to discuss and work on this?</h2>
-<ul>
-<li><p>We will first look over the assignment in class Thursday
-01-12-2022. For class Thursday 08-12-2022, I will have a list of
-instructions to complete by class that day, and on Friday 08-12-2022 I
-will have a general template you can follow for what a cheat sheet might
-look like. For class Thursday 15-12-2022, I will have completed a
-template you can follow, and will include some more instructions for
-what you should have finished that day.</p></li>
-<li><p>The entire class period 22-12-2022 will be remote / online, and
-will be devoted to working on your course project. We will sign into a
-Zoom session, and we will work on our cheat sheet during the remote
-course session (I am not sure yet how to organize this, but I am working
-on it).</p></li>
-<li><p>The assignment will be due by the final day of class,
-02-02-2023.</p></li>
-</ul>
-</div>
-<div
-id="is-there-a-template-i-can-look-at-so-i-can-get-started-on-the-assignment"
-class="section level2">
-<h2>Is there a template I can look at so I can get started on the
-assignment?</h2>
-<ul>
-<li><p>I will create a Draft Template by Friday 09-12-2022. I will
-create a Final Template by 15-12-2022. I will update with a more
-detailed list of instructions by 08-12-2022. For now, here is a
-<em>very</em> insufficient example. <img src="media/screen-5.jpg"
-style="width:100.0%"
-alt="Very insufficient first look at a Draft CModel Cheat Sheet" /></p></li>
-<li><p>It will be in the style of R Cheat Sheets, such as the one seen
-<a href="./media/bayesplot.pdf"><strong>here</strong></a>.</p></li>
-</ul>
-</div>
-<div id="what-if-i-want-to-get-started-now" class="section level2">
-<h2>What if I want to get started now?</h2>
-<ul>
-<li><p>I would advise to begin by creating a simulation in R of your
-model of choice. Contact me if you would like to choose a model and
-begin.</p></li>
-<li><p>Candidate models so far are: <img src="media/screen-6.jpg"
-style="width:100.0%"
-alt="Candidate models we have discussed so far" /></p></li>
-</ul>
+<p><span class="math display">\[ N_i(t+1) = N_i(t)R_i(t) -
+\sum_{j=1}^{n} m_{ij}N_i + \sum_{i=1}^{n} m_{ji}N_j\]</span></p>
+<p>represents a metapopulation model? Please include a definition for
+metapopulation, with a citation (using <a
+href="https://scholar.google.com">Google Scholar</a> (perhaps <a
+href="./media/Hanski_Gilpin_1991.pdf">Hanski &amp; Gilpin 1991</a>).</p>
+<ol start="8" style="list-style-type: decimal">
+<li><p>The authors believe there is evidence that (i) population
+locations are correlated in the amount of total annual rainfall and (ii)
+that this environmental property impacts fecundity. Please explain their
+analysis to justify this.</p></li>
+<li><p>Please look carefully at Figure 9 - what is on the x- and y-axis?
+How do they support this statement: a correlation in response of
+populations to rainfall makes spotted owls <em>more likely</em> to
+become extinct.</p></li>
+<li><p>Compare Figure 9 to Figure 8 - is metapopulation structure
+important to understand Spotted owl extinction risk?</p></li>
+</ol>
 </div>
 
 
