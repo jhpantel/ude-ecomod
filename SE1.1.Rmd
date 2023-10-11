@@ -207,7 +207,7 @@ ggplot(pressure, aes(x=temperature, y=pressure)) +
 
 13. Make your own plot of the following data:
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), out.width="50%", echo=TRUE}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), out.width="50%"}
 # We quickly generate some fake data
 data1 <- rnorm(57,245,15)
 data2 <- rnorm(57,data1-150,11)

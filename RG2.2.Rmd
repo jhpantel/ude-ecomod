@@ -1,5 +1,5 @@
 ---
-title: "Week 4 Reading Guidelines"
+title: "Module 2.2 Reading Guidelines"
 author: "Jelena H. Pantel"
 institute: "University of Duisburg-Essen"
 date: "`r file.mtime(knitr::current_input())`"
@@ -9,6 +9,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+## WARNING!
+This material is for the 2022 class, and has not been updated yet. This is not a final version!
 
 ## Notes
 Note 1. This is the reading guide for Otto & Day Chapter 3, Sections 3.4 and 3.6.
