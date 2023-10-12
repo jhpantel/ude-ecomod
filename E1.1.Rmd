@@ -55,7 +55,7 @@ sqrt(67)
 # 12-10-2023
 a <- c(5,13,2,NA)
 mean(a)
-?mean
+?mean # Sorry for the typo, this should read as ?mean - I am having some trouble with R Markdown
 mean(a,na.rm=TRUE)
 ```
 
@@ -71,10 +71,9 @@ You can save all of your work during this class using .R scripts.
 
 + On line 19, delete the existing code line and insert the following:
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), echo=FALSE}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), echo=TRUE, eval=FALSE}
 a <- c(5,13,2,NA)
 mean(a)
-?mean
 mean(a,na.rm=TRUE)
 ```
 
@@ -86,7 +85,8 @@ mean(a,na.rm=TRUE)
 
 + Let's add 1 more code chunk below the existing code chunk. In RStudio, go to 'Code, Insert Chunk'. Paste the following code inside the code chunk:
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), out.width="50%"}
+a <- c(5,13,2,NA)
 plot(1:4,a,ylim=c(0,15))
 ```
 
