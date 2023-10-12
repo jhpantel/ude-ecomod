@@ -48,9 +48,9 @@ sqrt(67)
 
 ## Exercise 2. Creating and saving an R script
 
-5. R scripts: In RStudio, go to *File, New File, R script'. A new document will appear. This is ultimately an open text document where you can write, save, and execute R code. Type the following into the R script:
+5. R scripts: In RStudio, go to *File, New File, R script*. A new document will appear. This is ultimately an open text document where you can write, save, and execute R code. Type the following into the R script:
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), eval=FALSE}
 # A new R Script by YOUR NAME
 # 12-10-2023
 a <- c(5,13,2,NA)
@@ -59,17 +59,26 @@ mean(a)
 mean(a,na.rm=TRUE)
 ```
 
-Create a folder on your local hard drive dedicated to this course. You can save the R Script there. For example, I saved it as `Users/jhpantel/Documents/EcoMod/script1.R`. When I navigate to that folder, I can see the R script in the file directory. Close the file in RStudio (you can click the 'X' next to the file name in the top left of the RStudio file pane). Go to the bottom right pane, click on the 'Files' tab, and navigate to the directory where you saved your *script.R* file. Make sure you can open the file from here (by clicking on the file).
+Create a folder on your local hard drive dedicated to this course. You can save the R Script there. Name the file "script1.R", and save it in the folder dedicated to this class. For example, my file is located here: `Users/jhpantel/Documents/EcoMod/script1.R`. When I navigate to that folder, I can see the R script in the file directory. Close the file in RStudio (you can click the 'X' next to the file name in the top left of the RStudio file pane). Go to the bottom right pane, click on the 'Files' tab, and navigate to the directory where you saved your *script.R* file. Make sure you can open the file from here (by clicking on the file).
 
 You can save all of your work during this class using .R scripts.
 
 6. R Markdown
 
-+ In RStudio, go to *File, New File, R Markdown*. For *Title*, enter *script.r*. You can enter your name in *Author* and today's date for *Date*. Keep everything set to the default selection, and click 'OK'.
++ In RStudio, go to *File, New File, R Markdown*. For *Title*, enter *script1*. You can enter your name in *Author* and today's date for *Date* (unless you do not have a *Date* field, then you can skip this). Keep everything set to the default selection, and click 'OK'.
 
 + Go to Line 18 of this R Markdown file - delete ` cars`
 
-+ On line 19, paste the same code from #5 above, and delete everything else from Line #22 onwards ("## Including plots" etc).
++ On line 19, delete the existing code line and insert the following:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), echo=FALSE}
+a <- c(5,13,2,NA)
+mean(a)
+?mean
+mean(a,na.rm=TRUE)
+```
+
++ Then delete everything else from Line #22 onwards ("## Including plots" etc).
 
 + Click on the green right-facing arrow ("play") button to the right of the red text - this will execute the code in this section (this section is referred to as a "code chunk"). You can see the output below the code chunk.
 
@@ -101,9 +110,9 @@ my_fun(17,3)
 
 Please choose two numbers for *x* and *y*, and use them to execute `my_fun(x,y)`.
 
-8. Your turn! Write a function called `times_seven()` - it should take a single argument, multiply that value by 7, and return the new value.
+8. Your turn! Write a function called `times_seven` - it should take a single argument, multiply that value by 7, and return the new value.
 
-9. Write a function called `n1_subtract_n2()` - it should take two arguments, and should subtract the second number from the first number, and return that value
+9. Write a function called `n1_subtract_n2` - it should take two arguments, and should subtract the second number from the first number, and return that value
 
 ## Exercise 4. Working with for-loops
 

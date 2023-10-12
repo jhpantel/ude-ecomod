@@ -326,7 +326,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Exercise 1.1 - Introduction to R in
 Ecology, Part 1</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-11 11:56:33.409349</h4>
+<h4 class="date">2023-10-12 18:44:32.926426</h4>
 
 </div>
 
@@ -364,41 +364,46 @@ Finally, use <code>b[3] &lt;- 16</code> to change the 3rd value of
 class="section level2">
 <h2>Exercise 2. Creating and saving an R script</h2>
 <ol start="5" style="list-style-type: decimal">
-<li>R scripts: In RStudio, go to *File, New File, R script’. A new
-document will appear. This is ultimately an open text document where you
-can write, save, and execute R code. Type the following into the R
+<li>R scripts: In RStudio, go to <em>File, New File, R script</em>. A
+new document will appear. This is ultimately an open text document where
+you can write, save, and execute R code. Type the following into the R
 script:</li>
 </ol>
 <pre class="r"><code># A new R Script by YOUR NAME 12-10-2023
 a &lt;- c(5, 13, 2, NA)
-mean(a)</code></pre>
-<pre><code>## [1] NA</code></pre>
-<pre class="r"><code>`?`(mean)
+mean(a)
+`?`(mean)
 mean(a, na.rm = TRUE)</code></pre>
-<pre><code>## [1] 6.666667</code></pre>
 <p>Create a folder on your local hard drive dedicated to this course.
-You can save the R Script there. For example, I saved it as
-<code>Users/jhpantel/Documents/EcoMod/script1.R</code>. When I navigate
-to that folder, I can see the R script in the file directory. Close the
-file in RStudio (you can click the ‘X’ next to the file name in the top
-left of the RStudio file pane). Go to the bottom right pane, click on
-the ‘Files’ tab, and navigate to the directory where you saved your
-<em>script.R</em> file. Make sure you can open the file from here (by
-clicking on the file).</p>
+You can save the R Script there. Name the file “script1.R”, and save it
+in the folder dedicated to this class. For example, my file is located
+here: <code>Users/jhpantel/Documents/EcoMod/script1.R</code>. When I
+navigate to that folder, I can see the R script in the file directory.
+Close the file in RStudio (you can click the ‘X’ next to the file name
+in the top left of the RStudio file pane). Go to the bottom right pane,
+click on the ‘Files’ tab, and navigate to the directory where you saved
+your <em>script.R</em> file. Make sure you can open the file from here
+(by clicking on the file).</p>
 <p>You can save all of your work during this class using .R scripts.</p>
 <ol start="6" style="list-style-type: decimal">
 <li>R Markdown</li>
 </ol>
 <ul>
 <li><p>In RStudio, go to <em>File, New File, R Markdown</em>. For
-<em>Title</em>, enter <em>script.r</em>. You can enter your name in
-<em>Author</em> and today’s date for <em>Date</em>. Keep everything set
+<em>Title</em>, enter <em>script1</em>. You can enter your name in
+<em>Author</em> and today’s date for <em>Date</em> (unless you do not
+have a <em>Date</em> field, then you can skip this). Keep everything set
 to the default selection, and click ‘OK’.</p></li>
 <li><p>Go to Line 18 of this R Markdown file - delete
 <code>cars</code></p></li>
-<li><p>On line 19, paste the same code from #5 above, and delete
-everything else from Line #22 onwards (“## Including plots”
-etc).</p></li>
+<li><p>On line 19, delete the existing code line and insert the
+following:</p></li>
+</ul>
+<pre><code>## [1] NA</code></pre>
+<pre><code>## [1] 6.666667</code></pre>
+<ul>
+<li><p>Then delete everything else from Line #22 onwards (“## Including
+plots” etc).</p></li>
 <li><p>Click on the green right-facing arrow (“play”) button to the
 right of the red text - this will execute the code in this section (this
 section is referred to as a “code chunk”). You can see the output below
@@ -409,7 +414,7 @@ RStudio, go to ‘Code, Insert Chunk’. Paste the following code inside the
 code chunk:</p></li>
 </ul>
 <pre class="r"><code>plot(1:4, a, ylim = c(0, 15))</code></pre>
-<p><img src="E1.1_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="E1.1_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ul>
 <li><p>Finally, see how you can use RMarkdown to make attractive
 code-based documents. Click on the small blue yarn ball - you will
@@ -447,10 +452,10 @@ my_fun(17, 3)</code></pre>
 <p>Please choose two numbers for <em>x</em> and <em>y</em>, and use them
 to execute <code>my_fun(x,y)</code>.</p>
 <ol start="8" style="list-style-type: decimal">
-<li><p>Your turn! Write a function called <code>times_seven()</code> -
-it should take a single argument, multiply that value by 7, and return
-the new value.</p></li>
-<li><p>Write a function called <code>n1_subtract_n2()</code> - it should
+<li><p>Your turn! Write a function called <code>times_seven</code> - it
+should take a single argument, multiply that value by 7, and return the
+new value.</p></li>
+<li><p>Write a function called <code>n1_subtract_n2</code> - it should
 take two arguments, and should subtract the second number from the first
 number, and return that value</p></li>
 </ol>
@@ -520,13 +525,13 @@ the plot command that change the plot visualization. Here we
 progressively alter arguments to <code>plot</code></li>
 </ol>
 <pre class="r"><code>plot(pressure$temperature, pressure$pressure)</code></pre>
-<p><img src="E1.1_files/figure-html/unnamed-chunk-12-1.png" width="50%" /></p>
-<pre class="r"><code>plot(pressure$temperature, pressure$pressure, xlab = &quot;temperature&quot;,
-    ylab = &quot;pressure&quot;)</code></pre>
 <p><img src="E1.1_files/figure-html/unnamed-chunk-13-1.png" width="50%" /></p>
 <pre class="r"><code>plot(pressure$temperature, pressure$pressure, xlab = &quot;temperature&quot;,
-    ylab = &quot;pressure&quot;, pch = 19, col = &quot;orange&quot;)</code></pre>
+    ylab = &quot;pressure&quot;)</code></pre>
 <p><img src="E1.1_files/figure-html/unnamed-chunk-14-1.png" width="50%" /></p>
+<pre class="r"><code>plot(pressure$temperature, pressure$pressure, xlab = &quot;temperature&quot;,
+    ylab = &quot;pressure&quot;, pch = 19, col = &quot;orange&quot;)</code></pre>
+<p><img src="E1.1_files/figure-html/unnamed-chunk-15-1.png" width="50%" /></p>
 <ol start="12" style="list-style-type: decimal">
 <li>We can also use the plotting library (its really an entire plotting
 language embedded inside R) <code>ggplot2</code>. There are a few, more
@@ -541,11 +546,11 @@ scatterplot:</li>
 # the x and y values from that dataframe, and use
 # geom_point() to draw points
 ggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()</code></pre>
-<p><img src="E1.1_files/figure-html/unnamed-chunk-15-1.png" width="50%" /></p>
+<p><img src="E1.1_files/figure-html/unnamed-chunk-16-1.png" width="50%" /></p>
 <pre class="r"><code># Change the point size, and shape
 ggplot(pressure, aes(x = temperature, y = pressure)) + geom_point(size = 2,
     shape = 23, colour = &quot;orange&quot;, fill = &quot;skyblue&quot;)</code></pre>
-<p><img src="E1.1_files/figure-html/unnamed-chunk-15-2.png" width="50%" /></p>
+<p><img src="E1.1_files/figure-html/unnamed-chunk-16-2.png" width="50%" /></p>
 <ol start="13" style="list-style-type: decimal">
 <li>Make your own plot of the following data:</li>
 </ol>
@@ -553,7 +558,7 @@ ggplot(pressure, aes(x = temperature, y = pressure)) + geom_point(size = 2,
 data1 &lt;- rnorm(57, 245, 15)
 data2 &lt;- rnorm(57, data1 - 150, 11)
 plot(data1, data2, xlab = &quot;Variable 1&quot;, ylab = &quot;Variable 2&quot;)</code></pre>
-<p><img src="E1.1_files/figure-html/unnamed-chunk-16-1.png" width="50%" /></p>
+<p><img src="E1.1_files/figure-html/unnamed-chunk-17-1.png" width="50%" /></p>
 </div>
 
 
