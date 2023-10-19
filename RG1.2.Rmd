@@ -10,9 +10,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## WARNING!
-This material is for the 2022 class, and has not been updated yet. This is not a final version!
-
 ## Notes
 Note 1. I *strongly* recommend to read Jackson et al. 2000 first. The Otto & Day Chapter is from a textbook where you learn to construct models. We will not be creating our own new models, as this course is more of a survey course. Don't let Otto & Day Chapter 2 stop your progress, get through it and we'll discuss in class! If you are struggling with Otto & Day, read only Section 2.1, 2.2, 2.3, 2.4.
 
