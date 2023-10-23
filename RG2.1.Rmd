@@ -10,9 +10,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## WARNING!
-This material is for the 2022 class, and has not been updated yet. This is not a final version!
-
 ## Notes
 Note 1. This is the reading guide for Otto & Day Chapter 3, Sections 3.1 and 3.2.
 
