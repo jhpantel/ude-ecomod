@@ -99,7 +99,7 @@ And substitute the *new* value of R we derived above:
 
 $$ n(t+1) = [(1+r_d) + \frac{-r_d}{K}n(t)]n(t) = n(t) + r_dn(t) + r_dn(t)(\frac{-n(t)}{K}) = n(t) + r_dn(t)(1-\frac{n(t)}{K})$$
 
-**4. Be prepared to repeat what's written in the Box under equation 3.5b when I ask "what does the *logistic growth model assume about how population growth rate changes with increasing population size?"**
+**4. Be prepared to repeat what's written in the Box under equation 3.5b when I ask "what does the logistic growth model assume about how population growth rate changes with increasing population size?"**
 
 The logistic model assumes that the rate of change of a variable decreases linearly as the variable increases in value, with no change occurring if the variable is at the carrying capacity *K*.
 

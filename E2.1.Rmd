@@ -3,8 +3,8 @@ title: "Exercise 2.1 - Survey of ecological models, Part 1"
 author: "Jelena H. Pantel"
 date: '`r file.mtime(knitr::current_input())`'
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 institute: "University of Duisburg-Essen"
 ---
 
@@ -78,7 +78,7 @@ mice <- function(Nt,d,b,m){
 ```
 4. I would like you to create the following plot of mouse population size (N) over time, using the following values for parameters: *d* = 0.7, *b* = 3, *m* = 4, $N_t$ = 42.
 
-```{r echo=FALSE}
+```{r echo=FALSE,out.width="50%"}
 ## Step 1. Write values for the parameters in the model (and initial values of state variables)
 # d - the *fraction* of mice in yard eaten by cat / day --> 0-1
 d <- .7
@@ -127,7 +127,7 @@ To do this, you should approach the problem in a few steps:
 
 I demonstrate how this can work below. I use a different function as an example, $P(t+1) = \frac{bP(t)}{1+cP(t)}$:
 
-```{r}
+```{r,out.width="50%"}
 # Step 1. Example parameters
 b <- 1.7
 c <- .15
@@ -162,7 +162,7 @@ ggplot2::ggplot(dat,aes(time,P)) + geom_point()
 
 ## Exercise 3. Use functions, for loops, and plotting skills to run simulation of exponential population growth
 
-5. Please use the following simulation for exponential population growth in discrete time, $ n_{t+1} = Rn(t)$, to create the below plot of population size (n) over time (t). Use the following values for parameters: *R* = 1.7, $N_0$ = 42. Evaluate this for 100 time steps.
+5. I show below a simulation for exponential population growth in discrete time, $ n_{t+1} = Rn(t)$. I created the below plot of population size (n) over time (t) using the following values for parameters: *R* = 1.7, $N_0$ = 42, evaluated for 100 time steps. Please create a plot for parameters: *R* = 0.7, $N_0$ = 1042.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
 ## Step 1. Write values for the parameters in the model (and initial values of state variables)
@@ -202,8 +202,48 @@ library(ggplot2)
 ggplot2::ggplot(dat,aes(time,N)) + geom_point()
 ```
 
+6. Please modify the simulation in #5 to create a simulation of the logistic growth model in discrete time (equation 3.5a in Otto & Day Chapter 3), using parameter values $n_0 = 4$, K = 1400, *r* = 1.21, evaluated for 100 time steps:
 
+$$n_{t+1} = n(t) + rn(t)(1 - \frac{n(t)}{K})$$
+Hint: You can use the following formula:
 
+```{r}
+disc_log <- function(r,Nt=N0,K){
+  Nt1 <- Nt + r*Nt*(1-Nt/K)
+  return(Nt1)
+}
+```
 
+```{r echo=FALSE,out.width="50%"}
+# Step 1. parameters
+r <- 1.21
+K <- 1400
+N0 <- 4
 
+# Step 2. equation function
+disc_log <- function(r,Nt=N0,K){
+  Nt1 <- Nt + r*Nt*(1-Nt/K)
+  return(Nt1)
+}
 
+# Step 3. Make sure the function works
+Nt1 <- disc_log(r,N0,K)
+
+# Step 4. Create a new variable to hold future values of N
+N <- rep(NA,100)
+
+# Step 5. Create a for loop to iteratively calculate N
+N[1] <- N0
+for(i in 2:100){
+  N[i] <- disc_log(r,N0,K)
+  N0 <- N[i]
+}
+
+# Step 6. Plot N over time
+plot(N,xlab="time",ylab="N_mice",pch=19,col="black")
+dat <- as.data.frame(N)
+dat$time <- as.numeric(rownames(dat))
+
+library(ggplot2)
+ggplot2::ggplot(dat,aes(time,N)) + geom_point()
+```

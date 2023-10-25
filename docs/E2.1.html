@@ -326,7 +326,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Exercise 2.1 - Survey of ecological models,
 Part 1</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-25 18:54:24.209694</h4>
+<h4 class="date">2023-10-25 19:47:39.876632</h4>
 
 </div>
 
@@ -415,7 +415,7 @@ size (N) over time, using the following values for parameters:
 <em>d</em> = 0.7, <em>b</em> = 3, <em>m</em> = 4, <span
 class="math inline">\(N_t\)</span> = 42.</li>
 </ol>
-<p><img src="E2.1_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<p><img src="E2.1_files/figure-html/unnamed-chunk-7-1.png" width="50%" />
 To do this, you should approach the problem in a few steps:</p>
 <ul>
 <li>Step 1. Save <em>d</em>, <em>b</em>, <em>m</em>, and <span
@@ -462,12 +462,12 @@ for(i in 2:100){
 
 # Step 6. Plot P over time
 plot(P,xlab=&quot;time&quot;,ylab=&quot;P&quot;,pch=19,col=&quot;black&quot;)</code></pre>
-<p><img src="E2.1_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="E2.1_files/figure-html/unnamed-chunk-8-1.png" width="50%" /></p>
 <pre class="r"><code>dat &lt;- as.data.frame(P)
 dat$time &lt;- as.numeric(rownames(dat))
 library(ggplot2)
 ggplot2::ggplot(dat,aes(time,P)) + geom_point()</code></pre>
-<p><img src="E2.1_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><img src="E2.1_files/figure-html/unnamed-chunk-8-2.png" width="50%" /></p>
 </div>
 <div
 id="exercise-3.-use-functions-for-loops-and-plotting-skills-to-run-simulation-of-exponential-population-growth"
@@ -475,11 +475,12 @@ class="section level2">
 <h2>Exercise 3. Use functions, for loops, and plotting skills to run
 simulation of exponential population growth</h2>
 <ol start="5" style="list-style-type: decimal">
-<li>Please use the following simulation for exponential population
-growth in discrete time, $ n_{t+1} = Rn(t)$, to create the below plot of
-population size (n) over time (t). Use the following values for
+<li>I show below a simulation for exponential population growth in
+discrete time, $ n_{t+1} = Rn(t)$. I created the below plot of
+population size (n) over time (t) using the following values for
 parameters: <em>R</em> = 1.7, <span class="math inline">\(N_0\)</span> =
-42. Evaluate this for 100 time steps.</li>
+42, evaluated for 100 time steps. Please create a plot for parameters:
+<em>R</em> = 0.7, <span class="math inline">\(N_0\)</span> = 1042.</li>
 </ol>
 <pre class="r"><code>## Step 1. Write values for the parameters in the model
 ## (and initial values of state variables) R - the
@@ -512,6 +513,20 @@ for (i in 1:100) {
     N0 &lt;- Nt1
 }</code></pre>
 <p><img src="E2.1_files/figure-html/unnamed-chunk-10-1.png" width="50%" /><img src="E2.1_files/figure-html/unnamed-chunk-10-2.png" width="50%" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li>Please modify the simulation in #5 to create a simulation of the
+logistic growth model in discrete time (equation 3.5a in Otto &amp; Day
+Chapter 3), using parameter values <span class="math inline">\(n_0 =
+4\)</span>, K = 1400, <em>r</em> = 1.21, evaluated for 100 time
+steps:</li>
+</ol>
+<p><span class="math display">\[n_{t+1} = n(t) + rn(t)(1 -
+\frac{n(t)}{K})\]</span> Hint: You can use the following formula:</p>
+<pre class="r"><code>disc_log &lt;- function(r,Nt,K){
+  Nt1 &lt;- Nt + r*Nt*(1-Nt/K)
+  return(Nt1)
+}</code></pre>
+<p><img src="E2.1_files/figure-html/unnamed-chunk-12-1.png" width="50%" /><img src="E2.1_files/figure-html/unnamed-chunk-12-2.png" width="50%" /></p>
 </div>
 
 
