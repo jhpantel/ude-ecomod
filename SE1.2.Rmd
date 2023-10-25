@@ -1,10 +1,10 @@
 ---
-title: "Exercise 2.1 - Survey of ecological models, Part 1"
+title: "Exercise 1.2 - Introduction to R in Ecology, Part 2"
 author: "Jelena H. Pantel"
 date: '`r file.mtime(knitr::current_input())`'
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 institute: "University of Duisburg-Essen"
 ---
 
@@ -31,7 +31,21 @@ my_fun(17,3)
 
 Please choose two numbers for *x* and *y*, and use them to execute `my_fun(x,y)`.
 
+**Solution**
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+my_fun(25,9)
+```
+
 2. Your turn! Write a function called `times_seven` - it should take a single argument, multiply that value by 7, and return the new value.
+
+**Solution**
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+times_seven <- function(x){
+  z <- x*7
+  return(z)
+}
+times_seven(17)
+```
 
 3. See the `for` loops I have written below:
 
@@ -66,6 +80,15 @@ for(i in 1:length(b)){
 
 **Your turn** - For each of three values of volume, `v <- c(1.6,3,8)`, calculate the *mass*, where `m <- 2.65 * volume ^ 0.9`. Please calculate this in a loop. You can print the values within the loop.
 
+**Solution**
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+v <- c(1.6,3,8)
+for(i in 1:length(v)){
+  m <- 2.65 * v[i] ^ 0.9
+  print(m)
+}
+```
+
 ## Exercise 2. Use functions, for loops, and plotting skills to run simulation of mice in the yard
 
 I built a function to calculate the number of mice in a yard using equation 2.4 from [__Otto & Day Ch2__](./r2_OttoDay_Ch2.pdf):
@@ -76,9 +99,10 @@ mice <- function(Nt,d,b,m){
   return(Nt1)
 }
 ```
-4. I would like you to create the following plot of mouse population size (N) over time, using the following values for parameters: *d* = 0.7, *b* = 3, *m* = 4, $N_t$ = 42.
+I would like you to create the following plot of mouse population size (N) over time, using the following values for parameters: *d* = 0.7, *b* = 3, *m* = 4, $N_t$ = 42.
 
-```{r echo=FALSE,out.width="50%"}
+**Solution**
+```{r, tidy=TRUE, tidy.opts=list(width.cutoff=60), out.width="50%"}
 ## Step 1. Write values for the parameters in the model (and initial values of state variables)
 # d - the *fraction* of mice in yard eaten by cat / day --> 0-1
 d <- .7
@@ -113,8 +137,9 @@ for(i in 1:100){
 plot(N,xlab="time",ylab="N_mice",pch=19,col="black")
 dat <- as.data.frame(N)
 dat$time <- as.numeric(rownames(dat))
-#library(ggplot2)
-#ggplot2::ggplot(dat,aes(time,N)) + geom_point()
+
+library(ggplot2)
+ggplot2::ggplot(dat,aes(time,N)) + geom_point()
 ```
 To do this, you should approach the problem in a few steps:
 
@@ -127,7 +152,7 @@ To do this, you should approach the problem in a few steps:
 
 I demonstrate how this can work below. I use a different function as an example, $P(t+1) = \frac{bP(t)}{1+cP(t)}$:
 
-```{r,out.width="50%"}
+```{r}
 # Step 1. Example parameters
 b <- 1.7
 c <- .15
@@ -158,113 +183,4 @@ dat <- as.data.frame(P)
 dat$time <- as.numeric(rownames(dat))
 library(ggplot2)
 ggplot2::ggplot(dat,aes(time,P)) + geom_point()
-```
-
-## Exercise 3. Use functions, for loops, and plotting skills to run simulation of exponential population growth
-
-I show below a simulation for exponential population growth in discrete time, $$ n_{t+1} = Rn(t)$$
-
-I created the below plot of population size (n) over time (t) using the following values for parameters: *R* = 1.7, $N_0$ = 42, evaluated for 100 time steps.
-
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
-## Step 1. Write values for the parameters in the model (and initial values of state variables)
-# R - the population growth rate, expressed as the number of individuals that replace an individual in the population (where R=1 is each individual replacing itself, and therefore no change in population size over time) --> N (-infinity - infinity)
-R <- 1.7
-# N0 - the initial population size
-N0 <- 42
-
-## Step 2. Write a function that will calculate values of number of individuals from one time step to the next.
-disc_exp <- function(R,N0){
-  Nt1 <- R*N0
-  return(Nt1)
-}
-
-## Step 3. Call the function
-#disc_exp(R,N0)
-
-## Step 4. Follow the population size over some time intervals
-# N - a variable where we record the population size over time
-N <- N0
-
-for(i in 1:100){
-  Nt1 <- disc_exp(R,N0)
-  N <- c(N,Nt1)
-  N0 <- Nt1
-}
-```
-
-```{r echo=FALSE,out.width="50%"}
-#N
-#plot(N)
-plot(N,xlab="time",ylab="N_mice",pch=19,col="black")
-dat <- as.data.frame(N)
-dat$time <- as.numeric(rownames(dat))
-
-library(ggplot2)
-ggplot2::ggplot(dat,aes(time,N)) + geom_point()
-```
-
-5. Please create a plot for parameters: *R* = 0.7, $N_0$ = 1042.
-
-```{r eval=FALSE,echo=FALSE,out.width="50%"}
-R <- 0.7
-N0 <- 1042
-N <- N0
-for(i in 1:100){
-  Nt1 <- disc_exp(R,N0)
-  N <- c(N,Nt1)
-  N0 <- Nt1
-}
-plot(N,xlab="time",ylab="N_mice",pch=19,col="black")
-dat <- as.data.frame(N)
-dat$time <- as.numeric(rownames(dat))
-
-library(ggplot2)
-ggplot2::ggplot(dat,aes(time,N)) + geom_point()
-```
-
-6. Please modify the simulation in #5 to create a simulation of the logistic growth model in discrete time (equation 3.5a in Otto & Day Chapter 3), using parameter values $n_0 = 4$, K = 1400, *r* = 1.21, evaluated for 100 time steps:
-
-$$n_{t+1} = n(t) + rn(t)(1 - \frac{n(t)}{K})$$
-Hint: You can use the following formula:
-
-```{r}
-disc_log <- function(r,Nt=N0,K){
-  Nt1 <- Nt + r*Nt*(1-Nt/K)
-  return(Nt1)
-}
-```
-
-```{r echo=FALSE,out.width="50%"}
-# Step 1. parameters
-r <- 1.21
-K <- 1400
-N0 <- 4
-
-# Step 2. equation function
-disc_log <- function(r,Nt=N0,K){
-  Nt1 <- Nt + r*Nt*(1-Nt/K)
-  return(Nt1)
-}
-
-# Step 3. Make sure the function works
-Nt1 <- disc_log(r,N0,K)
-
-# Step 4. Create a new variable to hold future values of N
-N <- rep(NA,100)
-
-# Step 5. Create a for loop to iteratively calculate N
-N[1] <- N0
-for(i in 2:100){
-  N[i] <- disc_log(r,N0,K)
-  N0 <- N[i]
-}
-
-# Step 6. Plot N over time
-plot(N,xlab="time",ylab="N_mice",pch=19,col="black")
-dat <- as.data.frame(N)
-dat$time <- as.numeric(rownames(dat))
-
-library(ggplot2)
-ggplot2::ggplot(dat,aes(time,N)) + geom_point()
 ```

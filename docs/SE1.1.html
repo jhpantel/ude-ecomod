@@ -326,7 +326,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Exercise 1.1 - Introduction to R in
 Ecology, Part 1</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-11 13:38:12.774418</h4>
+<h4 class="date">2023-10-25 20:17:49.581761</h4>
 
 </div>
 
@@ -543,12 +543,12 @@ loop. You can print the values within the loop.</li>
 </ol>
 <pre class="r"><code>v &lt;- c(1.6, 3, 8)
 for (i in 1:length(v)) {
-    m &lt;- 2.65 * v^0.9
+    m &lt;- 2.65 * v[i]^0.9
     print(m)
 }</code></pre>
-<pre><code>## [1]  4.045329  7.122870 17.219751
-## [1]  4.045329  7.122870 17.219751
-## [1]  4.045329  7.122870 17.219751</code></pre>
+<pre><code>## [1] 4.045329
+## [1] 7.12287
+## [1] 17.21975</code></pre>
 </div>
 <div id="exercise-5.-make-a-lovely-plot" class="section level2">
 <h2>Exercise 5. Make a lovely plot!</h2>
