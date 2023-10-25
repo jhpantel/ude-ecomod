@@ -166,7 +166,7 @@ I show below a simulation for exponential population growth in discrete time, $$
 
 I created the below plot of population size (n) over time (t) using the following values for parameters: *R* = 1.7, $N_0$ = 42, evaluated for 100 time steps.
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%"}
 ## Step 1. Write values for the parameters in the model (and initial values of state variables)
 # R - the population growth rate, expressed as the number of individuals that replace an individual in the population (where R=1 is each individual replacing itself, and therefore no change in population size over time) --> N (-infinity - infinity)
 R <- 1.7
@@ -180,22 +180,19 @@ disc_exp <- function(R,N0){
 }
 
 ## Step 3. Call the function
-#disc_exp(R,N0)
+disc_exp(R,N0)
 
-## Step 4. Follow the population size over some time intervals
-# N - a variable where we record the population size over time
-N <- N0
+# Step 4. Create a new variable to hold future values of N
+N <- rep(NA,100)
 
-for(i in 1:100){
-  Nt1 <- disc_exp(R,N0)
-  N <- c(N,Nt1)
-  N0 <- Nt1
+# Step 5. Create a for loop to iteratively calculate N
+N[1] <- N0
+for(i in 2:100){
+  N[i] <- disc_exp(R,N0)
+  N0 <- N[i]
 }
-```
 
-```{r echo=FALSE,out.width="50%"}
-#N
-#plot(N)
+# Step 6. Plot N over time
 plot(N,xlab="time",ylab="N_mice",pch=19,col="black")
 dat <- as.data.frame(N)
 dat$time <- as.numeric(rownames(dat))

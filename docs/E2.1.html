@@ -326,7 +326,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Exercise 2.1 - Survey of ecological models,
 Part 1</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-25 20:11:48.983217</h4>
+<h4 class="date">2023-10-25 20:40:35.030415</h4>
 
 </div>
 
@@ -499,19 +499,28 @@ disc_exp &lt;- function(R, N0) {
     return(Nt1)
 }
 
-## Step 3. Call the function disc_exp(R,N0)
+## Step 3. Call the function
+disc_exp(R, N0)</code></pre>
+<pre><code>## [1] 71.4</code></pre>
+<pre class="r"><code># Step 4. Create a new variable to hold future values of P
+N &lt;- rep(NA, 100)
 
-## Step 4. Follow the population size over some time
-## intervals N - a variable where we record the population
-## size over time
-N &lt;- N0
+# Step 5. Create a for loop to iteratively calculate P
+N[1] &lt;- N0
+for (i in 2:100) {
+    N[i] &lt;- disc_exp(R, N0)
+    N0 &lt;- N[i]
+}
 
-for (i in 1:100) {
-    Nt1 &lt;- disc_exp(R, N0)
-    N &lt;- c(N, Nt1)
-    N0 &lt;- Nt1
-}</code></pre>
-<p><img src="E2.1_files/figure-html/unnamed-chunk-10-1.png" width="50%" /><img src="E2.1_files/figure-html/unnamed-chunk-10-2.png" width="50%" /></p>
+# Step 6. Plot N over time
+plot(N, xlab = &quot;time&quot;, ylab = &quot;N_mice&quot;, pch = 19, col = &quot;black&quot;)</code></pre>
+<p><img src="E2.1_files/figure-html/unnamed-chunk-9-1.png" width="50%" /></p>
+<pre class="r"><code>dat &lt;- as.data.frame(N)
+dat$time &lt;- as.numeric(rownames(dat))
+
+library(ggplot2)
+ggplot2::ggplot(dat, aes(time, N)) + geom_point()</code></pre>
+<p><img src="E2.1_files/figure-html/unnamed-chunk-9-2.png" width="50%" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Please create a plot for parameters: <em>R</em> = 0.7, <span
 class="math inline">\(N_0\)</span> = 1042.</p></li>
@@ -527,7 +536,7 @@ steps:</p></li>
   Nt1 &lt;- Nt + r*Nt*(1-Nt/K)
   return(Nt1)
 }</code></pre>
-<p><img src="E2.1_files/figure-html/unnamed-chunk-13-1.png" width="50%" /><img src="E2.1_files/figure-html/unnamed-chunk-13-2.png" width="50%" /></p>
+<p><img src="E2.1_files/figure-html/unnamed-chunk-12-1.png" width="50%" /><img src="E2.1_files/figure-html/unnamed-chunk-12-2.png" width="50%" /></p>
 </div>
 
 
