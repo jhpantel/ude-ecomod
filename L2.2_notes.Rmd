@@ -10,7 +10,240 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(deSolve)
+library(tidyr)
+library(gridExtra)
+library(phaseR)
 ```
+
+
+## Topic 1. Working simulation of models
+
+#### Exponential growth, discrete time
+The formula:
+
+$$ n_{t+1} = Rn_t$$
+The code:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%"}
+# Parameter values to use for simulation
+R <- 1.7
+N0 <- 42
+t <- 100
+# model function
+disc_exp <- function(R,N0){
+  Nt1 <- R*N0
+  return(Nt1)
+}
+# Simulation of model for t time steps
+N <- rep(NA,t)
+for(i in 1:t){
+  N[i] <- disc_exp(R,N0)
+  N0 <- N[i]
+}
+# Plot simulation: ggplot
+dat <- as.data.frame(N)
+dat$time <- as.numeric(rownames(dat))
+ggplot2::ggplot(dat,aes(time,N)) + geom_point()
+# Plot simulation: base R
+plot(N,xlab="time",ylab="N",pch=19,col="black")
+```
+
+#### Exponential growth, continuous time
+The formula:
+
+$$ \frac{dn}{dt} = rn$$
+The code:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
+# Parameter values to use for simulation
+parameters <- c(r = 1.7)
+state      <- c(N = 42)
+times      <- seq(0, 100, by = 0.01)
+# model function
+cont_exp <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    dN <-  r * N
+    return(list(dN))
+  })
+}
+# Simulation of model for t time steps
+out <- deSolve::ode(y = state, times = times, func = cont_exp, parms = parameters)
+# Plot simulation: ggplot
+out.g <- as.data.frame(out)
+ggplot2::ggplot(out.g,aes(time,N)) + geom_line()
+# Plot simulation: base R
+plot(out.g$time,out.g$N,xlab="time",ylab="N",pch=19,col="black")
+```
+
+#### Logistic growth, discrete time
+The formula:
+
+$$n_{t+1} = n_t + rn_t(1 - \frac{n_t}{K})$$
+
+The code:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
+# Parameter values to use for simulation
+r <- 1.21
+K <- 1400
+N0 <- 4
+t <- 30
+# model function
+disc_log <- function(r,N0,K){
+  Nt1 <- N0 + r*N0*(1-N0/K)
+  return(Nt1)
+}
+# Simulation of model for t time steps
+N <- rep(NA,t)
+for(i in 1:t){
+  N[i] <- disc_log(r,N0,K)
+  N0 <- N[i]
+}
+# Plot simulation: ggplot
+dat <- as.data.frame(N)
+dat$time <- as.numeric(rownames(dat))
+ggplot2::ggplot(dat,aes(time,N)) + geom_point() + geom_hline(yintercept=K, linetype="dashed", color = "gray")
+# Plot simulation: base R
+plot(N,xlab="time",ylab="N",pch=19,col="black")
+abline(h=K,col="grey",lty="dashed")
+```
+
+#### Logistic growth, continuous time
+The formula:
+
+$$ \frac{dn}{dt} = rn(1-\frac{n}{K})$$
+The code:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
+# Parameter values to use for simulation
+parameters <- c(r = 1.21,K = 1400)
+state      <- c(N = 4)
+times      <- seq(0, 30, by = 0.01)
+# model function
+cont_log <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    dN <-  r * N * (1 - N/K)
+    return(list(dN))
+  })
+}
+# Simulation of model for t time steps
+out <- deSolve::ode(y = state, times = times, func = cont_log, parms = parameters)
+# Plot simulation: ggplot
+out.g <- as.data.frame(out)
+ggplot2::ggplot(out.g,aes(time,N)) + geom_line() + geom_hline(yintercept=K, linetype="dashed", color = "gray")
+# Plot simulation: base R
+plot(out.g$time,out.g$N,xlab="time",ylab="N",pch=19,col="black")
+abline(h=K,col="grey",lty="dashed")
+```
+
+## Topic 2. Simulation across a range of parameter values
+
+#### Exponential growth, continuous time
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE}
+# Across a range of r values
+r_range <- seq(-3.5, 3.5, by = 0.5)
+out.g <- array(NA,dim=c(length(times)*length(r_range),3),dimnames=list(NULL,c("time","N","r")))
+
+for(i in 1:length(r_range)){
+  parameters <- c(r = r_range[i])
+  out <- deSolve::ode(y = state, times = times, func = cont_exp, parms = parameters)
+  out2 <- as.data.frame(out)
+  out.g[(((length(times) * i)+1) - length(times)):(length(times) * i),3] <- r_range[i]
+  out.g[(((length(times) * i)+1) - length(times)):(length(times) * i),1:2] <- out[,]
+}
+out.g <- as.data.frame(out.g)
+
+p <- ggplot(out.g, aes(time, N))
+p2 <- p + geom_line(aes(colour = factor(r)))
+p3 <- p2 + ylim(0, 200) + xlim(0,4)
+p3
+```
+
+#### Logistic growth, continuous time
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE}
+# Across a range of r values
+r_range <- c(0,1,2.1,2.7,4)
+out.g <- array(NA,dim=c(length(times)*length(r_range),3),dimnames=list(NULL,c("time","N","r")))
+
+for(i in 1:length(r_range)){
+  parameters <- c(r = r_range[i], K = 1000)
+  out <- deSolve::ode(y = state, times = times, func = cont_log, parms = parameters)
+  out2 <- as.data.frame(out)
+  out.g[(((length(times) * i)+1) - length(times)):(length(times) * i),3] <- r_range[i]
+  out.g[(((length(times) * i)+1) - length(times)):(length(times) * i),1:2] <- out[,]
+}
+out.g <- as.data.frame(out.g)
+
+p <- ggplot(out.g, aes(time, N))
+p2 <- p + geom_line(aes(colour = factor(r)))
+p3 <- p2 + ylim(0, 1200) + xlim(0,10)
+p3
+```
+
+#### Logistic growth, discrete time
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE}
+# Parameter values to use for simulation
+r_range <- c(0,1,1.3,1.6,1.9,2.2,2.5,2.8)
+K <- 1400
+N0 <- 4
+t <- 30
+# Simulation of model for t time steps
+N.g <- numeric()
+plist <- list()
+for(i in 1:length(r_range)){
+  N <- rep(NA,t)
+  for(k in 1:t){
+    N[k] <- disc_log(r_range[i],N0,K)
+    N0 <- N[k]
+  }
+  dat <- as.data.frame(N)
+  dat$time <- as.numeric(rownames(dat))
+  dat$r <- rep(r_range[i],t)
+  N.g <- rbind(N.g,dat)
+  N0 <- 4
+  p <- ggplot(dat, aes(time, N)) + geom_line() + geom_hline(yintercept=K, linetype="dashed", color = "gray")
+  plist[[i]] <- p
+}
+
+gridExtra::grid.arrange(grobs=plist,nrow=round(length(r_range)/3))
+```
+
+## Topic 3. Equilibrium and stability
+#### Phase plane diagram, continuous logistic growth
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE, out.width="50%"}
+# Plot the phase portrait - use the phaseR package
+logistic.jp <- function(t, y, parameters){
+    beta <- parameters[1]
+    K    <- parameters[2]
+    dy   <- beta*y*(1 - y/K)
+list(dy) }
+logistic.phasePortrait <- phaseR::phasePortrait(logistic.jp, ylim = c(-5, 1505),parameters = c(1.7, 1400), points = 10, ylab="Population Growth Rate (dN/dt)", xlab="N")
+N <- c(20, 200, 700, 1300, 1450)
+pop.growth.rate <- expression( 1.7 *N * (1 -  N/1400) )
+points(N, eval(pop.growth.rate), cex=1, pch=19, col="orange")
+text(N, eval(pop.growth.rate), letters[1:5],adj=c(.5,2))
+N <- c(0,1400)
+pop.growth.rate <- expression( 1.7 *N * (1 -  N/1400) )
+points(N, eval(pop.growth.rate), cex=1, pch=19, col="gray")
+
+# Plot the associated population dynamics graph
+out <- deSolve::ode(y = state, times = times, func = cont_log, parms = parameters)
+# Plot simulation: ggplot
+out.g <- as.data.frame(out)
+ggplot2::ggplot(out.g,aes(time,N)) + geom_line() + geom_hline(yintercept=K, linetype="dashed", color = "gray") + geom_hline(yintercept=20, linetype="dashed", color = "orange") + geom_hline(yintercept=200, linetype="dashed", color = "orange") + geom_hline(yintercept=700, linetype="dashed", color = "orange") + geom_hline(yintercept=1300, linetype="dashed", color = "orange") + geom_hline(yintercept=1400, linetype="dashed", color = "gray")
+
+# For negative growth rate
+logistic.phasePortrait <- phaseR::phasePortrait(logistic.jp, ylim = c(-5, 1505),parameters = c(-1.7, 1400), points = 10, ylab="Population Growth Rate (dN/dt)", xlab="N")
+N <- c(20, 200, 700, 1300, 1450)
+pop.growth.rate <- expression( -1.7 *N * (1 -  N/1400) )
+points(N, eval(pop.growth.rate), cex=1, pch=19, col="orange")
+text(N, eval(pop.growth.rate), letters[1:5],adj=c(.5,2))
+N <- c(0,1400)
+pop.growth.rate <- expression( -1.7 *N * (1 -  N/1400) )
+points(N, eval(pop.growth.rate), cex=1, pch=19, col="gray")
+```
+
+
 
 
 ## WARNING!

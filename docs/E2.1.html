@@ -326,7 +326,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Exercise 2.1 - Survey of ecological models,
 Part 1</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-25 20:40:35.030415</h4>
+<h4 class="date">2023-10-25 20:43:29.421263</h4>
 
 </div>
 
@@ -502,10 +502,10 @@ disc_exp &lt;- function(R, N0) {
 ## Step 3. Call the function
 disc_exp(R, N0)</code></pre>
 <pre><code>## [1] 71.4</code></pre>
-<pre class="r"><code># Step 4. Create a new variable to hold future values of P
+<pre class="r"><code># Step 4. Create a new variable to hold future values of N
 N &lt;- rep(NA, 100)
 
-# Step 5. Create a for loop to iteratively calculate P
+# Step 5. Create a for loop to iteratively calculate N
 N[1] &lt;- N0
 for (i in 2:100) {
     N[i] &lt;- disc_exp(R, N0)
