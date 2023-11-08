@@ -3,8 +3,8 @@ title: "Module 4.1 Exercise"
 author: "Jelena H. Pantel"
 date: "`r file.mtime(knitr::current_input())`"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 institute: "University of Duisburg-Essen"
 ---
 
