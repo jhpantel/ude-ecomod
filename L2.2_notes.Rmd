@@ -4,6 +4,7 @@ author: "Jelena H. Pantel"
 institute: "University of Duisburg-Essen"
 date: "`r file.mtime(knitr::current_input())`"
 output: html_document
+urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -243,11 +244,7 @@ pop.growth.rate <- expression( -1.7 *N * (1 -  N/1400) )
 points(N, eval(pop.growth.rate), cex=1, pch=19, col="gray")
 ```
 
-
-
-
-## WARNING!
-This material is for the 2022 class, and has not been updated yet. This is not a final version!
+## Topic 3. Some questions to answer before class
 
 **1. Section 3.4.1 - what does *i* denote and what does *j* denote? Write equation 3.14a using *i* and *j* instead of 1 and 2.**
 
@@ -260,8 +257,7 @@ $$ n_1(t+1) = n_i(t) + r_in_i(t) \left (1 - \frac{n_i(t) + \alpha_{ij}(t)n_j(t)}
 Facilitation is an interaction between species where at least one species benefits, and the other is not harmed (the effect for the other species is either zero (commensalism) or positive (mutualism)). $\alpha_{ij}$ is refered to as the *species interaction coefficient*, and it quantifies the per capita effect of species *j* on the growth rate of species *i*.
 
 **3. What is a biological example of commensalism?**
-My favorite example is a clownfish and a sea anemone - the stinging tentacles of the sea anemone protect the clownfish (
-+who is not harmed by them) from predators, and the sea anemone is not impacted by the interaction.
+My favorite example is a clownfish and a sea anemone - the stinging tentacles of the sea anemone protect the clownfish (who is not harmed by them) from predators, and the sea anemone is not impacted by the interaction.
 
 **4. Choose one of the functional forms listed in table 3.3 for *f*, *g*, and *h*. Write out the equations 3.16 using those specific functional forms.**
 
@@ -293,3 +289,44 @@ disc_log(rd,Nt,K)
 disc_log(1.7,c(2,99,200),100)
 disc_log(3.2,c(2,99,200),100)
 ```
+
+## Topic 4. Some questions asked during class
+
+**1. How is the deSolve function correctly using the time variable? **
+I posted in Topic 1 some code for a continuous time simulation of exponential growth using the R command `ode`, from the R library `deSolve`. The question was: in the code below, how is the deSolve command making use of `t` in the `cont_exp` function?
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
+# Parameter values to use for simulation
+parameters <- c(r = 1.7)
+state      <- c(N = 42)
+times      <- seq(0, 100, by = 0.01)
+# model function
+cont_exp <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    dN <-  r * N
+    return(list(dN))
+  })
+}
+# Simulation of model for t time steps
+out <- deSolve::ode(y = state, times = times, func = cont_exp, parms = parameters)
+# Plot simulation: ggplot
+out.g <- as.data.frame(out)
+ggplot2::ggplot(out.g,aes(time,N)) + geom_line()
+```
+
+I found this to be a good question, because when we look at the function `cont_exp`, it does not appear to use the `t` at all. However, when I look at the help function of `ode`, I read this: "If `func` is an R-function, it must be defined as: `func <- function(t, y, parms,...)`. `t` is the current time point in the integration, `y` is the current estimate of the variables in the ODE system. If the initial values `y` has a names attribute, the names will be available inside `func`. `parms` is a vector or list of parameters"
+
+You can read more about this in the *vignette* that explains how to use the deSolve package, linked [here](https://cran.r-project.org/web/packages/deSolve/vignettes/deSolve.pdf). See Section 1.1, Model specification. This is the guide I followed when I wrote my code using deSolve.
+
+**2. Is the deSolve function ode really 'continuous', doesn't it just do incremental solving in *discrete* chunks? **
+
+Ha the beauty of teaching. I knew that every computational ODE solver I've ever used does this, but I never asked why or thought of it this way. I think it might be beyond my pay grade, but here is [someone else explaining how ODE numerical solvers work](https://sassafras13.github.io/ODEsolvers/), and here is a [Wikipedia explanation](https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations) of numerical analysis of models.
+
+We note that there is an exact solution to the logistic growth equation:
+
+$$ n_t = \frac{Kn_0e^{rt}}{K + n_0(e^{rt}-1)} $$
+So we don't technically need deSolve to evaluate the continuous-time logistic model. But it won't be long before we work with equations that do not have such exact solutions, and that is where the ODE solvers with numerical approximations come in. This was another very good question that helped resolve a logical gap (an instance where something unstated was actually needed to fully understand).
+
+**3. What is that wild left-facing arrow in the phase plane diagram of continuous logistic growth? **
+
+In the graph in Topic 3, we see a left-facing arrow, indicating that if N < 0, the population goes *away* from the equilibrium point of $n^* = 0$, suggesting that is an *unstable equilibrium* point. The truth is that I didn't explain *how* to analyze stability of equilibrium points, which would tell us *why* that arrow is facing left (towards negative infinity). I would say again that the way to do this is well beyond what we can cover in our course, but you can read more about stability analysis [here](https://math.libretexts.org/Bookshelves/Applied_Mathematics/Mathematical_Biology_(Chasnov)/01%3A_Population_Dynamics/1.02%3A_The_Logistic_Equation).
