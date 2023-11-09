@@ -1,5 +1,5 @@
 ---
-title: "Exercise 2.1 - Survey of ecological models, Part 2"
+title: "Exercise 2.2 - Survey of ecological models, Part 2"
 author: "Jelena H. Pantel"
 date: '`r file.mtime(knitr::current_input())`'
 output:
@@ -350,7 +350,7 @@ cont_LV <- function(t, state, parameters) {
 }
 ```
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE, fig.keep="none"}
 # Simulation of model for t time steps
 out <- deSolve::ode(y = state, times = times, func = cont_LV, parms = parameters)
 # Plot simulation: ggplot
