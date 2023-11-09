@@ -33,8 +33,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.2.1/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -326,7 +326,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Exercise 2.1 - Survey of ecological models,
 Part 2</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-11-09 12:49:59</h4>
+<h4 class="date">2023-11-09 14:18:11.7536</h4>
 
 </div>
 
@@ -526,8 +526,8 @@ Lotka-Volterra competition equations, seen as equations 3.15 in Otto
 \frac{dn_2}{dt} &amp;= r_2 n_2(1 - \frac{n_2 t + \alpha_{21} n_1}{K_2})
 \end{aligned}\]</span> The parameters you will need are:</p>
 <p><code>r1, r2, K1, K1, alpha_12, alpha_21, n1_0, n2_0</code></p>
-<p>Suggested values:</p>
-<p><code>r1 = 0.3, r2 = 0.5, K1 = 1,400, K2 = 1,000, alpha_12 = 1.1, alpha_21 = 0.6, N1_0 = 5, N2_0 = 5</code></p>
+<p>Use these values:</p>
+<p><code>r1 = 1.3, r2 = 1.5, K1 = 1,400, K2 = 1,000, alpha_12 = 0.4, alpha_21 = 0.6, N1_0 = 5, N2_0 = 5</code></p>
 <p><em>Note: be very careful with your parentheses</em></p>
 <p>Here I show with prompts what code you need to fill in. Then I show
 my code for running the continuous simulation and plotting.</p>
@@ -554,7 +554,7 @@ ggplot2::ggplot(out.melt, aes(x = time, y = value, col = variable)) +
 <pre class="r"><code># Plot simulation: base R
 plot(out.g$time, out.g$N1, xlab = &quot;time&quot;, ylab = &quot;N&quot;, col = &quot;black&quot;,
     type = &quot;l&quot;)
-lines(out.g$N2, col = &quot;skyblue&quot;)</code></pre>
+lines(out.g$time, out.g$N2, col = &quot;skyblue&quot;)</code></pre>
 <p><img src="E2.2_files/figure-html/unnamed-chunk-16-2.png" width="50%" /></p>
 </div>
 

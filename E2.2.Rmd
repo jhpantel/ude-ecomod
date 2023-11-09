@@ -312,9 +312,9 @@ The parameters you will need are:
 
 `r1, r2, K1, K1, alpha_12, alpha_21, n1_0, n2_0`
 
-Suggested values:
+Use these values:
 
-`r1 = 0.3, r2 = 0.5, K1 = 1,400, K2 = 1,000, alpha_12 = 1.1, alpha_21 = 0.6, N1_0 = 5, N2_0 = 5`
+`r1 = 1.3, r2 = 1.5, K1 = 1,400, K2 = 1,000, alpha_12 = 0.4, alpha_21 = 0.6, N1_0 = 5, N2_0 = 5`
 
 *Note: be very careful with your parentheses*
 
@@ -337,7 +337,7 @@ cont_LV <- function(t, state, parameters) {
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE, echo=FALSE}
 # Parameter values to use for simulation
-parameters <- c(r1 = 0.3, r2 = 0.5, K1 = 1,400, K2 = 1,000, alpha_12 = 1.1, alpha_21 = 0.6)
+parameters <- c(r1 = 1.3, r2 = 1.7, K1 = 1400, K2 = 1000, alpha_12 = 0.4, alpha_21 = 0.6)
 state      <- c(N1 = 5, N2 = 5)
 times      <- seq(0, 100, by = 0.1)
 # model function
@@ -359,7 +359,8 @@ out.melt <- reshape2::melt(out.g, id.var='time')
 ggplot2::ggplot(out.melt,aes(x=time,y=value,col=variable)) + geom_line()
 # Plot simulation: base R
 plot(out.g$time,out.g$N1,xlab="time",ylab="N",col="black",type="l")
-lines(out.g$N2,col="skyblue")
+lines(out.g$time,out.g$N2,col="skyblue")
 ```
+
 
 
