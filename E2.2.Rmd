@@ -150,6 +150,12 @@ A. How many periodic attractors are there at *r* = 2, 2.1, 2.2, 2.3, 2.4, and 2.
 B. How many periodic attractors are there at *r* = 2.55? I share the code below to produce a finer scale of *r* values:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
+dlogistic <- function (t, y, p) {
+  N <- y[1]
+  with( as.list(p),{
+      N.diff <-  rd * N * (1 - alpha * N) 
+      return(list(N.diff))  }) }
+
 rd.s <- seq(2.4,2.7, by=0.01) # the actual rd values
 t <- 0:1000 # how long to run each population
 N0 <- c(N=99) # N-zero

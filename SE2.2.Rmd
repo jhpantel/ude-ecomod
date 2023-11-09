@@ -185,6 +185,12 @@ ggplot(out.l, aes(rd, N)) + geom_point(pch=".") + theme_bw() + scale_x_continuou
 C. Let's look closer at the chaotic portion of the graph, with a much finer range of *r* values. Convince yourself about chaos - that a TINY change in the parameter value *r* can lead to very different observed dynamics of *N*. You can read a bit more about chaos at this link: (https://geoffboeing.com/2015/03/chaos-theory-logistic-map/)
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE, echo=FALSE}
+dlogistic <- function (t, y, p) {
+  N <- y[1]
+  with( as.list(p),{
+      N.diff <-  rd * N * (1 - alpha * N) 
+      return(list(N.diff))  }) }
+
 num.rd <- 1001 # the number of rd's you want
 rd.s <- seq(1.5,3, length=num.rd) # the actual rd values
 t <- 0:1000 # how long to run each population
