@@ -12,7 +12,7 @@
 <meta name="author" content="Jelena H. Pantel" />
 
 
-<title>Exercise 2.1 - Survey of ecological models, Part 2</title>
+<title>Exercise 2.2 - Survey of ecological models, Part 2</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -323,10 +323,10 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Exercise 2.1 - Survey of ecological models,
+<h1 class="title toc-ignore">Exercise 2.2 - Survey of ecological models,
 Part 2</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-11-09 14:18:11.7536</h4>
+<h4 class="date">2023-11-09 14:22:18.259993</h4>
 
 </div>
 
@@ -549,13 +549,11 @@ out &lt;- deSolve::ode(y = state, times = times, func = cont_LV,
 out.g &lt;- as.data.frame(out)
 out.melt &lt;- reshape2::melt(out.g, id.var = &quot;time&quot;)
 ggplot2::ggplot(out.melt, aes(x = time, y = value, col = variable)) +
-    geom_line()</code></pre>
-<p><img src="E2.2_files/figure-html/unnamed-chunk-16-1.png" width="50%" /></p>
-<pre class="r"><code># Plot simulation: base R
+    geom_line()
+# Plot simulation: base R
 plot(out.g$time, out.g$N1, xlab = &quot;time&quot;, ylab = &quot;N&quot;, col = &quot;black&quot;,
     type = &quot;l&quot;)
 lines(out.g$time, out.g$N2, col = &quot;skyblue&quot;)</code></pre>
-<p><img src="E2.2_files/figure-html/unnamed-chunk-16-2.png" width="50%" /></p>
 </div>
 
 
