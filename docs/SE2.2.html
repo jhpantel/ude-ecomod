@@ -326,7 +326,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Exercise 2.2 - Survey of ecological models,
 Part 2</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-11-09 16:34:44</h4>
+<h4 class="date">2023-11-09 16:48:52</h4>
 
 </div>
 
@@ -437,7 +437,15 @@ mechanisms generating non-repeating patterns.</p>
 2.2, 2.3, 2.4, and 2.5?</p>
 <p>B. How many periodic attractors are there at <em>r</em> = 2.55? I
 share the code below to produce a finer scale of <em>r</em> values:</p>
-<pre class="r"><code>rd.s &lt;- seq(2.4, 2.7, by = 0.01)  # the actual rd values
+<pre class="r"><code>dlogistic &lt;- function(t, y, p) {
+    N &lt;- y[1]
+    with(as.list(p), {
+        N.diff &lt;- rd * N * (1 - alpha * N)
+        return(list(N.diff))
+    })
+}
+
+rd.s &lt;- seq(2.4, 2.7, by = 0.01)  # the actual rd values
 t &lt;- 0:1000  # how long to run each population
 N0 &lt;- c(N = 99)  # N-zero
 ## do all the dynamical simulations putting each run into a
