@@ -1,5 +1,5 @@
 ---
-title: "Exercise 2.1 - Survey of ecological models, Part 1"
+title: "Solutions: Exercise 2.1 - Survey of ecological models, Part 1"
 author: "Jelena H. Pantel"
 date: '`r file.mtime(knitr::current_input())`'
 output:

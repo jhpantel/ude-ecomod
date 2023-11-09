@@ -1,10 +1,10 @@
 ---
-title: "Exercise 2.2 - Survey of ecological models, Part 2"
+title: "Solutions: Exercise 2.2 - Survey of ecological models, Part 2"
 author: "Jelena H. Pantel"
 date: '`r file.mtime(knitr::current_input())`'
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 institute: "University of Duisburg-Essen"
 urlcolor: blue
 ---
@@ -57,7 +57,7 @@ abline(h=K,col="grey",lty="dashed")
 
 **Question 1. ** Please change the simulation to run with a growth rate of 2.2, and show me a plot of the population dynamics over time.
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE, echo=TRUE, results='hide'}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
 # Parameter values to use for simulation
 r <- 2.2
 K <- 1400
@@ -106,6 +106,11 @@ N[6] + r*N[6]*(1 - (N[6]/K))
 
 E. Why is the population not going to its carrying capacity *K*? How many *periodic attractors* (values of N for which the system is stably drawn towards) are there in this system? In other words, how many values does N cycle between when *r* = 2.2, and what are those values of N?
 
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE}
+# 2 stable attractors
+# 1044 and 1628
+```
+
 **Question 3. ** Look at the *bifurcation plot* for this discrete-time logistic growth system:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE,echo=FALSE}
@@ -147,9 +152,15 @@ We see that as *r* increases the number of attractors continues to double, growi
 
 A. How many periodic attractors are there at *r* = 2, 2.1, 2.2, 2.3, 2.4, and 2.5?
 
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+# We read this directly from the graph: 2, 2, 2, 2, 2, 4
+```
+
 B. How many periodic attractors are there at *r* = 2.55? I share the code below to produce a finer scale of *r* values:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
+# We read this directly from the graph: 8
+
 dlogistic <- function (t, y, p) {
   N <- y[1]
   with( as.list(p),{
@@ -184,13 +195,7 @@ ggplot(out.l, aes(rd, N)) + geom_point(pch=".") + theme_bw() + scale_x_continuou
 
 C. Let's look closer at the chaotic portion of the graph, with a much finer range of *r* values. Convince yourself about chaos - that a TINY change in the parameter value *r* can lead to very different observed dynamics of *N*. You can read a bit more about chaos at this link: (https://geoffboeing.com/2015/03/chaos-theory-logistic-map/)
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE, echo=FALSE}
-dlogistic <- function (t, y, p) {
-  N <- y[1]
-  with( as.list(p),{
-      N.diff <-  rd * N * (1 - alpha * N) 
-      return(list(N.diff))  }) }
-
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
 num.rd <- 1001 # the number of rd's you want
 rd.s <- seq(1.5,3, length=num.rd) # the actual rd values
 t <- 0:1000 # how long to run each population
@@ -213,10 +218,7 @@ out.l <- dplyr::arrange(out.l, r.d, t) # re-order the data
 text.values <- substr(out.l$r.d, regexpr("=", out.l$r.d)+1, 100) 
 ## convert the characters of "1.5" to the number 1.5
 out.l$rd <- as.numeric( text.values )
-```
 
-
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
 out.l.chaotic <- subset( out.l, rd > 2.6 )
 ggplot(out.l.chaotic, aes(rd, N)) + geom_point(pch=".") + theme_bw()
 ```
@@ -254,7 +256,7 @@ gridExtra::grid.arrange(grobs=plist,nrow=round(length(r_range)/3))
 
 Please use this plotting code to show dynamics for *r* = 2, 2.2, 2.4, 2.5, 2.55, and 2.8, for 50 time steps. Please use RMarkdown to write an informative caption for this figure, explaining what the graphs show. You can use this link: (https://uoepsy.github.io/scs/rmd-bootcamp/06-figs.html#captions)
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE,results='hide', fig.cap='A figure of population size over time using the discrete-time logistic growth model'}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),warning = FALSE, message = FALSE,fig.cap='A figure of population size over time using the discrete-time logistic growth model'}
 # Parameter values to use for simulation
 r_range <- c(2, 2.2, 2.4, 2.5, 2.55, 2.8)
 K <- 1400

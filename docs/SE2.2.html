@@ -12,7 +12,7 @@
 <meta name="author" content="Jelena H. Pantel" />
 
 
-<title>Exercise 2.2 - Survey of ecological models, Part 2</title>
+<title>Solutions: Exercise 2.2 - Survey of ecological models, Part 2</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -33,8 +33,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.2.1/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -323,10 +323,10 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Exercise 2.2 - Survey of ecological models,
-Part 2</h1>
+<h1 class="title toc-ignore">Solutions: Exercise 2.2 - Survey of
+ecological models, Part 2</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-11-09 16:53:55</h4>
+<h4 class="date">2023-11-09 18:51:15.565632</h4>
 
 </div>
 
@@ -423,9 +423,10 @@ N0</p>
 the system is stably drawn towards) are there in this system? In other
 words, how many values does N cycle between when <em>r</em> = 2.2, and
 what are those values of N?</p>
+<pre class="r"><code># 2 stable attractors 1044 and 1628</code></pre>
 <p><strong>Question 3. </strong> Look at the <em>bifurcation plot</em>
 for this discrete-time logistic growth system:</p>
-<p><img src="SE2.2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>We see that as <em>r</em> increases the number of attractors
 continues to double, growing geometrically. Eventually, we reach a point
 when there becomes an infinite number of unique points, that are
@@ -435,9 +436,12 @@ not a random phenomenon; rather it is the result of deterministic
 mechanisms generating non-repeating patterns.</p>
 <p>A. How many periodic attractors are there at <em>r</em> = 2, 2.1,
 2.2, 2.3, 2.4, and 2.5?</p>
+<pre class="r"><code># We read this directly from the graph: 2, 2, 2, 2, 2, 4</code></pre>
 <p>B. How many periodic attractors are there at <em>r</em> = 2.55? I
 share the code below to produce a finer scale of <em>r</em> values:</p>
-<pre class="r"><code>dlogistic &lt;- function(t, y, p) {
+<pre class="r"><code># We read this directly from the graph: 8
+
+dlogistic &lt;- function(t, y, p) {
     N &lt;- y[1]
     with(as.list(p), {
         N.diff &lt;- rd * N * (1 - alpha * N)
@@ -472,7 +476,7 @@ out.l$rd &lt;- as.numeric(text.values)
 ## plot the stable limits to show the bifurcations
 ggplot(out.l, aes(rd, N)) + geom_point(pch = &quot;.&quot;) + theme_bw() +
     scale_x_continuous(breaks = seq(2.4, 2.7, by = 0.04))</code></pre>
-<p><img src="SE2.2_files/figure-html/unnamed-chunk-8-1.png" width="50%" /></p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-10-1.png" width="50%" /></p>
 <p>C. Let’s look closer at the chaotic portion of the graph, with a much
 finer range of <em>r</em> values. Convince yourself about chaos - that a
 TINY change in the parameter value <em>r</em> can lead to very different
@@ -480,9 +484,34 @@ observed dynamics of <em>N</em>. You can read a bit more about chaos at
 this link: (<a
 href="https://geoffboeing.com/2015/03/chaos-theory-logistic-map/"
 class="uri">https://geoffboeing.com/2015/03/chaos-theory-logistic-map/</a>)</p>
-<pre class="r"><code>out.l.chaotic &lt;- subset(out.l, rd &gt; 2.6)
+<pre class="r"><code>num.rd &lt;- 1001  # the number of rd&#39;s you want
+rd.s &lt;- seq(1.5, 3, length = num.rd)  # the actual rd values
+t &lt;- 0:1000  # how long to run each population
+N0 &lt;- c(N = 99)  # N-zero
+## do all the dynamical simulations putting each run into a
+## column of a matrix.
+Ns &lt;- sapply(rd.s, function(r) {
+    p &lt;- c(rd = r, alpha = 0.01)
+    outd &lt;- deSolve::ode(y = N0, times = t, func = dlogistic,
+        parms = p, method = &quot;euler&quot;)[, 2]
+})
+out &lt;- data.frame(t = t, Ns)  # put times to the front of the matrix
+names(out) &lt;- c(&quot;t&quot;, paste(&quot;rd=&quot;, rd.s, sep = &quot;&quot;))  # relabel columns
+out.last &lt;- subset(out, t &gt; 0.8 * max(t))  # keep only the last 20%
+## put the data in the &#39;long format&#39;
+out.l &lt;- pivot_longer(out.last, cols = -1, names_to = &quot;r.d&quot;,
+    values_to = &quot;N&quot;)
+out.l &lt;- dplyr::arrange(out.l, r.d, t)  # re-order the data
+## extract text out of the &#39;r.d&#39; label that is the numeric
+## value
+text.values &lt;- substr(out.l$r.d, regexpr(&quot;=&quot;, out.l$r.d) + 1,
+    100)
+## convert the characters of &#39;1.5&#39; to the number 1.5
+out.l$rd &lt;- as.numeric(text.values)
+
+out.l.chaotic &lt;- subset(out.l, rd &gt; 2.6)
 ggplot(out.l.chaotic, aes(rd, N)) + geom_point(pch = &quot;.&quot;) + theme_bw()</code></pre>
-<p><img src="SE2.2_files/figure-html/unnamed-chunk-10-1.png" width="50%" /></p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-11-1.png" width="50%" /></p>
 <p><strong>Question 4. </strong> Plot dynamics in the discrete-time
 logistic growth system.</p>
 <p>In class, I showed a plot of population dynamics then ran the
@@ -513,7 +542,7 @@ for (i in 1:length(r_range)) {
 }
 
 gridExtra::grid.arrange(grobs = plist, nrow = round(length(r_range)/3))</code></pre>
-<p><img src="SE2.2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Please use this plotting code to show dynamics for <em>r</em> = 2,
 2.2, 2.4, 2.5, 2.55, and 2.8, for 50 time steps. Please use RMarkdown to
 write an informative caption for this figure, explaining what the graphs
@@ -546,7 +575,7 @@ for (i in 1:length(r_range)) {
 
 gridExtra::grid.arrange(grobs = plist, nrow = 3)</code></pre>
 <div class="figure">
-<img src="SE2.2_files/figure-html/unnamed-chunk-12-1.png" alt="A figure of population size over time using the discrete-time logistic growth model" width="672" />
+<img src="SE2.2_files/figure-html/unnamed-chunk-13-1.png" alt="A figure of population size over time using the discrete-time logistic growth model" width="672" />
 <p class="caption">
 A figure of population size over time using the discrete-time logistic
 growth model
@@ -580,12 +609,12 @@ out &lt;- deSolve::ode(y = state, times = times, func = cont_log,
 out.g &lt;- as.data.frame(out)
 ggplot2::ggplot(out.g, aes(time, N)) + geom_line() + geom_hline(yintercept = K,
     linetype = &quot;dashed&quot;, color = &quot;gray&quot;)</code></pre>
-<p><img src="SE2.2_files/figure-html/unnamed-chunk-13-1.png" width="50%" /></p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-14-1.png" width="50%" /></p>
 <pre class="r"><code># Plot simulation: base R
 plot(out.g$time, out.g$N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19,
     col = &quot;black&quot;)
 abline(h = K, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
-<p><img src="SE2.2_files/figure-html/unnamed-chunk-13-2.png" width="50%" /></p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-14-2.png" width="50%" /></p>
 <p>A. Please modify this to create a simulation of the continuous time
 Lotka-Volterra competition equations, seen as equations 3.15 in Otto
 &amp; Day Chapter 3.</p>
@@ -633,12 +662,12 @@ out.g &lt;- as.data.frame(out)
 out.melt &lt;- reshape2::melt(out.g, id.var = &quot;time&quot;)
 ggplot2::ggplot(out.melt, aes(x = time, y = value, col = variable)) +
     geom_line()</code></pre>
-<p><img src="SE2.2_files/figure-html/unnamed-chunk-16-1.png" width="50%" /></p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-17-1.png" width="50%" /></p>
 <pre class="r"><code># Plot simulation: base R
 plot(out.g$time, out.g$N1, xlab = &quot;time&quot;, ylab = &quot;N&quot;, col = &quot;black&quot;,
     type = &quot;l&quot;)
 lines(out.g$time, out.g$N2, col = &quot;skyblue&quot;)</code></pre>
-<p><img src="SE2.2_files/figure-html/unnamed-chunk-16-2.png" width="50%" /></p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-17-2.png" width="50%" /></p>
 </div>
 
 

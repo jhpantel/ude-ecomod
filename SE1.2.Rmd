@@ -1,5 +1,5 @@
 ---
-title: "Exercise 1.2 - Introduction to R in Ecology, Part 2"
+title: "Solutions: Exercise 1.2 - Introduction to R in Ecology, Part 2"
 author: "Jelena H. Pantel"
 date: '`r file.mtime(knitr::current_input())`'
 output:
