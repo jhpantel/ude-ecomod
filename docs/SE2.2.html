@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Jelena H. Pantel" />
+
+
+<title>Exercise 2.2 - Survey of ecological models, Part 2</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.2.1/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Ecological Modelling</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Syllabus
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./schedule.html">Course schedule</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    About me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./aboutme.html">Learn more about me</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Project 1</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="./project1.html">Guidelines</a>
+        </li>
+        <li>
+          <a href="./Pantel_cheat_LV.html">Example cheat sheet</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="./stage.html">Stage structured models</a>
+            </li>
+            <li>
+              <a href="./metapop.html">Metapopulation model</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="./project2.pdf">Project 2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="./contact.html">Contact</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/githubusername/mywebsite">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Exercise 2.2 - Survey of ecological models,
+Part 2</h1>
+<h4 class="author">Jelena H. Pantel</h4>
+<h4 class="date">2023-11-09 16:34:44</h4>
+
+</div>
+
+
+<div id="instructions" class="section level2">
+<h2>Instructions</h2>
+<p>Create either an R script (.R file) or R Markdown document (.Rmd) to
+save all of your work for today.</p>
+</div>
+<div
+id="exercise-1.-work-with-simulation-of-discrete-time-logistic-growth"
+class="section level2">
+<h2>Exercise 1. Work with simulation of discrete-time logistic
+growth</h2>
+<p>In class, I discussed how making simulations of the models we learn
+in class can help us understand how our system works. Let’s take a
+closer look at the <em>discrete-time model of logistic population
+growth</em>. The model formula is:</p>
+<p><span class="math display">\[n_{t+1} = n_t + rn_t(1 -
+\frac{n_t}{K})\]</span> And the simulation works as follow:</p>
+<pre class="r"><code># Parameter values to use for simulation
+r &lt;- 1.21
+K &lt;- 1400
+N0 &lt;- 4
+t &lt;- 30
+# model function
+disc_log &lt;- function(r, N0, K) {
+    Nt1 &lt;- N0 + r * N0 * (1 - N0/K)
+    return(Nt1)
+}
+# Simulation of model for t time steps
+N &lt;- rep(NA, t)
+for (i in 1:t) {
+    N[i] &lt;- disc_log(r, N0, K)
+    N0 &lt;- N[i]
+}
+# Plot simulation: ggplot
+dat &lt;- as.data.frame(N)
+dat$time &lt;- as.numeric(rownames(dat))
+ggplot2::ggplot(dat, aes(time, N)) + geom_point() + geom_hline(yintercept = K,
+    linetype = &quot;dashed&quot;, color = &quot;gray&quot;)</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-1-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;black&quot;)
+abline(h = K, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-1-2.png" width="50%" /></p>
+<p><strong>Question 1. </strong> Please change the simulation to run
+with a growth rate of 2.2, and show me a plot of the population dynamics
+over time.</p>
+<pre class="r"><code># Parameter values to use for simulation
+r &lt;- 2.2
+K &lt;- 1400
+N0 &lt;- 4
+t &lt;- 30
+# Simulation of model for t time steps
+N &lt;- rep(NA, t)
+for (i in 1:t) {
+    N[i] &lt;- disc_log(r, N0, K)
+    N0 &lt;- N[i]
+}
+# Plot simulation: ggplot
+dat &lt;- as.data.frame(N)
+dat$time &lt;- as.numeric(rownames(dat))
+ggplot2::ggplot(dat, aes(time, N)) + geom_point() + geom_line(color = &quot;grey&quot;) +
+    geom_hline(yintercept = K, linetype = &quot;dashed&quot;, color = &quot;grey&quot;)</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-2-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;black&quot;)
+lines(N, col = &quot;grey&quot;)
+abline(h = K, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-2-2.png" width="50%" /></p>
+<p><strong>Question 2. </strong> A. Use R’s index syntax
+<code>var[i]</code> - where <em>var</em> is the name of your variable
+and <code>[i]</code> is the <em>i</em>th position of that variable - to
+show me the value of population size <code>N</code> at time 5, 6, and
+7.</p>
+<pre class="r"><code>N[5:7]</code></pre>
+<pre><code>## [1]  993.4435 1628.1292 1044.4632</code></pre>
+<p>B. Use the `disc_log’ function to calculate the value of N at time 6
+using the value of N at time 5 for N0</p>
+<pre class="r"><code>disc_log(r, N[5], K)</code></pre>
+<pre><code>## [1] 1628.129</code></pre>
+<p>C. Use the `disc_log’ function to calculate the value of N at time 7
+using the value of N at time 6 for N0</p>
+<pre class="r"><code>disc_log(r, N[6], K)</code></pre>
+<pre><code>## [1] 1044.463</code></pre>
+<p>D. Use the formula above for discrete-time logistic growth to
+calculate population size at time 7 using the value of N at time 6 for
+N0</p>
+<pre class="r"><code>N[6] + r * N[6] * (1 - (N[6]/K))</code></pre>
+<pre><code>## [1] 1044.463</code></pre>
+<p>E. Why is the population not going to its carrying capacity
+<em>K</em>? How many <em>periodic attractors</em> (values of N for which
+the system is stably drawn towards) are there in this system? In other
+words, how many values does N cycle between when <em>r</em> = 2.2, and
+what are those values of N?</p>
+<p><strong>Question 3. </strong> Look at the <em>bifurcation plot</em>
+for this discrete-time logistic growth system:</p>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>We see that as <em>r</em> increases the number of attractors
+continues to double, growing geometrically. Eventually, we reach a point
+when there becomes an infinite number of unique points, that are
+determined by <em>r</em>. This completely deterministic, non-repeating
+pattern in <em>N</em> is a property of <em>chaos</em>. <em>Chaos</em> is
+not a random phenomenon; rather it is the result of deterministic
+mechanisms generating non-repeating patterns.</p>
+<p>A. How many periodic attractors are there at <em>r</em> = 2, 2.1,
+2.2, 2.3, 2.4, and 2.5?</p>
+<p>B. How many periodic attractors are there at <em>r</em> = 2.55? I
+share the code below to produce a finer scale of <em>r</em> values:</p>
+<pre class="r"><code>rd.s &lt;- seq(2.4, 2.7, by = 0.01)  # the actual rd values
+t &lt;- 0:1000  # how long to run each population
+N0 &lt;- c(N = 99)  # N-zero
+## do all the dynamical simulations putting each run into a
+## column of a matrix.
+Ns &lt;- sapply(rd.s, function(r) {
+    p &lt;- c(rd = r, alpha = 0.01)
+    outd &lt;- deSolve::ode(y = N0, times = t, func = dlogistic,
+        parms = p, method = &quot;euler&quot;)[, 2]
+})
+out &lt;- data.frame(t = t, Ns)  # put times to the front of the matrix
+names(out) &lt;- c(&quot;t&quot;, paste(&quot;rd=&quot;, rd.s, sep = &quot;&quot;))  # relabel columns
+out.last &lt;- subset(out, t &gt; 0.8 * max(t))  # keep only the last 20%
+## put the data in the &#39;long format&#39;
+out.l &lt;- pivot_longer(out.last, cols = -1, names_to = &quot;r.d&quot;,
+    values_to = &quot;N&quot;)
+out.l &lt;- dplyr::arrange(out.l, r.d, t)  # re-order the data
+## extract text out of the &#39;r.d&#39; label that is the numeric
+## value
+text.values &lt;- substr(out.l$r.d, regexpr(&quot;=&quot;, out.l$r.d) + 1,
+    100)
+## convert the characters of &#39;1.5&#39; to the number 1.5
+out.l$rd &lt;- as.numeric(text.values)
+
+## plot the stable limits to show the bifurcations
+ggplot(out.l, aes(rd, N)) + geom_point(pch = &quot;.&quot;) + theme_bw() +
+    scale_x_continuous(breaks = seq(2.4, 2.7, by = 0.04))</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-8-1.png" width="50%" /></p>
+<p>C. Let’s look closer at the chaotic portion of the graph, with a much
+finer range of <em>r</em> values. Convince yourself about chaos - that a
+TINY change in the parameter value <em>r</em> can lead to very different
+observed dynamics of <em>N</em>. You can read a bit more about chaos at
+this link: (<a
+href="https://geoffboeing.com/2015/03/chaos-theory-logistic-map/"
+class="uri">https://geoffboeing.com/2015/03/chaos-theory-logistic-map/</a>)</p>
+<pre class="r"><code>out.l.chaotic &lt;- subset(out.l, rd &gt; 2.6)
+ggplot(out.l.chaotic, aes(rd, N)) + geom_point(pch = &quot;.&quot;) + theme_bw()</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-10-1.png" width="50%" /></p>
+<p><strong>Question 4. </strong> Plot dynamics in the discrete-time
+logistic growth system.</p>
+<p>In class, I showed a plot of population dynamics then ran the
+simulation for 8 different values of the population growth rate
+<em>r</em> :</p>
+<pre class="r"><code># Parameter values to use for simulation
+r_range &lt;- c(0, 1, 1.3, 1.6, 1.9, 2.2, 2.5, 2.8)
+K &lt;- 1400
+N0 &lt;- 4
+t &lt;- 30
+# Simulation of model for t time steps
+N.g &lt;- numeric()
+plist &lt;- list()
+for (i in 1:length(r_range)) {
+    N &lt;- rep(NA, t)
+    for (k in 1:t) {
+        N[k] &lt;- disc_log(r_range[i], N0, K)
+        N0 &lt;- N[k]
+    }
+    dat &lt;- as.data.frame(N)
+    dat$time &lt;- as.numeric(rownames(dat))
+    dat$r &lt;- rep(r_range[i], t)
+    N.g &lt;- rbind(N.g, dat)
+    N0 &lt;- 4
+    p &lt;- ggplot(dat, aes(time, N)) + geom_point() + geom_line(color = &quot;gray&quot;) +
+        geom_hline(yintercept = K, linetype = &quot;dashed&quot;, color = &quot;orange&quot;)
+    plist[[i]] &lt;- p
+}
+
+gridExtra::grid.arrange(grobs = plist, nrow = round(length(r_range)/3))</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Please use this plotting code to show dynamics for <em>r</em> = 2,
+2.2, 2.4, 2.5, 2.55, and 2.8, for 50 time steps. Please use RMarkdown to
+write an informative caption for this figure, explaining what the graphs
+show. You can use this link: (<a
+href="https://uoepsy.github.io/scs/rmd-bootcamp/06-figs.html#captions"
+class="uri">https://uoepsy.github.io/scs/rmd-bootcamp/06-figs.html#captions</a>)</p>
+<pre class="r"><code># Parameter values to use for simulation
+r_range &lt;- c(2, 2.2, 2.4, 2.5, 2.55, 2.8)
+K &lt;- 1400
+N0 &lt;- 4
+t &lt;- 50
+# Simulation of model for t time steps
+N.g &lt;- numeric()
+plist &lt;- list()
+for (i in 1:length(r_range)) {
+    N &lt;- rep(NA, t)
+    for (k in 1:t) {
+        N[k] &lt;- disc_log(r_range[i], N0, K)
+        N0 &lt;- N[k]
+    }
+    dat &lt;- as.data.frame(N)
+    dat$time &lt;- as.numeric(rownames(dat))
+    dat$r &lt;- rep(r_range[i], t)
+    N.g &lt;- rbind(N.g, dat)
+    N0 &lt;- 4
+    p &lt;- ggplot(dat, aes(time, N)) + geom_point() + geom_line(color = &quot;gray&quot;) +
+        geom_hline(yintercept = K, linetype = &quot;dashed&quot;, color = &quot;orange&quot;)
+    plist[[i]] &lt;- p
+}
+
+gridExtra::grid.arrange(grobs = plist, nrow = 3)</code></pre>
+<div class="figure">
+<img src="SE2.2_files/figure-html/unnamed-chunk-12-1.png" alt="A figure of population size over time using the discrete-time logistic growth model" width="672" />
+<p class="caption">
+A figure of population size over time using the discrete-time logistic
+growth model
+</p>
+</div>
+</div>
+<div
+id="exercise-2.-create-simulation-of-continuous-time-lotka-volterra-competition-model"
+class="section level2">
+<h2>Exercise 2. Create simulation of continuous-time Lotka-Volterra
+competition model</h2>
+<p>Here is code for a continuous-time logistic growth model:</p>
+<p>The formula:</p>
+<p><span class="math display">\[ \frac{dn}{dt} =
+rn(1-\frac{n}{K})\]</span> The code:</p>
+<pre class="r"><code># Parameter values to use for simulation
+parameters &lt;- c(r = 1.21, K = 1400)
+state &lt;- c(N = 4)
+times &lt;- seq(0, 30, by = 0.01)
+# model function
+cont_log &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        dN &lt;- r * N * (1 - N/K)
+        return(list(dN))
+    })
+}
+# Simulation of model for t time steps
+out &lt;- deSolve::ode(y = state, times = times, func = cont_log,
+    parms = parameters)
+# Plot simulation: ggplot
+out.g &lt;- as.data.frame(out)
+ggplot2::ggplot(out.g, aes(time, N)) + geom_line() + geom_hline(yintercept = K,
+    linetype = &quot;dashed&quot;, color = &quot;gray&quot;)</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-13-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(out.g$time, out.g$N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19,
+    col = &quot;black&quot;)
+abline(h = K, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-13-2.png" width="50%" /></p>
+<p>A. Please modify this to create a simulation of the continuous time
+Lotka-Volterra competition equations, seen as equations 3.15 in Otto
+&amp; Day Chapter 3.</p>
+<p>The formula:</p>
+<p><span class="math display">\[\begin{aligned}
+\frac{dn_1}{dt} &amp;= r_1 n_1(1 - \frac{n_1 t + \alpha_{12} n_2}{K_1})
+\\
+\frac{dn_2}{dt} &amp;= r_2 n_2(1 - \frac{n_2 t + \alpha_{21} n_1}{K_2})
+\end{aligned}\]</span> The parameters you will need are:</p>
+<p><code>r1, r2, K1, K1, alpha_12, alpha_21, n1_0, n2_0</code></p>
+<p>Use these values:</p>
+<p><code>r1 = 1.3, r2 = 1.5, K1 = 1,400, K2 = 1,000, alpha_12 = 0.4, alpha_21 = 0.6, N1_0 = 5, N2_0 = 5</code></p>
+<p><em>Note: be very careful with your parentheses</em></p>
+<p>Here I show with prompts what code you need to fill in. Then I show
+my code for running the continuous simulation and plotting.</p>
+<pre class="r"><code># Parameter values to use for simulation
+parameters &lt;- 1  ## fill in param values where the 1 is
+state &lt;- 1  ## fill in initial values for state variables where the 1 is
+times &lt;- 1  ## fill in values for time intervals where the  1 is
+# model function
+cont_LV &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        ## fill in equation for N1 fill in equation for N2
+        return(list(c(dN1, dN2)))
+    })
+}</code></pre>
+<pre class="r"><code># Parameter values to use for simulation
+parameters &lt;- c(r1 = 1.3, r2 = 1.7, K1 = 1400, K2 = 1000, alpha_12 = 0.4,
+    alpha_21 = 0.6)
+state &lt;- c(N1 = 5, N2 = 5)
+times &lt;- seq(0, 100, by = 0.1)
+# model function
+cont_LV &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        dN1 &lt;- r1 * N1 * (1 - ((N1 + alpha_12 * N2)/K1))
+        dN2 &lt;- r2 * N2 * (1 - ((N2 + alpha_12 * N1)/K2))
+        return(list(c(dN1, dN2)))
+    })
+}</code></pre>
+<pre class="r"><code># Simulation of model for t time steps
+out &lt;- deSolve::ode(y = state, times = times, func = cont_LV,
+    parms = parameters)
+# Plot simulation: ggplot
+out.g &lt;- as.data.frame(out)
+out.melt &lt;- reshape2::melt(out.g, id.var = &quot;time&quot;)
+ggplot2::ggplot(out.melt, aes(x = time, y = value, col = variable)) +
+    geom_line()</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-16-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(out.g$time, out.g$N1, xlab = &quot;time&quot;, ylab = &quot;N&quot;, col = &quot;black&quot;,
+    type = &quot;l&quot;)
+lines(out.g$time, out.g$N2, col = &quot;skyblue&quot;)</code></pre>
+<p><img src="SE2.2_files/figure-html/unnamed-chunk-16-2.png" width="50%" /></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
