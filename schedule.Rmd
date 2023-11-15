@@ -30,11 +30,11 @@ __Please do all readings in advance of the scheduled course period. Each reading
 | Module 2.2 – Survey of ecological models, Part 2  | 08-11-2023 | 1. __Otto & Day Ch3__ (3.4,3.6), 2. [__Reading Guide 2.2__](./RG2.2.html) | 1. [__Lecture Notes 2.2__](./L2.2_notes.html), 2. [__Lecture 2.1b__](./L2.1b.pdf) |
 | Module 2.2 – Survey of ecological models, Part 2  | 09-11-2023 | none | 1. [__Exercise 2.2__](./E2.2.pdf), 2. [__Solutions 2.2__](./SE2.2.pdf) |
 | --- | --- | --- | --- |
-| Module 3.1 – Models and data in ecology case studies, Part 1 | 15-11-2023 | 1. [__Courchamp et al. 1999__](./r4.1_Courchamp_1999.pdf), 2. [__Reading Guide 3.1__](./RG3.1.html)  |  |
-| Module 3.2 – Models and data in ecology case studies, Part 2 | 16-11-2023 | 1. [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf), 2. [__Reading Guide 3.2__](./RG3.2.html)  | 1. [__Exercise 3.2__], 2. [__Lecture 3.1__](./L3.1.pdf) |
-| Module 4.1 – Fitting empirical data to models, Part 1 | 22-11-2023 | [__Muhlbauer et al. 2020__](./r7_Muhlbauer_2020.pdf) | [__Lecture 4.1__](./L4.1.pdf) |
-| Module 4.1 – Fitting empirical data to models, Part 1 | 23-11-2023 | none | 1. [__Exercise 4.1__](./E4.1.html), 2. __Solutions 4.1__  |
-| Module 4.2 – Fitting empirical data to models, Part 2 | 29-11-2023 | none | [__Lecture 4.2__](./L4.2.pdf) |
-| Module 4.2 – Fitting empirical data to models, Part 2 | 30-11-2023 | none | 1. __Exercise 4.2__, 2. __Solutions 4.2__ |
+| Module 2.3 – Survey of ecological models, Part 3 | 15-11-2023 | none  | [__Lecture 3.1__](./L3.1.pdf) |
+| Module 3.1 – Models and data in ecology case studies, Part 1 | 16-11-2023 | 1. [__Courchamp et al. 1999__](./r4.1_Courchamp_1999.pdf), 2. [__Reading Guide 3.1__](./RG3.1.html)  | 1. __Exercise 3.1__, 2. __Solutions 3.1__ |
+| Module 3.2 – Models and data in ecology case studies, Part 2 | 22-11-2023 | 1. [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf), 2. [__Reading Guide 3.2__](./RG3.2.html)  | 1. __Exercise 3.2__, 2. __Solutions 3.2__ |
+| Module 4.1 – Fitting empirical data to models, Part 1 | 23-11-2023 | none | 1. [__Exercise 4.1__](./E4.1.html), 2. __Solutions 4.1__ |
+| Module 4.1 – Fitting empirical data to models, Part 1 | 29-11-2023 | [__Muhlbauer et al. 2020__](./r7_Muhlbauer_2020.pdf) | [__Lecture 4.1__](./L4.1.pdf) |
+| Module 4.2 – Fitting empirical data to models, Part 2 | 30-11-2023 | none | 1. [__Lecture 4.2__](./L4.2.pdf), 2. __Exercise 4.2__, 3. __Solutions 4.2__ |
 | Module 4.3 – Fitting empirical data to models, Part 3. | 06-12-2023 | 1. [__Siren et al. 2018__](./r8_Siren_2018.pdf) | 1. [__Exercise 4.3__](./E4.3.pdf), 2. __Solutions 4.3__ |
 | Module 4.3 – Fitting empirical data to models, Part 3. **Course project 1 & 2 (DUE)** | 07-12-2023 | to be determined | to be determined |
