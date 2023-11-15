@@ -8,10 +8,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
-
-## WARNING!
-This material is for the 2022 class, and has not been updated yet. This is not a final version!
 
 ## Overview
 We will make a "cheat sheet", or a 1-2 page colorful, informative info-graphic style PDF document that walks through a mathematical model of interest. The "cheat sheet" should contain information about:
@@ -27,7 +25,17 @@ You will submit the cheat sheet, and use R code to create some of the graphs (an
 
 ## What steps should I follow to successfully complete this assignment?
 
-1. Choose a model of interest (send me an email to jhpantel[@]utexas.edu to let me know which one). I will join y'all in making a cheat sheet, and I am choosing the predator-prey equations (I showed those in a presentation the first week of class). This means **the cheat sheet's 1st panel should have the model**. If you are using Microsoft Word or Powerpoint, use the formula editor. If you would like to make some things here in RMarkdown, here is how I make formulas:
+1. Choose a model of interest. The possible candidates are:
+
++ Lotka-Volterra competition
++ Lotka-Volterra predator-prey
++ stage-structured population model
++ metapopulation model
++ another model of your choosing, but get my permission before!
+
+Here is an example of some of the content:
+
+First, **the cheat sheet's 1st panel should have the model equations**. If you are using Microsoft Word or Powerpoint, use the formula editor. If you would like to make some things here in RMarkdown, here is how I make formulas:
 
 ![LaTEX for formulas](./media/screen-8.jpg){width="100%"}
 
@@ -42,44 +50,42 @@ Example: "*The Lotka-Volterra predator-prey equations are a set of differential 
 3. Show plots of what system dynamics look like. Create a simulation of the model, choose some parameter values, and make a plot of dynamics over time. In the caption for the plot, tell me what parameter values you chose to make the plots.
 
 ```{r}
-## Lotka Volterra predator-prey equations
-LV_pred_prey <- function(t, state, parameters) {
+## Logistic growth
+cont_log <- function(t, state, parameters) {
   with(as.list(c(state, parameters)), {
-    dx <- a*x - b*x*y
-    dy <- d*x*y - g*y
-    return(list(c(dx,dy)))
+    dN <-  r * N * (1 - (N/K))
+    return(list(dN))
   })
 }
 
-parameters <- c(a = .4, b = .05, d = .2, g = .7)
-state      <- c(x = 13, y = 20)
-times      <- seq(0, 100, by = 0.01)
+parameters <- c(r = 1.7,K = 1000)
+state      <- c(N = 50)
+times      <- seq(0, 10, by = 0.01)
 
-out <- deSolve::ode(y = state, times = times, func = LV_pred_prey, parms = parameters)
+out <- deSolve::ode(y = state, times = times, func = cont_log, 
+                    parms = parameters)
 out.g <- as.data.frame(out)
-ggplot2::ggplot(out.g,aes(time,x, colour = "prey")) + geom_line() + 
-  geom_line(aes(time,y, colour = "predator"))
+ggplot2::ggplot(out.g,aes(time,N)) + 
+  geom_line() +
+  theme_bw()
 ```
 
 4. Explore the equilibrium behavior of the system - under what conditions does the system reach equilibrium (no longer changing)? Under what parameter values is the system at 0 (for example, when is population size 0). In my model, I will look at when the predator can coexist with the prey.
 
 ## When will we have time to discuss and work on this?
 
-+ We will first look over the assignment in class Thursday 01-12-2022. For class Thursday 08-12-2022, I will have a list of instructions to complete by class that day, and on Friday 08-12-2022 I will have a general template you can follow for what a cheat sheet might look like. For class Thursday 15-12-2022, I will have completed a template you can follow, and will include some more instructions for what you should have finished that day.
++ We will first look over the assignment in class Wednesday 15-11-2023. For class Thursday 08-12-2022, I will have a list of instructions to complete by class that day, and on Friday 08-12-2022 I will have a general template you can follow for what a cheat sheet might look like. For class Thursday 15-12-2022, I will have completed a template you can follow, and will include some more instructions for what you should have finished that day.
 
-+ The entire class period 22-12-2022 will be remote / online, and will be devoted to working on your course project. We will sign into a Zoom session, and we will work on our cheat sheet during the remote course session (I am not sure yet how to organize this, but I am working on it).
++ The entire class period 07-12-2023 will be devoted to working on your course project.
 
-+ The assignment will be due by the final day of class, 02-02-2023.
++ The assignment will be due by the final day of classes, 02-02-2024.
 
 ## Is there a template I can look at so I can get started on the assignment?
 
-+ I will create a Draft Template by Friday 09-12-2022. I will create a Final Template by 15-12-2022. I will update with a more detailed list of instructions by 08-12-2022. For now, here is a *very* insufficient example. ![Very insufficient first look at a Draft CModel Cheat Sheet](./media/screen-5.jpg){width="100%"}
++ I will create a Draft Template by Wednesday 22-11-2023. For now, here is a *very* insufficient example. ![Very insufficient first look at a Draft CModel Cheat Sheet](./media/screen-5.jpg){width="100%"}
 
 + It will be in the style of R Cheat Sheets, such as the one seen [__here__](./media/bayesplot.pdf).
 
 ## What if I want to get started now?
 
 + I would advise to begin by creating a simulation in R of your model of choice. Contact me if you would like to choose a model and begin.
-
-+ Candidate models so far are: ![Candidate models we have discussed so far](./media/screen-6.jpg){width="100%"}
-

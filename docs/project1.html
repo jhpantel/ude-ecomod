@@ -496,16 +496,11 @@ div.tocify {
 
 <h1 class="title toc-ignore">Course Project 1 Guidelines</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-11 19:57:32.442244</h4>
+<h4 class="date">2023-11-15 15:52:45.941015</h4>
 
 </div>
 
 
-<div id="warning" class="section level2">
-<h2>WARNING!</h2>
-<p>This material is for the 2022 class, and has not been updated yet.
-This is not a final version!</p>
-</div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <p>We will make a “cheat sheet”, or a 1-2 page colorful, informative
@@ -538,15 +533,20 @@ class="section level2">
 <h2>What steps should I follow to successfully complete this
 assignment?</h2>
 <ol style="list-style-type: decimal">
-<li>Choose a model of interest (send me an email to
-jhpantel[@]utexas.edu to let me know which one). I will join y’all in
-making a cheat sheet, and I am choosing the predator-prey equations (I
-showed those in a presentation the first week of class). This means
-<strong>the cheat sheet’s 1st panel should have the model</strong>. If
-you are using Microsoft Word or Powerpoint, use the formula editor. If
-you would like to make some things here in RMarkdown, here is how I make
-formulas:</li>
+<li>Choose a model of interest. The possible candidates are:</li>
 </ol>
+<ul>
+<li>Lotka-Volterra competition</li>
+<li>Lotka-Volterra predator-prey</li>
+<li>stage-structured population model</li>
+<li>metapopulation model</li>
+<li>another model of your choosing, but get my permission before!</li>
+</ul>
+<p>Here is an example of some of the content:</p>
+<p>First, <strong>the cheat sheet’s 1st panel should have the model
+equations</strong>. If you are using Microsoft Word or Powerpoint, use
+the formula editor. If you would like to make some things here in
+RMarkdown, here is how I make formulas:</p>
 <div class="float">
 <img src="media/screen-8.jpg" style="width:100.0%"
 alt="LaTEX for formulas" />
@@ -577,23 +577,24 @@ of the model, choose some parameter values, and make a plot of dynamics
 over time. In the caption for the plot, tell me what parameter values
 you chose to make the plots.</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="do">## Lotka Volterra predator-prey equations</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>LV_pred_prey <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="do">## Logistic growth</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>cont_log <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    dx <span class="ot">&lt;-</span> a<span class="sc">*</span>x <span class="sc">-</span> b<span class="sc">*</span>x<span class="sc">*</span>y</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    dy <span class="ot">&lt;-</span> d<span class="sc">*</span>x<span class="sc">*</span>y <span class="sc">-</span> g<span class="sc">*</span>y</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="fu">c</span>(dx,dy)))</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  })</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>}</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> .<span class="dv">4</span>, <span class="at">b =</span> .<span class="dv">05</span>, <span class="at">d =</span> .<span class="dv">2</span>, <span class="at">g =</span> .<span class="dv">7</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">x =</span> <span class="dv">13</span>, <span class="at">y =</span> <span class="dv">20</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> LV_pred_prey, <span class="at">parms =</span> parameters)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    dN <span class="ot">&lt;-</span>  r <span class="sc">*</span> N <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> (N<span class="sc">/</span>K))</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  })</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">r =</span> <span class="fl">1.7</span>,<span class="at">K =</span> <span class="dv">1000</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">N =</span> <span class="dv">50</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>times      <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> cont_log, </span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>                    <span class="at">parms =</span> parameters)</span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>out.g <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out)</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(out.g,<span class="fu">aes</span>(time,x, <span class="at">colour =</span> <span class="st">&quot;prey&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time,y, <span class="at">colour =</span> <span class="st">&quot;predator&quot;</span>))</span></code></pre></div>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(out.g,<span class="fu">aes</span>(time,N)) <span class="sc">+</span> </span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="project1_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Explore the equilibrium behavior of the system - under what
@@ -607,20 +608,17 @@ coexist with the prey.</li>
 class="section level2">
 <h2>When will we have time to discuss and work on this?</h2>
 <ul>
-<li><p>We will first look over the assignment in class Thursday
-01-12-2022. For class Thursday 08-12-2022, I will have a list of
+<li><p>We will first look over the assignment in class Wednesday
+15-11-2023. For class Thursday 08-12-2022, I will have a list of
 instructions to complete by class that day, and on Friday 08-12-2022 I
 will have a general template you can follow for what a cheat sheet might
 look like. For class Thursday 15-12-2022, I will have completed a
 template you can follow, and will include some more instructions for
 what you should have finished that day.</p></li>
-<li><p>The entire class period 22-12-2022 will be remote / online, and
-will be devoted to working on your course project. We will sign into a
-Zoom session, and we will work on our cheat sheet during the remote
-course session (I am not sure yet how to organize this, but I am working
-on it).</p></li>
-<li><p>The assignment will be due by the final day of class,
-02-02-2023.</p></li>
+<li><p>The entire class period 07-12-2023 will be devoted to working on
+your course project.</p></li>
+<li><p>The assignment will be due by the final day of classes,
+02-02-2024.</p></li>
 </ul>
 </div>
 <div
@@ -629,11 +627,9 @@ class="section level2">
 <h2>Is there a template I can look at so I can get started on the
 assignment?</h2>
 <ul>
-<li><p>I will create a Draft Template by Friday 09-12-2022. I will
-create a Final Template by 15-12-2022. I will update with a more
-detailed list of instructions by 08-12-2022. For now, here is a
-<em>very</em> insufficient example. <img src="media/screen-5.jpg"
-style="width:100.0%"
+<li><p>I will create a Draft Template by Wednesday 22-11-2023. For now,
+here is a <em>very</em> insufficient example. <img
+src="media/screen-5.jpg" style="width:100.0%"
 alt="Very insufficient first look at a Draft CModel Cheat Sheet" /></p></li>
 <li><p>It will be in the style of R Cheat Sheets, such as the one seen
 <a href="./media/bayesplot.pdf"><strong>here</strong></a>.</p></li>
@@ -642,12 +638,9 @@ alt="Very insufficient first look at a Draft CModel Cheat Sheet" /></p></li>
 <div id="what-if-i-want-to-get-started-now" class="section level2">
 <h2>What if I want to get started now?</h2>
 <ul>
-<li><p>I would advise to begin by creating a simulation in R of your
-model of choice. Contact me if you would like to choose a model and
-begin.</p></li>
-<li><p>Candidate models so far are: <img src="media/screen-6.jpg"
-style="width:100.0%"
-alt="Candidate models we have discussed so far" /></p></li>
+<li>I would advise to begin by creating a simulation in R of your model
+of choice. Contact me if you would like to choose a model and
+begin.</li>
 </ul>
 </div>
 
