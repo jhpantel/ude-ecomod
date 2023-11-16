@@ -11,9 +11,9 @@ This website contains the content of the *Ecological Modelling* course taught by
 
 ## Announcements!!
 
-*We will read the Courchamp et al paper and discuss for class THURSDAY Nov 15!!*
+*Please complete Exercise 3.1 on your own time, we will move on to a new exercise next week. The solutions are now posted.*
 
-*Please bring your laptops to class both Wednesday 15/11 and Thursday 16/11*
+*Be sure to read Lehaye et al. and be ready to discuss for class WEDNESDAY Nov 22!!*
 
 # Course Information
 
@@ -21,8 +21,7 @@ This is a seminar course, held from 16-17h on Wednesdays and 16-18h on Thursdays
 
 # Course Description
 
-In this course, we have three main goals: (1) we will learn the basics of how to construct, read, intuit, and deconstruct models, (
-(2) we will get an overview of models that are often used in Ecology, Evolution, and Aquatic Biology, and (3) we will learn statistical tools to fit actual, observed data to theoretical models. We will gain proficiency in computational ecology, as we will use the statistical programming language R to work with models and data. The classroom is equipped with computer workstations.
+In this course, we have three main goals: (1) we will learn the basics of how to construct, read, intuit, and deconstruct models, (2) we will get an overview of models that are often used in Ecology, Evolution, and Aquatic Biology, and (3) we will learn statistical tools to fit actual, observed data to theoretical models. We will gain proficiency in computational ecology, as we will use the statistical programming language R to work with models and data. The classroom is equipped with computer workstations.
 
 # Website content
 
