@@ -31,7 +31,7 @@ __Please do all readings in advance of the scheduled course period. Each reading
 | Module 2.2 – Survey of ecological models, Part 2  | 09-11-2023 | none | 1. [__Exercise 2.2__](./E2.2.pdf), 2. [__Solutions 2.2__](./SE2.2.pdf) |
 | --- | --- | --- | --- |
 | Module 2.3 – Survey of ecological models, Part 3 | 15-11-2023 | none  | [__Lecture 2.3__](./L2.3.pdf) |
-| Module 3.1 – Models and data in ecology case studies, Part 1 | 16-11-2023 | 1. [__Courchamp et al. 1999__](./r4.1_Courchamp_1999.pdf), 2. [__Reading Guide 3.1__](./RG3.1.html)  | 1. __Exercise 3.1__, 2. __Solutions 3.1__ |
+| Module 3.1 – Models and data in ecology case studies, Part 1 | 16-11-2023 | 1. [__Courchamp et al. 1999__](./r4.1_Courchamp_1999.pdf), 2. [__Reading Guide 3.1__](./RG3.1.html)  | 1. [__Exercise 3.1__](./E3.1.pdf), 2. __Solutions 3.1__ |
 | Module 3.2 – Models and data in ecology case studies, Part 2 | 22-11-2023 | 1. [__Lahaye et al. 1994__](./r4_Lahaye_1994.pdf), 2. [__Reading Guide 3.2__](./RG3.2.html)  | 1. __Exercise 3.2__, 2. __Solutions 3.2__ |
 | Module 4.1 – Fitting empirical data to models, Part 1 | 23-11-2023 | none | 1. [__Exercise 4.1__](./E4.1.html), 2. __Solutions 4.1__ |
 | Module 4.1 – Fitting empirical data to models, Part 1 | 29-11-2023 | [__Muhlbauer et al. 2020__](./r7_Muhlbauer_2020.pdf) | [__Lecture 4.1__](./L4.1.pdf) |

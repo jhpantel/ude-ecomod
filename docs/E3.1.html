@@ -17,7 +17,7 @@
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -30,10 +30,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -46,109 +45,18 @@
   ul.task-list{list-style: none;}
     </style>
 
-
-
-<style type="text/css">
-  code {
-    white-space: pre;
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
-  .sourceCode {
-    overflow: visible;
-  }
-</style>
-<style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  { color: #cccccc; background-color: #303030; }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ffcfaf; } /* Alert */
-code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
-code span.at { } /* Attribute */
-code span.bn { color: #dca3a3; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #f0dfaf; } /* ControlFlow */
-code span.ch { color: #dca3a3; } /* Char */
-code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
-code span.co { color: #7f9f7f; } /* Comment */
-code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
-code span.do { color: #7f9f7f; } /* Documentation */
-code span.dt { color: #dfdfbf; } /* DataType */
-code span.dv { color: #dcdccc; } /* DecVal */
-code span.er { color: #c3bf9f; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #c0bed1; } /* Float */
-code span.fu { color: #efef8f; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
-code span.kw { color: #f0dfaf; } /* Keyword */
-code span.op { color: #f0efd0; } /* Operator */
-code span.ot { color: #efef8f; } /* Other */
-code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
-code span.sc { color: #dca3a3; } /* SpecialChar */
-code span.ss { color: #cc9393; } /* SpecialString */
-code span.st { color: #cc9393; } /* String */
-code span.va { } /* Variable */
-code span.vs { color: #cc9393; } /* VerbatimString */
-code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    var j = 0;
-    while (j < rules.length) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
-        j++;
-        continue;
-      }
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') {
-        j++;
-        continue;
-      }
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
 </script>
+
+
 
 
 
@@ -314,75 +222,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -390,16 +229,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -497,64 +326,56 @@ div.tocify {
 <h1 class="title toc-ignore">Exercise 3.1 - Models and data in ecology
 case studies</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-11-15 10:59:27.788239</h4>
+<h4 class="date">2023-11-16 15:52:58.674984</h4>
 
 </div>
 
 
-<div id="warning" class="section level2">
-<h2>WARNING!</h2>
-<p>This material is for the 2022 class, and has not been updated yet.
-This is not a final version!</p>
-</div>
 <div id="notes" class="section level2">
 <h2>Notes</h2>
-<p>Note 1. This will be the reading guide for Lehaye et al. 1994.</p>
+<p>This exercise is a companion to the paper <a
+href="./r4.2_Lahaye_1994.pdf"><strong>Lahaye et al. 1994</strong></a>,
+which we will read for class next week (Wednesday November 22). You will
+need to refer to some parts of the paper to complete this exercise.</p>
 </div>
-<div id="some-questions-to-answer-before-class" class="section level2">
-<h2>Some questions to answer before class</h2>
+<div id="instructions" class="section level2">
+<h2>Instructions</h2>
+<p>Create either an R script (.R file) or R Markdown document (.Rmd) to
+save all of your work for today.</p>
+</div>
+<div id="exercise-1.-stage-structured-population-dynamics"
+class="section level2">
+<h2>Exercise 1. Stage structured population dynamics</h2>
 <ol style="list-style-type: decimal">
-<li><p>What is the overall goal of this analysis and study - what
-critical question are the researchers addressing that makes the study,
-data, and models useful?</p></li>
-<li><p>Owls can fly, which in theory means in a landscape you can find
-them anywhere. <img src="media/landscape1.jpg" style="width:25.0%"
-alt="Landscape is continuous" /> Yet, the researchers apply
-<em>metapopulation</em> theory, which assumes the species occupies a
-patchy landscape. <img src="media/landscape2.jpg" style="width:25.0%"
-alt="Landscape is patchy" /> Why is owl habitat patchy and not
-continuous?</p></li>
-<li><p>What is the estimated carrying capacity of the San Bernadino
-(SBM) and San Jacinto (SJM) mountain spotted owl population? (hint: see
-Figure 1)</p></li>
-</ol>
-<p>4a. The researchers estimated a population growth rate <em>r</em> =
-0.86 for the SBM population- please find where in the text this result
-is given.</p>
-<p>4b. The researchers used an initial abundance for their simulations
-of 70% of carrying capacity - given this, what is the <span
-class="math inline">\(N_0\)</span> (this is one common way to write
-“initial population size”, pronounced “N nought”, which is British
-English for “zero” and has the same pronunciation as “N not”) of the SBM
-population?</p>
-<p>4c. Use this <em>r</em> value and the <em>K</em> values given in
-Figure 2 to develop a simulation of population dynamics for SBM spotted
+<li><p>In Lahaye et al. 1994, what is the estimated carrying capacity of
+the San Bernadino (SBM) and San Jacinto (SJM) mountain spotted owl
+population? (hint: see Figure 1)</p></li>
+<li><p>The researchers estimated a population growth rate <em>r</em> =
+0.86 for the SBM population. The researchers also used an initial
+abundance for their simulations of 70% of carrying capacity - given
+this, what is the <span class="math inline">\(N_0\)</span> (this is one
+common way to write “initial population size”, pronounced “N nought”,
+which is British English for “zero” and has the same pronunciation as “N
+not”) of the SBM population?</p></li>
+<li><p>Use this <em>r</em> value and the <em>K</em> values given in
+Figure 1 to develop a simulation of population dynamics for SBM spotted
 owls. Use your <span class="math inline">\(N_0\)</span> value above as
 the first <span class="math inline">\(N_t\)</span> value. Plot the
 results of population size (<em>N</em>) over time.
-<strong>Hint</strong>: Use the example code in Lecture 2.3 notes.**
-<strong>Hint</strong>: Here is what my plot looks like
+<strong>Hint</strong>: Use the example code in Lecture 2.2 <a
+href="./L2.2_notes.html"><strong>Lecture Notes 2.2</strong></a> notes.
+** <strong>Hint</strong>: Here is what my plot looks like
 <strong>Hint</strong>: Use formula 3.5a from <a
 href="./r3_OttoDay_Ch3.pdf"><strong>Otto &amp; Day Chapter
-3</strong></a>. (You can run the simulation for 20 time steps)</p>
+3</strong></a>. (You can run the simulation for 20 time steps)</p></li>
+</ol>
 <p><img src="E3.1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<ol start="5" style="list-style-type: decimal">
+<ol start="4" style="list-style-type: decimal">
 <li>The researchers estimated population growth rate <em>R</em> using
 data collected from the SBM population, fit to a <em>two-stage Leslie
-projection matrix</em> model. This is a model for
-<em>stage-structured</em> populations, as is the case for the spotted
-owl. We begin from the discrete-time model for exponential population
-growth:</li>
+matrix</em> model. This is a model for <em>stage-structured</em>
+populations, as is the case for the spotted owl. We begin from the
+discrete-time model for exponential population growth:</li>
 </ol>
 <p><span class="math display">\[N_{t+1} = RN_t\]</span></p>
 <p>Where <em>N</em> is abundance and <em>R</em> is the population growth
@@ -582,39 +403,39 @@ and <span class="math inline">\(P_{2 \to 2}\)</span> is the probability
 of this happening.</p>
 <p>Let’s use R to simulate the population growth of the SBM
 population.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Step 1. Build the transition matrix A</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>P<span class="fl">.12</span> <span class="ot">&lt;-</span> <span class="fl">0.344</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>P<span class="fl">.22</span> <span class="ot">&lt;-</span> <span class="fl">0.767</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>F1 <span class="ot">&lt;-</span> <span class="fl">0.304</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>F2 <span class="ot">&lt;-</span> <span class="fl">0.304</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> .<span class="dv">7</span><span class="sc">*</span>K</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    F1, F2,</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    P<span class="fl">.12</span>, P<span class="fl">.22</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  ,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>,<span class="at">byrow=</span>T)</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>A</span></code></pre></div>
+<pre class="r"><code># Step 1. Build the transition matrix A
+P.12 &lt;- 0.344
+P.22 &lt;- 0.767
+F1 &lt;- 0.304
+F2 &lt;- 0.304
+Nt &lt;- .7*K
+
+A &lt;- matrix(c(
+    F1, F2,
+    P.12, P.22)
+  ,nrow=2,ncol=2,byrow=T)
+
+A</code></pre>
 <pre><code>##       [,1]  [,2]
 ## [1,] 0.304 0.304
 ## [2,] 0.344 0.767</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Step 2. Build the matrix Nt (initial abundance matrix)</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>Nt <span class="ot">&lt;-</span> <span class="fu">c</span>((Nt<span class="sc">/</span><span class="dv">2</span>),(Nt<span class="sc">/</span><span class="dv">2</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Step 3. Matrix multiplication for Nt+1</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>Year1 <span class="ot">&lt;-</span> A <span class="sc">%*%</span> Nt  <span class="co"># matrix multiplication!</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>Year1</span></code></pre></div>
+<pre class="r"><code># Step 2. Build the matrix Nt (initial abundance matrix)
+Nt &lt;- c((Nt/2),(Nt/2))
+
+# Step 3. Matrix multiplication for Nt+1
+Year1 &lt;- A %*% Nt  # matrix multiplication!
+Year1</code></pre>
 <pre><code>##          [,1]
 ## [1,]  56.6048
 ## [2,] 103.4341</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Step 4. Create a new variable to hold future values of N</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NA</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">2</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Step 5. Create a for loop to iteratively calculate N</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>N[<span class="dv">1</span>,] <span class="ot">&lt;-</span> Nt</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">20</span>){</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  N[i,] <span class="ot">&lt;-</span> A <span class="sc">%*%</span> N[i<span class="dv">-1</span>,]</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="r"><code># Step 4. Create a new variable to hold future values of N
+N &lt;- array(NA,dim=c(20,2))
+
+# Step 5. Create a for loop to iteratively calculate N
+N[1,] &lt;- Nt
+for(i in 2:20){
+  N[i,] &lt;- A %*% N[i-1,]
+}</code></pre>
 <p><img src="E3.1_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Your turn: Add a hypothetical 3rd stage to the model, with:</p>
 <p><span class="math display">\[\begin{bmatrix} N_1\\
@@ -637,37 +458,62 @@ class="math inline">\(P_{2 \to 3}\)</span> = 0.1, <span
 class="math inline">\(P_{3 \to 3}\)</span> = 0.1, and <span
 class="math inline">\(F_3\)</span> = 0.304.</p>
 <p><img src="E3.1_files/figure-html/unnamed-chunk-6-1.png" width="672" />
-6. Can you explain why increased correlation in sensitivity to
-environmental variation among spotted owl populations can place the
-entire metapopulation at increased risk of extinction (1st paragraph on
-page 778)?</p>
-<ol start="7" style="list-style-type: decimal">
-<li>Can you explain why the formula on page 778:</li>
+## Exercise 2. Metapopulation dynamics</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Metapopulation simulation</li>
 </ol>
-<p><span class="math display">\[ N_i(t+1) = N_i(t)R_i(t) -
-\sum_{j=1}^{n} m_{ij}N_i + \sum_{i=1}^{n} m_{ji}N_j\]</span></p>
-<p>represents a metapopulation model? Please include a definition for
-metapopulation, with a citation (using <a
-href="https://scholar.google.com">Google Scholar</a> (perhaps <a
-href="./media/Hanski_Gilpin_1991.pdf">Hanski &amp; Gilpin 1991</a>).</p>
-<ol start="8" style="list-style-type: decimal">
-<li><p>The authors believe there is evidence that (i) population
-locations are correlated in the amount of total annual rainfall and (ii)
-that this environmental property impacts fecundity. Please explain their
-analysis to justify this.</p></li>
-<li><p>Please look carefully at Figure 9 - what is on the x- and y-axis?
-How do they support this statement: a correlation in response of
-populations to rainfall makes spotted owls <em>more likely</em> to
-become extinct.</p></li>
-<li><p>Compare Figure 9 to Figure 8 - is metapopulation structure
-important to understand Spotted owl extinction risk?</p></li>
+<p>I have had you work with models and associated simulation code for
+<em>discrete</em> and <em>continuous</em> time models. I paste below
+code for simulations of continuous-time logistic population growth.</p>
+<p><span class="math display">\[ \frac{dn}{dt} =
+rn(1-\frac{n}{K})\]</span></p>
+<pre class="r"><code># Parameter values to use for simulation
+parameters &lt;- c(r = 1.21, K = 1400)
+state &lt;- c(N = 4)
+times &lt;- seq(0, 30, by = 0.01)
+# model function
+cont_log &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        dN &lt;- r * N * (1 - N/K)
+        return(list(dN))
+    })
+}
+# Simulation of model for t time steps
+out &lt;- deSolve::ode(y = state, times = times, func = cont_log,
+    parms = parameters)
+# Plot simulation: ggplot
+out.g &lt;- as.data.frame(out)
+K &lt;- 1400
+ggplot2::ggplot(out.g, aes(time, N)) + geom_line() + geom_hline(yintercept = K,
+    linetype = &quot;dashed&quot;, color = &quot;gray&quot;)</code></pre>
+<p><img src="E3.1_files/figure-html/unnamed-chunk-7-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(out.g$time, out.g$N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19,
+    col = &quot;black&quot;)
+abline(h = K, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
+<p><img src="E3.1_files/figure-html/unnamed-chunk-7-2.png" width="50%" /></p>
+<p>Please adapt / modify this code to create a simulation of the Levins
+metapopulation model:</p>
+<p><span class="math display">\[ \frac{dp}{dt} = cp(1-p) - ep\]</span>
+Where <span class="math inline">\(c = 0.3\)</span>, <span
+class="math inline">\(e = 0.08\)</span>, and <span
+class="math inline">\(p_0 = 0.05\)</span>.</p>
+<p><img src="E3.1_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="E3.1_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><img src="E3.1_files/figure-html/unnamed-chunk-9-1.png" width="672" /><img src="E3.1_files/figure-html/unnamed-chunk-9-2.png" width="672" /><img src="E3.1_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li>We saw in class that the equilibrium solution of the metapopulation
+model (when the system no longer changes) was <span
+class="math inline">\(p^* = 1 - e/c\)</span> - please calculate this for
+the metapopulation simulated above. Use R code to add a straight line to
+your graph that shows this equilibrium. <strong>Hint</strong>: For <span
+class="math inline">\(ggplot\)</span> I used <em>geom_line</em>, for
+base R I used <em>abline</em>, and you can see an example of that in my
+solutions in <a href="./SE2.2.pdf"><strong>SE2.2</strong></a>.</li>
 </ol>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -700,35 +546,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
