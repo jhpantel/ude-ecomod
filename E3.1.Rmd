@@ -52,7 +52,7 @@ for(i in 2:20){
   Nt <- N[i]
 }
 ```
-```{r echo=FALSE}
+```{r echo=FALSE,out.width="40%"}
 # Step 6. Plot N over time
 plot(N,xlab="time",ylab="N",pch=19,col="black")
 ```
@@ -211,12 +211,14 @@ plot(out.g$time,out.g$N,xlab="time",ylab="N",pch=19,col="black")
 abline(h=K,col="grey",lty="dashed")
 ```
 
-Please adapt / modify this code to create a simulation of the Levins metapopulation model:
+Please adapt / modify this code to create a simulation of the Levins metapopulation model, which is used to model the proportion of sites occupied over time in a patchy landscape ![Landscape is patchy](./media/landscape2.jpg){width="25%"}
+
+
 
 $$ \frac{dp}{dt} = cp(1-p) - ep$$
 Where $c = 0.3$, $e = 0.08$, and $p_0 = 0.05$.
 
-```{r echo=FALSE,results='hide',fig.keep='all'}
+```{r echo=FALSE,results='hide',fig.show='hide'}
 # Parameter values to use for simulation
 parameters <- c(c = 0.3,e = 0.08)
 state      <- c(p = 0.05)
@@ -238,7 +240,7 @@ plot(out.g$time,out.g$p,xlab="time",ylab="N",pch=19,col="black")
 ```
 
 
-```{r echo=FALSE,results='hide',fig.keep='all'}
+```{r echo=FALSE,results='hide',fig.show='hide'}
 # Parameter values to use for simulation
 parameters <- c(c = 0.3,e = 0.08)
 state      <- c(p = 0.05)
@@ -264,3 +266,34 @@ abline(h=pstar,col="grey",lty="dashed")
 ```
 
 6. We saw in class that the equilibrium solution of the metapopulation model (when the system no longer changes) was $p^* = 1 - e/c$ - please calculate this for the metapopulation simulated above. Use R code to add a straight line to your graph that shows this equilibrium. **Hint**: For $ggplot$ I used *geom_line*, for base R I used *abline*, and you can see an example of that in my solutions in [__SE2.2__](./SE2.2.pdf).
+
+7. Please improve your figure to your best ability. Use RMarkdown to add an informative caption, and explain what the figure is showing.
+
+8. Please create a new figure showing the eventual extinction of a metapopulation from the following conditions: $c = 0.87$, $e = 0.9$, and $p_0 = 0.82$.
+
+```{r echo=FALSE,results='hide',fig.show='hide'}
+# Parameter values to use for simulation
+parameters <- c(c = 0.87,e = 0.9)
+state      <- c(p = 0.82)
+times      <- seq(0, 100, by = 0.01)
+# model function
+cont_meta <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    dp <-  c*p * (1-p) - e*p
+    return(list(dp))
+  })
+}
+# Simulation of model for t time steps
+out <- deSolve::ode(y = state, times = times, func = cont_meta, parms = parameters)
+# Plot simulation: ggplot
+c <- 0.87
+e <- 0.9
+pstar <- 1 - (e/c)
+out.g <- as.data.frame(out)
+ggplot2::ggplot(out.g,aes(time,p)) + geom_line() + geom_hline(yintercept=pstar, linetype="dashed", color = "gray")
+# Plot simulation: base R
+plot(out.g$time,out.g$p,xlab="time",ylab="N",pch=19,col="black")
+abline(h=pstar,col="grey",lty="dashed")
+```
+
+

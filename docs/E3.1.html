@@ -326,7 +326,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Exercise 3.1 - Models and data in ecology
 case studies</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-11-16 15:52:58.674984</h4>
+<h4 class="date">2023-11-16 16:44:23.939659</h4>
 
 </div>
 
@@ -369,7 +369,7 @@ href="./L2.2_notes.html"><strong>Lecture Notes 2.2</strong></a> notes.
 href="./r3_OttoDay_Ch3.pdf"><strong>Otto &amp; Day Chapter
 3</strong></a>. (You can run the simulation for 20 time steps)</p></li>
 </ol>
-<p><img src="E3.1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="E3.1_files/figure-html/unnamed-chunk-2-1.png" width="40%" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>The researchers estimated population growth rate <em>R</em> using
 data collected from the SBM population, fit to a <em>two-stage Leslie
@@ -493,22 +493,31 @@ plot(out.g$time, out.g$N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 1
 abline(h = K, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
 <p><img src="E3.1_files/figure-html/unnamed-chunk-7-2.png" width="50%" /></p>
 <p>Please adapt / modify this code to create a simulation of the Levins
-metapopulation model:</p>
+metapopulation model, which is used to model the proportion of sites
+occupied over time in a patchy landscape <img
+src="media/landscape2.jpg" style="width:25.0%"
+alt="Landscape is patchy" /></p>
 <p><span class="math display">\[ \frac{dp}{dt} = cp(1-p) - ep\]</span>
 Where <span class="math inline">\(c = 0.3\)</span>, <span
 class="math inline">\(e = 0.08\)</span>, and <span
 class="math inline">\(p_0 = 0.05\)</span>.</p>
-<p><img src="E3.1_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="E3.1_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
-<p><img src="E3.1_files/figure-html/unnamed-chunk-9-1.png" width="672" /><img src="E3.1_files/figure-html/unnamed-chunk-9-2.png" width="672" /><img src="E3.1_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
 <ol start="6" style="list-style-type: decimal">
-<li>We saw in class that the equilibrium solution of the metapopulation
-model (when the system no longer changes) was <span
+<li><p>We saw in class that the equilibrium solution of the
+metapopulation model (when the system no longer changes) was <span
 class="math inline">\(p^* = 1 - e/c\)</span> - please calculate this for
 the metapopulation simulated above. Use R code to add a straight line to
 your graph that shows this equilibrium. <strong>Hint</strong>: For <span
 class="math inline">\(ggplot\)</span> I used <em>geom_line</em>, for
 base R I used <em>abline</em>, and you can see an example of that in my
-solutions in <a href="./SE2.2.pdf"><strong>SE2.2</strong></a>.</li>
+solutions in <a href="./SE2.2.pdf"><strong>SE2.2</strong></a>.</p></li>
+<li><p>Please improve your figure to your best ability. Use RMarkdown to
+add an informative caption, and explain what the figure is
+showing.</p></li>
+<li><p>Please create a new figure showing the eventual extinction of a
+metapopulation from the following conditions: <span
+class="math inline">\(c = 0.87\)</span>, <span class="math inline">\(e =
+0.9\)</span>, and <span class="math inline">\(p_0 =
+0.82\)</span>.</p></li>
 </ol>
 </div>
 
