@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Jelena H. Pantel" />
+
+
+<title>Exercise 3.1 - Models and data in ecology case studies</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Ecological Modelling</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Syllabus
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./schedule.html">Course schedule</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    About me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./aboutme.html">Learn more about me</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Project 1</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="./project1.html">Guidelines</a>
+        </li>
+        <li>
+          <a href="./Pantel_cheat_LV.html">Example cheat sheet</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="./stage.html">Stage structured models</a>
+            </li>
+            <li>
+              <a href="./metapop.html">Metapopulation model</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="./project2.pdf">Project 2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="./contact.html">Contact</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/githubusername/mywebsite">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Exercise 3.1 - Models and data in ecology
+case studies</h1>
+<h4 class="author">Jelena H. Pantel</h4>
+<h4 class="date">2023-11-16 18:33:22.041413</h4>
+
+</div>
+
+
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<p>This exercise is a companion to the paper <a
+href="./r4.2_Lahaye_1994.pdf"><strong>Lahaye et al. 1994</strong></a>,
+which we will read for class next week (Wednesday November 22). You will
+need to refer to some parts of the paper to complete this exercise.</p>
+</div>
+<div id="instructions" class="section level2">
+<h2>Instructions</h2>
+<p>Create either an R script (.R file) or R Markdown document (.Rmd) to
+save all of your work for today.</p>
+</div>
+<div id="exercise-1.-stage-structured-population-dynamics"
+class="section level2">
+<h2>Exercise 1. Stage structured population dynamics</h2>
+<ol style="list-style-type: decimal">
+<li><p>In Lahaye et al. 1994, what is the estimated carrying capacity of
+the San Bernadino (SBM) and San Jacinto (SJM) mountain spotted owl
+population? (hint: see Figure 1)</p></li>
+<li><p>The researchers estimated a population growth rate <em>r</em> =
+0.86 for the SBM population. The researchers also used an initial
+abundance for their simulations of 70% of carrying capacity - given
+this, what is the <span class="math inline">\(N_0\)</span> (this is one
+common way to write “initial population size”, pronounced “N nought”,
+which is British English for “zero” and has the same pronunciation as “N
+not”) of the SBM population?</p></li>
+<li><p>Use this <em>r</em> value and the <em>K</em> values given in
+Figure 1 to develop a simulation of population dynamics for SBM spotted
+owls. Use your <span class="math inline">\(N_0\)</span> value above as
+the first <span class="math inline">\(N_t\)</span> value. Plot the
+results of population size (<em>N</em>) over time.
+<strong>Hint</strong>: Use the example code in Lecture 2.2 <a
+href="./L2.2_notes.html"><strong>Lecture Notes 2.2</strong></a> notes.
+** <strong>Hint</strong>: Here is what my plot looks like
+<strong>Hint</strong>: Use formula 3.5a from <a
+href="./r3_OttoDay_Ch3.pdf"><strong>Otto &amp; Day Chapter
+3</strong></a>. (You can run the simulation for 20 time steps)</p></li>
+</ol>
+<pre class="r"><code># Step 1. Parameters
+r &lt;- 0.86
+K &lt;- 266
+Nt &lt;- 0.7 * K
+
+# Step 2. Equation function
+discrete_logistic &lt;- function(r, K, Nt) {
+    Nt1 &lt;- Nt + r * Nt * (1 - Nt/K)
+    return(Nt1)
+}
+
+# Step 3. Make sure the function works
+Nt1 &lt;- discrete_logistic(r, K, Nt)
+
+# Step 4. Create a new variable to hold future values of N
+N &lt;- rep(NA, 20)
+
+# Step 5. Create a for loop to iteratively calculate N
+N[1] &lt;- Nt
+for (i in 2:20) {
+    N[i] &lt;- discrete_logistic(r, K, Nt)
+    Nt &lt;- N[i]
+}</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-2-1.png" width="40%" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>The researchers estimated population growth rate <em>R</em> using
+data collected from the SBM population, fit to a <em>two-stage Leslie
+matrix</em> model. This is a model for <em>stage-structured</em>
+populations, as is the case for the spotted owl. We begin from the
+discrete-time model for exponential population growth:</li>
+</ol>
+<p><span class="math display">\[N_{t+1} = RN_t\]</span></p>
+<p>Where <em>N</em> is abundance and <em>R</em> is the population growth
+rate. The matrix population growth equation looks similar:</p>
+<p><span class="math display">\[\boldsymbol{N_{t+1}} =
+\boldsymbol{A}\boldsymbol{N_t}\]</span> Where <strong>N</strong> is a
+<strong>vector</strong> of abundances (the abundances for all stages),
+and <strong>A</strong> is the <strong>transition matrix</strong>:</p>
+<p><span class="math display">\[\begin{bmatrix} N_1\\
+N_2 \\
+\end{bmatrix}_{t+1} = \begin{bmatrix}F_1 &amp; F_2\\
+P_{1 \to 2} &amp; P_{2 \to 2}\\
+\end{bmatrix} \cdot \begin{bmatrix}N_1\\
+N_2\\
+\end{bmatrix}_t\]</span></p>
+<p>Where, <span class="math inline">\(F_1\)</span> and <span
+class="math inline">\(F_2\)</span> are the <em>fecundities</em> of stage
+1 and stage 2 (per-capita production of offspring by stage 1 and 2
+individuals) and <span class="math inline">\(P_{1 \to 2}\)</span> and
+<span class="math inline">\(P_{2 \to 2}\)</span> are the
+<em>survivorship</em> - Stage 1 can survice by transitioning to Stage 2,
+and <span class="math inline">\(P_{1 \to 2}\)</span> is the probability
+of this transition. Stage 2 can survive by staying in the same stage,
+and <span class="math inline">\(P_{2 \to 2}\)</span> is the probability
+of this happening.</p>
+<p>Let’s use R to simulate the population growth of the SBM
+population.</p>
+<pre class="r"><code># Step 1. Build the transition matrix A
+P.12 &lt;- 0.344
+P.22 &lt;- 0.767
+F1 &lt;- 0.304
+F2 &lt;- 0.304
+Nt &lt;- 0.7 * K
+
+A &lt;- matrix(c(F1, F2, P.12, P.22), nrow = 2, ncol = 2, byrow = T)
+
+A</code></pre>
+<pre><code>##       [,1]  [,2]
+## [1,] 0.304 0.304
+## [2,] 0.344 0.767</code></pre>
+<pre class="r"><code># Step 2. Build the matrix Nt (initial abundance matrix)
+Nt &lt;- c((Nt/2), (Nt/2))
+
+# Step 3. Matrix multiplication for Nt+1
+Year1 &lt;- A %*% Nt  # matrix multiplication!
+Year1</code></pre>
+<pre><code>##          [,1]
+## [1,]  56.6048
+## [2,] 103.4341</code></pre>
+<pre class="r"><code># Step 4. Create a new variable to hold future values of N
+N &lt;- array(NA, dim = c(20, 2))
+
+# Step 5. Create a for loop to iteratively calculate N
+N[1, ] &lt;- Nt
+for (i in 2:20) {
+    N[i, ] &lt;- A %*% N[i - 1, ]
+}</code></pre>
+<pre class="r"><code># Step 6. Plot N over time
+plot(N[, 1], xlab = &quot;time&quot;, ylab = &quot;N&quot;, col = &quot;black&quot;, ylim = c(0,
+    300), type = &quot;l&quot;)
+points(N[, 1], xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;black&quot;)
+lines(N[, 2], col = &quot;orange&quot;)
+points(N[, 2], xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;orange&quot;)
+legend(&quot;topright&quot;, col = c(&quot;black&quot;, &quot;orange&quot;), lwd = c(2, 2),
+    legend = c(&quot;Stage 1&quot;, &quot;Stage 2&quot;))</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-4-1.png" width="50%" /></p>
+<p>Your turn: Add a hypothetical 3rd stage to the model, with:</p>
+<p><span class="math display">\[\begin{bmatrix} N_1\\
+N_2 \\
+N_3 \\
+\end{bmatrix}_{t+1} = \begin{bmatrix}F_1 &amp; F_2 &amp; F_3\\
+P_{1 \to 2} &amp; P_{2 \to 2} &amp; P_{3 \to 2}\\
+P_{1 \to 3} &amp; P_{2 \to 3} &amp; P_{3 \to 3}\\
+\end{bmatrix} \cdot \begin{bmatrix}N_1\\
+N_2\\
+N_3\\
+\end{bmatrix}_t\]</span> In this model, continue to use the same values
+as above for <span class="math inline">\(F_1\)</span>, <span
+class="math inline">\(F_2\)</span>, <span class="math inline">\(P_{1 \to
+2}\)</span>, and <span class="math inline">\(P_{2 \to 2}\)</span>. Set
+<span class="math inline">\(P_{3 \to 2}\)</span> = 0 (because the owls
+can’t go back a stage) and <span class="math inline">\(P_{1 \to
+3}\)</span> = 0 (because the owls can’t skip a stage). Set <span
+class="math inline">\(P_{2 \to 3}\)</span> = 0.1, <span
+class="math inline">\(P_{3 \to 3}\)</span> = 0.1, and <span
+class="math inline">\(F_3\)</span> = 0.304.</p>
+<pre class="r"><code># Step 1. Build the transition matrix A
+P.12 &lt;- 0.344
+P.22 &lt;- 0.767
+F1 &lt;- 0.304
+F2 &lt;- 0.304
+Nt &lt;- 0.7 * K
+
+P.32 &lt;- 0
+P.13 &lt;- 0
+
+P.23 &lt;- 0.1
+P.33 &lt;- 0.1
+F3 &lt;- 0.304
+
+A &lt;- matrix(c(F1, F2, F3, P.12, P.22, P.32, P.13, P.23, P.33),
+    nrow = 3, ncol = 3, byrow = T)
+
+# A
+
+# Step 2. Build the matrix Nt (initial abundance matrix)
+Nt &lt;- c((Nt/3), (Nt/3), (Nt/3))
+
+# Step 3. Matrix multiplication for Nt+1
+Year1 &lt;- A %*% Nt  # matrix multiplication!
+# Year1
+
+# Step 4. Create a new variable to hold future values of N
+N &lt;- array(NA, dim = c(20, 3))
+
+# Step 5. Create a for loop to iteratively calculate N
+N[1, ] &lt;- Nt
+for (i in 2:20) {
+    N[i, ] &lt;- A %*% N[i - 1, ]
+}</code></pre>
+<pre class="r"><code># Step 6. Plot N over time
+plot(N[, 1], xlab = &quot;time&quot;, ylab = &quot;N&quot;, col = &quot;black&quot;, ylim = c(0,
+    300), type = &quot;l&quot;)
+points(N[, 1], xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;black&quot;)
+lines(N[, 2], col = &quot;orange&quot;)
+points(N[, 2], xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;orange&quot;)
+lines(N[, 3], col = &quot;skyblue&quot;)
+points(N[, 3], xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;skyblue&quot;)
+legend(&quot;topright&quot;, col = c(&quot;black&quot;, &quot;orange&quot;, &quot;skyblue&quot;), lwd = c(2,
+    2, 2), legend = c(&quot;Stage 1&quot;, &quot;Stage 2&quot;, &quot;Stage 3&quot;))</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-6-1.png" width="50%" />
+## Exercise 2. Metapopulation dynamics</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Metapopulation simulation</li>
+</ol>
+<p>I have had you work with models and associated simulation code for
+<em>discrete</em> and <em>continuous</em> time models. I paste below
+code for simulations of continuous-time logistic population growth.</p>
+<p><span class="math display">\[ \frac{dn}{dt} =
+rn(1-\frac{n}{K})\]</span></p>
+<pre class="r"><code># Parameter values to use for simulation
+parameters &lt;- c(r = 1.21, K = 1400)
+state &lt;- c(N = 4)
+times &lt;- seq(0, 30, by = 0.01)
+# model function
+cont_log &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        dN &lt;- r * N * (1 - N/K)
+        return(list(dN))
+    })
+}
+# Simulation of model for t time steps
+out &lt;- deSolve::ode(y = state, times = times, func = cont_log,
+    parms = parameters)
+# Plot simulation: ggplot
+out.g &lt;- as.data.frame(out)
+K &lt;- 1400
+ggplot2::ggplot(out.g, aes(time, N)) + geom_line() + geom_hline(yintercept = K,
+    linetype = &quot;dashed&quot;, color = &quot;gray&quot;)</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-7-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(out.g$time, out.g$N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19,
+    col = &quot;black&quot;)
+abline(h = K, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-7-2.png" width="50%" /></p>
+<p>Please adapt / modify this code to create a simulation of the Levins
+metapopulation model, which is used to model the proportion of sites
+occupied over time in a patchy landscape <img
+src="media/landscape2.jpg" style="width:25.0%"
+alt="Landscape is patchy" /></p>
+<p><span class="math display">\[ \frac{dp}{dt} = cp(1-p) - ep\]</span>
+Where <span class="math inline">\(c = 0.3\)</span>, <span
+class="math inline">\(e = 0.08\)</span>, and <span
+class="math inline">\(p_0 = 0.05\)</span>.</p>
+<pre class="r"><code># Parameter values to use for simulation
+parameters &lt;- c(c = 0.3, e = 0.08)
+state &lt;- c(p = 0.05)
+times &lt;- seq(0, 50, by = 0.01)
+# model function
+cont_meta &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        dp &lt;- c * p * (1 - p) - e * p
+        return(list(dp))
+    })
+}
+# Simulation of model for t time steps
+out &lt;- deSolve::ode(y = state, times = times, func = cont_meta,
+    parms = parameters)
+# Plot simulation: ggplot
+out.g &lt;- as.data.frame(out)
+ggplot2::ggplot(out.g, aes(time, p)) + geom_line()</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-8-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(out.g$time, out.g$p, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19,
+    col = &quot;black&quot;)</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-8-2.png" width="50%" /></p>
+<pre class="r"><code># Parameter values to use for simulation
+parameters &lt;- c(c = 0.3, e = 0.08)
+state &lt;- c(p = 0.05)
+times &lt;- seq(0, 50, by = 0.01)
+# model function
+cont_meta &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        dp &lt;- c * p * (1 - p) - e * p
+        return(list(dp))
+    })
+}
+# Simulation of model for t time steps
+out &lt;- deSolve::ode(y = state, times = times, func = cont_meta,
+    parms = parameters)
+# Plot simulation: ggplot
+c &lt;- 0.3
+e &lt;- 0.08
+pstar &lt;- 1 - (e/c)
+out.g &lt;- as.data.frame(out)
+ggplot2::ggplot(out.g, aes(time, p)) + geom_line() + geom_hline(yintercept = pstar,
+    linetype = &quot;dashed&quot;, color = &quot;gray&quot;)</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-9-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(out.g$time, out.g$p, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19,
+    col = &quot;black&quot;)
+abline(h = pstar, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-9-2.png" width="50%" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>We saw in class that the equilibrium solution of the
+metapopulation model (when the system no longer changes) was <span
+class="math inline">\(p^* = 1 - e/c\)</span> - please calculate this for
+the metapopulation simulated above. Use R code to add a straight line to
+your graph that shows this equilibrium. <strong>Hint</strong>: For <span
+class="math inline">\(ggplot\)</span> I used <em>geom_line</em>, for
+base R I used <em>abline</em>, and you can see an example of that in my
+solutions in <a href="./SE2.2.pdf"><strong>SE2.2</strong></a>.</p></li>
+<li><p>Please improve your figure to your best ability. Use RMarkdown to
+add an informative caption, and explain what the figure is
+showing.</p></li>
+<li><p>Please create a new figure showing the eventual extinction of a
+metapopulation from the following conditions: <span
+class="math inline">\(c = 0.87\)</span>, <span class="math inline">\(e =
+0.9\)</span>, and <span class="math inline">\(p_0 =
+0.82\)</span>.</p></li>
+</ol>
+<pre class="r"><code># Parameter values to use for simulation
+parameters &lt;- c(c = 0.87, e = 0.9)
+state &lt;- c(p = 0.82)
+times &lt;- seq(0, 100, by = 0.01)
+# model function
+cont_meta &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        dp &lt;- c * p * (1 - p) - e * p
+        return(list(dp))
+    })
+}
+# Simulation of model for t time steps
+out &lt;- deSolve::ode(y = state, times = times, func = cont_meta,
+    parms = parameters)
+# Plot simulation: ggplot
+c &lt;- 0.87
+e &lt;- 0.9
+pstar &lt;- 1 - (e/c)
+out.g &lt;- as.data.frame(out)
+ggplot2::ggplot(out.g, aes(time, p)) + geom_line() + geom_hline(yintercept = pstar,
+    linetype = &quot;dashed&quot;, color = &quot;gray&quot;)</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-10-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(out.g$time, out.g$p, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19,
+    col = &quot;black&quot;)
+abline(h = pstar, col = &quot;grey&quot;, lty = &quot;dashed&quot;)</code></pre>
+<p><img src="SE3.1_files/figure-html/unnamed-chunk-10-2.png" width="50%" /></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
