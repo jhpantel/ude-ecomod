@@ -496,7 +496,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Pantel cheat sheet example</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-10 13:42:24.423703</h4>
+<h4 class="date">2023-11-22 15:39:44.211458</h4>
 
 </div>
 
@@ -620,26 +620,6 @@ class="math inline">\(y_0 = 13\)</span>.</li>
 look across a range of prey growth rates <span
 class="math inline">\(\alpha\)</span>:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Across a range of alpha values</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>a_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>out.g <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NA</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="fu">length</span>(times)<span class="sc">*</span><span class="fu">length</span>(a_range),<span class="dv">4</span>),<span class="at">dimnames=</span><span class="fu">list</span>(<span class="cn">NULL</span>,<span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;r&quot;</span>)))</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(a_range)){</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> a_range[i], <span class="at">b =</span> .<span class="dv">05</span>, <span class="at">d =</span> .<span class="dv">2</span>, <span class="at">g =</span> .<span class="dv">7</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> LV_pred_prey, <span class="at">parms =</span> parameters)</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  out2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out)</span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  out.g[(((<span class="fu">length</span>(times) <span class="sc">*</span> i)<span class="sc">+</span><span class="dv">1</span>) <span class="sc">-</span> <span class="fu">length</span>(times))<span class="sc">:</span>(<span class="fu">length</span>(times) <span class="sc">*</span> i),<span class="dv">4</span>] <span class="ot">&lt;-</span> a_range[i]</span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  out.g[(((<span class="fu">length</span>(times) <span class="sc">*</span> i)<span class="sc">+</span><span class="dv">1</span>) <span class="sc">-</span> <span class="fu">length</span>(times))<span class="sc">:</span>(<span class="fu">length</span>(times) <span class="sc">*</span> i),<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> out[,]</span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>}</span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>out.g <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out.g)</span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co"># Now plot for all alpha values</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(a_range)){</span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>  sub <span class="ot">&lt;-</span> out.g[]</span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>  p[[i]] <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(out.g[out.g<span class="sc">$</span>r<span class="sc">==</span>a_range[i],],<span class="fu">aes</span>(time,x, <span class="at">colour =</span> <span class="st">&quot;prey&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(time,y, <span class="at">colour =</span> <span class="st">&quot;predator&quot;</span>)) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>}</span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="fu">do.call</span>(grid.arrange,p)</span></code></pre></div>
 <p><img src="Pantel_cheat_LV_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>I also show results graphically across a range of values for initial
@@ -647,27 +627,6 @@ predator population size <span class="math inline">\(y_0\)</span>,
 indicating that equilibrium population size also depends on initial
 population size.</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Across a range of y0 values</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>y0_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>out.g <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NA</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="fu">length</span>(times)<span class="sc">*</span><span class="fu">length</span>(y0_range),<span class="dv">4</span>),<span class="at">dimnames=</span><span class="fu">list</span>(<span class="cn">NULL</span>,<span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;r&quot;</span>)))</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(y0_range)){</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> .<span class="dv">4</span>, <span class="at">b =</span> .<span class="dv">05</span>, <span class="at">d =</span> .<span class="dv">2</span>, <span class="at">g =</span> .<span class="dv">7</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  state      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">x =</span> <span class="dv">13</span>, <span class="at">y =</span> y0_range[i])</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  out <span class="ot">&lt;-</span> deSolve<span class="sc">::</span><span class="fu">ode</span>(<span class="at">y =</span> state, <span class="at">times =</span> times, <span class="at">func =</span> LV_pred_prey, <span class="at">parms =</span> parameters)</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  out2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out)</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  out.g[(((<span class="fu">length</span>(times) <span class="sc">*</span> i)<span class="sc">+</span><span class="dv">1</span>) <span class="sc">-</span> <span class="fu">length</span>(times))<span class="sc">:</span>(<span class="fu">length</span>(times) <span class="sc">*</span> i),<span class="dv">4</span>] <span class="ot">&lt;-</span> y0_range[i]</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  out.g[(((<span class="fu">length</span>(times) <span class="sc">*</span> i)<span class="sc">+</span><span class="dv">1</span>) <span class="sc">-</span> <span class="fu">length</span>(times))<span class="sc">:</span>(<span class="fu">length</span>(times) <span class="sc">*</span> i),<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> out[,]</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>}</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>out.g <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out.g)</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co"># Now plot for all alpha values</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(y0_range)){</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>  sub <span class="ot">&lt;-</span> out.g[]</span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>  p[[i]] <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(out.g[out.g<span class="sc">$</span>r<span class="sc">==</span>y0_range[i],],<span class="fu">aes</span>(time,x, <span class="at">colour =</span> <span class="st">&quot;prey&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(time,y, <span class="at">colour =</span> <span class="st">&quot;predator&quot;</span>)) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">120</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>}</span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="fu">do.call</span>(gridExtra<span class="sc">::</span>grid.arrange,p)</span></code></pre></div>
 <p><img src="Pantel_cheat_LV_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="equilibrium-analysis" class="section level2">

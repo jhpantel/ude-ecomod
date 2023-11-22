@@ -82,7 +82,7 @@ ggplot2::ggplot(out.g,aes(time,N)) +
 
 ## Is there a template I can look at so I can get started on the assignment?
 
-+ I will create a Draft Template by Wednesday 22-11-2023. For now, here is a *very* insufficient example. ![Very insufficient first look at a Draft CModel Cheat Sheet](./media/screen-5.jpg){width="100%"}
++ I will create a Draft Template by Friday 24-11-2023. For now, here is a *very* insufficient example. ![Very insufficient first look at a Draft CModel Cheat Sheet](./media/screen-5.jpg){width="100%"}
 
 + It will be in the style of R Cheat Sheets, such as the one seen [__here__](./media/bayesplot.pdf).
 

@@ -60,7 +60,7 @@ ggplot2::ggplot(out.g,aes(time,x, colour = "prey")) + geom_line() +
 
 2. Of course, the model dynamics depend on parameter values. We can look across a range of prey growth rates $\alpha$:
 
-```{r}
+```{r echo=FALSE}
 # Across a range of alpha values
 a_range <- seq(-3.5, 3.5, by = 0.5)
 out.g <- array(NA,dim=c(length(times)*length(a_range),4),dimnames=list(NULL,c("time","x","y","r")))
@@ -85,7 +85,7 @@ do.call(grid.arrange,p)
 
 3. I also show results graphically across a range of values for initial predator population size $y_0$, indicating that equilibrium population size also depends on initial population size.
 
-```{r}
+```{r echo=FALSE}
 # Across a range of y0 values
 y0_range <- seq(1, 100, by = 5)
 out.g <- array(NA,dim=c(length(times)*length(y0_range),4),dimnames=list(NULL,c("time","x","y","r")))
