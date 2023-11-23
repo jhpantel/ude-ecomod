@@ -113,7 +113,7 @@ In our phytoplankon example, let's say that *Y* is the cell length (in $\mu m$) 
 
 The data looks like this:
 
-```{r echo=FALSE,out.width="40%"}
+```{r echo=FALSE,out.width="40%",tidy.opts=list(width.cutoff=60)}
 set.seed(1234)
 X <- c(3, 5, 7, 22, 28, 39, 46, 200)
 a <- 15; b <- 0.5
