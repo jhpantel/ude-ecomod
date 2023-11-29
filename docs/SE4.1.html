@@ -325,7 +325,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Module 4.1 Exercise</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-11-23 17:04:26</h4>
+<h4 class="date">2023-11-29 13:35:23</h4>
 
 </div>
 
@@ -759,7 +759,6 @@ legend(&quot;topright&quot;, legend = c(&quot;D. magna&quot;, &quot;D. pulex&quo
 the Lotka-Volterra competition equation.</p>
 <pre class="r"><code>sub &lt;- read.csv(&quot;https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/sub.csv&quot;,
     header = T)
-
 dp_mod &lt;- nls(dp_Nt1 ~ dp_Nt + dp_Nt * ((L * exp(-A * dp_Nt -
     B * dm_Nt))^days), data = sub, start = c(L = 1.5, A = 1e-04,
     B = 1e-04), na.action = na.omit)</code></pre>
@@ -770,6 +769,22 @@ class="math inline">\(B_1\)</span> - all parameters for the D. pulex
 growth equation. <strong>What are the model-estimated values for those
 parameters, given the data?</strong> Hint: use
 <code>summary(dp_mod)</code></p>
+<pre class="r"><code>summary(dp_mod)</code></pre>
+<pre><code>## 
+## Formula: dp_Nt1 ~ dp_Nt + dp_Nt * ((L * exp(-A * dp_Nt - B * dm_Nt))^days)
+## 
+## Parameters:
+##    Estimate Std. Error t value Pr(&gt;|t|)    
+## L 1.397e+00  5.095e-02  27.422   &lt;2e-16 ***
+## A 8.251e-05  4.250e-05   1.942    0.061 .  
+## B 1.022e-04  8.364e-05   1.222    0.231    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2428 on 32 degrees of freedom
+## 
+## Number of iterations to convergence: 13 
+## Achieved convergence tolerance: 8.352e-06</code></pre>
 <pre class="r"><code>sub$yhat &lt;- predict(dp_mod)
 plot(sub$week[sub$meso == 30], sub$dp_Nt1[sub$meso == 30], main = &quot;mesocosm 30 D. pulex&quot;,
     xlab = &quot;week&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;orange&quot;)
@@ -779,6 +794,21 @@ lines(sub$week[sub$meso == 30], sub$yhat[sub$meso == 30], col = &quot;blue&quot;
 Give the most likely parameter estimates, and a plot of the data and
 model-fit line.</p>
 <p><img src="SE4.1_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre><code>## 
+## Formula: dm_Nt1 ~ dm_Nt + dm_Nt * ((L * exp(-A * dm_Nt - B * dp_Nt))^days)
+## 
+## Parameters:
+##     Estimate Std. Error t value Pr(&gt;|t|)    
+## L  1.302e+00  7.753e-02  16.790   &lt;2e-16 ***
+## A  2.022e-04  8.778e-05   2.304   0.0279 *  
+## B -1.810e-06  1.969e-05  -0.092   0.9273    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1839 on 32 degrees of freedom
+## 
+## Number of iterations to convergence: 8 
+## Achieved convergence tolerance: 8.088e-06</code></pre>
 </div>
 </div>
 <div

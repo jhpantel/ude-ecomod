@@ -185,13 +185,13 @@ Here is code to get the nls model to fit, and estimate parameters in the Lotka-V
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
 sub <- read.csv("https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/sub.csv",header=T)
-
 dp_mod <- nls(dp_Nt1 ~ dp_Nt + dp_Nt*((L*exp(-A*dp_Nt - B*dm_Nt))^days),data=sub,start=c(L=1.5,A=.0001,B=.0001),na.action = na.omit)
 ```
 
 The code seen here estimates the value of $L_1$, $A_1$, and $B_1$ - all parameters for the D. pulex growth equation. **What are the model-estimated values for those parameters, given the data?** Hint: use `summary(dp_mod)`
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), out.width="40%"}
+summary(dp_mod)
 sub$yhat <- predict(dp_mod)
 plot(sub$week[sub$meso==30],sub$dp_Nt1[sub$meso==30],main="mesocosm 30 D. pulex",xlab = "week", ylab = "N",pch=19,col="orange")
 lines(sub$week[sub$meso==30],sub$yhat[sub$meso==30],col="blue")
@@ -204,6 +204,7 @@ dm_mod <- nls(dm_Nt1 ~ dm_Nt + dm_Nt*((L*exp(-A*dm_Nt - B*dp_Nt))^days),data=sub
 sub$yhat <- predict(dm_mod)
 plot(sub$week[sub$meso==30],sub$dm_Nt1[sub$meso==30],main="mesocosm 30 D. magna",xlab = "week", ylab = "N",pch=19,col="black")
 lines(sub$week[sub$meso==30],sub$yhat[sub$meso==30],col="blue")
+summary(dm_mod)
 ```
 
 ## Exercise 3. Fitting data to Lotka-Volterra competition model using gauseR
