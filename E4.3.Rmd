@@ -12,6 +12,7 @@ institute: "University of Duisburg-Essen"
 knitr::opts_chunk$set(echo = TRUE)
 library(abc)
 library(fitdistrplus)
+library(gauseR)
 ```
 
 ## Exercise 1. Our First ABC - estimating parameters of Gaussian distribution given observed data
@@ -26,11 +27,11 @@ We can plot data and use our own eyes to consider whether it follows a normal di
 ##### B. The easiest / typical way to estimate parameters of a normal model when fit to observed data
 The focus of today's exercise will be to use Approximate Bayesian Computation (ABC) for fitting data to models. ABC is most needed with very complicated models where the underlying parameters are often unkown and difficult to estimate. However, its best to show you how ABC works by applying it to a simpler model. So we will learn to estimate the parameters in a normal distribution given a set of data.
 
-The dataset of interest is body weight of a common household insect. Please run the following command to generate the dataset:
+The dataset of interest is body weight of a common household insect. Please run the following command to load the dataset:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
-set.seed(42)
-dat <- rnorm(1000,3.428,exp(-1.940098)) # Dataset with measurements of 1000 household insects body mass (g) (yes I don't have real data, so this is simulated - pretend its real data!)
+# Dataset with measures of 1000 household insects body mass (g)
+dat <- read.csv("https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/insect.csv",header=TRUE,row.names=1)
 ```
 
 You can visualize and summarize the data - what is the mean (`mean`) and standard deviation (`sd`) of the dataset? What is the *natural logarithm* of the standard deviation of the dataset (`log(sd)`)?
@@ -54,7 +55,7 @@ dnorm(60,50,1)
 Its of interest to 'fit your data to a normal model'. We can do this very quickly in R - we provide our data `dat` to a command `fitdist` in the R library `fitdistrplus` - it fits your observed data to a normal model and returns estimates of the model parameters ($\mu$ and $\sigma$):
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
-fitdistrplus::fitdist(data=dat,distr="norm")
+fitdistrplus::fitdist(data=dat$weight_g,distr="norm")
 ```
 
 How does the `fitdist` model estimates for mean ($\mu$) and standard deviation ($\sigma$) compare to the true values used to produce the data? Quite well.
@@ -124,7 +125,7 @@ for(i in d){
 Our focal summary statistics are (1) the mean of the dataset and (2) the logarithm of the standard deviation of the dataset. We save those to a new variable called `stat.obs`:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), warning=FALSE,message=FALSE}
-stat.obs <- c(mean(dat),log(sd(dat)))
+stat.obs <- c(mean(dat$weight_g),log(sd(dat$weight_g)))
 ```
 
 Our simulated summary statistics can be obtained by calculating the mean and log(sd) for each of the 10000 simulations:
@@ -143,8 +144,7 @@ We do this step using the R package `abc`:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), warning=FALSE,message=FALSE}
 par.sim <- cbind(mu_rand,sd_rand)
-rej <- abc::abc(target=stat.obs, param=par.sim, sumstat=stat.sim, tol=.1, method =
-             "neuralnet")
+rej <- abc::abc(target=stat.obs, param=par.sim, sumstat=stat.sim, tol=.1, method ="neuralnet")
 ```
 
 **Step 4. The remaining accepted simulations are used to calculate a 'posterior distribution' for underlying model parameters**
@@ -159,8 +159,209 @@ hist(log(rej$adj.values[,2]),main="posterior distribution of standard deviation"
 
 How well do these compare to the observed values in the original data (`obs.stat`)?
 
+##### D. Estimating parameters of a discrete-time Lotka Volterra model using ABC
+Let's repeat using ABC (Approximate Bayesian Computation) to estimate the most likely values of the model parameters given the observe data. We can take Gause's *Paramecium* data and try to estimate the underlying parameters from a discrete-time Lotka Volterra model.
 
+**Step 1a. Gather your observed data**
 
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), out.width="40%"}
+#load competition data
+data("gause_1934_science_f02_03")
+
+#subset out data from species grown in mixture
+mixturedat <- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment=="Mixture",]
+
+#extract time and species data
+time <- mixturedat$Day
+species <- data.frame(mixturedat$Volume_Species1, mixturedat$Volume_Species2)
+colnames(species) <- c("P_caudatum", "P_aurelia")
+```
+
+**Step 1b. Arrange your observed data similar to stat.obs above**
+The variable with the observed data, `species`, has dimensions `r dim(species)`. You should arrange the observed data as a vector of length `r dim(species)[1] *  dim(species)[2]`. That means, please arrange the data in `species` to be 1 vector of length 46. Save that to a new variable called `stat.obs` Hint: you can try the `reshape2::melt` command, or you can create your own new variable as `stat.obs <- c(species[,1],species[,2])`
+
+```{r echo=FALSE}
+stat.obs <-  c(species[,1],species[,2])
+```
+
+Make sure your variable is correct by running this command and getting the same results:
+
+```{r}
+length(stat.obs)
+```
+
+**Step 2. Create simulation of data from an underlying model**
+
+Our next goal is to use a discrete-time Lotka-Volterra model that can simulate data of the kind observed in Gause's Paramecium. The model should consider the processes - growth and competition - that are important to produce the observed Paramecium time series.
+
+We use the following model:
+
+$$ N_{1,t+1} = N_{1,t} + N_{1,t} \cdot(\lambda_1 e^{(-\alpha_{11} N_{1,t} - \alpha_{12} N_{2,t})})$$
+$$ N_{2,t+1} = N_{2,t} + N_{2,t} \cdot(\lambda_2 e^{(-\alpha_{22} N_{2,t} - \alpha_{21} N_{1,t})})$$
+The parameters we need to estimate are:
+
+$\lambda_1, \lambda_2, \alpha_{11}, \alpha_{22}, \alpha_{12}, \alpha_21$
+
+Please create a simulation of this model. I copy here a model for a single species. Please modify that to also simulate growth in a second species. For the missing parameters, you can start by using values of $\lambda_2 = 1.5$, $\alpha_{22} = 0.005$, $\alpha_{12} = 0.03$, $\alpha_{21} = 0.007$, $N_{2,0} = 3$. Change the name of the function to `disc_lv`.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
+# Parameter values to use for simulation
+lambda_1 <- 1.7
+alpha_11 <- 0.01
+N1_0 <- 5
+t <- 23
+# model function
+disc_log <- function(lambda_1,N1_0,alpha_11){
+  Nt1 <- N1_0 + N1_0*(lambda_1*exp(-alpha_11*N1_0))
+  return(Nt1)
+}
+# Simulation of model for t time steps
+N <- rep(NA,t)
+N[1] <- N1_0
+for(i in 2:t){
+  N[i] <- disc_log(lambda_1,N1_0,alpha_11)
+  N1_0 <- N[i]
+}
+# Plot simulation: ggplot
+dat <- as.data.frame(N)
+dat$time <- as.numeric(rownames(dat))
+ggplot2::ggplot(dat,ggplot2::aes(time,N)) + ggplot2::geom_point()
+# Plot simulation: base R
+plot(N,xlab="time",ylab="N",pch=19,col="black")
+```
+
+```{r echo=FALSE,include=FALSE}
+# Parameter values to use for simulation
+lambda_1 <- 1.7
+lambda_2 <- 1.5
+alpha_11 <- 0.01
+alpha_22 <- 0.005
+alpha_12 <- 0.03
+alpha_21 <- 0.007
+N1_0 <- 5
+N2_0 <- 3
+t <- 23
+# model function
+disc_lv <- function(lambda_1,lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21){
+  Nt1 <- N1_0 + N1_0*(lambda_1*exp(-alpha_11*N1_0 - alpha_12*N2_0))
+  Nt2 <- N2_0 + N2_0*(lambda_2*exp(-alpha_22*N2_0 - alpha_21*N1_0))
+  return(cbind(Nt1,Nt2))
+}
+# Simulation of model for t time steps
+N <- array(NA,dim=c(t,2),dimnames=list(NULL,c("N1","N2")))
+for(i in 1:t){
+  N[i,] <- disc_lv(lambda_1,lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21)
+  N1_0 <- N[i,1]
+  N2_0 <- N[i,2]
+}
+# Plot simulation: ggplot
+dat <- reshape2::melt(N)
+ggplot2::ggplot(dat,ggplot2::aes(x=Var1,y=value,col=Var2)) + ggplot2::geom_point()
+# Plot simulation: base R
+plot(N[,1],xlab="time",ylab="N",pch=19,col="black",ylim=c(0,800))
+points(N[,2],pch=19,col="orange")
+```
+
+**Step 3. Create random simulations of data, using prior distributions for model parameters**
+Do you recall an exercise where we looked at logistic growth across a range of values for the growth rate $r$? We used code that looks like this (using disc_log from above):
+
+```{r warning=FALSE,message=FALSE}
+# Simulation of model for t time steps
+lambda_1_range <- c(0.6, 0.8, 1.2, 1.6, 1.8, 2.0)
+N.g <- numeric()
+N1_0 <- 5
+for(p in 1:length(lambda_1_range)){
+  N <- rep(NA,t)
+  N[1] <- N1_0
+  for(i in 2:t){
+    N[i] <- disc_log(lambda_1_range[p],N1_0,alpha_11)
+    N1_0 <- N[i]
+  }
+  dat <- as.data.frame(N)
+  dat$time <- as.numeric(rownames(dat))
+  dat$r <- rep(lambda_1_range[p],t)
+  N.g <- rbind(N.g,dat)
+  N1_0 <- 5
+}
+# Plot in ggplot
+ggplot2::ggplot(N.g,ggplot2::aes(x=time,y=N,col=as.factor(r))) + ggplot2::geom_line()
+```
+In this exercise, you will choose a *prior distribution* for each of the model parameters to estimate, and you will use a random draw from that prior distribution for each repetition of the simulation. This is how we create the variables `par.sim` and `stat.sim` needed to use ABC, to estimate the unknown parameter values for Gause's Paramecium. I demonstrate how this works for a discrete-time logistic example, using data from Gause's Paramecium.
+
+```{r}
+## 1. Get observed data
+#load competition data
+data("gause_1934_science_f02_03")
+#subset out data from species grown alone (not in mixtire)
+alone_dat <- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment=="Pc",]
+#extract time and species data
+time <- alone_dat$Day
+species <- data.frame(alone_dat$Volume_Species1)
+colnames(species) <- "P_caudatum"
+
+## 2. Arrange observed data for ABC
+stat.obs <- species$P_caudatum
+
+## 3. Create a *random* simulation of disc_log, with draws from prior distributions for all model parameters. Save the time series values and values for the parameters in variables par.sim and stat.sim for ABC.
+rand_disc_log <- function(N1_0=N1_0,disc_log,t){
+  ## Choose random values of lambda_1 from a prior distribution
+  lambda_1r <- runif(1,min=1.2,max=3) # Random uniform distribution between 0-3
+  alpha_11r <- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1, biased towards low values
+  N <- rep(NA,t)
+  N[1] <- N1_0
+  for(i in 2:t){
+    N[i] <- disc_log(lambda_1r,N1_0=N1_0,alpha_11r)
+    N1_0 <- N[i]
+  }
+  return(list(N=N,lambda_1r=lambda_1r,alpha_11r=alpha_11r))
+}
+
+## 4. Run this function 1000 times, and save all of the time series and the associated parameter values for later ABC
+num_iter <- 1000000
+num_par <- 2 # to estimate: lambda_11 and alpha_11
+par_name <- c("lambda_11","alpha_11")
+par.sim <- array(NA,dim=c(num_iter,num_par),dimnames=list(NULL,par_name)) # to save values of parameters
+stat.sim <- array(NA,dim=c(num_iter,t)) # to save values of N over time
+colnames(stat.sim) <- paste("S",1:t,sep="")
+for(k in 1:num_iter){
+  N1_0 <- species$P_caudatum[1]
+  simul <- rand_disc_log(N1_0,disc_log,t)
+  par.sim[k,1] <- simul$lambda_1r
+  par.sim[k,2] <- simul$alpha_11r
+  stat.sim[k,] <- simul$N
+}
+
+## 5. Use ABC to estimate the parameter values in the discrete-time growth model
+colnames(stat.sim) <- paste("S",1:23,sep="")
+rej_log <- abc::abc(target=stat.obs, param=par.sim, sumstat=stat.sim, tol=.001, method ="neuralnet")
+
+## 6. Visualize the posterior distributions of the model parameters
+par(mfrow=c(1,1))
+hist(rej_log$adj.values[,1],main="posterior distribution of lambda_11")
+hist(rej_log$adj.values[,2],main="posterior distribution of alpha_11")
+
+## 7. Add a curve to the observed data that shows the ABC-predicted parameter values
+# 7a. Simulate data with the 'accepted' parameter values
+lambda_1 <- mean(rej_log$adj.values[,1])
+alpha_11 <- mean(rej_log$adj.values[,2])
+N1_0 <- species$P_caudatum[1]
+t <- 23
+# model function
+disc_log <- function(lambda_1,N1_0,alpha_11){
+  Nt1 <- N1_0 + N1_0*(lambda_1*exp(-alpha_11*N1_0))
+  return(Nt1)
+}
+# Simulation of model for t time steps
+N <- rep(NA,t)
+N[1] <- N1_0
+for(i in 2:t){
+  N[i] <- disc_log(lambda_1,N1_0,alpha_11)
+  N1_0 <- N[i]
+}
+plot(species$P_caudatum,pch=19,col="black")
+points(N,lwd=2,col="orange")
+# 7b. Simulate data with 95% highest 
+```
 
 
 

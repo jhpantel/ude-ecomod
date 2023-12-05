@@ -33,8 +33,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.2.1/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -325,7 +325,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Week 13, Lecture 5.3 Exercise</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-11-07 13:53:14</h4>
+<h4 class="date">2023-12-05 17:49:49.184434</h4>
 
 </div>
 
@@ -383,9 +383,11 @@ and difficult to estimate. However, its best to show you how ABC works
 by applying it to a simpler model. So we will learn to estimate the
 parameters in a normal distribution given a set of data.</p>
 <p>The dataset of interest is body weight of a common household insect.
-Please run the following command to generate the dataset:</p>
-<pre class="r"><code>set.seed(42)
-dat &lt;- rnorm(1000, 3.428, exp(-1.940098))  # Dataset with measurements of 1000 household insects body mass (g) (yes I don&#39;t have real data, so this is simulated - pretend its real data!)</code></pre>
+Please run the following command to load the dataset:</p>
+<pre class="r"><code># Dataset with measures of 1000 household insects body mass
+# (g)
+dat &lt;- read.csv(&quot;https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/insect.csv&quot;,
+    header = TRUE, row.names = 1)</code></pre>
 <p>You can visualize and summarize the data - what is the mean
 (<code>mean</code>) and standard deviation (<code>sd</code>) of the
 dataset? What is the <em>natural logarithm</em> of the standard
@@ -415,7 +417,7 @@ very quickly in R - we provide our data <code>dat</code> to a command
 fits your observed data to a normal model and returns estimates of the
 model parameters (<span class="math inline">\(\mu\)</span> and <span
 class="math inline">\(\sigma\)</span>):</p>
-<pre class="r"><code>fitdistrplus::fitdist(data = dat, distr = &quot;norm&quot;)</code></pre>
+<pre class="r"><code>fitdistrplus::fitdist(data = dat$weight_g, distr = &quot;norm&quot;)</code></pre>
 <pre><code>## Fitting of the distribution &#39; norm &#39; by maximum likelihood 
 ## Parameters:
 ##       estimate  Std. Error
@@ -496,7 +498,7 @@ simulation</strong></p>
 <p>Our focal summary statistics are (1) the mean of the dataset and (2)
 the logarithm of the standard deviation of the dataset. We save those to
 a new variable called <code>stat.obs</code>:</p>
-<pre class="r"><code>stat.obs &lt;- c(mean(dat), log(sd(dat)))</code></pre>
+<pre class="r"><code>stat.obs &lt;- c(mean(dat$weight_g), log(sd(dat$weight_g)))</code></pre>
 <p>Our simulated summary statistics can be obtained by calculating the
 mean and log(sd) for each of the 10000 simulations:</p>
 <pre class="r"><code>stat.sim &lt;- array(NA, dim = c(10000, 2), dimnames = list(NULL,
@@ -527,6 +529,197 @@ hist(rej$adj.values[, 1], main = &quot;posterior distribution of mean&quot;)</co
 <p><img src="E4.3_files/figure-html/figures-5-2.png" width="100%" /></p>
 <p>How well do these compare to the observed values in the original data
 (<code>obs.stat</code>)?</p>
+</div>
+<div
+id="d.-estimating-parameters-of-a-discrete-time-lotka-volterra-model-using-abc"
+class="section level5">
+<h5>D. Estimating parameters of a discrete-time Lotka Volterra model
+using ABC</h5>
+<p>Let’s repeat using ABC (Approximate Bayesian Computation) to estimate
+the most likely values of the model parameters given the observe data.
+We can take Gause’s <em>Paramecium</em> data and try to estimate the
+underlying parameters from a discrete-time Lotka Volterra model.</p>
+<p><strong>Step 1a. Gather your observed data</strong></p>
+<pre class="r"><code># load competition data
+data(&quot;gause_1934_science_f02_03&quot;)
+
+# subset out data from species grown in mixture
+mixturedat &lt;- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment ==
+    &quot;Mixture&quot;, ]
+
+# extract time and species data
+time &lt;- mixturedat$Day
+species &lt;- data.frame(mixturedat$Volume_Species1, mixturedat$Volume_Species2)
+colnames(species) &lt;- c(&quot;P_caudatum&quot;, &quot;P_aurelia&quot;)</code></pre>
+<p><strong>Step 1b. Arrange your observed data similar to stat.obs
+above</strong> The variable with the observed data,
+<code>species</code>, has dimensions 23, 2. You should arrange the
+observed data as a vector of length 46. That means, please arrange the
+data in <code>species</code> to be 1 vector of length 46. Save that to a
+new variable called <code>stat.obs</code> Hint: you can try the
+<code>reshape2::melt</code> command, or you can create your own new
+variable as <code>stat.obs &lt;- c(species[,1],species[,2])</code></p>
+<p>Make sure your variable is correct by running this command and
+getting the same results:</p>
+<pre class="r"><code>length(stat.obs)</code></pre>
+<pre><code>## [1] 46</code></pre>
+<p><strong>Step 2. Create simulation of data from an underlying
+model</strong></p>
+<p>Our next goal is to use a discrete-time Lotka-Volterra model that can
+simulate data of the kind observed in Gause’s Paramecium. The model
+should consider the processes - growth and competition - that are
+important to produce the observed Paramecium time series.</p>
+<p>We use the following model:</p>
+<p><span class="math display">\[ N_{1,t+1} = N_{1,t} + N_{1,t}
+\cdot(\lambda_1 e^{(-\alpha_{11} N_{1,t} - \alpha_{12}
+N_{2,t})})\]</span> <span class="math display">\[ N_{2,t+1} = N_{2,t} +
+N_{2,t} \cdot(\lambda_2 e^{(-\alpha_{22} N_{2,t} - \alpha_{21}
+N_{1,t})})\]</span> The parameters we need to estimate are:</p>
+<p><span class="math inline">\(\lambda_1, \lambda_2, \alpha_{11},
+\alpha_{22}, \alpha_{12}, \alpha_21\)</span></p>
+<p>Please create a simulation of this model. I copy here a model for a
+single species. Please modify that to also simulate growth in a second
+species. For the missing parameters, you can start by using values of
+<span class="math inline">\(\lambda_2 = 1.5\)</span>, <span
+class="math inline">\(\alpha_{22} = 0.005\)</span>, <span
+class="math inline">\(\alpha_{12} = 0.03\)</span>, <span
+class="math inline">\(\alpha_{21} = 0.007\)</span>, <span
+class="math inline">\(N_{2,0} = 3\)</span>. Change the name of the
+function to <code>disc_lv</code>.</p>
+<pre class="r"><code># Parameter values to use for simulation
+lambda_1 &lt;- 1.7
+alpha_11 &lt;- 0.01
+N1_0 &lt;- 5
+t &lt;- 23
+# model function
+disc_log &lt;- function(lambda_1, N1_0, alpha_11) {
+    Nt1 &lt;- N1_0 + N1_0 * (lambda_1 * exp(-alpha_11 * N1_0))
+    return(Nt1)
+}
+# Simulation of model for t time steps
+N &lt;- rep(NA, t)
+N[1] &lt;- N1_0
+for (i in 2:t) {
+    N[i] &lt;- disc_log(lambda_1, N1_0, alpha_11)
+    N1_0 &lt;- N[i]
+}
+# Plot simulation: ggplot
+dat &lt;- as.data.frame(N)
+dat$time &lt;- as.numeric(rownames(dat))
+ggplot2::ggplot(dat, ggplot2::aes(time, N)) + ggplot2::geom_point()</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-12-1.png" width="50%" /></p>
+<pre class="r"><code># Plot simulation: base R
+plot(N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;black&quot;)</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-12-2.png" width="50%" /></p>
+<p><strong>Step 3. Create random simulations of data, using prior
+distributions for model parameters</strong> Do you recall an exercise
+where we looked at logistic growth across a range of values for the
+growth rate <span class="math inline">\(r\)</span>? We used code that
+looks like this (using disc_log from above):</p>
+<pre class="r"><code># Simulation of model for t time steps
+lambda_1_range &lt;- c(0.6, 0.8, 1.2, 1.6, 1.8, 2.0)
+N.g &lt;- numeric()
+N1_0 &lt;- 5
+for(p in 1:length(lambda_1_range)){
+  N &lt;- rep(NA,t)
+  N[1] &lt;- N1_0
+  for(i in 2:t){
+    N[i] &lt;- disc_log(lambda_1_range[p],N1_0,alpha_11)
+    N1_0 &lt;- N[i]
+  }
+  dat &lt;- as.data.frame(N)
+  dat$time &lt;- as.numeric(rownames(dat))
+  dat$r &lt;- rep(lambda_1_range[p],t)
+  N.g &lt;- rbind(N.g,dat)
+  N1_0 &lt;- 5
+}
+# Plot in ggplot
+ggplot2::ggplot(N.g,ggplot2::aes(x=time,y=N,col=as.factor(r))) + ggplot2::geom_line()</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+In this exercise, you will choose a <em>prior distribution</em> for each
+of the model parameters to estimate, and you will use a random draw from
+that prior distribution for each repetition of the simulation. This is
+how we create the variables <code>par.sim</code> and
+<code>stat.sim</code> needed to use ABC, to estimate the unknown
+parameter values for Gause’s Paramecium. I demonstrate how this works
+for a discrete-time logistic example, using data from Gause’s
+Paramecium.</p>
+<pre class="r"><code>## 1. Get observed data
+#load competition data
+data(&quot;gause_1934_science_f02_03&quot;)
+#subset out data from species grown alone (not in mixtire)
+alone_dat &lt;- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment==&quot;Pc&quot;,]
+#extract time and species data
+time &lt;- alone_dat$Day
+species &lt;- data.frame(alone_dat$Volume_Species1)
+colnames(species) &lt;- &quot;P_caudatum&quot;
+
+## 2. Arrange observed data for ABC
+stat.obs &lt;- species$P_caudatum
+
+## 3. Create a *random* simulation of disc_log, with draws from prior distributions for all model parameters. Save the time series values and values for the parameters in variables par.sim and stat.sim for ABC.
+rand_disc_log &lt;- function(N1_0=N1_0,disc_log,t){
+  ## Choose random values of lambda_1 from a prior distribution
+  lambda_1r &lt;- runif(1,min=1.2,max=3) # Random uniform distribution between 0-3
+  alpha_11r &lt;- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1, biased towards low values
+  N &lt;- rep(NA,t)
+  N[1] &lt;- N1_0
+  for(i in 2:t){
+    N[i] &lt;- disc_log(lambda_1r,N1_0=N1_0,alpha_11r)
+    N1_0 &lt;- N[i]
+  }
+  return(list(N=N,lambda_1r=lambda_1r,alpha_11r=alpha_11r))
+}
+
+## 4. Run this function 1000 times, and save all of the time series and the associated parameter values for later ABC
+num_iter &lt;- 1000000
+num_par &lt;- 2 # to estimate: lambda_11 and alpha_11
+par_name &lt;- c(&quot;lambda_11&quot;,&quot;alpha_11&quot;)
+par.sim &lt;- array(NA,dim=c(num_iter,num_par),dimnames=list(NULL,par_name)) # to save values of parameters
+stat.sim &lt;- array(NA,dim=c(num_iter,t)) # to save values of N over time
+colnames(stat.sim) &lt;- paste(&quot;S&quot;,1:t,sep=&quot;&quot;)
+for(k in 1:num_iter){
+  N1_0 &lt;- species$P_caudatum[1]
+  simul &lt;- rand_disc_log(N1_0,disc_log,t)
+  par.sim[k,1] &lt;- simul$lambda_1r
+  par.sim[k,2] &lt;- simul$alpha_11r
+  stat.sim[k,] &lt;- simul$N
+}
+
+## 5. Use ABC to estimate the parameter values in the discrete-time growth model
+colnames(stat.sim) &lt;- paste(&quot;S&quot;,1:23,sep=&quot;&quot;)
+rej_log &lt;- abc::abc(target=stat.obs, param=par.sim, sumstat=stat.sim, tol=.001, method =&quot;neuralnet&quot;)</code></pre>
+<pre><code>## Warning: All parameters are &quot;none&quot; transformed.</code></pre>
+<pre><code>## 12345678910
+## 12345678910</code></pre>
+<pre class="r"><code>## 6. Visualize the posterior distributions of the model parameters
+par(mfrow=c(1,1))
+hist(rej_log$adj.values[,1],main=&quot;posterior distribution of lambda_11&quot;)</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>hist(rej_log$adj.values[,2],main=&quot;posterior distribution of alpha_11&quot;)</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<pre class="r"><code>## 7. Add a curve to the observed data that shows the ABC-predicted parameter values
+# 7a. Simulate data with the &#39;accepted&#39; parameter values
+lambda_1 &lt;- mean(rej_log$adj.values[,1])
+alpha_11 &lt;- mean(rej_log$adj.values[,2])
+N1_0 &lt;- species$P_caudatum[1]
+t &lt;- 23
+# model function
+disc_log &lt;- function(lambda_1,N1_0,alpha_11){
+  Nt1 &lt;- N1_0 + N1_0*(lambda_1*exp(-alpha_11*N1_0))
+  return(Nt1)
+}
+# Simulation of model for t time steps
+N &lt;- rep(NA,t)
+N[1] &lt;- N1_0
+for(i in 2:t){
+  N[i] &lt;- disc_log(lambda_1,N1_0,alpha_11)
+  N1_0 &lt;- N[i]
+}
+plot(species$P_caudatum,pch=19,col=&quot;black&quot;)
+points(N,lwd=2,col=&quot;orange&quot;)</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-15-3.png" width="672" /></p>
+<pre class="r"><code># 7b. Simulate data with 95% highest </code></pre>
 </div>
 </div>
 
