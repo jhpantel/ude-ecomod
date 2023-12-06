@@ -202,7 +202,7 @@ The parameters we need to estimate are:
 
 $\lambda_1, \lambda_2, \alpha_{11}, \alpha_{22}, \alpha_{12}, \alpha_21$
 
-Please create a simulation of this model. I copy here a model for a single species. Please modify that to also simulate growth in a second species. For the missing parameters, you can start by using values of $\lambda_2 = 1.5$, $\alpha_{22} = 0.005$, $\alpha_{12} = 0.03$, $\alpha_{21} = 0.007$, $N_{2,0} = 3$. Change the name of the function to `disc_lv`.
+Please create a simulation of this model. I show here a model for a single species. Please modify that to also simulate growth in a second species. For the missing parameters, you can start by using values of $\lambda_2 = 1.5$, $\alpha_{22} = 0.005$, $\alpha_{12} = 0.03$, $\alpha_{21} = 0.007$, $N_{2,0} = 3$. Change the name of the function to `disc_lv`.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60),out.width="50%",warning = FALSE, message = FALSE}
 # Parameter values to use for simulation
@@ -249,7 +249,9 @@ disc_lv <- function(lambda_1,lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha
 }
 # Simulation of model for t time steps
 N <- array(NA,dim=c(t,2),dimnames=list(NULL,c("N1","N2")))
-for(i in 1:t){
+N[1,1] <- N1_0
+N[1,2] <- N2_0
+for(i in 2:t){
   N[i,] <- disc_lv(lambda_1,lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21)
   N1_0 <- N[i,1]
   N2_0 <- N[i,2]
@@ -263,7 +265,7 @@ points(N[,2],pch=19,col="orange")
 ```
 
 **Step 3. Create random simulations of data, using prior distributions for model parameters**
-Do you recall an exercise where we looked at logistic growth across a range of values for the growth rate $r$? We used code that looks like this (using disc_log from above):
+Do you recall an exercise where we looked at logistic growth across a range of values for the growth rate $r$? We used code that looks like this (using `disc_log` from above):
 
 ```{r warning=FALSE,message=FALSE}
 # Simulation of model for t time steps
@@ -288,7 +290,7 @@ ggplot2::ggplot(N.g,ggplot2::aes(x=time,y=N,col=as.factor(r))) + ggplot2::geom_l
 ```
 In this exercise, you will choose a *prior distribution* for each of the model parameters to estimate, and you will use a random draw from that prior distribution for each repetition of the simulation. This is how we create the variables `par.sim` and `stat.sim` needed to use ABC, to estimate the unknown parameter values for Gause's Paramecium. I demonstrate how this works for a discrete-time logistic example, using data from Gause's Paramecium.
 
-```{r}
+```{r out.width="50%"}
 ## 1. Get observed data
 #load competition data
 data("gause_1934_science_f02_03")
@@ -302,11 +304,14 @@ colnames(species) <- "P_caudatum"
 ## 2. Arrange observed data for ABC
 stat.obs <- species$P_caudatum
 
-## 3. Create a *random* simulation of disc_log, with draws from prior distributions for all model parameters. Save the time series values and values for the parameters in variables par.sim and stat.sim for ABC.
+## 3. Create a *random* simulation of disc_log, with draws from prior distributions
+## for all model parameters. Save the time series values and values for the
+## parameters in variables par.sim and stat.sim for ABC.
 rand_disc_log <- function(N1_0=N1_0,disc_log,t){
   ## Choose random values of lambda_1 from a prior distribution
   lambda_1r <- runif(1,min=1.2,max=3) # Random uniform distribution between 0-3
-  alpha_11r <- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1, biased towards low values
+  alpha_11r <- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1
+  #biased towards low values
   N <- rep(NA,t)
   N[1] <- N1_0
   for(i in 2:t){
@@ -316,7 +321,8 @@ rand_disc_log <- function(N1_0=N1_0,disc_log,t){
   return(list(N=N,lambda_1r=lambda_1r,alpha_11r=alpha_11r))
 }
 
-## 4. Run this function 1000 times, and save all of the time series and the associated parameter values for later ABC
+## 4. Run this function 1000 times, and save all of the time series and the
+## associated parameter values for later ABC
 num_iter <- 1000000
 num_par <- 2 # to estimate: lambda_11 and alpha_11
 par_name <- c("lambda_11","alpha_11")
@@ -341,7 +347,7 @@ hist(rej_log$adj.values[,1],main="posterior distribution of lambda_11")
 hist(rej_log$adj.values[,2],main="posterior distribution of alpha_11")
 
 ## 7. Add a curve to the observed data that shows the ABC-predicted parameter values
-# 7a. Simulate data with the 'accepted' parameter values
+# 7a. Simulate data with the average 'accepted' parameter values
 lambda_1 <- mean(rej_log$adj.values[,1])
 alpha_11 <- mean(rej_log$adj.values[,2])
 N1_0 <- species$P_caudatum[1]
@@ -359,10 +365,146 @@ for(i in 2:t){
   N1_0 <- N[i]
 }
 plot(species$P_caudatum,pch=19,col="black")
-points(N,lwd=2,col="orange")
-# 7b. Simulate data with 95% highest 
+lines(N,lwd=2,col="lightgray")
+# 7b. Simulate data with 95% highest and lowest values for each time point
+lambda_1 <- quantile(rej_log$adj.values[,1],probs=c(0.025,.975))
+alpha_11 <- quantile(rej_log$adj.values[,2],probs=c(0.025,.975))
+# 2.5%
+N1_0 <- species$P_caudatum[1]
+N <- rep(NA,t)
+N[1] <- N1_0
+for(i in 2:t){
+  N[i] <- disc_log(lambda_1[1],N1_0,alpha_11[1])
+  N1_0 <- N[i]
+}
+lines(1:23,N,lwd=0.5,col="skyblue")
+# 97.5%
+N1_0 <- species$P_caudatum[1]
+N <- rep(NA,t)
+N[1] <- N1_0
+for(i in 2:t){
+  N[i] <- disc_log(lambda_1[2],N1_0,alpha_11[2])
+  N1_0 <- N[i]
+}
+lines(1:23,N,lwd=0.5,col="skyblue")
 ```
 
+Your goal is to repeat this ABC procedure and estimate the most likely values for the 2 Paramecium species from the dataset in Step 1a. The code above is your 'template'm but using only 1 species. Add in the model and parameters for Species #2, and be sure to add in draws of parameter values from the prior distributions for those new parameters.
+
+```{r echo=FALSE,results='hide'}
+## 1. Get observed data
+#load competition data
+data("gause_1934_science_f02_03")
+#subset out data from species grown in mixture
+mixturedat <- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment=="Mixture",]
+#extract time and species data
+time <- mixturedat$Day
+species <- data.frame(mixturedat$Volume_Species1, mixturedat$Volume_Species2)
+colnames(species) <- c("P_caudatum", "P_aurelia")
+
+## 2. Arrange observed data for ABC
+stat.obs <-  c(species[,1],species[,2])
+
+## 3. Create a *random* simulation of disc_log, with draws from prior distributions
+## for all model parameters. Save the time series values and values for the
+## parameters in variables par.sim and stat.sim for ABC.
+rand_disc_lv <- function(N1_0=N1_0,N2_0=N2_0,disc_lv,t){
+  ## Choose random values of lambda_1 from a prior distribution
+  lambda_1r <- runif(1,min=1.2,max=3) # Random uniform distribution between 0-3
+  alpha_11r <- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1
+  #biased towards low values
+  ## Values for Species 2
+  lambda_2r <- runif(1,min=1.2,max=3)
+  alpha_22r <- rbeta(1,shape1=1,shape2=50)
+  ## Values for competition
+  alpha_12r <- rbeta(1,shape1=1,shape2=50)
+  alpha_21r <- rbeta(1,shape1=1,shape2=50)
+  ## Initial population sizes
+  N1_0 <- species$P_caudatum[1]
+  N2_0 <- species$P_aurelia[1]
+  t <- 23
+  # Simulation of model for t time steps
+  N <- array(NA,dim=c(t,2),dimnames=list(NULL,c("N1","N2")))
+  N[1,1] <- N1_0
+  N[1,2] <- N2_0
+  for(i in 2:t){
+    N[i,] <- disc_lv(lambda_1r,lambda_2r,N1_0,N2_0,alpha_11r,alpha_22r,alpha_12r,alpha_21r)
+    N1_0 <- N[i,1]
+    N2_0 <- N[i,2]
+  }
+  return(list(N=N,lambda_1r=lambda_1r,alpha_11r=alpha_11r,lambda_2r=lambda_2r,alpha_22r=alpha_22r,alpha_12r=alpha_12r,alpha_21r=alpha_21r))
+}
+
+## 4. Run this function 1000 times, and save all of the time series and the
+## associated parameter values for later ABC
+num_iter <- 100000
+num_par <- 6 # to estimate: lambda_1, alpha_11, lambda_2, alpha_22, alpha_12, alpha_21
+par_name <- c("lambda_11","alpha_11","lambda_2", "alpha_22", "alpha_12", "alpha_21")
+par.sim <- array(NA,dim=c(num_iter,num_par),dimnames=list(NULL,par_name)) # to save values of parameters
+stat.sim <- array(NA,dim=c(num_iter,(23*2))) # to save values of N over time
+colnames(stat.sim) <- c(paste("S1_",1:23,sep=""),paste("S2_",1:23,sep=""))
+for(k in 1:num_iter){
+  N1_0 <- species$P_caudatum[1]
+  N2_0 <- species$P_aurelia[1]
+  simul <- rand_disc_lv(N1_0,N2_0,disc_lv,t)
+  par.sim[k,1] <- simul$lambda_1r
+  par.sim[k,2] <- simul$alpha_11r
+  par.sim[k,3] <- simul$lambda_2r
+  par.sim[k,4] <- simul$alpha_22r
+  par.sim[k,5] <- simul$alpha_12r
+  par.sim[k,6] <- simul$alpha_21r
+  # stopped
+  stat.sim[k,] <- c(simul$N[,1],simul$N[,2])
+}
+
+## 5. Use ABC to estimate the parameter values in the discrete-time growth model
+colnames(stat.sim) <- c(paste("S1_",1:23,sep=""),paste("S2_",1:23,sep=""))
+rej_log <- abc::abc(target=stat.obs, param=par.sim, sumstat=stat.sim, tol=.001, method ="neuralnet")
+
+## 6. Visualize the posterior distributions of the model parameters
+par(mfrow=c(2,3))
+hist(rej_log$adj.values[,1],main="lambda_1")
+hist(rej_log$adj.values[,2],main="alpha_11")
+hist(rej_log$adj.values[,3],main="lambda_2")
+hist(rej_log$adj.values[,4],main="alpha_22")
+hist(rej_log$adj.values[,5],main="alpha_12")
+hist(rej_log$adj.values[,6],main="alpha_21")
+
+## 7. Add a curve to the observed data that shows the ABC-predicted parameter values
+# 7a. Simulate data with the average 'accepted' parameter values
+lambda_1 <- mean(rej_log$adj.values[,1])
+alpha_11 <- mean(rej_log$adj.values[,2])
+lambda_2 <- mean(rej_log$adj.values[,3])
+alpha_22 <- mean(rej_log$adj.values[,4])
+alpha_12 <- mean(rej_log$adj.values[,5])
+alpha_21 <- mean(rej_log$adj.values[,6])
+## Initial population sizes
+N1_0 <- species$P_caudatum[1]
+N2_0 <- species$P_aurelia[1]
+t <- 23
+# Simulation of model for t time steps
+N <- array(NA,dim=c(t,2),dimnames=list(NULL,c("N1","N2")))
+N[1,1] <- N1_0
+N[1,2] <- N2_0
+for(i in 2:t){
+  N[i,] <- disc_lv(lambda_1,lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21)
+  N1_0 <- N[i,1]
+  N2_0 <- N[i,2]
+  }
+# # Plot simulation: ggplot
+# dat <- reshape2::melt(N)
+# ggplot2::ggplot(dat,ggplot2::aes(x=Var1,y=value,col=Var2)) + ggplot2::geom_point()
+# Plot simulation: base R
+par(mfrow=c(1,1))
+plot(species$P_caudatum,xlab="time",ylab="N",pch=19,col="black")
+points(species$P_aurelia,pch=19,col="orange")
+# Add predicted from mean ABC values
+plot(N[,1],xlab="time",ylab="N",pch=19,col="black",ylim=c(0,800))
+points(N[,2],pch=19,col="orange")
+lines(y=N[,1],x=1:23,col="black")
+lines(N[,2],1:23,col="orange")
+## Note: I still need to edit this, isn't currently estimating the model parameters well (negative alpha values)
+```
 
 
 

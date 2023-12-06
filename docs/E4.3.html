@@ -325,7 +325,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Week 13, Lecture 5.3 Exercise</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-12-05 17:49:49.184434</h4>
+<h4 class="date">2023-12-06 15:38:08.601644</h4>
 
 </div>
 
@@ -577,7 +577,7 @@ N_{2,t} \cdot(\lambda_2 e^{(-\alpha_{22} N_{2,t} - \alpha_{21}
 N_{1,t})})\]</span> The parameters we need to estimate are:</p>
 <p><span class="math inline">\(\lambda_1, \lambda_2, \alpha_{11},
 \alpha_{22}, \alpha_{12}, \alpha_21\)</span></p>
-<p>Please create a simulation of this model. I copy here a model for a
+<p>Please create a simulation of this model. I show here a model for a
 single species. Please modify that to also simulate growth in a second
 species. For the missing parameters, you can start by using values of
 <span class="math inline">\(\lambda_2 = 1.5\)</span>, <span
@@ -615,7 +615,7 @@ plot(N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;bla
 distributions for model parameters</strong> Do you recall an exercise
 where we looked at logistic growth across a range of values for the
 growth rate <span class="math inline">\(r\)</span>? We used code that
-looks like this (using disc_log from above):</p>
+looks like this (using <code>disc_log</code> from above):</p>
 <pre class="r"><code># Simulation of model for t time steps
 lambda_1_range &lt;- c(0.6, 0.8, 1.2, 1.6, 1.8, 2.0)
 N.g &lt;- numeric()
@@ -657,11 +657,14 @@ colnames(species) &lt;- &quot;P_caudatum&quot;
 ## 2. Arrange observed data for ABC
 stat.obs &lt;- species$P_caudatum
 
-## 3. Create a *random* simulation of disc_log, with draws from prior distributions for all model parameters. Save the time series values and values for the parameters in variables par.sim and stat.sim for ABC.
+## 3. Create a *random* simulation of disc_log, with draws from prior distributions
+## for all model parameters. Save the time series values and values for the
+## parameters in variables par.sim and stat.sim for ABC.
 rand_disc_log &lt;- function(N1_0=N1_0,disc_log,t){
   ## Choose random values of lambda_1 from a prior distribution
   lambda_1r &lt;- runif(1,min=1.2,max=3) # Random uniform distribution between 0-3
-  alpha_11r &lt;- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1, biased towards low values
+  alpha_11r &lt;- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1
+  #biased towards low values
   N &lt;- rep(NA,t)
   N[1] &lt;- N1_0
   for(i in 2:t){
@@ -671,7 +674,8 @@ rand_disc_log &lt;- function(N1_0=N1_0,disc_log,t){
   return(list(N=N,lambda_1r=lambda_1r,alpha_11r=alpha_11r))
 }
 
-## 4. Run this function 1000 times, and save all of the time series and the associated parameter values for later ABC
+## 4. Run this function 1000 times, and save all of the time series and the
+## associated parameter values for later ABC
 num_iter &lt;- 1000000
 num_par &lt;- 2 # to estimate: lambda_11 and alpha_11
 par_name &lt;- c(&quot;lambda_11&quot;,&quot;alpha_11&quot;)
@@ -695,11 +699,11 @@ rej_log &lt;- abc::abc(target=stat.obs, param=par.sim, sumstat=stat.sim, tol=.00
 <pre class="r"><code>## 6. Visualize the posterior distributions of the model parameters
 par(mfrow=c(1,1))
 hist(rej_log$adj.values[,1],main=&quot;posterior distribution of lambda_11&quot;)</code></pre>
-<p><img src="E4.3_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-15-1.png" width="50%" /></p>
 <pre class="r"><code>hist(rej_log$adj.values[,2],main=&quot;posterior distribution of alpha_11&quot;)</code></pre>
-<p><img src="E4.3_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-15-2.png" width="50%" /></p>
 <pre class="r"><code>## 7. Add a curve to the observed data that shows the ABC-predicted parameter values
-# 7a. Simulate data with the &#39;accepted&#39; parameter values
+# 7a. Simulate data with the average &#39;accepted&#39; parameter values
 lambda_1 &lt;- mean(rej_log$adj.values[,1])
 alpha_11 &lt;- mean(rej_log$adj.values[,2])
 N1_0 &lt;- species$P_caudatum[1]
@@ -717,9 +721,37 @@ for(i in 2:t){
   N1_0 &lt;- N[i]
 }
 plot(species$P_caudatum,pch=19,col=&quot;black&quot;)
-points(N,lwd=2,col=&quot;orange&quot;)</code></pre>
-<p><img src="E4.3_files/figure-html/unnamed-chunk-15-3.png" width="672" /></p>
-<pre class="r"><code># 7b. Simulate data with 95% highest </code></pre>
+lines(N,lwd=2,col=&quot;lightgray&quot;)
+# 7b. Simulate data with 95% highest and lowest values for each time point
+lambda_1 &lt;- quantile(rej_log$adj.values[,1],probs=c(0.025,.975))
+alpha_11 &lt;- quantile(rej_log$adj.values[,2],probs=c(0.025,.975))
+# 2.5%
+N1_0 &lt;- species$P_caudatum[1]
+N &lt;- rep(NA,t)
+N[1] &lt;- N1_0
+for(i in 2:t){
+  N[i] &lt;- disc_log(lambda_1[1],N1_0,alpha_11[1])
+  N1_0 &lt;- N[i]
+}
+lines(1:23,N,lwd=0.5,col=&quot;skyblue&quot;)
+# 97.5%
+N1_0 &lt;- species$P_caudatum[1]
+N &lt;- rep(NA,t)
+N[1] &lt;- N1_0
+for(i in 2:t){
+  N[i] &lt;- disc_log(lambda_1[2],N1_0,alpha_11[2])
+  N1_0 &lt;- N[i]
+}
+lines(1:23,N,lwd=0.5,col=&quot;skyblue&quot;)</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-15-3.png" width="50%" /></p>
+<p>Your goal is to repeat this ABC procedure and estimate the most
+likely values for the 2 Paramecium species from the dataset in Step 1a.
+The code above is your ’template’m but using only 1 species. Add in the
+model and parameters for Species #2, and be sure to add in draws of
+parameter values from the prior distributions for those new
+parameters.</p>
+<pre><code>## Warning: All parameters are &quot;none&quot; transformed.</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="E4.3_files/figure-html/unnamed-chunk-16-2.png" width="672" /><img src="E4.3_files/figure-html/unnamed-chunk-16-3.png" width="672" /></p>
 </div>
 </div>
 
