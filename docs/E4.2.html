@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Jelena H. Pantel" />
+
+
+<title>Module 4.2 Exercise</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.2.1/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Ecological Modelling</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Syllabus
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./schedule.html">Course schedule</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    About me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./aboutme.html">Learn more about me</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Project 1</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="./project1.html">Guidelines</a>
+        </li>
+        <li>
+          <a href="./Pantel_cheat_LV.html">Example cheat sheet</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="./stage.html">Stage structured models</a>
+            </li>
+            <li>
+              <a href="./metapop.html">Metapopulation model</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="./project2.pdf">Project 2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="./contact.html">Contact</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/githubusername/mywebsite">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Module 4.2 Exercise</h1>
+<h4 class="author">Jelena H. Pantel</h4>
+<h4 class="date">2023-12-07 11:36:51</h4>
+
+</div>
+
+
+<div
+id="exercise-1.-considering-different-probability-distributions-for-different-types-of-data"
+class="section level2">
+<h2>Exercise 1. Considering different probability distributions for
+different types of data</h2>
+<div id="consider-appropriate-distribution-for-penguin-trait-data"
+class="section level3">
+<h3>1. Consider appropriate distribution for penguin trait data</h3>
+<p>I mentioned in class that many ‘quantitative traits’ (traits with a
+genetic basis, determined by many genes with small effects) follow a
+normal distribution (as noticed by R.A. Fisher, who developed the ANOVA
+test in 1921 to evaluate differences in normally distributed data
+sampled from different populations). Let’s look closely at some trait
+data - measures of body mass and flipper length in a population of
+Gentoo penguins that inhabit 3 islands in the Palmer Archipelago
+(Antarctica).</p>
+<p><em>A. Load the data</em></p>
+<pre class="r"><code>#library(palmerpenguins)
+data(&quot;penguins&quot;)
+# The data is now saved to a new variables called &#39;penguins&#39;
+head(penguins)</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Adelie  Torgersen           39.1          18.7               181        3750
+## 2 Adelie  Torgersen           39.5          17.4               186        3800
+## 3 Adelie  Torgersen           40.3          18                 195        3250
+## 4 Adelie  Torgersen           NA            NA                  NA          NA
+## 5 Adelie  Torgersen           36.7          19.3               193        3450
+## 6 Adelie  Torgersen           39.3          20.6               190        3650
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<p><em>B. Create a new variable that contains only body mass and flipper
+length for Gentoo penguins (and get rid of rows with NA values)</em></p>
+<p>Hint: the variable <code>penguins</code> is a data frame. I can use
+<code>$</code> to index columns in the data frame, and I can use
+<code>[]</code> to index particular positions in the data frame, like
+this:</p>
+<pre class="r"><code>unique(penguins$species) # Check exactly how the species names are entered
+new_variable &lt;- penguins[penguins$species == &quot;Chinstrap&quot;,] # all columns</code></pre>
+<p>I can also index particular columns in the dataset this way:</p>
+<pre class="r"><code># Chinstrap penguins, data frame columns 3 and 4
+new_variable &lt;- penguins[penguins$species == &quot;Chinstrap&quot;,c(3,4)]</code></pre>
+<p><em>C. Create histograms for body mass and flipper length</em></p>
+<p>Use the R command <code>hist</code> to draw those.</p>
+<p><img src="E4.2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><em>D. Calculate mean and standard deviation for both traits</em></p>
+<p>Use the R commands <code>mean</code> and <code>sd</code></p>
+<pre><code>## [1] 217.187</code></pre>
+<pre><code>## [1] 6.484976</code></pre>
+<pre><code>## [1] 5076.016</code></pre>
+<pre><code>## [1] 504.1162</code></pre>
+<p><em>E. Use ‘fitdistrplus’ to estimate parameters for data fit to a
+normal distribution</em></p>
+<p>Load the library <code>fitdistrplus</code>, and look through the help
+menu for the command <code>fitdist</code>. Use this command for each
+trait to estimate the parameters of a normal distribution for each
+dataset. The command asks you to specify what distritbuion you would
+like to fit the data to. The options are:
+<code>norm, lnorm, exp, pois, cauchy, gamma, logis, nbinom, geom, beta, weibull invgamma, llogis, invweibull, pareto1, pareto</code>.
+Use <code>norm</code> for the normal distribution.</p>
+<p><em>F. Use ‘rnorm’ to generate random values of flipper length and
+body mass from the normal distribution</em></p>
+<p>We have now estimated the mean and standard deviation for the Gentoo
+penguin population that these individuals came from. I want you to use
+these parameter values and the R command <code>rnorm</code> to draw
+random values for penguin flipper length and body mass. Draw 3 different
+values for each trait.</p>
+<pre><code>## [1] 225.7512 211.9121 217.7963</code></pre>
+<pre><code>## [1] 5308.384 4380.329 5476.129</code></pre>
+<p><em>G. Use ‘dnorm’ to calculate the probability of observing a
+flipper length of 250 and of 216 from this distribution. Which value is
+more likely? Please also to estimate the probability of observing a body
+mass of 4000 and of 5000 from that distribution. Which value is more
+likely?</em></p>
+<pre><code>## [1] 1.533849e-07</code></pre>
+<pre><code>## [1] 0.06073509</code></pre>
+<pre><code>## [1] 7.993501e-05</code></pre>
+<pre><code>## [1] 0.0007855504</code></pre>
+</div>
+<div
+id="consider-appropriate-distribution-for-italian-football-league-goal-data"
+class="section level3">
+<h3>2. Consider appropriate distribution for Italian football league
+goal data</h3>
+<p><em>A. Load the data</em></p>
+<pre class="r"><code>italy &lt;- read.csv(&quot;https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/italy.csv&quot;,header=TRUE,row.names=1)</code></pre>
+<p><em>B. Create a new variable that contains two columns: data for
+goals scored by the home team (<code>hgoal</code>) and scored by the
+visiting team (<code>vgoal</code>)</em></p>
+<p><em>C. Create histograms for home goals and visitor goals</em></p>
+<p><img src="E4.2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><em>D. Use ‘fitdistrplus’ to estimate parameters for data fit to a
+Poisson distribution</em></p>
+<p>Use the command <code>fitdist</code>, with <code>distr="pois"</code>
+to estimate the parameters of a Poisson distribution for each variable
+(hgoal, vgoal). The Poisson distribution is not the same as the Normal
+distribution - we do not need the mean and standard deviation to
+describe it. Instead, we need the “rate parameter” <span
+class="math inline">\(\lambda\)</span>. Here is more information about
+the Poisson distribution (from <a
+href="https://en.wikipedia.org/wiki/Poisson_distribution">Wikipedia</a>:</p>
+<ul>
+<li><p>“The Poisson distribution is a discrete probability distribution
+that expresses the probability of a given number of events occurring in
+a fixed interval of time or space if these events occur with a known
+constant mean rate and independently of the time since the last event.
+It is named after French mathematician Siméon Denis Poisson.”</p></li>
+<li><p>“The distribution was first introduced by Siméon Denis Poisson
+(1781–1840) and published together with his probability theory in his
+work Recherches sur la probabilité des jugements en matière criminelle
+et en matière civile (1837). The work theorized about the number of
+wrongful convictions in a given country.”</p></li>
+<li><p>“<span class="math inline">\(\lambda\)</span> is the expected
+rate of occurrences”</p></li>
+</ul>
+<p>So we are using <code>fitdist</code> to estimate the rate parameter
+<span class="math inline">\(\lambda\)</span> for Italian football league
+goals - it represents the expected rate of scoring a goal in a
+match.</p>
+<p><em>E. Use ‘rpois’ to generate random values of hgoals and vgoals
+from the Poisson distribution</em></p>
+<p>We have now estimated the rate parameter <span
+class="math inline">\(\lambda\)</span> for the Italian football goal
+data. Use these parameter values and the R command <code>rpois</code> to
+draw random values for hgoals and vgoals. Draw 3 different values for
+each variable. (in other words, simulate 3 matches!!)</p>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre><code>## [1] 2 0 1</code></pre>
+<p><em>F. Use ‘dpois’ to calculate the probability of the home team
+scoring 2 goals in a match, and 8 goals in a match. Which value is more
+likely? Please also to estimate the probability of observing visitor
+goals of 2 and 8 from that distribution. Which value is more likely? Who
+is more likely to win a match, a home team or a visiting team?</em></p>
+<pre><code>## [1] 0.2562828</code></pre>
+<pre><code>## [1] 0.0001891203</code></pre>
+<pre><code>## [1] 0.1791277</code></pre>
+<pre><code>## [1] 7.594181e-06</code></pre>
+</div>
+<div
+id="consider-appropriate-distribution-for-paramecium-interaction-coefficients"
+class="section level3">
+<h3>3. Consider appropriate distribution for Paramecium interaction
+coefficients</h3>
+<p>Recall at the end of exercise 4.1, we used data for Gause’s
+Paramecium from the library <code>gauseR</code>. We used automated
+commands in that library to consider data for two competing Paramecium
+species and estimate parameters in a Lotka-Volterra competition model. I
+repaste the code here for that exercise:</p>
+<p>We will use data from Gause’s experiments with Paramecium, tracking
+competitive interactions between <em>P. aurelia</em> and <em>P.
+caudatum</em>.</p>
+<p><span class="math display">\[ \frac{dN_1}{dt} = r_1 + \alpha_{11}N_1
++ \alpha_{12}N_2 \]</span> <span class="math display">\[ \frac{dN_2}{dt}
+= r_2 + \alpha_{22}N_2 + \alpha_{21}N_1 \]</span></p>
+<pre class="r"><code># load competition data
+data(&quot;gause_1934_science_f02_03&quot;)
+# subset out data from species grown in mixture
+mixturedat &lt;- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment ==
+    &quot;Mixture&quot;, ]
+# extract time and species data
+time &lt;- mixturedat$Day
+species &lt;- data.frame(mixturedat$Volume_Species1, mixturedat$Volume_Species2)
+colnames(species) &lt;- c(&quot;P_caudatum&quot;, &quot;P_aurelia&quot;)
+# run wrapper
+gause_out &lt;- gauseR::gause_wrapper(time = time, species = species)</code></pre>
+<p><img src="E4.2_files/figure-html/unnamed-chunk-16-1.png" width="40%" /></p>
+<pre class="r"><code># parameter estimates
+gause_out$parameter_intervals</code></pre>
+<pre><code>##                lower_sd           mu      upper_sd
+## P_caudatum0  0.01033120  1.595268713  2.463299e+02
+## P_aurelia0   0.08812049  1.631618399  3.021066e+01
+## r1           0.34795148  1.259232133  4.557146e+00
+## r2           0.47571115  1.026156214  2.213521e+00
+## a11         -0.02061163 -0.005157869 -1.290709e-03
+## a12         -0.02361279 -0.008000167 -2.710508e-03
+## a21         -0.01100428 -0.001974871 -3.544183e-04
+## a22         -0.01459709 -0.006851130 -3.215572e-03</code></pre>
+<p><strong>A. Consider a beta or uniform distribution for Lotka-Volterra
+interaction coefficients.</strong></p>
+<p>We are slowly getting to a point where we start to think about data,
+AND parameters in models, not as fixed values. We instead <em>embrace
+uncertainty</em> and recognize that we can’t be perfectly sure the exact
+value for parameters, so we think of them as drawn from a probability
+distribution. Let’s shift that mindset to think about interaction
+coefficients <span class="math inline">\(\alpha_{ii},
+\alpha_{ij}\)</span>. Is there a probability distribution that can help
+us draw potential values for these coefficients? We will look at a
+uniform distribution and a beta distribution.</p>
+<p>Read about the uniform distribution here: <a
+href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Wikipedia
+uniform distribution</a></p>
+<p>Read about the beta distribution here: <a
+href="https://en.wikipedia.org/wiki/Beta_distribution">Wikipedia beta
+distribution</a></p>
+<p>Use <code>runif</code> and <code>rbeta</code> to draw random values
+from a uniform and a beta distribution. For the uniform distribution,
+you need to specify the minimum and maximum value. Use
+<code>runif(1,min=0,max=1)</code>. For the beta distribution, you need
+to specify the <code>shape1</code> and <code>shape2</code> parameters. A
+beta distribution is scaled between 0-1. The <code>shape1</code>
+parameter gives information about the ‘central’, expected, most likely
+value. The <code>shape2</code> parameters gives information about the
+‘spread’ or overal variation (the likelihood of values away from the
+central value). Use <code>rbeta(1,shape1=1,shape2=50)</code></p>
+<p><strong>B. Draw 10,000 values from the uniform and the beta
+distribution, and plot a histogram for those, to visualize the
+distribution</strong></p>
+<pre class="r"><code># solution
+par(mfrow=c(1,1))
+hist(runif(10000,min=0,max=1))</code></pre>
+<p><img src="E4.2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code>hist(rbeta(10000,shape1=1,shape2=50))</code></pre>
+<p><img src="E4.2_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
+<p><strong>C. Use random value draws for Lotka-Volterra interaction
+coefficients, run simulation of LV competition dynamics using these
+values</strong></p>
+<p>First, use the uniform distribution - draw 1 random value for
+alpha_11, a second random value for alpha_22, a third random value for
+alpha_12, and a fourth random value for alpha_21. Use these, and the
+code you see below, to run a simulation of Lotka-Volterra dynamics for 2
+competing species with these parameter values. You can use r1 = 1.7, r2
+= 1.5, N1_0 = 5, N2_0 = 3. Plot the results of the simulation with your
+random parameter values.</p>
+<p>I supply you with a discrete-time model for Lotka-Volterra
+competition here.</p>
+<p>We use the following model:</p>
+<p><span class="math display">\[ N_{1,t+1} = N_{1,t} \cdot(r_1
+e^{(-\alpha_{11} N_{1,t} - \alpha_{12} N_{2,t})})\]</span> <span
+class="math display">\[ N_{2,t+1} = N_{2,t} \cdot(r_2 e^{(-\alpha_{22}
+N_{2,t} - \alpha_{21} N_{1,t})})\]</span></p>
+<pre class="r"><code># Parameter values to use for simulation
+r_1 &lt;- 1.7
+r_2 &lt;- 1.5
+alpha_11 &lt;- 0.01
+alpha_22 &lt;- 0.005
+alpha_12 &lt;- 0.03
+alpha_21 &lt;- 0.007
+N1_0 &lt;- 5
+N2_0 &lt;- 3
+t &lt;- 23
+# model function
+disc_lv &lt;- function(r_1,r_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21){
+  Nt1 &lt;- (N1_0*r_1) / (1 + alpha_11*N1_0 + alpha_12*N2_0)
+  Nt2 &lt;- (N2_0*r_2) / (1 + alpha_22*N2_0 + alpha_21*N1_0)
+  return(cbind(Nt1,Nt2))
+}
+# Simulation of model for t time steps
+N &lt;- array(NA,dim=c(t,2),dimnames=list(NULL,c(&quot;N1&quot;,&quot;N2&quot;)))
+N[1,1] &lt;- N1_0
+N[1,2] &lt;- N2_0
+for(i in 2:t){
+  N[i,] &lt;- disc_lv(r_1,r_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21)
+  N1_0 &lt;- N[i,1]
+  N2_0 &lt;- N[i,2]
+}</code></pre>
+<p>Now, use the beta distribution for random draws for the alpha
+parameters - draw 1 random value for alpha_11, a second random value for
+alpha_22, a third random value for alpha_12, and a fourth random value
+for alpha_21.</p>
+<p><img src="E4.2_files/figure-html/unnamed-chunk-19-1.png" width="672" /><img src="E4.2_files/figure-html/unnamed-chunk-19-2.png" width="672" /></p>
+<p><img src="E4.2_files/figure-html/unnamed-chunk-20-1.png" width="672" /><img src="E4.2_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
