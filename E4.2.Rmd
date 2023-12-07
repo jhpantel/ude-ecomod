@@ -10,7 +10,7 @@ urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
 library(palmerpenguins)
 library(fitdistrplus)
 library(gauseR)
@@ -22,7 +22,7 @@ library(gauseR)
 
 I mentioned in class that many 'quantitative traits' (traits with a genetic basis, determined by many genes with small effects) follow a normal distribution (as noticed by R.A. Fisher, who developed the ANOVA test in 1921 to evaluate differences in normally distributed data sampled from different populations). Let's look closely at some trait data - measures of body mass and flipper length in a population of Gentoo penguins that inhabit 3 islands in the Palmer Archipelago (Antarctica).
 
-*A. Load the data*
+**A. Load the data**
 
 ```{r}
 #library(palmerpenguins)
@@ -31,7 +31,7 @@ data("penguins")
 head(penguins)
 ```
 
-*B. Create a new variable that contains only body mass and flipper length for Gentoo penguins (and get rid of rows with NA values)*
+**B. Create a new variable that contains only body mass and flipper length for Gentoo penguins (and get rid of rows with NA values)**
 
 Hint: the variable `penguins` is a data frame. I can use `$` to index columns in the data frame, and I can use `[]` to index particular positions in the data frame, like this:
 
@@ -54,22 +54,22 @@ pen <- penguins[penguins$species=="Gentoo",c(5,6)]
 pen2 <- pen[complete.cases(pen),]
 ```
 
-*C. Create histograms for body mass and flipper length*
+**C. Create histograms for body mass and flipper length**
 
 Use the R command `hist` to draw those.
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.show='hide'}
 # solution base R
 par(mfrow=c(1,2))
 hist(pen2$flipper_length_mm)
 hist(pen2$body_mass_g)
 ```
 
-*D. Calculate mean and standard deviation for both traits*
+**D. Calculate mean and standard deviation for both traits**
 
 Use the R commands `mean` and `sd`
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.show='hide', results='hide'}
 # solution
 mean(pen2$flipper_length_mm)
 sd(pen2$flipper_length_mm)
@@ -77,7 +77,7 @@ mean(pen2$body_mass_g)
 sd(pen2$body_mass_g)
 ```
 
-*E. Use 'fitdistrplus' to estimate parameters for data fit to a normal distribution*
+**E. Use 'fitdistrplus' to estimate parameters for data fit to a normal distribution**
 
 Load the library `fitdistrplus`, and look through the help menu for the command `fitdist`. Use this command for each trait to estimate the parameters of a normal distribution for each dataset. The command asks you to specify what distritbuion you would like to fit the data to. The options are: `norm, lnorm, exp, pois, cauchy, gamma, logis, nbinom, geom, beta, weibull invgamma, llogis, invweibull, pareto1, pareto`. Use `norm` for the normal distribution.
 
@@ -88,11 +88,11 @@ a <- fitdistrplus::fitdist(pen2$flipper_length_mm,distr="norm")
 b <- fitdistrplus::fitdist(pen2$body_mass_g,distr="norm")
 ```
 
-*F. Use 'rnorm' to generate random values of flipper length and body mass from the normal distribution*
+**F. Use 'rnorm' to generate random values of flipper length and body mass from the normal distribution**
 
 We have now estimated the mean and standard deviation for the Gentoo penguin population that these individuals came from. I want you to use these parameter values and the R command `rnorm` to draw random values for penguin flipper length and body mass. Draw 3 different values for each trait.
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.show='hide', results='hide'}
 # solution
 # flipper length
 rnorm(3,a$estimate[1],a$estimate[2])
@@ -100,9 +100,9 @@ rnorm(3,a$estimate[1],a$estimate[2])
 rnorm(3,b$estimate[1],b$estimate[2])
 ```
 
-*G. Use 'dnorm' to calculate the probability of observing a flipper length of 250 and of 216 from this distribution. Which value is more likely? Please also to estimate the probability of observing a body mass of 4000 and of 5000 from that distribution. Which value is more likely?*
+**G. Use 'dnorm' to calculate the probability of observing a flipper length of 250 and of 216 from this distribution. Which value is more likely? Please also to estimate the probability of observing a body mass of 4000 and of 5000 from that distribution. Which value is more likely?**
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.show='hide', results='hide'}
 # solution
 # flipper length
 dnorm(250,a$estimate[1],a$estimate[2])
@@ -114,31 +114,31 @@ dnorm(5000,b$estimate[1],b$estimate[2])
 
 ### 2. Consider appropriate distribution for Italian football league goal data
 
-*A. Load the data*
+**A. Load the data**
 
 ```{r}
 italy <- read.csv("https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/italy.csv",header=TRUE,row.names=1)
 ```
 
-*B. Create a new variable that contains two columns: data for goals scored by the home team (`hgoal`) and scored by the visiting team (`vgoal`)*
+**B. Create a new variable that contains two columns: data for goals scored by the home team (`hgoal`) and scored by the visiting team (`vgoal`)**
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.show='hide', results='hide'}
 # solution
 goal <- italy[,c(6,7)]
 ```
 
-*C. Create histograms for home goals and visitor goals*
+**C. Create histograms for home goals and visitor goals**
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.show='hide', results='hide'}
 # solution base R
 par(mfrow=c(1,2))
 hist(goal$hgoal)
 hist(goal$vgoal)
 ```
 
-*D. Use 'fitdistrplus' to estimate parameters for data fit to a Poisson distribution*
+**D. Use 'fitdistrplus' to estimate parameters for data fit to a Poisson distribution**
 
-Use the command `fitdist`, with `distr="pois"` to estimate the parameters of a Poisson distribution for each variable (hgoal, vgoal). The Poisson distribution is not the same as the Normal distribution - we do not need the mean and standard deviation to describe it. Instead, we need the "rate parameter" $\lambda$. Here is more information about the Poisson distribution (from [Wikipedia](https://en.wikipedia.org/wiki/Poisson_distribution):
+Use the command `fitdist`, with `distr="pois"` to estimate the parameters of a Poisson distribution for each variable (hgoal, vgoal). The Poisson distribution is not the same as the Normal distribution - we do not need the mean and standard deviation to describe it. Instead, we need the "rate parameter" $\lambda$. Here is more information about the Poisson distribution (from [Wikipedia](https://en.wikipedia.org/wiki/Poisson_distribution)): 
 
 + "The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring in a fixed interval of time or space if these events occur with a known constant mean rate and independently of the time since the last event. It is named after French mathematician Siméon Denis Poisson."
 
@@ -155,11 +155,11 @@ a <- fitdistrplus::fitdist(goal$hgoal,distr="pois")
 b <- fitdistrplus::fitdist(goal$vgoal,distr="pois")
 ```
 
-*E. Use 'rpois' to generate random values of hgoals and vgoals from the Poisson distribution*
+**E. Use 'rpois' to generate random values of hgoals and vgoals from the Poisson distribution**
 
 We have now estimated the rate parameter $\lambda$ for the Italian football goal data. Use these parameter values and the R command `rpois` to draw random values for hgoals and vgoals. Draw 3 different values for each variable. (in other words, simulate 3 matches!!)
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.show='hide', results='hide'}
 # solution
 # hgoal
 rpois(3,a$estimate[1])
@@ -167,9 +167,9 @@ rpois(3,a$estimate[1])
 rpois(3,b$estimate[1])
 ```
 
-*F. Use 'dpois' to calculate the probability of the home team scoring 2 goals in a match, and 8 goals in a match. Which value is more likely? Please also to estimate the probability of observing visitor goals of 2 and 8 from that distribution. Which value is more likely? Who is more likely to win a match, a home team or a visiting team?*
+**F. Use 'dpois' to calculate the probability of the home team scoring 2 goals in a match, and 8 goals in a match. Which value is more likely? Please also to estimate the probability of observing visitor goals of 2 and 8 from that distribution. Which value is more likely? Who is more likely to win a match, a home team or a visiting team?**
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.show='hide', results='hide'}
 # solution
 # hgoal
 dpois(2,a$estimate[1])
@@ -215,7 +215,7 @@ Use `runif` and `rbeta` to draw random values from a uniform and a beta distribu
 
 **B. Draw 10,000 values from the uniform and the beta distribution, and plot a histogram for those, to visualize the distribution**
 
-```{r}
+```{r, fig.show='hide', results='hide'}
 # solution
 par(mfrow=c(1,1))
 hist(runif(10000,min=0,max=1))
@@ -233,7 +233,7 @@ We use the following model:
 $$ N_{1,t+1} = N_{1,t} \cdot(r_1 e^{(-\alpha_{11} N_{1,t} - \alpha_{12} N_{2,t})})$$
 $$ N_{2,t+1} = N_{2,t} \cdot(r_2 e^{(-\alpha_{22} N_{2,t} - \alpha_{21} N_{1,t})})$$
 
-```{r}
+```{r, fig.show='hide', results='hide'}
 # Parameter values to use for simulation
 r_1 <- 1.7
 r_2 <- 1.5
