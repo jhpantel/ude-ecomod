@@ -263,7 +263,7 @@ for(i in 2:t){
 
 Now, use the beta distribution for random draws for the alpha parameters - draw 1 random value for alpha_11, a second random value for alpha_22, a third random value for alpha_12, and a fourth random value for alpha_21.
 
-```{r echo=FALSE}
+```{r echo=FALSE,fig.show='hide', results='hide'}
 # Parameter values to use for simulation
 r_1 <- 1.7
 r_2 <- 1.5
@@ -297,7 +297,7 @@ plot(N[,1],xlab="time",ylab="N",pch=19,col="black",ylim=c(0,100))
 points(N[,2],pch=19,col="orange")
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE,fig.show='hide', results='hide'}
 # Parameter values to use for simulation
 r_1 <- 1.7
 r_2 <- 1.5

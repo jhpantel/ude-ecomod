@@ -33,8 +33,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.2.1/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -325,7 +325,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Module 4.2 Exercise</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-12-07 11:36:51</h4>
+<h4 class="date">2023-12-07 14:59:50.410703</h4>
 
 </div>
 
@@ -346,10 +346,11 @@ sampled from different populations). Let’s look closely at some trait
 data - measures of body mass and flipper length in a population of
 Gentoo penguins that inhabit 3 islands in the Palmer Archipelago
 (Antarctica).</p>
-<p><em>A. Load the data</em></p>
-<pre class="r"><code>#library(palmerpenguins)
+<p><strong>A. Load the data</strong></p>
+<pre class="r"><code># library(palmerpenguins)
 data(&quot;penguins&quot;)
-# The data is now saved to a new variables called &#39;penguins&#39;
+# The data is now saved to a new variables called
+# &#39;penguins&#39;
 head(penguins)</code></pre>
 <pre><code>## # A tibble: 6 × 8
 ##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -361,28 +362,27 @@ head(penguins)</code></pre>
 ## 5 Adelie  Torgersen           36.7          19.3               193        3450
 ## 6 Adelie  Torgersen           39.3          20.6               190        3650
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
-<p><em>B. Create a new variable that contains only body mass and flipper
-length for Gentoo penguins (and get rid of rows with NA values)</em></p>
+<p><strong>B. Create a new variable that contains only body mass and
+flipper length for Gentoo penguins (and get rid of rows with NA
+values)</strong></p>
 <p>Hint: the variable <code>penguins</code> is a data frame. I can use
 <code>$</code> to index columns in the data frame, and I can use
 <code>[]</code> to index particular positions in the data frame, like
 this:</p>
-<pre class="r"><code>unique(penguins$species) # Check exactly how the species names are entered
-new_variable &lt;- penguins[penguins$species == &quot;Chinstrap&quot;,] # all columns</code></pre>
+<pre class="r"><code>unique(penguins$species)  # Check exactly how the species names are entered
+new_variable &lt;- penguins[penguins$species == &quot;Chinstrap&quot;, ]  # all columns</code></pre>
 <p>I can also index particular columns in the dataset this way:</p>
 <pre class="r"><code># Chinstrap penguins, data frame columns 3 and 4
-new_variable &lt;- penguins[penguins$species == &quot;Chinstrap&quot;,c(3,4)]</code></pre>
-<p><em>C. Create histograms for body mass and flipper length</em></p>
+new_variable &lt;- penguins[penguins$species == &quot;Chinstrap&quot;, c(3,
+    4)]</code></pre>
+<p><strong>C. Create histograms for body mass and flipper
+length</strong></p>
 <p>Use the R command <code>hist</code> to draw those.</p>
-<p><img src="E4.2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p><em>D. Calculate mean and standard deviation for both traits</em></p>
+<p><strong>D. Calculate mean and standard deviation for both
+traits</strong></p>
 <p>Use the R commands <code>mean</code> and <code>sd</code></p>
-<pre><code>## [1] 217.187</code></pre>
-<pre><code>## [1] 6.484976</code></pre>
-<pre><code>## [1] 5076.016</code></pre>
-<pre><code>## [1] 504.1162</code></pre>
-<p><em>E. Use ‘fitdistrplus’ to estimate parameters for data fit to a
-normal distribution</em></p>
+<p><strong>E. Use ‘fitdistrplus’ to estimate parameters for data fit to
+a normal distribution</strong></p>
 <p>Load the library <code>fitdistrplus</code>, and look through the help
 menu for the command <code>fitdist</code>. Use this command for each
 trait to estimate the parameters of a normal distribution for each
@@ -390,39 +390,34 @@ dataset. The command asks you to specify what distritbuion you would
 like to fit the data to. The options are:
 <code>norm, lnorm, exp, pois, cauchy, gamma, logis, nbinom, geom, beta, weibull invgamma, llogis, invweibull, pareto1, pareto</code>.
 Use <code>norm</code> for the normal distribution.</p>
-<p><em>F. Use ‘rnorm’ to generate random values of flipper length and
-body mass from the normal distribution</em></p>
+<p><strong>F. Use ‘rnorm’ to generate random values of flipper length
+and body mass from the normal distribution</strong></p>
 <p>We have now estimated the mean and standard deviation for the Gentoo
 penguin population that these individuals came from. I want you to use
 these parameter values and the R command <code>rnorm</code> to draw
 random values for penguin flipper length and body mass. Draw 3 different
 values for each trait.</p>
-<pre><code>## [1] 225.7512 211.9121 217.7963</code></pre>
-<pre><code>## [1] 5308.384 4380.329 5476.129</code></pre>
-<p><em>G. Use ‘dnorm’ to calculate the probability of observing a
+<p><strong>G. Use ‘dnorm’ to calculate the probability of observing a
 flipper length of 250 and of 216 from this distribution. Which value is
 more likely? Please also to estimate the probability of observing a body
 mass of 4000 and of 5000 from that distribution. Which value is more
-likely?</em></p>
-<pre><code>## [1] 1.533849e-07</code></pre>
-<pre><code>## [1] 0.06073509</code></pre>
-<pre><code>## [1] 7.993501e-05</code></pre>
-<pre><code>## [1] 0.0007855504</code></pre>
+likely?</strong></p>
 </div>
 <div
 id="consider-appropriate-distribution-for-italian-football-league-goal-data"
 class="section level3">
 <h3>2. Consider appropriate distribution for Italian football league
 goal data</h3>
-<p><em>A. Load the data</em></p>
-<pre class="r"><code>italy &lt;- read.csv(&quot;https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/italy.csv&quot;,header=TRUE,row.names=1)</code></pre>
-<p><em>B. Create a new variable that contains two columns: data for
+<p><strong>A. Load the data</strong></p>
+<pre class="r"><code>italy &lt;- read.csv(&quot;https://raw.githubusercontent.com/jhpantel/ude-ecomod/main/data/italy.csv&quot;,
+    header = TRUE, row.names = 1)</code></pre>
+<p><strong>B. Create a new variable that contains two columns: data for
 goals scored by the home team (<code>hgoal</code>) and scored by the
-visiting team (<code>vgoal</code>)</em></p>
-<p><em>C. Create histograms for home goals and visitor goals</em></p>
-<p><img src="E4.2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p><em>D. Use ‘fitdistrplus’ to estimate parameters for data fit to a
-Poisson distribution</em></p>
+visiting team (<code>vgoal</code>)</strong></p>
+<p><strong>C. Create histograms for home goals and visitor
+goals</strong></p>
+<p><strong>D. Use ‘fitdistrplus’ to estimate parameters for data fit to
+a Poisson distribution</strong></p>
 <p>Use the command <code>fitdist</code>, with <code>distr="pois"</code>
 to estimate the parameters of a Poisson distribution for each variable
 (hgoal, vgoal). The Poisson distribution is not the same as the Normal
@@ -430,7 +425,7 @@ distribution - we do not need the mean and standard deviation to
 describe it. Instead, we need the “rate parameter” <span
 class="math inline">\(\lambda\)</span>. Here is more information about
 the Poisson distribution (from <a
-href="https://en.wikipedia.org/wiki/Poisson_distribution">Wikipedia</a>:</p>
+href="https://en.wikipedia.org/wiki/Poisson_distribution">Wikipedia</a>):</p>
 <ul>
 <li><p>“The Poisson distribution is a discrete probability distribution
 that expresses the probability of a given number of events occurring in
@@ -449,24 +444,19 @@ rate of occurrences”</p></li>
 <span class="math inline">\(\lambda\)</span> for Italian football league
 goals - it represents the expected rate of scoring a goal in a
 match.</p>
-<p><em>E. Use ‘rpois’ to generate random values of hgoals and vgoals
-from the Poisson distribution</em></p>
+<p><strong>E. Use ‘rpois’ to generate random values of hgoals and vgoals
+from the Poisson distribution</strong></p>
 <p>We have now estimated the rate parameter <span
 class="math inline">\(\lambda\)</span> for the Italian football goal
 data. Use these parameter values and the R command <code>rpois</code> to
 draw random values for hgoals and vgoals. Draw 3 different values for
 each variable. (in other words, simulate 3 matches!!)</p>
-<pre><code>## [1] 1 2 3</code></pre>
-<pre><code>## [1] 2 0 1</code></pre>
-<p><em>F. Use ‘dpois’ to calculate the probability of the home team
+<p><strong>F. Use ‘dpois’ to calculate the probability of the home team
 scoring 2 goals in a match, and 8 goals in a match. Which value is more
 likely? Please also to estimate the probability of observing visitor
 goals of 2 and 8 from that distribution. Which value is more likely? Who
-is more likely to win a match, a home team or a visiting team?</em></p>
-<pre><code>## [1] 0.2562828</code></pre>
-<pre><code>## [1] 0.0001891203</code></pre>
-<pre><code>## [1] 0.1791277</code></pre>
-<pre><code>## [1] 7.594181e-06</code></pre>
+is more likely to win a match, a home team or a visiting
+team?</strong></p>
 </div>
 <div
 id="consider-appropriate-distribution-for-paramecium-interaction-coefficients"
@@ -501,9 +491,9 @@ gause_out$parameter_intervals</code></pre>
 <pre><code>##                lower_sd           mu      upper_sd
 ## P_caudatum0  0.01033120  1.595268713  2.463299e+02
 ## P_aurelia0   0.08812049  1.631618399  3.021066e+01
-## r1           0.34795148  1.259232133  4.557146e+00
+## r1           0.34795149  1.259232133  4.557145e+00
 ## r2           0.47571115  1.026156214  2.213521e+00
-## a11         -0.02061163 -0.005157869 -1.290709e-03
+## a11         -0.02061162 -0.005157869 -1.290709e-03
 ## a12         -0.02361279 -0.008000167 -2.710508e-03
 ## a21         -0.01100428 -0.001974871 -3.544183e-04
 ## a22         -0.01459709 -0.006851130 -3.215572e-03</code></pre>
@@ -538,11 +528,9 @@ central value). Use <code>rbeta(1,shape1=1,shape2=50)</code></p>
 distribution, and plot a histogram for those, to visualize the
 distribution</strong></p>
 <pre class="r"><code># solution
-par(mfrow=c(1,1))
-hist(runif(10000,min=0,max=1))</code></pre>
-<p><img src="E4.2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<pre class="r"><code>hist(rbeta(10000,shape1=1,shape2=50))</code></pre>
-<p><img src="E4.2_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
+par(mfrow = c(1, 1))
+hist(runif(10000, min = 0, max = 1))</code></pre>
+<pre class="r"><code>hist(rbeta(10000, shape1 = 1, shape2 = 50))</code></pre>
 <p><strong>C. Use random value draws for Lotka-Volterra interaction
 coefficients, run simulation of LV competition dynamics using these
 values</strong></p>
@@ -571,26 +559,26 @@ N1_0 &lt;- 5
 N2_0 &lt;- 3
 t &lt;- 23
 # model function
-disc_lv &lt;- function(r_1,r_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21){
-  Nt1 &lt;- (N1_0*r_1) / (1 + alpha_11*N1_0 + alpha_12*N2_0)
-  Nt2 &lt;- (N2_0*r_2) / (1 + alpha_22*N2_0 + alpha_21*N1_0)
-  return(cbind(Nt1,Nt2))
+disc_lv &lt;- function(r_1, r_2, N1_0, N2_0, alpha_11, alpha_22,
+    alpha_12, alpha_21) {
+    Nt1 &lt;- (N1_0 * r_1)/(1 + alpha_11 * N1_0 + alpha_12 * N2_0)
+    Nt2 &lt;- (N2_0 * r_2)/(1 + alpha_22 * N2_0 + alpha_21 * N1_0)
+    return(cbind(Nt1, Nt2))
 }
 # Simulation of model for t time steps
-N &lt;- array(NA,dim=c(t,2),dimnames=list(NULL,c(&quot;N1&quot;,&quot;N2&quot;)))
-N[1,1] &lt;- N1_0
-N[1,2] &lt;- N2_0
-for(i in 2:t){
-  N[i,] &lt;- disc_lv(r_1,r_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21)
-  N1_0 &lt;- N[i,1]
-  N2_0 &lt;- N[i,2]
+N &lt;- array(NA, dim = c(t, 2), dimnames = list(NULL, c(&quot;N1&quot;, &quot;N2&quot;)))
+N[1, 1] &lt;- N1_0
+N[1, 2] &lt;- N2_0
+for (i in 2:t) {
+    N[i, ] &lt;- disc_lv(r_1, r_2, N1_0, N2_0, alpha_11, alpha_22,
+        alpha_12, alpha_21)
+    N1_0 &lt;- N[i, 1]
+    N2_0 &lt;- N[i, 2]
 }</code></pre>
 <p>Now, use the beta distribution for random draws for the alpha
 parameters - draw 1 random value for alpha_11, a second random value for
 alpha_22, a third random value for alpha_12, and a fourth random value
 for alpha_21.</p>
-<p><img src="E4.2_files/figure-html/unnamed-chunk-19-1.png" width="672" /><img src="E4.2_files/figure-html/unnamed-chunk-19-2.png" width="672" /></p>
-<p><img src="E4.2_files/figure-html/unnamed-chunk-20-1.png" width="672" /><img src="E4.2_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
 </div>
 </div>
 
