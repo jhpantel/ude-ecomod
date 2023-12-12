@@ -1,10 +1,10 @@
 ---
-title: "Week 13, Lecture 5.3 Exercise"
+title: "Module 4.3 Exercise"
 author: "Jelena H. Pantel"
 date: "`r file.mtime(knitr::current_input())`"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 institute: "University of Duisburg-Essen"
 ---
 
@@ -25,6 +25,7 @@ You took some introductory statistics, so I hope you are familiar with a Gaussia
 We can plot data and use our own eyes to consider whether it follows a normal distribution. But I would like you to have an awareness that even claiming / stating "The data $x$ follows a normal distribution" is - you guessed it - formulating a model! So then, given a set of data, we can propose a model, and estimate the paramater values when fitting that data to the model. We will do this with a normal distribution today.
 
 ##### B. The easiest / typical way to estimate parameters of a normal model when fit to observed data
+
 The focus of today's exercise will be to use Approximate Bayesian Computation (ABC) for fitting data to models. ABC is most needed with very complicated models where the underlying parameters are often unkown and difficult to estimate. However, its best to show you how ABC works by applying it to a simpler model. So we will learn to estimate the parameters in a normal distribution given a set of data.
 
 The dataset of interest is body weight of a common household insect. Please run the following command to load the dataset:
@@ -39,7 +40,7 @@ You can visualize and summarize the data - what is the mean (`mean`) and standar
 A normal distribution has two parameters to describe its shape - mean ($\mu$) and standard deviation ($\sigma$). The formula to generate a normal curve is:
 
 $$ p(x) = \frac{1}{\sigma \sqrt {2 \pi}} e^{-\frac{1}{2}(\frac{x - \mu}{\sigma})^2}  $$
-Where p(x) is the probability of observing a value of $x$ given the model. For example, if data is drawn from a normal distribution centered on a mean mean ($\mu$) = 50 and standard deviation ($\sigma$) = 1, the normal distribution looks like this:
+Where p(x) is the probability of observing a value of $x$ given the model. For example, if data is drawn from a normal distribution centered on a mean ($\mu$) = 50 and standard deviation ($\sigma$) = 1, the normal distribution looks like this:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), figures-1, out.width="50%", warning=FALSE,message=FALSE}
 hist(rnorm(10000,50,1))
@@ -52,7 +53,7 @@ And the probability of observing a value of 60 given this model and these parame
 dnorm(60,50,1)
 ```
 
-Its of interest to 'fit your data to a normal model'. We can do this very quickly in R - we provide our data `dat` to a command `fitdist` in the R library `fitdistrplus` - it fits your observed data to a normal model and returns estimates of the model parameters ($\mu$ and $\sigma$):
+It is of interest to 'fit your data to a normal model'. We can do this very quickly in R - we provide our data `dat` to a command `fitdist` in the R library `fitdistrplus` - it fits your observed data to a normal model and returns estimates of the model parameters ($\mu$ and $\sigma$):
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
 fitdistrplus::fitdist(data=dat$weight_g,distr="norm")
@@ -61,7 +62,8 @@ fitdistrplus::fitdist(data=dat$weight_g,distr="norm")
 How does the `fitdist` model estimates for mean ($\mu$) and standard deviation ($\sigma$) compare to the true values used to produce the data? Quite well.
 
 ##### C. Estimating parameters of a normal model using ABC (useful when you have more complex models)
-Let's learn to use ABC (Approximate Bayesian Computation) to estimate the most likely values of the model parameters given the observe data. This is most useful when (1) you have a very complex model and (2) you don't know the underlying values of the parameters that produced the observed data. ABC works differently:
+
+Let's learn to use ABC (Approximate Bayesian Computation) to estimate the most likely values of the model parameters given the observe data. This is most useful when (1) you have a very complex model and (2) you don't know the underlying values of the parameters that produced the observed data. ABC uses the following steps:
 
 + data is simulated from an underlying model
 
@@ -77,7 +79,7 @@ Let's look at each step more closely:
 
 **Step 1. Data is simulated from an underlying model**
 
-We stated previously we believe our data is drawn from a normal distribution. We simulate 10000 datasets from a normal model, and we randomly choose parameter values for each simultion from the normal model. We can simulate draws from a normal distribution using the command `rnorm`
+We stated previously we believe our data is drawn from a normal distribution. We simulate 10000 datasets from a normal model, and we randomly choose parameter values for each simultion from the normal model. We can simulate draws from a normal distribution using the command `rnorm`. Here is a quick example of how to simulate drawing 1000 values from a normal distribution with mean 50, standard deviation = 1:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), figures-2, out.width="50%", warning=FALSE,message=FALSE}
 # Randomly draw 1000 values from a normal distribution with mean 50, standard deviation 1
@@ -85,7 +87,7 @@ a <- rnorm(1000,50,1)
 hist(a)
 ```
 
-We wish to repeat this process of simulating our insect data (1000 data points) 10,000 times. We do not know the underlying values of the model parameters ($\mu$ and $\sigma$) that produced our data, so we run our simulations with randomly chosen values for these.
+We wish to repeat this process of simulating our insect data (1000 data points) 10,000 times. We do not know the underlying values of the model parameters ($\mu$ and $\sigma$) that produced our data, so we run our simulations with randomly chosen values for these. We establish a realistic **prior distribution** for each parameter:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), warning=FALSE,message=FALSE}
 mu_rand <- runif(10000,-100,100) # What is this command doing?
@@ -160,6 +162,7 @@ hist(log(rej$adj.values[,2]),main="posterior distribution of standard deviation"
 How well do these compare to the observed values in the original data (`obs.stat`)?
 
 ##### D. Estimating parameters of a discrete-time Lotka Volterra model using ABC
+
 Let's repeat using ABC (Approximate Bayesian Computation) to estimate the most likely values of the model parameters given the observe data. We can take Gause's *Paramecium* data and try to estimate the underlying parameters from a discrete-time Lotka Volterra model.
 
 **Step 1a. Gather your observed data**
@@ -200,7 +203,7 @@ $$ N_{1,t+1} = N_{1,t} + N_{1,t} \cdot(\lambda_1 e^{(-\alpha_{11} N_{1,t} - \alp
 $$ N_{2,t+1} = N_{2,t} + N_{2,t} \cdot(\lambda_2 e^{(-\alpha_{22} N_{2,t} - \alpha_{21} N_{1,t})})$$
 The parameters we need to estimate are:
 
-$\lambda_1, \lambda_2, \alpha_{11}, \alpha_{22}, \alpha_{12}, \alpha_21$
+$\lambda_1, \lambda_2, \alpha_{11}, \alpha_{22}, \alpha_{12}, \alpha_{21}$
 
 Please create a simulation of this model. I show here a model for a single species. Please modify that to also simulate growth in a second species. For the missing parameters, you can start by using values of $\lambda_2 = 1.5$, $\alpha_{22} = 0.005$, $\alpha_{12} = 0.03$, $\alpha_{21} = 0.007$, $N_{2,0} = 3$. Change the name of the function to `disc_lv`.
 
@@ -242,9 +245,9 @@ N1_0 <- 5
 N2_0 <- 3
 t <- 23
 # model function
-disc_lv <- function(lambda_1,lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21){
-  Nt1 <- N1_0 + N1_0*(lambda_1*exp(-alpha_11*N1_0 - alpha_12*N2_0))
-  Nt2 <- N2_0 + N2_0*(lambda_2*exp(-alpha_22*N2_0 - alpha_21*N1_0))
+disc_lv <- function(r_1=lambda_1,r_2=lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21){
+  Nt1 <- (N1_0*r_1) / (1 + alpha_11*N1_0 + alpha_12*N2_0)
+  Nt2 <- (N2_0*r_2) / (1 + alpha_22*N2_0 + alpha_21*N1_0)
   return(cbind(Nt1,Nt2))
 }
 # Simulation of model for t time steps
@@ -260,11 +263,12 @@ for(i in 2:t){
 dat <- reshape2::melt(N)
 ggplot2::ggplot(dat,ggplot2::aes(x=Var1,y=value,col=Var2)) + ggplot2::geom_point()
 # Plot simulation: base R
-plot(N[,1],xlab="time",ylab="N",pch=19,col="black",ylim=c(0,800))
+plot(N[,1],xlab="time",ylab="N",pch=19,col="black",ylim=c(0,150))
 points(N[,2],pch=19,col="orange")
 ```
 
 **Step 3. Create random simulations of data, using prior distributions for model parameters**
+
 Do you recall an exercise where we looked at logistic growth across a range of values for the growth rate $r$? We used code that looks like this (using `disc_log` from above):
 
 ```{r warning=FALSE,message=FALSE}
@@ -290,7 +294,7 @@ ggplot2::ggplot(N.g,ggplot2::aes(x=time,y=N,col=as.factor(r))) + ggplot2::geom_l
 ```
 In this exercise, you will choose a *prior distribution* for each of the model parameters to estimate, and you will use a random draw from that prior distribution for each repetition of the simulation. This is how we create the variables `par.sim` and `stat.sim` needed to use ABC, to estimate the unknown parameter values for Gause's Paramecium. I demonstrate how this works for a discrete-time logistic example, using data from Gause's Paramecium.
 
-```{r out.width="50%"}
+```{r out.width="50%",warning=FALSE}
 ## 1. Get observed data
 #load competition data
 data("gause_1934_science_f02_03")
@@ -389,6 +393,12 @@ for(i in 2:t){
 lines(1:23,N,lwd=0.5,col="skyblue")
 ```
 
+**Question: In this example, what are the prior distributions for the lambda and alpha parameters?**
+
+**Question: How do the posterior parameter distributions differ from the prior distributions? Create a plot to show this.**
+
+**Question: How does the predicted values of P. caudatum N using the posterior mean compare to the observed values?**
+
 Your goal is to repeat this ABC procedure and estimate the most likely values for the 2 Paramecium species from the dataset in Step 1a. The code above is your 'template'm but using only 1 species. Add in the model and parameters for Species #2, and be sure to add in draws of parameter values from the prior distributions for those new parameters.
 
 ```{r echo=FALSE,results='hide'}
@@ -410,15 +420,16 @@ stat.obs <-  c(species[,1],species[,2])
 ## parameters in variables par.sim and stat.sim for ABC.
 rand_disc_lv <- function(N1_0=N1_0,N2_0=N2_0,disc_lv,t){
   ## Choose random values of lambda_1 from a prior distribution
-  lambda_1r <- runif(1,min=1.2,max=3) # Random uniform distribution between 0-3
-  alpha_11r <- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1
-  #biased towards low values
-  ## Values for Species 2
-  lambda_2r <- runif(1,min=1.2,max=3)
-  alpha_22r <- rbeta(1,shape1=1,shape2=50)
-  ## Values for competition
-  alpha_12r <- rbeta(1,shape1=1,shape2=50)
-  alpha_21r <- rbeta(1,shape1=1,shape2=50)
+  lambda_1r <- runif(1,min=1,max=2) # Random uniform distribution between 1-2
+  lambda_2r <- runif(1,min=1,max=2)
+  z=rbinom(1,1,0.5)
+  alpha_11r <- z* -rbeta(1,shape1=1,shape2=50) + (1-z) * rbeta(1,shape1=1,shape2=50) # Random beta distribution
+  z=rbinom(1,1,0.5)
+  alpha_12r <- z* -rbeta(1,shape1=1,shape2=50) + (1-z) * rbeta(1,shape1=1,shape2=50) # Random beta distribution
+  z=rbinom(1,1,0.5)
+  alpha_21r <- z* -rbeta(1,shape1=1,shape2=50) + (1-z) * rbeta(1,shape1=1,shape2=50) # Random beta distribution
+  z=rbinom(1,1,0.5)
+  alpha_22r <- z* -rbeta(1,shape1=1,shape2=50) + (1-z) * rbeta(1,shape1=1,shape2=50) # Random beta distribution
   ## Initial population sizes
   N1_0 <- species$P_caudatum[1]
   N2_0 <- species$P_aurelia[1]
@@ -472,12 +483,12 @@ hist(rej_log$adj.values[,6],main="alpha_21")
 
 ## 7. Add a curve to the observed data that shows the ABC-predicted parameter values
 # 7a. Simulate data with the average 'accepted' parameter values
-lambda_1 <- mean(rej_log$adj.values[,1])
-alpha_11 <- mean(rej_log$adj.values[,2])
-lambda_2 <- mean(rej_log$adj.values[,3])
-alpha_22 <- mean(rej_log$adj.values[,4])
-alpha_12 <- mean(rej_log$adj.values[,5])
-alpha_21 <- mean(rej_log$adj.values[,6])
+lambda_1 <- mean(rej_log$unadj.values[,1])
+alpha_11 <- mean(rej_log$unadj.values[,2])
+lambda_2 <- mean(rej_log$unadj.values[,3])
+alpha_22 <- mean(rej_log$unadj.values[,4])
+alpha_12 <- mean(rej_log$unadj.values[,5])
+alpha_21 <- mean(rej_log$unadj.values[,6])
 ## Initial population sizes
 N1_0 <- species$P_caudatum[1]
 N2_0 <- species$P_aurelia[1]
@@ -495,14 +506,14 @@ for(i in 2:t){
 # dat <- reshape2::melt(N)
 # ggplot2::ggplot(dat,ggplot2::aes(x=Var1,y=value,col=Var2)) + ggplot2::geom_point()
 # Plot simulation: base R
-par(mfrow=c(1,1))
-plot(species$P_caudatum,xlab="time",ylab="N",pch=19,col="black")
+par(mfrow=c(1,1),mar=c(5, 4, 4, 2) + 0.1)
+plot(species$P_caudatum,xlab="time",ylab="N",pch=19,col="black",ylim=c(0,130))
 points(species$P_aurelia,pch=19,col="orange")
 # Add predicted from mean ABC values
-plot(N[,1],xlab="time",ylab="N",pch=19,col="black",ylim=c(0,800))
-points(N[,2],pch=19,col="orange")
+#plot(N[,1],xlab="time",ylab="N",pch=19,col="black",ylim=c(0,150))
+#points(N[,2],pch=19,col="orange")
 lines(y=N[,1],x=1:23,col="black")
-lines(N[,2],1:23,col="orange")
+lines(y=N[,2],x=1:23,col="orange")
 ## Note: I still need to edit this, isn't currently estimating the model parameters well (negative alpha values)
 ```
 
