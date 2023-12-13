@@ -125,19 +125,19 @@ for(i in d){
 
 **Step 2. Summary statistics are calculated from each simulation**
 
-Our focal summary statistics are (1) the mean of the dataset and (2) the logarithm of the standard deviation of the dataset. We save those to a new variable called `stat.obs`:
+Our focal summary statistics are (1) the mean of the dataset and (2) the standard deviation of the dataset. We save those to a new variable called `stat.obs`:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), warning=FALSE,message=FALSE}
-stat.obs <- c(mean(dat$weight_g),log(sd(dat$weight_g)))
+stat.obs <- c(mean(dat$weight_g),sd(dat$weight_g))
 ```
 
-Our simulated summary statistics can be obtained by calculating the mean and log(sd) for each of the 10000 simulations:
+Our simulated summary statistics can be obtained by calculating the mean and sd for each of the 10000 simulations:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60), warning=FALSE,message=FALSE}
-stat.sim <- array(NA,dim=c(10000,2),dimnames=list(NULL,c("mean","log_sd")))
+stat.sim <- array(NA,dim=c(10000,2),dimnames=list(NULL,c("mean","sd")))
 for(i in 1:10000){
   stat.sim[i,1] <- mean(sim[i,])
-  stat.sim[i,2] <- log(sd(sim[i,]))
+  stat.sim[i,2] <- sd(sim[i,])
 }
 ```
 

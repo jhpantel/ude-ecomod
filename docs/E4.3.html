@@ -325,7 +325,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Module 4.3 Exercise</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-12-13 12:03:45.083704</h4>
+<h4 class="date">2023-12-13 15:43:46.180531</h4>
 
 </div>
 
@@ -499,16 +499,16 @@ for (i in d) {
 <p><strong>Step 2. Summary statistics are calculated from each
 simulation</strong></p>
 <p>Our focal summary statistics are (1) the mean of the dataset and (2)
-the logarithm of the standard deviation of the dataset. We save those to
-a new variable called <code>stat.obs</code>:</p>
-<pre class="r"><code>stat.obs &lt;- c(mean(dat$weight_g), log(sd(dat$weight_g)))</code></pre>
+the standard deviation of the dataset. We save those to a new variable
+called <code>stat.obs</code>:</p>
+<pre class="r"><code>stat.obs &lt;- c(mean(dat$weight_g), sd(dat$weight_g))</code></pre>
 <p>Our simulated summary statistics can be obtained by calculating the
-mean and log(sd) for each of the 10000 simulations:</p>
+mean and sd for each of the 10000 simulations:</p>
 <pre class="r"><code>stat.sim &lt;- array(NA, dim = c(10000, 2), dimnames = list(NULL,
-    c(&quot;mean&quot;, &quot;log_sd&quot;)))
+    c(&quot;mean&quot;, &quot;sd&quot;)))
 for (i in 1:10000) {
     stat.sim[i, 1] &lt;- mean(sim[i, ])
-    stat.sim[i, 2] &lt;- log(sd(sim[i, ]))
+    stat.sim[i, 2] &lt;- sd(sim[i, ])
 }</code></pre>
 <p><strong>Step 3. The values of these summary statistics are compared
 to observed values (using either a rejection algorithm or a neural
