@@ -325,7 +325,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Module 4.3 Exercise</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-12-12 15:26:10.922915</h4>
+<h4 class="date">2023-12-13 12:03:45.083704</h4>
 
 </div>
 
@@ -573,11 +573,11 @@ simulate data of the kind observed in Gause’s Paramecium. The model
 should consider the processes - growth and competition - that are
 important to produce the observed Paramecium time series.</p>
 <p>We use the following model:</p>
-<p><span class="math display">\[ N_{1,t+1} = N_{1,t} + N_{1,t}
-\cdot(\lambda_1 e^{(-\alpha_{11} N_{1,t} - \alpha_{12}
-N_{2,t})})\]</span> <span class="math display">\[ N_{2,t+1} = N_{2,t} +
-N_{2,t} \cdot(\lambda_2 e^{(-\alpha_{22} N_{2,t} - \alpha_{21}
-N_{1,t})})\]</span> The parameters we need to estimate are:</p>
+<p><span class="math display">\[ N_{1,t+1} = \frac{N_{1,t}
+\lambda_{1}}{1 + \alpha_{11} N_{1,t} + \alpha_{12} N_{2,t}}\]</span>
+<span class="math display">\[ N_{2,t+1} = \frac{N_{2,t} \lambda_{2}}{1 +
+\alpha_{22} N_{2,t} + \alpha_{21} N_{1,t}}\]</span> The parameters we
+need to estimate are:</p>
 <p><span class="math inline">\(\lambda_1, \lambda_2, \alpha_{11},
 \alpha_{22}, \alpha_{12}, \alpha_{21}\)</span></p>
 <p>Please create a simulation of this model. I show here a model for a
@@ -596,7 +596,7 @@ N1_0 &lt;- 5
 t &lt;- 23
 # model function
 disc_log &lt;- function(lambda_1, N1_0, alpha_11) {
-    Nt1 &lt;- N1_0 + N1_0 * (lambda_1 * exp(-alpha_11 * N1_0))
+    Nt1 &lt;- (N1_0 * lambda_1)/(1 + alpha_11 * N1_0)
     return(Nt1)
 }
 # Simulation of model for t time steps
@@ -618,42 +618,43 @@ plot(N, xlab = &quot;time&quot;, ylab = &quot;N&quot;, pch = 19, col = &quot;bla
 distributions for model parameters</strong></p>
 <p>Do you recall an exercise where we looked at logistic growth across a
 range of values for the growth rate <span
-class="math inline">\(r\)</span>? We used code that looks like this
-(using <code>disc_log</code> from above):</p>
+class="math inline">\(\lambda\)</span>? We used code that looks like
+this (using <code>disc_log</code> from above):</p>
 <pre class="r"><code># Simulation of model for t time steps
-lambda_1_range &lt;- c(0.6, 0.8, 1.2, 1.6, 1.8, 2.0)
+lambda_1_range &lt;- c(0.6, 0.8, 1.2, 1.6, 1.8, 2)
 N.g &lt;- numeric()
 N1_0 &lt;- 5
-for(p in 1:length(lambda_1_range)){
-  N &lt;- rep(NA,t)
-  N[1] &lt;- N1_0
-  for(i in 2:t){
-    N[i] &lt;- disc_log(lambda_1_range[p],N1_0,alpha_11)
-    N1_0 &lt;- N[i]
-  }
-  dat &lt;- as.data.frame(N)
-  dat$time &lt;- as.numeric(rownames(dat))
-  dat$r &lt;- rep(lambda_1_range[p],t)
-  N.g &lt;- rbind(N.g,dat)
-  N1_0 &lt;- 5
+for (p in 1:length(lambda_1_range)) {
+    N &lt;- rep(NA, t)
+    N[1] &lt;- N1_0
+    for (i in 2:t) {
+        N[i] &lt;- disc_log(lambda_1_range[p], N1_0, alpha_11)
+        N1_0 &lt;- N[i]
+    }
+    dat &lt;- as.data.frame(N)
+    dat$time &lt;- as.numeric(rownames(dat))
+    dat$lambda &lt;- rep(lambda_1_range[p], t)
+    N.g &lt;- rbind(N.g, dat)
+    N1_0 &lt;- 5
 }
 # Plot in ggplot
-ggplot2::ggplot(N.g,ggplot2::aes(x=time,y=N,col=as.factor(r))) + ggplot2::geom_line()</code></pre>
-<p><img src="E4.3_files/figure-html/unnamed-chunk-14-1.png" width="672" />
-In this exercise, you will choose a <em>prior distribution</em> for each
-of the model parameters to estimate, and you will use a random draw from
-that prior distribution for each repetition of the simulation. This is
-how we create the variables <code>par.sim</code> and
+ggplot2::ggplot(N.g, ggplot2::aes(x = time, y = N, col = as.factor(lambda))) +
+    ggplot2::geom_line()</code></pre>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>In this exercise, you will choose a <em>prior distribution</em> for
+each of the model parameters to estimate, and you will use a random draw
+from that prior distribution for each repetition of the simulation. This
+is how we create the variables <code>par.sim</code> and
 <code>stat.sim</code> needed to use ABC, to estimate the unknown
 parameter values for Gause’s Paramecium. I demonstrate how this works
 for a discrete-time logistic example, using data from Gause’s
 Paramecium.</p>
-<pre class="r"><code>## 1. Get observed data
-#load competition data
+<pre class="r"><code>## 1. Get observed data load competition data
 data(&quot;gause_1934_science_f02_03&quot;)
-#subset out data from species grown alone (not in mixtire)
-alone_dat &lt;- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment==&quot;Pc&quot;,]
-#extract time and species data
+# subset out data from species grown alone (not in mixtire)
+alone_dat &lt;- gause_1934_science_f02_03[gause_1934_science_f02_03$Treatment ==
+    &quot;Pc&quot;, ]
+# extract time and species data
 time &lt;- alone_dat$Day
 species &lt;- data.frame(alone_dat$Volume_Species1)
 colnames(species) &lt;- &quot;P_caudatum&quot;
@@ -661,91 +662,78 @@ colnames(species) &lt;- &quot;P_caudatum&quot;
 ## 2. Arrange observed data for ABC
 stat.obs &lt;- species$P_caudatum
 
-## 3. Create a *random* simulation of disc_log, with draws from prior distributions
-## for all model parameters. Save the time series values and values for the
-## parameters in variables par.sim and stat.sim for ABC.
-rand_disc_log &lt;- function(N1_0=N1_0,disc_log,t){
-  ## Choose random values of lambda_1 from a prior distribution
-  lambda_1r &lt;- runif(1,min=1.2,max=3) # Random uniform distribution between 0-3
-  alpha_11r &lt;- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1
-  #biased towards low values
-  N &lt;- rep(NA,t)
-  N[1] &lt;- N1_0
-  for(i in 2:t){
-    N[i] &lt;- disc_log(lambda_1r,N1_0=N1_0,alpha_11r)
-    N1_0 &lt;- N[i]
-  }
-  return(list(N=N,lambda_1r=lambda_1r,alpha_11r=alpha_11r))
+## 3. Create a *random* simulation of disc_log, with draws
+## from prior distributions for all model parameters. Save
+## the time series values and values for the parameters in
+## variables par.sim and stat.sim for ABC.
+rand_disc_log &lt;- function(N1_0 = N1_0, disc_log, t) {
+    ## Choose random values of lambda_1 from a prior
+    ## distribution
+    lambda_1r &lt;- runif(1, min = 1.2, max = 3)  # Random uniform distribution between 0-3
+    alpha_11r &lt;- runif(1, min = -0.5, max = 0.5)  # Random uniform distribution, bounded -0.5 - 0.5
+    # biased towards low values
+    N &lt;- rep(NA, t)
+    N[1] &lt;- N1_0
+    for (i in 2:t) {
+        N[i] &lt;- disc_log(lambda_1r, N1_0 = N1_0, alpha_11r)
+        N1_0 &lt;- N[i]
+    }
+    return(list(N = N, lambda_1r = lambda_1r, alpha_11r = alpha_11r))
 }
 
-## 4. Run this function 1000 times, and save all of the time series and the
-## associated parameter values for later ABC
-num_iter &lt;- 1000000
-num_par &lt;- 2 # to estimate: lambda_11 and alpha_11
-par_name &lt;- c(&quot;lambda_11&quot;,&quot;alpha_11&quot;)
-par.sim &lt;- array(NA,dim=c(num_iter,num_par),dimnames=list(NULL,par_name)) # to save values of parameters
-stat.sim &lt;- array(NA,dim=c(num_iter,t)) # to save values of N over time
-colnames(stat.sim) &lt;- paste(&quot;S&quot;,1:t,sep=&quot;&quot;)
-for(k in 1:num_iter){
-  N1_0 &lt;- species$P_caudatum[1]
-  simul &lt;- rand_disc_log(N1_0,disc_log,t)
-  par.sim[k,1] &lt;- simul$lambda_1r
-  par.sim[k,2] &lt;- simul$alpha_11r
-  stat.sim[k,] &lt;- simul$N
+## 4. Run this function 1000 times, and save all of the
+## time series and the associated parameter values for
+## later ABC
+num_iter &lt;- 1e+06
+num_par &lt;- 2  # to estimate: lambda_11 and alpha_11
+par_name &lt;- c(&quot;lambda_11&quot;, &quot;alpha_11&quot;)
+par.sim &lt;- array(NA, dim = c(num_iter, num_par), dimnames = list(NULL,
+    par_name))  # to save values of parameters
+stat.sim &lt;- array(NA, dim = c(num_iter, t))  # to save values of N over time
+colnames(stat.sim) &lt;- paste(&quot;S&quot;, 1:t, sep = &quot;&quot;)
+for (k in 1:num_iter) {
+    N1_0 &lt;- species$P_caudatum[1]
+    simul &lt;- rand_disc_log(N1_0, disc_log, t)
+    par.sim[k, 1] &lt;- simul$lambda_1r
+    par.sim[k, 2] &lt;- simul$alpha_11r
+    stat.sim[k, ] &lt;- simul$N
 }
 
-## 5. Use ABC to estimate the parameter values in the discrete-time growth model
-colnames(stat.sim) &lt;- paste(&quot;S&quot;,1:23,sep=&quot;&quot;)
-rej_log &lt;- abc::abc(target=stat.obs, param=par.sim, sumstat=stat.sim, tol=.001, method =&quot;neuralnet&quot;)</code></pre>
+## 5. Use ABC to estimate the parameter values in the
+## discrete-time growth model
+colnames(stat.sim) &lt;- paste(&quot;S&quot;, 1:23, sep = &quot;&quot;)
+rej_log &lt;- abc::abc(target = stat.obs, param = par.sim, sumstat = stat.sim,
+    tol = 0.001, method = &quot;neuralnet&quot;)</code></pre>
 <pre><code>## 12345678910
 ## 12345678910</code></pre>
-<pre class="r"><code>## 6. Visualize the posterior distributions of the model parameters
-par(mfrow=c(1,1))
-hist(rej_log$adj.values[,1],main=&quot;posterior distribution of lambda_11&quot;)</code></pre>
+<pre class="r"><code>## 6. Visualize the posterior distributions of the model
+## parameters
+par(mfrow = c(1, 1))
+hist(rej_log$adj.values[, 1], main = &quot;posterior distribution of lambda_11&quot;)</code></pre>
 <p><img src="E4.3_files/figure-html/unnamed-chunk-15-1.png" width="50%" /></p>
-<pre class="r"><code>hist(rej_log$adj.values[,2],main=&quot;posterior distribution of alpha_11&quot;)</code></pre>
+<pre class="r"><code>hist(rej_log$adj.values[, 2], main = &quot;posterior distribution of alpha_11&quot;)</code></pre>
 <p><img src="E4.3_files/figure-html/unnamed-chunk-15-2.png" width="50%" /></p>
-<pre class="r"><code>## 7. Add a curve to the observed data that shows the ABC-predicted parameter values
-# 7a. Simulate data with the average &#39;accepted&#39; parameter values
-lambda_1 &lt;- mean(rej_log$adj.values[,1])
-alpha_11 &lt;- mean(rej_log$adj.values[,2])
+<pre class="r"><code>## 7. Add a curve to the observed data that shows the
+## ABC-predicted parameter values 7a. Simulate data with
+## the average &#39;accepted&#39; parameter values
+lambda_1 &lt;- mean(rej_log$unadj.values[, 1])
+alpha_11 &lt;- mean(rej_log$unadj.values[, 2])
 N1_0 &lt;- species$P_caudatum[1]
 t &lt;- 23
 # model function
-disc_log &lt;- function(lambda_1,N1_0,alpha_11){
-  Nt1 &lt;- N1_0 + N1_0*(lambda_1*exp(-alpha_11*N1_0))
-  return(Nt1)
+disc_log &lt;- function(lambda_1, N1_0, alpha_11) {
+    Nt1 &lt;- (N1_0 * lambda_1)/(1 + alpha_11 * N1_0)
+    return(Nt1)
 }
 # Simulation of model for t time steps
-N &lt;- rep(NA,t)
+N &lt;- rep(NA, t)
 N[1] &lt;- N1_0
-for(i in 2:t){
-  N[i] &lt;- disc_log(lambda_1,N1_0,alpha_11)
-  N1_0 &lt;- N[i]
+for (i in 2:t) {
+    N[i] &lt;- disc_log(lambda_1, N1_0, alpha_11)
+    N1_0 &lt;- N[i]
 }
-plot(species$P_caudatum,pch=19,col=&quot;black&quot;)
-lines(N,lwd=2,col=&quot;lightgray&quot;)
-# 7b. Simulate data with 95% highest and lowest values for each time point
-lambda_1 &lt;- quantile(rej_log$adj.values[,1],probs=c(0.025,.975))
-alpha_11 &lt;- quantile(rej_log$adj.values[,2],probs=c(0.025,.975))
-# 2.5%
-N1_0 &lt;- species$P_caudatum[1]
-N &lt;- rep(NA,t)
-N[1] &lt;- N1_0
-for(i in 2:t){
-  N[i] &lt;- disc_log(lambda_1[1],N1_0,alpha_11[1])
-  N1_0 &lt;- N[i]
-}
-lines(1:23,N,lwd=0.5,col=&quot;skyblue&quot;)
-# 97.5%
-N1_0 &lt;- species$P_caudatum[1]
-N &lt;- rep(NA,t)
-N[1] &lt;- N1_0
-for(i in 2:t){
-  N[i] &lt;- disc_log(lambda_1[2],N1_0,alpha_11[2])
-  N1_0 &lt;- N[i]
-}
-lines(1:23,N,lwd=0.5,col=&quot;skyblue&quot;)</code></pre>
+plot(species$P_caudatum, pch = 19, col = &quot;black&quot;)
+lines(N, lwd = 2, col = &quot;lightgray&quot;)</code></pre>
 <p><img src="E4.3_files/figure-html/unnamed-chunk-15-3.png" width="50%" /></p>
 <p><strong>Question: In this example, what are the prior distributions
 for the lambda and alpha parameters?</strong></p>
@@ -753,14 +741,45 @@ for the lambda and alpha parameters?</strong></p>
 from the prior distributions? Create a plot to show this.</strong></p>
 <p><strong>Question: How does the predicted values of P. caudatum N
 using the posterior mean compare to the observed values?</strong></p>
+<p><strong>Question: Can you implement a different prior distribution
+for alpha, using rnorm(0,0.01) ?</strong></p>
 <p>Your goal is to repeat this ABC procedure and estimate the most
 likely values for the 2 Paramecium species from the dataset in Step 1a.
-The code above is your ’template’m but using only 1 species. Add in the
+The code above is your ‘template’ but using only 1 species. Add in the
 model and parameters for Species #2, and be sure to add in draws of
 parameter values from the prior distributions for those new
 parameters.</p>
-<pre><code>## Warning: All parameters are &quot;none&quot; transformed.</code></pre>
-<p><img src="E4.3_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="E4.3_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+<p>I give an example here of what the model-estimated and observed data
+look like.</p>
+<p><img src="E4.3_files/figure-html/unnamed-chunk-17-1.png" width="50%" /></p>
+<p>If you are struggling to get a good fit of the model to the data, you
+can try:</p>
+<ul>
+<li><p>Narrowing the range of the prior distributions</p></li>
+<li><p>I used the following prior for my <span
+class="math inline">\(\alpha\)</span> coefficients:</p></li>
+</ul>
+<pre class="r"><code>z &lt;- rbinom(1, 1, 0.5)
+alpha &lt;- z * -rbeta(1, shape1 = 1, shape2 = 50) + (1 - z) * rbeta(1,
+    shape1 = 1, shape2 = 50)</code></pre>
+<p>Note this gives both negative and positive values drawn from a beta
+distribution.</p>
+<ul>
+<li><p>You can try running more iterations of the simulation. I used
+100000.</p></li>
+<li><p>You can work with either the adjusted or unadjusted values from
+the ABC. The unadjusted values arise from using a <strong>rejection
+method</strong> to converge on parameter value estimates that best fit
+the data. The adjusted values arise from a <strong>neural
+network</strong> method. Sometimes one method works better than another.
+You can index those values this way:</p></li>
+</ul>
+<pre class="r"><code>rej_log &lt;- abc::abc(target = stat.obs, param = par.sim, sumstat = stat.sim,
+    tol = 0.001, method = &quot;neuralnet&quot;)
+# Adjusted values - from the neural network method
+rej_log$adj.values
+# Unadjusted values - from the rejection method
+rej_log$unadj.values</code></pre>
 </div>
 </div>
 

@@ -9,10 +9,11 @@ institute: "University of Duisburg-Essen"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,tidy.opts = list(width.cutoff = 60), tidy = TRUE)
 library(abc)
 library(fitdistrplus)
 library(gauseR)
+library(formatR)
 ```
 
 ## Exercise 1. Our First ABC - estimating parameters of Gaussian distribution given observed data
@@ -199,8 +200,8 @@ Our next goal is to use a discrete-time Lotka-Volterra model that can simulate d
 
 We use the following model:
 
-$$ N_{1,t+1} = N_{1,t} + N_{1,t} \cdot(\lambda_1 e^{(-\alpha_{11} N_{1,t} - \alpha_{12} N_{2,t})})$$
-$$ N_{2,t+1} = N_{2,t} + N_{2,t} \cdot(\lambda_2 e^{(-\alpha_{22} N_{2,t} - \alpha_{21} N_{1,t})})$$
+$$ N_{1,t+1} = \frac{N_{1,t} \lambda_{1}}{1 + \alpha_{11} N_{1,t} + \alpha_{12} N_{2,t}}$$
+$$ N_{2,t+1} = \frac{N_{2,t} \lambda_{2}}{1 + \alpha_{22} N_{2,t} + \alpha_{21} N_{1,t}}$$
 The parameters we need to estimate are:
 
 $\lambda_1, \lambda_2, \alpha_{11}, \alpha_{22}, \alpha_{12}, \alpha_{21}$
@@ -215,7 +216,7 @@ N1_0 <- 5
 t <- 23
 # model function
 disc_log <- function(lambda_1,N1_0,alpha_11){
-  Nt1 <- N1_0 + N1_0*(lambda_1*exp(-alpha_11*N1_0))
+  Nt1 <- (N1_0*lambda_1) / (1 + alpha_11*N1_0)
   return(Nt1)
 }
 # Simulation of model for t time steps
@@ -245,9 +246,9 @@ N1_0 <- 5
 N2_0 <- 3
 t <- 23
 # model function
-disc_lv <- function(r_1=lambda_1,r_2=lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21){
-  Nt1 <- (N1_0*r_1) / (1 + alpha_11*N1_0 + alpha_12*N2_0)
-  Nt2 <- (N2_0*r_2) / (1 + alpha_22*N2_0 + alpha_21*N1_0)
+disc_lv <- function(lambda_1,lambda_2,N1_0,N2_0,alpha_11,alpha_22,alpha_12,alpha_21){
+  Nt1 <- (N1_0*lambda_1) / (1 + alpha_11*N1_0 + alpha_12*N2_0)
+  Nt2 <- (N2_0*lambda_2) / (1 + alpha_22*N2_0 + alpha_21*N1_0)
   return(cbind(Nt1,Nt2))
 }
 # Simulation of model for t time steps
@@ -269,7 +270,7 @@ points(N[,2],pch=19,col="orange")
 
 **Step 3. Create random simulations of data, using prior distributions for model parameters**
 
-Do you recall an exercise where we looked at logistic growth across a range of values for the growth rate $r$? We used code that looks like this (using `disc_log` from above):
+Do you recall an exercise where we looked at logistic growth across a range of values for the growth rate $\lambda$? We used code that looks like this (using `disc_log` from above):
 
 ```{r warning=FALSE,message=FALSE}
 # Simulation of model for t time steps
@@ -285,13 +286,14 @@ for(p in 1:length(lambda_1_range)){
   }
   dat <- as.data.frame(N)
   dat$time <- as.numeric(rownames(dat))
-  dat$r <- rep(lambda_1_range[p],t)
+  dat$lambda <- rep(lambda_1_range[p],t)
   N.g <- rbind(N.g,dat)
   N1_0 <- 5
 }
 # Plot in ggplot
-ggplot2::ggplot(N.g,ggplot2::aes(x=time,y=N,col=as.factor(r))) + ggplot2::geom_line()
+ggplot2::ggplot(N.g,ggplot2::aes(x=time,y=N,col=as.factor(lambda))) + ggplot2::geom_line()
 ```
+
 In this exercise, you will choose a *prior distribution* for each of the model parameters to estimate, and you will use a random draw from that prior distribution for each repetition of the simulation. This is how we create the variables `par.sim` and `stat.sim` needed to use ABC, to estimate the unknown parameter values for Gause's Paramecium. I demonstrate how this works for a discrete-time logistic example, using data from Gause's Paramecium.
 
 ```{r out.width="50%",warning=FALSE}
@@ -314,7 +316,7 @@ stat.obs <- species$P_caudatum
 rand_disc_log <- function(N1_0=N1_0,disc_log,t){
   ## Choose random values of lambda_1 from a prior distribution
   lambda_1r <- runif(1,min=1.2,max=3) # Random uniform distribution between 0-3
-  alpha_11r <- rbeta(1,shape1=1,shape2=50) # Random beta distribution, bounded 0-1
+  alpha_11r <- runif(1,min=-.5,max=.5) # Random uniform distribution, bounded -0.5 - 0.5
   #biased towards low values
   N <- rep(NA,t)
   N[1] <- N1_0
@@ -352,13 +354,13 @@ hist(rej_log$adj.values[,2],main="posterior distribution of alpha_11")
 
 ## 7. Add a curve to the observed data that shows the ABC-predicted parameter values
 # 7a. Simulate data with the average 'accepted' parameter values
-lambda_1 <- mean(rej_log$adj.values[,1])
-alpha_11 <- mean(rej_log$adj.values[,2])
+lambda_1 <- mean(rej_log$unadj.values[,1])
+alpha_11 <- mean(rej_log$unadj.values[,2])
 N1_0 <- species$P_caudatum[1]
 t <- 23
 # model function
 disc_log <- function(lambda_1,N1_0,alpha_11){
-  Nt1 <- N1_0 + N1_0*(lambda_1*exp(-alpha_11*N1_0))
+  Nt1 <- (N1_0*lambda_1) / (1 + alpha_11*N1_0)
   return(Nt1)
 }
 # Simulation of model for t time steps
@@ -370,27 +372,6 @@ for(i in 2:t){
 }
 plot(species$P_caudatum,pch=19,col="black")
 lines(N,lwd=2,col="lightgray")
-# 7b. Simulate data with 95% highest and lowest values for each time point
-lambda_1 <- quantile(rej_log$adj.values[,1],probs=c(0.025,.975))
-alpha_11 <- quantile(rej_log$adj.values[,2],probs=c(0.025,.975))
-# 2.5%
-N1_0 <- species$P_caudatum[1]
-N <- rep(NA,t)
-N[1] <- N1_0
-for(i in 2:t){
-  N[i] <- disc_log(lambda_1[1],N1_0,alpha_11[1])
-  N1_0 <- N[i]
-}
-lines(1:23,N,lwd=0.5,col="skyblue")
-# 97.5%
-N1_0 <- species$P_caudatum[1]
-N <- rep(NA,t)
-N[1] <- N1_0
-for(i in 2:t){
-  N[i] <- disc_log(lambda_1[2],N1_0,alpha_11[2])
-  N1_0 <- N[i]
-}
-lines(1:23,N,lwd=0.5,col="skyblue")
 ```
 
 **Question: In this example, what are the prior distributions for the lambda and alpha parameters?**
@@ -399,9 +380,11 @@ lines(1:23,N,lwd=0.5,col="skyblue")
 
 **Question: How does the predicted values of P. caudatum N using the posterior mean compare to the observed values?**
 
-Your goal is to repeat this ABC procedure and estimate the most likely values for the 2 Paramecium species from the dataset in Step 1a. The code above is your 'template'm but using only 1 species. Add in the model and parameters for Species #2, and be sure to add in draws of parameter values from the prior distributions for those new parameters.
+**Question: Can you implement a different prior distribution for alpha, using rnorm(0,0.01) ?**
 
-```{r echo=FALSE,results='hide'}
+Your goal is to repeat this ABC procedure and estimate the most likely values for the 2 Paramecium species from the dataset in Step 1a. The code above is your 'template' but using only 1 species. Add in the model and parameters for Species #2, and be sure to add in draws of parameter values from the prior distributions for those new parameters.
+
+```{r echo=FALSE,results='hide',warning=FALSE,include=FALSE}
 ## 1. Get observed data
 #load competition data
 data("gause_1934_science_f02_03")
@@ -514,9 +497,45 @@ points(species$P_aurelia,pch=19,col="orange")
 #points(N[,2],pch=19,col="orange")
 lines(y=N[,1],x=1:23,col="black")
 lines(y=N[,2],x=1:23,col="orange")
-## Note: I still need to edit this, isn't currently estimating the model parameters well (negative alpha values)
 ```
 
+I give an example here of what the model-estimated and observed data look like.
+
+```{r echo=FALSE,out.width="50%"}
+plot(species$P_caudatum,xlab="time",ylab="N",pch=19,col="black",ylim=c(0,130))
+points(species$P_aurelia,pch=19,col="orange")
+# Add predicted from mean ABC values
+#plot(N[,1],xlab="time",ylab="N",pch=19,col="black",ylim=c(0,150))
+#points(N[,2],pch=19,col="orange")
+lines(y=N[,1],x=1:23,col="black")
+lines(y=N[,2],x=1:23,col="orange")
+```
+
+
+If you are struggling to get a good fit of the model to the data, you can try:
+
++ Narrowing the range of the prior distributions
+
++ I used the following prior for my $\alpha$ coefficients:
+
+```{r eval=FALSE}
+z <- rbinom(1,1,0.5)
+alpha <- z* -rbeta(1,shape1=1,shape2=50) + (1-z) * rbeta(1,shape1=1,shape2=50)
+```
+
+Note this gives both negative and positive values drawn from a beta distribution.
+
++ You can try running more iterations of the simulation. I used 100000.
+
++ You can work with either the adjusted or unadjusted values from the ABC. The unadjusted values arise from using a **rejection method** to converge on parameter value estimates that best fit the data. The adjusted values arise from a **neural network** method. Sometimes one method works better than another. You can index those values this way:
+
+```{r eval=FALSE}
+rej_log <- abc::abc(target=stat.obs, param=par.sim, sumstat=stat.sim, tol=.001, method ="neuralnet")
+# Adjusted values - from the neural network method
+rej_log$adj.values
+# Unadjusted values - from the rejection method
+rej_log$unadj.values
+```
 
 
 
