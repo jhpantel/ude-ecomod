@@ -17,7 +17,7 @@ left:
          - text: "Guidelines"
            href: ./project1.html
          - text: "Example cheat sheet"
-           href: ./Pantel_cheat_LV.html
+           href: ./media/ugly_logistic_cheat_sheet.pdf
          - text: "Resources"
            menu:
            - text: "Stage structured models"

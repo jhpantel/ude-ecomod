@@ -74,18 +74,28 @@ ggplot2::ggplot(out.g,aes(time,N)) +
 
 ## When will we have time to discuss and work on this?
 
-+ We will first look over the assignment in class Wednesday 15-11-2023. For class Thursday 08-12-2022, I will have a list of instructions to complete by class that day, and on Friday 08-12-2022 I will have a general template you can follow for what a cheat sheet might look like. For class Thursday 15-12-2022, I will have completed a template you can follow, and will include some more instructions for what you should have finished that day.
++ You should inform me (by email) of your planned model by Thursday 14-12-2023.
 
-+ The entire class period 07-12-2023 will be devoted to working on your course project.
++ You should have a working simulation of your code by Thursday 21-12-2023 at the earliest, Friday 12-01-2024 at the latest.
+
++ You can come by my office to ask questions about your simulation Wednesday 20-12-2023 from 4-6pm. Email me if you plan to come by.
+
++ You should have completed a simulation across different parameter ranges by Friday 19-01-2024.
+
++ You should have a draft of your cheat sheet by Friday 26-01-2024.
 
 + The assignment will be due by the final day of classes, 02-02-2024.
 
 ## Is there a template I can look at so I can get started on the assignment?
 
-+ I will create a Draft Template by Friday 24-11-2023. For now, here is a *very* insufficient example. ![Very insufficient first look at a Draft CModel Cheat Sheet](./media/screen-5.jpg){width="100%"}
++ Here is a *very* ugly example. It contains the basic elements, but is laid out poorly. Visual design is a key part of this.
+
+![Very insufficient first look at a Draft CModel Cheat Sheet](./media/ugly_logistic_cheat_sheet.pdf){width="100%"}
 
 + It will be in the style of R Cheat Sheets, such as the one seen [__here__](./media/bayesplot.pdf).
 
-## What if I want to get started now?
++ [__here__](./media/cheat_thumb.pdf) is an image with thumbnails of the cheat sheets from last year, to get a better visual overview.
 
-+ I would advise to begin by creating a simulation in R of your model of choice. Contact me if you would like to choose a model and begin.
+## Can you help me if I am not sure what to include or if I struggle with equilibrium and stability analysis?
+
++ Absolutely. I will post as many resources as I can for now.
