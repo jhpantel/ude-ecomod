@@ -10,7 +10,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-1. Note 1: There are more than 1 type of metapopulation model, so I reccommend strongly that you stick with what they refer to as a Levins metapopulation model. This should make more sense after you look through the resources.
+1. Note 1: There are more than 1 type of metapopulation model, so I reccommend strongly that you stick with what they refer to as a *Levins metapopulation model*. This should make more sense after you look through the resources.
 
 1. Resource 1: PDF chapter from book *Encyclopedia of Global Environmental Change* (Pablo A Marquet, 2002), [__Marquet Ch3__](./media/Marquet_Ch3.pdf)
 

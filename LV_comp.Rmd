@@ -1,0 +1,25 @@
+---
+title: "Lotka Volterra competition model resources"
+author: "Jelena H. Pantel"
+institute: "University of Duisburg-Essen"
+date: "`r file.mtime(knitr::current_input())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Lotka-Volterra competition
+
+1. Resource 1: An overview of continuous-time Lotka-Volterra competition equations WITH STABILITY ANALYSIS!, linked [here](https://www.uwyo.edu/dbmcd/popecol/marlects/lect20.html)
+
+2. Resource 2: Full text and accompanying R code for model, equilibrium, and stability analysis of LV competition from book *A Primer of Ecology With R* (M. Henry H. Stevens, 2009), linked [here](https://hankstevens.github.io/Primer-of-Ecology/competition.html) - **note this isn't an easy read, but it is quite thorough. I recommend.**
+
+3. One last book chapter that truly does have the overview, equilibrium, and stability analysis + phase-plane diagrams for LV competition. This is one of the best overviews I could find. From the book *Ecological Modelling and Ecophysics: Agricultural and Environmental Applications* - [Chapter 1, From growth equations for a single species to Lotka–Volterra equations for two interacting species](Fort_Ch1.pdf) - Scroll down to page 27-32 of the PDF
+
+## Lotka-Volterra predator-prey
+
+1. Resource 1: I'm thrilled to say that Wikipedia's entry on this model is thorough and readable. It has an overview of the equations, AND very good overview of equilibria and stability analysis. This is a lot of what you need! Linked [here](https://en.wikipedia.org/wiki/Lotka–Volterra_equations)
+
+2. Resource 2:Otto & Day Chapter 8 - [__Chapter 8, Equilibria and Stability Analyses - Nonlinear Models with Multiple Variables__](./media/OttoDay_Ch8.pdf) - **note: 30 pages, does include predator-prey models**

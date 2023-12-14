@@ -20,10 +20,14 @@ left:
            href: ./media/ugly_logistic_cheat_sheet.pdf
          - text: "Resources"
            menu:
+           - text: "Lotka Volterra models (pred-prey, competition)"
+             href: ./LV_comp.html
            - text: "Stage structured models"
              href: ./stage.html
            - text: "Metapopulation model"
              href: ./metapop.html
+           - text: "Equilibrium and stability analysis"
+             href: ./equi_stab.html
        - text: "Project 2"
          href: ./project2.pdf
   - text: "Contact"

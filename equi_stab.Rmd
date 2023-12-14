@@ -1,5 +1,5 @@
 ---
-title: "Stage structured population model resources"
+title: "Equilibrium and Stability Analysis resources"
 author: "Jelena H. Pantel"
 institute: "University of Duisburg-Essen"
 date: "`r file.mtime(knitr::current_input())`"
@@ -10,16 +10,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-1. Resource 1: PDF chapter from book *A Primer of Ecology With R* (M. Henry H. Stevens, 2009), [__Stevens Ch2__](./media/Stevens_Ch2.pdf)
+1. Resource 1: PDF of Otto & Day *A Biologist's Guide to Mathematical Modeling in Ecology and Evolution* (Sarah P. Otto & Troy Day, 2007) - [__Chapter 5, Equilibria and Stability Analyses - One Variable Models__](./media/OttoDay_Ch5.pdf) - **note: 50 pages, mostly about discrete-time models. Not easy.**
 
-2. Resource 2: Really excellent course exercise online with guidance about Matrix population models in R, linked [here](https://kevintshoemaker.github.io/NRES-470/LAB4.html) - note this includes access to an external R package, *popbio*, that will calculate some properties such as population growth rate $\lambda$ for you.
+2. Resource 2: Otto & Day Chapter 8 - [__Chapter 8, Equilibria and Stability Analyses - Nonlinear Models with Multiple Variables__](./media/OttoDay_Ch8.pdf) - **note: 30 pages, does include predator-prey models. Sadly not Lotka-Volterra competition**
 
-3. Resource 3: A more basic (and therefore much easier to read) stage-structured models in R online resource, linked [here](http://ecovirtual.ib.usp.br/doku.php?id=en:ecovirt:roteiro:pop_str:pstr_mtr)
-
-4. Resource 4: A document that explains stage-structured models well, but no interface with R (not a bad thing, as you can just learn more about the model type generally), linked [here](https://bio.libretexts.org/Courses/Gettysburg_College/02%3A_Principles_of_Ecology_-_Gettysburg_College_ES_211/07%3A_A_Quantitative_Approach_to_Population_Ecology/7.03%3A_Leslie_Matrix_Models)
-
-5. **NEW RESOURCE**: Leslie matrix calculator, which makes nice plots of popultion size over time, relative proportions of individuals across stages (good for visualizing equilibrium state!), and the 'dominant eigenvalue and eigenvector' needed to know the equilibrium stage structure proportion values. Linked [here](http://bandicoot.maths.adelaide.edu.au/Leslie_matrix/leslie.cgi)
-
-6. **NEW RESOURCE**: Wikipedia entry for Leslie matrix (the general name for age/stage structured population matrix models), which explains the equilibrium conditions as "The dominant eigenvalue of *L*,denoted $\lambda$, gives the population's asymptotic growth rate (growth rate at the stable age distribution). The corresponding eigenvector provides the stable age distribution, the proportion of individuals of each age within the population, which remains constant at this point of asymptotic growth barring changes to vital rates.[4] Once the stable age distribution has been reached, a population undergoes exponential growth at rate $\lambda$." Linked [here](https://en.wikipedia.org/wiki/Leslie_matrix)
-
-7. **NEW RESOURCE**: Link to the PDF of [__Crowder et al. 1994__](./media/Crowder_etal_1994.pdf), which is the cool (ok, "cool") study showing that reducing sea turtle mortality at the adult (and not the juvenile) stage was most critical for corresponding population size maintenance.
+3. Description of phase plane analysis and diagrams in general for one- and two-variable equations Linked [here](https://hluebbering.github.io/phase-planes/)
