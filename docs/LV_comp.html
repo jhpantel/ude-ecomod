@@ -12,7 +12,7 @@
 <meta name="author" content="Jelena H. Pantel" />
 
 
-<title>Stage structured population model resources</title>
+<title>Lotka Volterra competition model resources</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -399,56 +399,51 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Stage structured population model
+<h1 class="title toc-ignore">Lotka Volterra competition model
 resources</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2023-10-10 13:42:24.71325</h4>
+<h4 class="date">2023-12-14 20:36:23.77603</h4>
 
 </div>
 
 
+<div id="lotka-volterra-competition" class="section level2">
+<h2>Lotka-Volterra competition</h2>
 <ol style="list-style-type: decimal">
-<li><p>Resource 1: PDF chapter from book <em>A Primer of Ecology With
-R</em> (M. Henry H. Stevens, 2009), <a
-href="./media/Stevens_Ch2.pdf"><strong>Stevens Ch2</strong></a></p></li>
-<li><p>Resource 2: Really excellent course exercise online with guidance
-about Matrix population models in R, linked <a
-href="https://kevintshoemaker.github.io/NRES-470/LAB4.html">here</a> -
-note this includes access to an external R package, <em>popbio</em>,
-that will calculate some properties such as population growth rate <span
-class="math inline">\(\lambda\)</span> for you.</p></li>
-<li><p>Resource 3: A more basic (and therefore much easier to read)
-stage-structured models in R online resource, linked <a
-href="http://ecovirtual.ib.usp.br/doku.php?id=en:ecovirt:roteiro:pop_str:pstr_mtr">here</a></p></li>
-<li><p>Resource 4: A document that explains stage-structured models
-well, but no interface with R (not a bad thing, as you can just learn
-more about the model type generally), linked <a
-href="https://bio.libretexts.org/Courses/Gettysburg_College/02%3A_Principles_of_Ecology_-_Gettysburg_College_ES_211/07%3A_A_Quantitative_Approach_to_Population_Ecology/7.03%3A_Leslie_Matrix_Models">here</a></p></li>
-<li><p><strong>NEW RESOURCE</strong>: Leslie matrix calculator, which
-makes nice plots of popultion size over time, relative proportions of
-individuals across stages (good for visualizing equilibrium state!), and
-the ‘dominant eigenvalue and eigenvector’ needed to know the equilibrium
-stage structure proportion values. Linked <a
-href="http://bandicoot.maths.adelaide.edu.au/Leslie_matrix/leslie.cgi">here</a></p></li>
-<li><p><strong>NEW RESOURCE</strong>: Wikipedia entry for Leslie matrix
-(the general name for age/stage structured population matrix models),
-which explains the equilibrium conditions as “The dominant eigenvalue of
-<em>L</em>,denoted <span class="math inline">\(\lambda\)</span>, gives
-the population’s asymptotic growth rate (growth rate at the stable age
-distribution). The corresponding eigenvector provides the stable age
-distribution, the proportion of individuals of each age within the
-population, which remains constant at this point of asymptotic growth
-barring changes to vital rates.[4] Once the stable age distribution has
-been reached, a population undergoes exponential growth at rate <span
-class="math inline">\(\lambda\)</span>.” Linked <a
-href="https://en.wikipedia.org/wiki/Leslie_matrix">here</a></p></li>
-<li><p><strong>NEW RESOURCE</strong>: Link to the PDF of <a
-href="./media/Crowder_etal_1994.pdf"><strong>Crowder et
-al. 1994</strong></a>, which is the cool (ok, “cool”) study showing that
-reducing sea turtle mortality at the adult (and not the juvenile) stage
-was most critical for corresponding population size
-maintenance.</p></li>
+<li><p>Resource 1: An overview of continuous-time Lotka-Volterra
+competition equations WITH STABILITY ANALYSIS!, linked <a
+href="https://www.uwyo.edu/dbmcd/popecol/marlects/lect20.html">here</a></p></li>
+<li><p>Resource 2: Full text and accompanying R code for model,
+equilibrium, and stability analysis of LV competition from book <em>A
+Primer of Ecology With R</em> (M. Henry H. Stevens, 2009), linked <a
+href="https://hankstevens.github.io/Primer-of-Ecology/competition.html">here</a>
+- <strong>note this isn’t an easy read, but it is quite thorough. I
+recommend.</strong></p></li>
+<li><p>One last book chapter that truly does have the overview,
+equilibrium, and stability analysis + phase-plane diagrams for LV
+competition. This is one of the best overviews I could find. From the
+book <em>Ecological Modelling and Ecophysics: Agricultural and
+Environmental Applications</em> - <a href="Fort_Ch1.pdf">Chapter 1, From
+growth equations for a single species to Lotka–Volterra equations for
+two interacting species</a> - Scroll down to page 27-32 of the
+PDF</p></li>
 </ol>
+</div>
+<div id="lotka-volterra-predator-prey" class="section level2">
+<h2>Lotka-Volterra predator-prey</h2>
+<ol style="list-style-type: decimal">
+<li><p>Resource 1: I’m thrilled to say that Wikipedia’s entry on this
+model is thorough and readable. It has an overview of the equations, AND
+very good overview of equilibria and stability analysis. This is a lot
+of what you need! Linked <a
+href="https://en.wikipedia.org/wiki/Lotka–Volterra_equations">here</a></p></li>
+<li><p>Resource 2:Otto &amp; Day Chapter 8 - <a
+href="./media/OttoDay_Ch8.pdf"><strong>Chapter 8, Equilibria and
+Stability Analyses - Nonlinear Models with Multiple
+Variables</strong></a> - <strong>note: 30 pages, does include
+predator-prey models</strong></p></li>
+</ol>
+</div>
 
 
 
