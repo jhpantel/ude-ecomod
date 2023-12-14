@@ -14,4 +14,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 2. Resource 2: Otto & Day Chapter 8 - [__Chapter 8, Equilibria and Stability Analyses - Nonlinear Models with Multiple Variables__](./media/OttoDay_Ch8.pdf) - **note: 30 pages, does include predator-prey models. Sadly not Lotka-Volterra competition**
 
-3. Description of phase plane analysis and diagrams in general for one- and two-variable equations Linked [here](https://hluebbering.github.io/phase-planes/)
+3. Resource 3: Description of phase plane analysis and diagrams in general for one- and two-variable equations Linked [here](https://hluebbering.github.io/phase-planes/)
