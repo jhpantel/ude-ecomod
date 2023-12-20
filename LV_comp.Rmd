@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 2. Resource 2: Full text and accompanying R code for model, equilibrium, and stability analysis of LV competition from book *A Primer of Ecology With R* (M. Henry H. Stevens, 2009), linked [here](https://hankstevens.github.io/Primer-of-Ecology/competition.html) - **note this isn't an easy read, but it is quite thorough. I recommend.**
 
-3. Resource 3: One last book chapter that truly does have the overview, equilibrium, and stability analysis + phase-plane diagrams for LV competition. This is one of the best overviews I could find. From the book *Ecological Modelling and Ecophysics: Agricultural and Environmental Applications* - [Chapter 1, From growth equations for a single species to Lotka–Volterra equations for two interacting species](Fort_Ch1.pdf) - Scroll down to page 27-32 of the PDF
+3. Resource 3: One last book chapter that truly does have the overview, equilibrium, and stability analysis + phase-plane diagrams for LV competition. This is one of the best overviews I could find. From the book *Ecological Modelling and Ecophysics: Agricultural and Environmental Applications* - [Chapter 1, From growth equations for a single species to Lotka–Volterra equations for two interacting species](./media/Fort_Ch1.pdf) - Scroll down to page 27-32 of the PDF
 
 ## Lotka-Volterra predator-prey
 
