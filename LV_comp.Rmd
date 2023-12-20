@@ -18,6 +18,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 3. Resource 3: One last book chapter that truly does have the overview, equilibrium, and stability analysis + phase-plane diagrams for LV competition. This is one of the best overviews I could find. From the book *Ecological Modelling and Ecophysics: Agricultural and Environmental Applications* - [Chapter 1, From growth equations for a single species to Lotka–Volterra equations for two interacting species](./media/Fort_Ch1.pdf) - Scroll down to page 27-32 of the PDF
 
+4. Resource 4: I solved the Lotka-Volterra equations for their equilibrium solutions ($N^*_1$, $N^*_2$) by hand, and you can see that [here](./media/JP_LVcomp_solution.pdf) 
+
 ## Lotka-Volterra predator-prey
 
 1. Resource 1: I'm thrilled to say that Wikipedia's entry on this model is thorough and readable. It has an overview of the equations, AND very good overview of equilibria and stability analysis. This is a lot of what you need! Linked [here](https://en.wikipedia.org/wiki/Lotka–Volterra_equations)
