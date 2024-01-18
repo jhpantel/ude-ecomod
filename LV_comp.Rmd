@@ -25,3 +25,5 @@ knitr::opts_chunk$set(echo = TRUE)
 1. Resource 1: I'm thrilled to say that Wikipedia's entry on this model is thorough and readable. It has an overview of the equations, AND very good overview of equilibria and stability analysis. This is a lot of what you need! Linked [here](https://en.wikipedia.org/wiki/Lotka–Volterra_equations)
 
 2. Resource 2: Otto & Day Chapter 8 - [__Chapter 8, Equilibria and Stability Analyses - Nonlinear Models with Multiple Variables__](./media/OttoDay_Ch8.pdf) - **note: 30 pages, does include predator-prey models**
+
+3. Resource 3: I solved the Lotka-Volterra predator-prey equations for their equilibrium solutions ($x^*$, $y^*$) by hand, and you can see that [here](./media/JP_LVpredprey_solution.pdf)
