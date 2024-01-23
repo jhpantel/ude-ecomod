@@ -11,54 +11,54 @@ institute: "University of Duisburg-Essen"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
-library(palmerpenguins)
+library(ISwR)
 library(gauseR)
 library(vegan)
 library(mapsFinland)
+library(brms)
 ```
 
-## WARNING!
-This material is for the 2022 class, and has not been updated yet. This is not a final version! Expect the revised version ~Monday January 22, 2024.
-
 ## Overview
-You will give solutions to four problems on the topic of fitting observed data to models. You can submit your solutions by (1) uploading them to your GitHub repository *ude-ecomod-hw* or (2) emailing me the solutions at jelena.pantel@uni-due.de. The solutions can either be (1) a fully executable RMarkdown file (.Rmd) or (2) an R script (.R).
+You will give solutions to five problems on the topic of fitting observed data to models. You can submit your solutions by emailing me the solutions at jelena.pantel@uni-due.de. The solutions can either be (1) a fully executable RMarkdown file (.Rmd) or (2) an R script (.R). You **must** make sure the file runs 100% without errors before submitting (or that the .Rmd file knits - you can knit to HTML, PDF, your choice, whatever works).
 
 Please note that the following R packages should be installed to get everything I do here to work:
 
 ```{r eval=FALSE}
 library(ggplot2)
-library(palmerpenguins)
+library(ISwR)
 library(gauseR)
 library(vegan)
 library(mapsFinland)
+library(brms)
 ```
 
 
 ## Problem 1. Fitting, interpreting, and predicting from a linear model
 
-**Description**: We recall that in our 'normal' statistical lives, we may use a *linear regression* to model the relationship between two continuous variables. I made the point that a regression is a mathematical model! Let's work with a linear regression in R, and how to interpret the output (you will have more of this later in a proper statistics class, but let's review for now).
+**Description**: We can use a *linear regression* to model the relationship between two (or more) continuous variables. We'll work with a linear regression in R, and how to interpret the output (you will have more of this later in a proper statistics class, but let's review for now).
 
-**Data / Problem**: Imagine we are researchers studying penguins in Antarctica, more specifically penguins observed at the Palmer Station inhabiting Biscoe, Dream, and Torgersen islands.
+**Data / Problem**: We have some data about lung functioning, and we hypothesize that lung capacity (maximal respiratory pressure, measuring the strength of respiratory muscles, which I will refer to as *pem*) is driven by human height (cm). As a researcher, I collect data to test this hypothesize and see how well a linear model does describe the relationship, and I estimate the parameters in the linear model.
 
-![Meet the Palmer penguins! (Artwork by @allison_horst)](./media/penguins.png){width="25%"}
+Our most basic linear model looks like this:
 
-We have access to camera data that allows us to measure penguin flipper length (mm), and we would like to use that to predict penguin body mass (g). This would save a lot of effort by not having to weigh new penguins! We use an existing dataset with observed values for penguin flipper length and body mass, fit a linear model to predict mass from flipper length, and then use the fitted model to make predictions for new cases.
+$$y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$
+$$ pem_i = \beta_0 + \beta_1 height_i + \epsilon_i$$
+
+This model has variables $y$ and $x$, and parameters $\beta_0$ (the slope), $\beta_1$ (the *y*-intercept), and $\epsilon_i$, the error term (the variance in $y_i$ that is *not* explained by the linear model). Our goal is to **fit the data to the model**, and estimate the model parameters $\beta_0$, $\beta_1$, and $\epsilon_i$ that are most likely given the data. We use this existing dataset with observed values for `pemax` and `height`, fit a linear model to predict `pemax` from `height`, and then use the fitted model to make predictions for new cases.
 
 ```{r,echo=FALSE, figures-1, fig.show="hold", out.width="50%", results = 'hide', warning=FALSE}
-mass_flipper <- ggplot2::ggplot(data = penguins, 
-                       aes(x = flipper_length_mm,
-                           y = body_mass_g)) +
-  geom_point(aes(color = species, 
-                 shape = species),
+data(cystfibr)
+mass_flipper <- ggplot2::ggplot(data = cystfibr, 
+                       aes(x = height,
+                           y = pemax)) +
+  geom_point(
              size = 3,
              alpha = 0.8) +
-  scale_color_manual(values = c("darkorange","purple","cyan4")) +
-  labs(title = "Penguin size, Palmer Station LTER",
-       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
-       x = "Flipper length (mm)",
-       y = "Body mass (g)",
-       color = "Penguin species",
-       shape = "Penguin species") +
+  scale_color_manual(values ="darkorange") +
+  labs(title = "Lung capacity",
+       subtitle = "Lung capacity (maximal respiratory pressure, pem) and human height (cm)",
+       x = "human height (cm)",
+       y = "lung capacity (L)") +
   theme(legend.position = c(0.2, 0.7),
         plot.title.position = "plot",
         plot.caption = element_text(hjust = 0, face= "italic"),
@@ -70,16 +70,17 @@ mass_flipper
 The data can be found here:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=60)}
-data(package = 'palmerpenguins')
+library(ISwR)
+data(cystfibr)
 ```
 
-+ Please use the `lm` command to fit a linear model to estimate *y* `body_mass_g` as a function of *x* `flipper_length_mm`: $y = mx + b$. Tell me the model estimates for the parameters $b$ (*y-intercept*) and $m$ (*slope*). Then, use the `predict` command to tell me the model-predicted values for penguin body mass when the flipper lengths are 190, 215, and 230 mm.
++ Please use the `lm` command to fit a linear model to estimate *y* `pemax` as a function of *x* `height`: $y = mx + b$. Tell me the model estimates for the parameters $b$ (*y-intercept*) and $m$ (*slope*). Then, use the `predict` command to tell me the model-predicted values for lung capacity when the heights are 110, 140, and 170 cm.
 
 ```{r eval=FALSE,echo=FALSE}
 ## Solution
-mod <- lm(body_mass_g ~ flipper_length_mm,data=penguins)
+mod <- lm(pemax ~ height,data=cystfibr)
 summary(mod)
-new <- data.frame(flipper_length_mm=c(190,215,230))
+new <- data.frame(height=c(110,140,170))
 predict(mod,new)
 ```
 
@@ -99,9 +100,9 @@ data(gause_1934_book_f22)
 dat <- gause_1934_book_f22[gause_1934_book_f22$Treatment=="Pa",]
 ```
 
-+ Create a plot of the population size over time (`dat$Days`) for species 2 only (`dat$Volume_Species2`). Then I would like you to use the `nls` command to fit this observed data to a logitic growth model (`Volume_Species2 ~ Day`).
++ Create a plot of the population size over time (`dat$Days`) for species 2 only (`dat$Volume_Species2`). Then I would like you to use the `nls` command to fit this observed data to a logistic growth model (`Volume_Species2 ~ Day`).
 
-+ Recall that `nls` has some built-in models, and one of the was for logistic growth. You can find that via the function `SSlogis`. This will work similarly to the Michaelis-Menten (`SSmicmen`) example we did in class January 19.
++ Recall that `nls` has some built-in models, and one of the was for logistic growth. You can find that via the function `SSlogis`. This will work similarly to the Michaelis-Menten (`SSmicmen`) example we did in class in Exercise 4.1 (E4.1).
 
 + There is one very important consideration!! R's `nls` command does not use the exact same logistic model I show you above. Instead it fits the model as:
 
@@ -137,7 +138,7 @@ lines(newX$Day, pred[1:250], lwd = 3, col = "blue")
 
 $$ \frac{dN_i}{dt} = \frac{r} {1 + \alpha_{ii}N_{i}} $$
 
-+ So please estimate the values of *r* and $\alpha_{ii}$, and show the plot with the raw data and curve fit. You will use the command `gause_wrapper`- note from the example last week that you don't need to do much to get this to work!
++ So please estimate the values of *r* and $\alpha_{ii}$, and show the plot with the raw data and curve fit. You will use the command `gause_wrapper`- note from E4.1 that you don't need to do much to get this to work!
 
 ```{r eval=FALSE,echo=FALSE}
 # Using gauseR
@@ -184,3 +185,55 @@ lines(xtmp, predict(marr, newdata=data.frame(area = xtmp)), lwd=2, col = "blue")
 ```
 
 + Please give me the values for the estimated model parameters (you can use `summary` or `coef` on the fit nls model object to get these).
+
+## Problem 5. Bayesian non-linear modelling (new!)
+
+**Description**: We recall from lecture 4.3 (L4.3) that we can use Bayesian estimation of model parameters. This works by specifying a *prior distribution* for each model parameter, sampling candidate values from this prior and calculating the *likelihood* of the observed data given those parameter values, accepting or rejecting samples, to produce an estimate of the *posterior distribution* for each model parameter. We will learn to do and interpret a Bayesian non-linear model here. 
+
+**Data / Problem**: To make sure this works well, you will simulate some data using the following code:
+
+```{r out.width="60%"}
+b <- c(2, 0.75)
+x <- rnorm(100)
+y <- rnorm(100, mean = b[1] * exp(b[2] * x))
+dat1 <- data.frame(x, y)
+plot(dat1$x,dat1$y,pch=19,col="darkgrey")
+```
+
+You can see directly that $y$ is not a linear function of $x$, but instead an exponential function. Our goal is to use Bayesian inference, with the R package `brms`, to fit the data to the following model:
+
+$$ y_i = b_1 e^{b_2x_i} + \sigma$$
+
+And to estimate the values of the model parameters $b_1$ and $b_2$. We must specify a candidate *prior distribution* for the model parameters, then use the syntax of the R library `brms` to run the Bayesian estimation. Here I show the code for this, then ask you questions to interpret the model output.
+
+```{r eval=FALSE}
+library(brms)
+# Set the parameter prior distribution
+prior1 <- brms::prior(normal(1, 2), nlpar = "b1") + brms::prior(normal(0, 2), nlpar = "b2")
+# Set up the brms model
+fit1 <- brms::brm(bf(y ~ b1 * exp(b2 * x), b1 + b2 ~ 1, nl = TRUE),data = dat1, prior = prior1)
+# Look at the Bayesian model results
+summary(fit1)
+# Plot the posterior distributions for the model parameters
+plot(fit1)
+# Plot the data with the model-fit curve
+plot(conditional_effects(fit1), points = TRUE)
+```
+
+**Questions to answer for homework**:
+
+1. Please state what *prior distribution* is used for the $b_1$ and $b_2$ parameters. Use the notation `b1 ~ DISTRIBUTION(dist parameters)`. So for example if the prior is a gamma distribution with rate and shape parameters 50 and 170, I would say `b1 ~ Gamma(50,170)`. I can write that in formula notation in RMarkdown by writing: `$$b_1 \sim Gamma(50,170)$$`.
+
+2. Please give the *mean* and *95% HPDI (highest probability density interval)* for the three model parameters: $b_1$, $b_2$, and $\sigma$ (*sigma*, the error term for the model). You can see this in the `summary(fit1` results. (the HPDI is the range that holds 95% of the probability density for estimates)
+
+3. Bayesian estimation uses MCMC (*Markov Chain Monte Carlo*) to sample estimates from the prior distribution. The values of the model parameters selected in each step of the chain are shown as the *trace plots* to the right of the blue posterior distributions in the `plot(fit1)` command. Please use the following links to help answer the question - does it appear that the Markov chains in our Bayesian analysis have converged? (feel free to use eg the `bayesplot` library to make new trace plots if you desire)
+
+[Link 1: https://m-clark.github.io/bayesian-basics/model-exploration.html](https://m-clark.github.io/bayesian-basics/model-exploration.html)
+
+[Link 2: https://m-clark.github.io/bayesian-basics/diagnostics.html](https://m-clark.github.io/bayesian-basics/diagnostics.html)
+
+4. Look at the help menu (`?brm`) for the model-fit command `brm` - how many Markov chains are used in this model (what is the default value for the argument `chains=x` ?)
+
+5. Please use the library `bayesplot` to choose a new type of plot for analyzing your Bayesian model results. Create the figure, and explain what the figure tells us to help with the interpretation. Note that it is ok to choose a plot that re-draws some of the plots that result from the `plot(fit1)` command. You can read more about the `bayesplot` options here:
+
+[Link 3: http://mc-stan.org/bayesplot/](http://mc-stan.org/bayesplot/)

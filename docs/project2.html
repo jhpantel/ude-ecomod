@@ -331,74 +331,79 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Course Project 2 Guidelines</h1>
 <h4 class="author">Jelena H. Pantel</h4>
-<h4 class="date">2024-01-19 17:25:16</h4>
+<h4 class="date">2024-01-23 07:48:35</h4>
 
 </div>
 
 
-<div id="warning" class="section level2">
-<h2>WARNING!</h2>
-<p>This material is for the 2022 class, and has not been updated yet.
-This is not a final version! Expect the revised version ~Monday January
-22, 2024.</p>
-</div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>You will give solutions to four problems on the topic of fitting
-observed data to models. You can submit your solutions by (1) uploading
-them to your GitHub repository <em>ude-ecomod-hw</em> or (2) emailing me
+<p>You will give solutions to five problems on the topic of fitting
+observed data to models. You can submit your solutions by emailing me
 the solutions at <a href="mailto:jelena.pantel@uni-due.de"
 class="email">jelena.pantel@uni-due.de</a>. The solutions can either be
-(1) a fully executable RMarkdown file (.Rmd) or (2) an R script
-(.R).</p>
+(1) a fully executable RMarkdown file (.Rmd) or (2) an R script (.R).
+You <strong>must</strong> make sure the file runs 100% without errors
+before submitting (or that the .Rmd file knits - you can knit to HTML,
+PDF, your choice, whatever works).</p>
 <p>Please note that the following R packages should be installed to get
 everything I do here to work:</p>
 <pre class="r"><code>library(ggplot2)
-library(palmerpenguins)
+library(ISwR)
 library(gauseR)
 library(vegan)
-library(mapsFinland)</code></pre>
+library(mapsFinland)
+library(brms)</code></pre>
 </div>
 <div
 id="problem-1.-fitting-interpreting-and-predicting-from-a-linear-model"
 class="section level2">
 <h2>Problem 1. Fitting, interpreting, and predicting from a linear
 model</h2>
-<p><strong>Description</strong>: We recall that in our ‘normal’
-statistical lives, we may use a <em>linear regression</em> to model the
-relationship between two continuous variables. I made the point that a
-regression is a mathematical model! Let’s work with a linear regression
-in R, and how to interpret the output (you will have more of this later
-in a proper statistics class, but let’s review for now).</p>
-<p><strong>Data / Problem</strong>: Imagine we are researchers studying
-penguins in Antarctica, more specifically penguins observed at the
-Palmer Station inhabiting Biscoe, Dream, and Torgersen islands.</p>
-<div class="float">
-<img src="media/penguins.png" style="width:25.0%"
-alt="Meet the Palmer penguins! (Artwork by @allison_horst)" />
-<div class="figcaption">Meet the Palmer penguins! (Artwork by <span
-class="citation">@allison_horst</span>)</div>
-</div>
-<p>We have access to camera data that allows us to measure penguin
-flipper length (mm), and we would like to use that to predict penguin
-body mass (g). This would save a lot of effort by not having to weigh
-new penguins! We use an existing dataset with observed values for
-penguin flipper length and body mass, fit a linear model to predict mass
-from flipper length, and then use the fitted model to make predictions
-for new cases.</p>
+<p><strong>Description</strong>: We can use a <em>linear regression</em>
+to model the relationship between two (or more) continuous variables.
+We’ll work with a linear regression in R, and how to interpret the
+output (you will have more of this later in a proper statistics class,
+but let’s review for now).</p>
+<p><strong>Data / Problem</strong>: We have some data about lung
+functioning, and we hypothesize that lung capacity (maximal respiratory
+pressure, measuring the strength of respiratory muscles, which I will
+refer to as <em>pem</em>) is driven by human height (cm). As a
+researcher, I collect data to test this hypothesize and see how well a
+linear model does describe the relationship, and I estimate the
+parameters in the linear model.</p>
+<p>Our most basic linear model looks like this:</p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_i +
+\epsilon_i\]</span> <span class="math display">\[ pem_i = \beta_0 +
+\beta_1 height_i + \epsilon_i\]</span></p>
+<p>This model has variables <span class="math inline">\(y\)</span> and
+<span class="math inline">\(x\)</span>, and parameters <span
+class="math inline">\(\beta_0\)</span> (the slope), <span
+class="math inline">\(\beta_1\)</span> (the <em>y</em>-intercept), and
+<span class="math inline">\(\epsilon_i\)</span>, the error term (the
+variance in <span class="math inline">\(y_i\)</span> that is
+<em>not</em> explained by the linear model). Our goal is to <strong>fit
+the data to the model</strong>, and estimate the model parameters <span
+class="math inline">\(\beta_0\)</span>, <span
+class="math inline">\(\beta_1\)</span>, and <span
+class="math inline">\(\epsilon_i\)</span> that are most likely given the
+data. We use this existing dataset with observed values for
+<code>pemax</code> and <code>height</code>, fit a linear model to
+predict <code>pemax</code> from <code>height</code>, and then use the
+fitted model to make predictions for new cases.</p>
 <p><img src="project2_files/figure-html/figures-1-1.png" width="50%" /></p>
 <p>The data can be found here:</p>
-<pre class="r"><code>data(package = &quot;palmerpenguins&quot;)</code></pre>
+<pre class="r"><code>library(ISwR)
+data(cystfibr)</code></pre>
 <ul>
 <li>Please use the <code>lm</code> command to fit a linear model to
-estimate <em>y</em> <code>body_mass_g</code> as a function of <em>x</em>
-<code>flipper_length_mm</code>: <span class="math inline">\(y = mx +
-b\)</span>. Tell me the model estimates for the parameters <span
+estimate <em>y</em> <code>pemax</code> as a function of <em>x</em>
+<code>height</code>: <span class="math inline">\(y = mx + b\)</span>.
+Tell me the model estimates for the parameters <span
 class="math inline">\(b\)</span> (<em>y-intercept</em>) and <span
 class="math inline">\(m\)</span> (<em>slope</em>). Then, use the
 <code>predict</code> command to tell me the model-predicted values for
-penguin body mass when the flipper lengths are 190, 215, and 230
-mm.</li>
+lung capacity when the heights are 110, 140, and 170 cm.</li>
 </ul>
 </div>
 <div
@@ -431,12 +436,13 @@ dat &lt;- gause_1934_book_f22[gause_1934_book_f22$Treatment == &quot;Pa&quot;,
 <li><p>Create a plot of the population size over time
 (<code>dat$Days</code>) for species 2 only
 (<code>dat$Volume_Species2</code>). Then I would like you to use the
-<code>nls</code> command to fit this observed data to a logitic growth
+<code>nls</code> command to fit this observed data to a logistic growth
 model (<code>Volume_Species2 ~ Day</code>).</p></li>
 <li><p>Recall that <code>nls</code> has some built-in models, and one of
 the was for logistic growth. You can find that via the function
 <code>SSlogis</code>. This will work similarly to the Michaelis-Menten
-(<code>SSmicmen</code>) example we did in class January 19.</p></li>
+(<code>SSmicmen</code>) example we did in class in Exercise 4.1
+(E4.1).</p></li>
 <li><p>There is one very important consideration!! R’s <code>nls</code>
 command does not use the exact same logistic model I show you above.
 Instead it fits the model as:</p></li>
@@ -478,8 +484,8 @@ class="math inline">\(\alpha_{ii}\)</span>:</p>
 <li><p>So please estimate the values of <em>r</em> and <span
 class="math inline">\(\alpha_{ii}\)</span>, and show the plot with the
 raw data and curve fit. You will use the command
-<code>gause_wrapper</code>- note from the example last week that you
-don’t need to do much to get this to work!</p></li>
+<code>gause_wrapper</code>- note from E4.1 that you don’t need to do
+much to get this to work!</p></li>
 <li><p>Please give me the model estimates for <em>r</em> (given in the
 output variable as <code>r1</code>) and for <span
 class="math inline">\(\alpha_{ii}\)</span> (given in the output variable
@@ -546,6 +552,100 @@ like this:</li>
 can use <code>summary</code> or <code>coef</code> on the fit nls model
 object to get these).</li>
 </ul>
+</div>
+<div id="problem-5.-bayesian-non-linear-modelling-new"
+class="section level2">
+<h2>Problem 5. Bayesian non-linear modelling (new!)</h2>
+<p><strong>Description</strong>: We recall from lecture 4.3 (L4.3) that
+we can use Bayesian estimation of model parameters. This works by
+specifying a <em>prior distribution</em> for each model parameter,
+sampling candidate values from this prior and calculating the
+<em>likelihood</em> of the observed data given those parameter values,
+accepting or rejecting samples, to produce an estimate of the
+<em>posterior distribution</em> for each model parameter. We will learn
+to do and interpret a Bayesian non-linear model here.</p>
+<p><strong>Data / Problem</strong>: To make sure this works well, you
+will simulate some data using the following code:</p>
+<pre class="r"><code>b &lt;- c(2, 0.75)
+x &lt;- rnorm(100)
+y &lt;- rnorm(100, mean = b[1] * exp(b[2] * x))
+dat1 &lt;- data.frame(x, y)
+plot(dat1$x,dat1$y,pch=19,col=&quot;darkgrey&quot;)</code></pre>
+<p><img src="project2_files/figure-html/unnamed-chunk-8-1.png" width="60%" /></p>
+<p>You can see directly that <span class="math inline">\(y\)</span> is
+not a linear function of <span class="math inline">\(x\)</span>, but
+instead an exponential function. Our goal is to use Bayesian inference,
+with the R package <code>brms</code>, to fit the data to the following
+model:</p>
+<p><span class="math display">\[ y_i = b_1 e^{b_2x_i} +
+\sigma\]</span></p>
+<p>And to estimate the values of the model parameters <span
+class="math inline">\(b_1\)</span> and <span
+class="math inline">\(b_2\)</span>. We must specify a candidate
+<em>prior distribution</em> for the model parameters, then use the
+syntax of the R library <code>brms</code> to run the Bayesian
+estimation. Here I show the code for this, then ask you questions to
+interpret the model output.</p>
+<pre class="r"><code>library(brms)
+# Set the parameter prior distribution
+prior1 &lt;- brms::prior(normal(1, 2), nlpar = &quot;b1&quot;) + brms::prior(normal(0, 2), nlpar = &quot;b2&quot;)
+# Set up the brms model
+fit1 &lt;- brms::brm(bf(y ~ b1 * exp(b2 * x), b1 + b2 ~ 1, nl = TRUE),data = dat1, prior = prior1)
+# Look at the Bayesian model results
+summary(fit1)
+# Plot the posterior distributions for the model parameters
+plot(fit1)
+# Plot the data with the model-fit curve
+plot(conditional_effects(fit1), points = TRUE)</code></pre>
+<p><strong>Questions to answer for homework</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Please state what <em>prior distribution</em> is used for the
+<span class="math inline">\(b_1\)</span> and <span
+class="math inline">\(b_2\)</span> parameters. Use the notation
+<code>b1 ~ DISTRIBUTION(dist parameters)</code>. So for example if the
+prior is a gamma distribution with rate and shape parameters 50 and 170,
+I would say <code>b1 ~ Gamma(50,170)</code>. I can write that in formula
+notation in RMarkdown by writing:
+<code>$$b_1 \sim Gamma(50,170)$$</code>.</p></li>
+<li><p>Please give the <em>mean</em> and <em>95% HPDI (highest
+probability density interval)</em> for the three model parameters: <span
+class="math inline">\(b_1\)</span>, <span
+class="math inline">\(b_2\)</span>, and <span
+class="math inline">\(\sigma\)</span> (<em>sigma</em>, the error term
+for the model). You can see this in the <code>summary(fit1</code>
+results. (the HPDI is the range that holds 95% of the probability
+density for estimates)</p></li>
+<li><p>Bayesian estimation uses MCMC (<em>Markov Chain Monte Carlo</em>)
+to sample estimates from the prior distribution. The values of the model
+parameters selected in each step of the chain are shown as the <em>trace
+plots</em> to the right of the blue posterior distributions in the
+<code>plot(fit1)</code> command. Please use the following links to help
+answer the question - does it appear that the Markov chains in our
+Bayesian analysis have converged? (feel free to use eg the
+<code>bayesplot</code> library to make new trace plots if you
+desire)</p></li>
+</ol>
+<p><a
+href="https://m-clark.github.io/bayesian-basics/model-exploration.html">Link
+1:
+https://m-clark.github.io/bayesian-basics/model-exploration.html</a></p>
+<p><a
+href="https://m-clark.github.io/bayesian-basics/diagnostics.html">Link
+2: https://m-clark.github.io/bayesian-basics/diagnostics.html</a></p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Look at the help menu (<code>?brm</code>) for the model-fit
+command <code>brm</code> - how many Markov chains are used in this model
+(what is the default value for the argument <code>chains=x</code>
+?)</p></li>
+<li><p>Please use the library <code>bayesplot</code> to choose a new
+type of plot for analyzing your Bayesian model results. Create the
+figure, and explain what the figure tells us to help with the
+interpretation. Note that it is ok to choose a plot that re-draws some
+of the plots that result from the <code>plot(fit1)</code> command. You
+can read more about the <code>bayesplot</code> options here:</p></li>
+</ol>
+<p><a href="http://mc-stan.org/bayesplot/">Link 3:
+http://mc-stan.org/bayesplot/</a></p>
 </div>
 
 
